@@ -1,0 +1,12 @@
+<root>
+<subject>
+Um documento foi enviado do RH para você referente a data:  {{ Data_Doc }}
+</subject>
+<body>
+Prezado Sr/Sra. {{ Nome_Usuario }} , O documento cujo nome é   {{  Arquivo_Nome  }} foi enviado para sua caixa de arquivos e está disponível
+para sua consulta no aplicativo de RH (MIRIA) no portal do RH. Para acessar <a href='{{ System_Url }}' style='text-decoration:none'>clique aqui</a>
+ou copie e cole a seguinte url no seu navegador:  {{ System_Url }}
+</body>
+</root>
+
+

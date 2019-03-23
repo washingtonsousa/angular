@@ -1,0 +1,91 @@
+<main-container>
+
+        <h1> <i class="fa fa-file"></i> Arquivos e documentos </h1>
+        
+        <hr />
+
+        <div class="filterPanel" (addEventEmitter)="navigateToFileUploadRoute()"
+             crud-top-panel tooltipAddEvent="Adicionar arquivo">
+        
+                <div class="col-xl-3 mb-2">
+                      <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome" 
+                      (keyup)=" onFilterUpdate($event, 'Nome')"/>
+                </div>
+
+                <div class="col-xl-3 mb-2">
+                                <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome usuario" 
+                                (keyup)=" onFilterUpdate($event, 'UsuarioNome')"/>
+                </div>
+                <div class="col-xl-3 mb-2">
+                <div class="input-group">
+
+                <input (click)="da.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}" ngbDatepicker #da="ngbDatepicker"
+                class="form-control" name="Data_Referencia" (keyup)="onFilterUpdate('', 'Data_Referencia')"
+                [value]="filterQueryHandler.Data_Referencia"
+                (dateSelect)="dateTimeFilterHandler($event, 'Data_Referencia')"  />
+
+                <div class="input-group-prepend">
+                                <button (click)="da.toggle()" type="button" class="btn btn-primary">
+                                    <i class="fa fa-calendar"></i></button>
+                        </div>
+
+                </div>
+                </div>
+
+                <div class="col-xl-1 mb-2">
+                                <button [disabled]="!JsonObjectIdsObject.ArquivosIdsList.length"
+                                 class="btn btn-info w-100" tooltip="Limpar seleção"
+                                  (click)="clearSelected()">  <i class="fa fa-eraser"></i>
+                                </button>
+                </div>
+
+                <div class="col-xl-1 mb-2">
+                        <button [disabled]="!JsonObjectIdsObject.ArquivosIdsList.length 
+                       || !(Arquivos | arquivoPipe:filterQueryHandler)?.length"
+                         class="btn btn-danger w-100" tooltip="Deletar selecionados"
+                          (click)="modalMassiveConfirmMessage.openModal();">  <i class="fa fa-times"></i>
+                        </button>
+                </div>
+
+                <div class="col-xl-1 mb-2">
+                                <button class="btn btn-success w-100" tooltip="Selecionar tudo" (click)="selectAll()"> 
+                                        <i class="fa fa-check"></i> </button>
+                </div>
+             
+
+                <div class="col-xl-1 mb-2">
+          
+                        <button class="btn btn-warning w-100" (click)="Arquivos = Arquivos.reverse()"> <i class="fa fa-exchange"></i> </button>
+                    
+                </div>
+          
+        </div>
+        
+        <div class="row innerList">    
+        <div *ngFor="let Arquivo of Arquivos | arquivoPipe : filterQueryHandler; let i = index" 
+        class="col-xl-3 col-lg-4 col-md-6 col-12">           
+                <div card-arquivo [Arquivo]="Arquivo" #cardFileObject [deleteOptionVisible]="true" 
+                [viewOptionVisible]="Arquivo.Ext == 'pdf'" (onDownloadClick)="DownloadArquivo(Arquivo.Id)" 
+                 (onViewClick)="PanelLoad(Arquivo.Id)" (onDeleteClick)="modalConfirmMessage.openModal()"
+                  (onCheck)="OnArquivoCheck($event)"></div>  
+                
+                <div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação?"
+                (onConfirm)="DeleteArquivo(Arquivo.Id)"></div>
+
+                </div>
+
+                <div modal-pdf-viewer #modalPdf> </div>
+
+        </div>
+      
+
+
+        <div modal-confirm-message #modalMassiveConfirmMessage Message="Tem certeza de que deseja realizar esta operação?"
+        (onConfirm)="MassiveDelete()"></div>
+
+     
+
+        <div *ngIf="!(Arquivos | arquivoPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger">
+            Não foram retornados resultados para sua pesquisa </div>   
+        
+</main-container>

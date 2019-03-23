@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
+     Name="HRSolution-RiscMiriaSys"
+     ProductID="{ed3eb705-4a79-4ba3-ace8-11134b04f9f4}"
+     Version="1.0.1.2"
+     SharePointMinVersion="16.0.0.0"
+>
+  <Properties>
+    <Title>HR Sharepoint App</Title>
+    <StartPage>https://sharepointapps.risclab.com.br/HR?{StandardTokens}</StartPage>
+  </Properties>
+
+  <AppPrincipal>
+    <RemoteWebApplication ClientId="e1a0a464-a63c-4727-9085-bab107edc7fb" />
+  </AppPrincipal>
+  
+  
+  <AppPermissionRequests AllowAppOnlyPolicy="true" >
+    <AppPermissionRequest Scope="http://sharepoint/content/sitecollection/web/list" Right="FullControl" />
+    <AppPermissionRequest Scope="http://sharepoint/content/sitecollection/web" Right="FullControl" />
+    <AppPermissionRequest Scope="http://sharepoint/social/tenant" Right="Read" />
+  </AppPermissionRequests>
+</App>

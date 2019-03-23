@@ -1,0 +1,20 @@
+<form [formGroup]="ResumoForm" (ngSubmit)=OnSubmit($event)>
+         
+<label> Resumo: </label>
+<textarea class="form-control"  formControlName="Conteudo" style="min-height: 350px">   </textarea>
+<div *ngIf="ResumoForm.get('Conteudo').touched && ResumoForm.get('Conteudo').hasError('required')" class="alert alert-danger">
+
+Campo obrigatório
+
+</div>
+
+
+<br />
+<button  [disabled]="!ResumoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+{{ buttonText }}   </button>
+
+</form>
+
+<ms-loading-icon #loadingIcon [visible]="false" loadingText="Aguarde..." ></ms-loading-icon>
+<br />
+<div *ngIf="Message" class="alert alert-info"> {{  Message  }} </div>

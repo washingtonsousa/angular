@@ -1,0 +1,14 @@
+<div class="card usuario-card-box" style="width: 100%" @scaleInOut>
+    <img class="card-img-top" [src]="userProfileImageSrc" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{Usuario.Nome}}</h5>
+      <p>{{Usuario.Cargo.Nome}}</p>
+      <p> <i [ngClass]="(Usuario.Status.Codigo == 0) ? 'fa fa-times not-ok' : 'fa fa-check ok'"></i> 
+        {{Usuario.Status.Nome}} </p>
+    </div>
+    <div class="card-user-controls">
+      <a  class="card-link" (click)="viewEventMethod()"><i class="fa fa-eye"></i></a>
+      <a  class="card-link" (click)="editEventMethod()"><i class="fa fa-pencil"></i></a>
+      <a  class="card-link" (click)="deleteEventMethod()"><i class="fa fa-trash"></i></a>
+    </div>
+  </div>

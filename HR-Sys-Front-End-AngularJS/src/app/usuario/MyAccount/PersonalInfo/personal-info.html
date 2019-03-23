@@ -1,0 +1,72 @@
+<div my-account style="height:100%" iconClass="fa-user" title="Minha Conta">
+    
+        <div class="row ">
+                <div class="col-xl-2 col-12">
+                    <profile-picture #profilePictureMyAccount cssClass="img-fluid img-thumbnail"></profile-picture>
+
+                    <div side-panel  #alterarFotoPanel panelTitle="Alterar foto">
+
+                    <profile-photo-form (OnSubmitEmitter)="profilePictureMyAccount.ngOnInit()"></profile-photo-form>
+
+                     </div>
+
+                </div>
+            
+                <div class="col-xl-10 col-12">
+                        <h1> {{ usuarioModel.Nome }}  </h1> 
+                        <h5> {{ usuarioModel.Cargo.Nome }}  </h5> 
+                        <p>  {{ usuarioModel.Email }}  </p> 
+                        <a  class="link" (click)="alterarFotoPanel.show()">Alterar foto</a>
+                </div>
+        </div>
+
+        <br />
+
+        <div  content-box [btnActionVisible]="false">
+        <div [FullControlsVisible]="false" info-box boxTitle="Sobre você:" class="col-xl-3 col-lg-4 col-md-6 col-12">
+            <div info-box-key-value key="Matricula" [value]="usuarioModel.Matricula">   </div>
+            <div info-box-key-value key="Estado Civil" [value]="usuarioModel.EstadoCivil">   </div>
+            <div info-box-key-value key="Sexo" [value]="usuarioModel.Sexo ">   </div>
+            <div info-box-key-value key="Nivel Acesso" [value]="usuarioModel.NivelAcesso.Nivel">   </div>          
+        </div> 
+                   
+        <div [FullControlsVisible]="false" info-box class="col-xl-3 col-lg-4 col-md-6 col-12" boxTitle="Contatos internos:">
+            <div keyIconClass="fa-envelope" info-box-key-value key="Email p/ notificações" [value]="usuarioModel.EmailSecundario"></div>
+            <div keyIconClass="fa-phone" info-box-key-value key="Ramal" [value]="usuarioModel.Ramal">   </div>
+
+            
+
+        </div>
+        <div [FullControlsVisible]="false" info-box class="col-xl-3 col-lg-4 col-md-6 col-12" boxTitle="Dados do RH:">
+            <div info-box-key-value key="Data de admissão"   [value]="usuarioModel.DataAdmissao"></div>
+            <div info-box-key-value key="Data de nascimento" [value]="usuarioModel.DataNasc">   </div>
+        </div>
+
+        <div  info-box [deleteControlVisible]="false" (editEmitter)="EnderecoPainel.show()" class="col-xl-3 col-lg-4 col-md-6 col-12" boxTitle="Endereço:">
+                <div info-box-key-value key="Rua" [value]="usuarioModel.Endereco?.Rua">   </div>
+                <div info-box-key-value key="Complemento" [value]="usuarioModel.Endereco?.Complemento"></div>
+                <div info-box-key-value key="Bairro" [value]="usuarioModel.Endereco?.Bairro">   </div>
+                <div info-box-key-value key="CEP" [value]="usuarioModel.Endereco?.CEP">   </div>
+                <div info-box-key-value key="Referência" [value]="usuarioModel.Endereco?.Referencia">   </div>
+                <div info-box-key-value key="Cidade" [value]="usuarioModel.Endereco?.Cidade">   </div>
+
+        <div side-panel  #EnderecoPainel panelTitle="Atualizar Endereço">
+                <endereco-form #enderecoForm buttonText="Atualizar" [enderecoObject]="usuarioModel.Endereco" 
+                    (Emitter)="updateEndereco($event)">
+                </endereco-form>
+            </div>
+        
+  
+        </div>
+
+</div>
+
+<br />
+
+<contato-content-block [contatos]="usuarioModel.Contatos"></contato-content-block>
+
+</div>
+
+
+
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>

@@ -1,0 +1,53 @@
+<div my-account style="height:100%" iconClass="fa-file" title="Arquivos e documentos">
+    
+
+        <div class="filterPanel" [addBtnVisible]="false" crud-top-panel >
+    
+           <div class="col-xl-3">
+                 <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome" 
+                 (keyup)=" onFilterUpdate($event, 'Nome')"/>
+           </div>
+    
+           <div class="col-xl-3">
+           <div class="input-group">
+    
+           <input (click)="da.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}" ngbDatepicker #da="ngbDatepicker"
+           class="form-control" name="Data_Referencia" (keyup)="onFilterUpdate('', 'Data_Referencia')"
+           [value]="filterQueryHandler.Data_Referencia"
+           (dateSelect)="dataReferenciaFilterHandler($event)"  />
+    
+           <div class="input-group-prepend">
+                           <button (click)="da.toggle()" type="button" class="btn btn-primary">
+                               <i class="fa fa-calendar"></i></button>
+                   </div>
+    
+           </div>
+           </div>
+    
+           <div class="col-xl-1">
+     
+                   <button class="btn btn-warning w-100" (click)="toggleOrderBy()"> <i class="fa fa-exchange"></i> </button>
+               
+           </div>
+     
+    </div>
+    
+        <div class="row innerList">
+
+                        <div *ngIf="!(Arquivos | arquivoPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger">
+                                        Não foram retornados resultados para sua pesquisa </div>
+
+        <div *ngFor="let Arquivo of Arquivos | arquivoPipe : filterQueryHandler; let i = index" class="col-xl-3">
+    
+        <div card-arquivo [Selectable]="false" [Arquivo]="Arquivo" [deleteOptionVisible]="false" [viewOptionVisible]="Arquivo.Ext == 'pdf'"
+                     (onDownloadClick)="DownloadArquivo(Arquivo.Id)"  (onViewClick)="PanelLoad(Arquivo.Id)"></div>  
+    
+        </div>
+
+         
+
+        </div>
+    
+        <div modal-pdf-viewer #modalPdf> </div>
+    
+        </div>

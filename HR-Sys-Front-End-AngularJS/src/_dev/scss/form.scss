@@ -1,0 +1,26 @@
+label.required {
+    &:before {
+        content: "\f069";
+        font-family: FontAwesome;
+        color: #f90202;
+        font-size:0.6em;
+    }
+}
+
+label {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color:#333;
+}
+
+
+.form-control {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid #ccc !important;
+    transition: all 2s ease-out;
+    &:focus {
+         border: 1px solid #75a8f9 !important;
+         box-shadow: 0px 0px 2px 0px rgba(204,204,204,1) !important;
+    }
+}

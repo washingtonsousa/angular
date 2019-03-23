@@ -1,0 +1,58 @@
+<form [formGroup]="FormAcademicaForm" (ngSubmit)=OnSubmit($event)>
+         
+        <label class="required"> Instituição: </label>
+        <input class="form-control" type="text" formControlName="Instituicao" />   
+        <div *ngIf="FormAcademicaForm.get('Instituicao').touched && FormAcademicaForm.get('Instituicao').hasError('required')"
+        class="alert alert-danger">
+    
+               Campo obrigatório
+
+       </div>
+
+        <label class="required"> Curso: </label>
+        <input class="form-control" type="text" formControlName="Curso" />   
+        <div *ngIf="FormAcademicaForm.get('Curso').touched && FormAcademicaForm.get('Curso').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+        <label class="required"> Tipo Curso: </label>
+        <ng-selectize name="tipocurso" 
+        [formControl]="FormAcademicaForm.get('TipoCurso')" [config]="selectizeConfig" [options]="TipoCursos"  
+        placeholder="tipocurso" >
+        </ng-selectize>
+
+        <div *ngIf="FormAcademicaForm.get('TipoCurso').touched && FormAcademicaForm.get('TipoCurso').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+        <label class="required"> Situação: </label>
+        <ng-selectize name="situacao" 
+        [formControl]="FormAcademicaForm.get('Situacao')" [config]="selectizeConfig" [options]="SituacoesCursos"  
+        placeholder="Situação curso" >
+        </ng-selectize>
+
+        <div *ngIf="FormAcademicaForm.get('Situacao').touched && FormAcademicaForm.get('Situacao').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+       
+
+
+        <br />
+
+     
+        <button  [disabled]="!FormAcademicaForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+         </form>
+         <div modal-message #modalMessage></div>
+         <div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>

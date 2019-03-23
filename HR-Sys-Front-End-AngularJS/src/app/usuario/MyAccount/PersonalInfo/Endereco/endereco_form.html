@@ -1,0 +1,85 @@
+<form [formGroup]="EnderecoForm" (ngSubmit)=OnSubmit($event)>
+         
+        <label class="required"> Rua: </label>
+        <input class="form-control" type="text" formControlName="Rua" />   
+        <div *ngIf="EnderecoForm.get('Rua').touched && EnderecoForm.get('Rua').hasError('required')" class="alert alert-danger">
+    
+               Campo obrigatório
+
+        </div>
+
+        <label class="required"> Numero: </label>
+        <input class="form-control" type="text" formControlName="Numero" />   
+        <div *ngIf="EnderecoForm.get('Numero').touched && EnderecoForm.get('Numero').hasError('pattern')"
+         class="alert alert-danger">
+     
+        Somente números são permitidos
+
+        </div>
+
+        <div *ngIf="EnderecoForm.get('Numero').touched && EnderecoForm.get('Numero').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+        <label> Complemento: </label>
+        <input class="form-control" type="text" formControlName="Complemento" />   
+
+
+        <label class="required"> CEP: </label>
+        <input class="form-control" type="text" formControlName="CEP" />   
+        <div *ngIf="EnderecoForm.get('CEP').touched && EnderecoForm.get('CEP').hasError('pattern')"
+         class="alert alert-danger">
+     
+               Somente números neste campo
+
+        </div>
+
+        <div *ngIf="EnderecoForm.controls['CEP'].hasError('minlength') || EnderecoForm.controls['CEP'].hasError('maxlength')" 
+        class="alert alert-danger">
+     
+               Formato incorreto
+
+        </div>
+
+        <div *ngIf="EnderecoForm.get('CEP').touched && EnderecoForm.get('CEP').hasError('required')"
+         class="alert alert-danger">
+     
+               Campo obrigatório
+
+        </div>
+
+        <label class="required"> Bairro: </label>
+        <input class="form-control" type="text" formControlName="Bairro" />   
+
+        <div *ngIf="EnderecoForm.get('Bairro').touched && EnderecoForm.get('Bairro').hasError('required')"
+         class="alert alert-danger">
+     
+               Campo obrigatório
+
+        </div>
+
+        <label class="required"> Referência: </label>
+        <input class="form-control" type="text" formControlName="Referencia" />   
+
+        <label class="required"> Cidade: </label>
+        <input class="form-control" type="text" formControlName="Cidade" />   
+
+        <div *ngIf="EnderecoForm.get('Cidade').touched && EnderecoForm.get('Cidade').hasError('required')"
+         class="alert alert-danger">
+     
+               Campo obrigatório
+
+        </div>
+      
+        <br />
+        <button  [disabled]="!EnderecoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+         </form>
+        
+         <div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+
+         <div modal-message #modalMessage></div>

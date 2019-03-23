@@ -1,0 +1,73 @@
+<main-container>
+
+<div class="row">
+
+        <div class="col-xl-9 col-lg-8">
+
+
+                <div class="row">
+
+                        <div class="col-12">
+                
+                            <div class="text-center block-box-panel">
+
+                                    <h1>  Upload de documentos </h1>
+
+                            </div>
+  
+                    </div>
+                </div>
+    
+            <div class="row">
+
+               <div class="col-xl-12">
+
+                   <div class="floatingControlsPanel">
+
+                        <button class="btn control-item" tooltip="Executar upload" [disabled]="!arquivoItemsObject.length" 
+                        (click)="uploadAll()"> <i class="fa fa-upload"></i> </button>
+
+                        <button class="btn control-item" tooltip="Limpar lista" [disabled]="!arquivoItemsObject.length" 
+                        (click)="modalConfirmMessage.openModal()"> <i class="fa fa-eraser"></i> </button>
+                        
+                        
+
+                   </div>
+              
+               </div>
+
+            </div>
+
+            <div class="row">
+
+
+                   <div class="">
+                       
+                   </div>
+
+                    <div *ngFor="let arquivoItemObj of arquivoItemsObject" #uploadItem 
+                     upload-item [arquivoUploadItem]="arquivoItemObj"
+                    (onDeleteClick)="removeItem(arquivoItemObj.index)" class="col-xl-3">
+                    </div>
+
+            </div>
+         
+    
+        </div>
+
+        <div class="col-xl-3 col-lg-4 block-box-panel">
+    
+         <div #uploadForm upload-form (onItemsAdd)="addItems($event)"></div>
+    
+        </div>
+    
+    </div>
+    
+    <div modal-message #modalMessage></div>
+
+    <div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação"
+    (onConfirm)="clearList()"></div>
+
+    <div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+
+</main-container>

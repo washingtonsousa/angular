@@ -1,0 +1,53 @@
+#topMenu {
+background: linear-gradient(to top, #013891, #02327f 120%);
+display:flex;
+justify-content: space-between;
+align-items: center;
+align-content: center;
+padding:5px;
+z-index:9999;
+height: 70px;
+#navTopRight {
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+.logo-top {
+max-width:120px;
+}
+
+.side-menu-toggle-bars {
+    font-size:1.4em;
+    padding-top:14px;
+    color: #fff;
+}
+
+.navbar-brand {
+    color:#fff !important;
+    &:hover{
+        color: #f1f1f1;
+    }
+}
+
+
+.navbar-collapse ul li {
+
+  > a {
+      color:#fff;
+
+
+      &:hover{
+          color: #f1f1f1;
+      }
+  }
+
+}
+
+}
+
+
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    left:0%;
+}

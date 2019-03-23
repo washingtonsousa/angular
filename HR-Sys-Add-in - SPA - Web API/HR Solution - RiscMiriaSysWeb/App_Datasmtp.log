@@ -1,0 +1,7 @@
+Connected to smtp://smtp.office365.com:587/?starttls=always
+S: 220 RO1P15201CA0042.outlook.office365.com ESMTP Service ready
+C: EHLO [10.102.1.14]
+S: 250-Requested mail action okay, completed
+S: 250-SIZE 20000000
+S: 250-8BITMIME
+S: 250 OK

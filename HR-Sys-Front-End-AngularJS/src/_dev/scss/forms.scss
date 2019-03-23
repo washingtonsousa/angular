@@ -1,0 +1,24 @@
+.form-control, .btn {
+    border-radius: 0px !important;
+}
+
+.form-control {
+    color: #303030;
+    font-size:0.8em !important;
+}
+
+.selectize-input {
+
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: none;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    border-radius: 0px;
+    font-size:0.7em !important;
+
+}

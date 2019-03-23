@@ -1,0 +1,399 @@
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\ApplicationInsights.config
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\source\repos\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR Solution - RiscMiriaSys\HR Solution - RiscMiriaSys_dep\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\Desktop\projetos .NET\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojResolveAssemblyReference.cache
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.dll.config
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\HR Solution - RiscMiriaSys.pdb
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.EntityFrameworkCore.Relational.Design.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\Remotion.Linq.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Collections.Immutable.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Interactive.Async.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csprojAssemblyReference.cache
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CoreCompileInputs.cache
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.csproj.CopyComplete
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.dll
+C:\Users\wmeneses.RISC\Desktop\Desktop\projetos .NET\New folder\HR-Sys-Add-in - SPA - Web API\HR Solution - RiscMiriaSys\obj\Debug\HR Solution - RiscMiriaSys.pdb

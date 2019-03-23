@@ -1,0 +1,83 @@
+<main-container>
+
+
+<div class="row">
+<div class="col-xl-9">
+
+<h1> <i class="fa fa-info"></i> Conhecimentos </h1>
+<hr />
+<div side-panel #novoConhecimentoPainel class="side-panel" panelTitle="Novo conhecimento">
+
+<div conhecimento-subscribe [categoriaConhecimentos]="CategoriaConhecimentos" (emitter)="updateListOnCreate($event)" class="form-container-relative" buttonText="Salvar">
+
+</div>
+
+</div>
+
+<div class="filterPanel" crud-top-panel tooltipAddEvent="Adicionar conhecimento" (addEventEmitter)="novoConhecimentoPainel.show()">
+
+    <div class="col-xl-3">
+    
+            <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome"
+             (keyup)=" onFilterUpdate($event, 'Nome')"/>
+    
+    </div>
+
+    <div class="col-xl-3">
+
+        <select (change)="onFilterUpdate($event, 'CategoriaNome')" class="form-control">   
+                <option value=""> Selecione uma categoria </option>
+         <option *ngFor="let categoriaConhecimento of CategoriaConhecimentos" [value]="categoriaConhecimento.Categoria" >
+              {{ categoriaConhecimento.Categoria }} </option>
+
+        </select>
+
+    </div>
+    <div class="col-xl-1">
+
+            <button class="btn btn-warning w-100" (click)="Conhecimentos = Conhecimentos.reverse()"> <i class="fa fa-exchange"></i> </button>
+        
+        
+    </div>
+  
+    
+    </div>
+
+<div class="container-fluid innerList innerListTable">    
+<div class="innerList-header"> 
+
+<div class="line-header-item col-6"> Conhecimento</div>
+<div class="line-header-item col-5">Categoria</div>
+<div class="line-header-item col-1"></div>
+
+</div>  
+          
+<div *ngFor="let Conhecimento of Conhecimentos | conhecimentoPipe : filterQueryHandler let i = index" line-conhecimento [Conhecimento]="Conhecimento"
+ (deleteEventEmitter)="conhecimentoSubscribe.modalConfirmMessage.openModal()" (editEventEmitter)="atualizarConhecimentoPainel.show()">
+    
+        <div side-panel #atualizarConhecimentoPainel panelTitle="Editar conhecimento">
+            <div conhecimento-subscribe [categoriaConhecimentos]="CategoriaConhecimentos" (IdEmitter)="updateListOnDelete($event)" (emitter)="updateListOnUpdateEvent($event)" 
+                #conhecimentoSubscribe [conhecimentoModel]="Conhecimento" buttonText="Atualizar">   
+    
+        </div>
+    </div>
+</div>
+</div>
+
+<div *ngIf="!(Conhecimentos | conhecimentoPipe:filterQueryHandler)?.length" 
+class="alert col-12 alert-danger"> Não foram retornados resultados para sua pesquisa </div>   
+
+</div>
+
+
+
+
+<div categoriaConhecimento-index (onUpdateCategoriasList)="onUpdateCategoriasList($event)" 
+class="col-xl-3 sideRightPanel block-box-panel">
+</div>
+
+
+</div>
+
+
+</main-container>

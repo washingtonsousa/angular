@@ -1,0 +1,30 @@
+<form [formGroup]="AreaForm" (ngSubmit)=OnSubmit($event)>
+
+        <img *ngIf="AreaForm.get('imgStr').value" [src]="AreaForm.get('imgStr').value" class="img-fluid img-thumbnail" />
+        <br />
+        <label class="required"> Nome: </label>
+        <input name="idioma" 
+        [formControl]="AreaForm.get('Nome')" class="form-control"   placeholder="Nome" />
+
+        <div *ngIf="AreaForm.get('Nome').touched && AreaForm.get('Nome').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+        <label> Imagem descritiva: </label>
+        <input type="file" name="photo" (change)="readLocalImageUrl($event)"/>
+
+        <br />
+        <br />
+
+        <button  [disabled]="!AreaForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+</form>
+        
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+<div modal-message #modalMessage></div>
+<div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação?" 
+(onConfirm)="Delete(areaModel.Id)"></div>

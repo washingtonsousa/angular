@@ -1,0 +1,68 @@
+<main-container>
+
+<h1> <i class="fa fa-black-tie"></i> Cargos </h1>
+
+<hr />
+
+<div side-panel #novoCargoPainel class="side-panel" panelTitle="Novo cargo">
+
+<div cargo-subscribe [DepartamentosList]="DepartamentosList" (emitter)="updateListOnCreate($event)" class="form-container-relative"
+buttonText="Salvar">
+
+</div>
+
+</div>
+
+<div class="filterPanel" crud-top-panel tooltipAddEvent="Adicionar Cargo" (addEventEmitter)="novoCargoPainel.show()">
+
+        <div class="col-xl-3">
+              <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome" 
+              (keyup)="onFilterUpdate($event, 'Nome')"/>
+        </div>
+
+
+        <div class="col-xl-3">
+            <select name="departamento" class="form-control" placeholder="Filtrar pelo departamento"  (change)="onFilterUpdate($event, 'DepartamentoNome')" >
+                    <option value=""> Selecione um departamento </option>
+                    <option *ngFor="let departamento of DepartamentosList let i = index" [value]="departamento.Nome" > {{ departamento.Nome }} </option>
+            </select>
+        </div>
+
+
+        <div class="col-xl-3">
+                <select name="area" class="form-control" placeholder="Filtrar pela área"  (change)="onFilterUpdate($event, 'AreaNome')" >
+                        <option value=""> Selecione uma área </option>
+                        <option *ngFor="let area of AreasList let i = index" [value]="area.Nome" > {{ area.Nome }} </option>
+                </select>
+            </div>
+
+        <div class="col-xl-1">
+                <button class="btn btn-warning w-100" (click)="toggleOrderBy()"> <i class="fa fa-exchange"></i> </button>
+        </div>
+  
+    
+    </div>
+
+    <div class="row innerList">    
+<div *ngFor="let Cargo of Cargos | cargoPipe : filterQueryHandler; let i = index" class="col-xl-3 col-lg-4 col-md-6 col-12">           
+    <div card-Cargo [Cargo]="Cargo" (deleteEventEmitter)="CargoSubscribe.modalConfirmMessage.openModal()"
+    (editEventEmitter)="atualizarCargoPainel.show()"></div>
+   
+            <div side-panel #atualizarCargoPainel panelTitle="Editar cargo">
+            <div cargo-subscribe [DepartamentosList]="DepartamentosList" (IdEmitter)="updateListOnDelete($event)"
+             (emitter)="updateListOnUpdateEvent($event)" 
+            #CargoSubscribe [CargoModel]="Cargo" buttonText="Atualizar">   
+                                                   
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="!(Cargos | cargoPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger"> Não foram retornados resultados para sua pesquisa </div>   
+
+
+
+
+</div>
+
+</main-container>

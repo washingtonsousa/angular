@@ -1,0 +1,14 @@
+.pesquisa-input {
+   width:30% !important;
+}
+
+
+.form-container-relative {
+    position:relative;
+}
+
+.myaccount-photo {
+padding:5px;
+background:#f1f1f1;
+@include box-shadow(#666 0px 0px 5px);
+}

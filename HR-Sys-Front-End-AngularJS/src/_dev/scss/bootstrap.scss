@@ -1,0 +1,159 @@
+.card {
+
+border-radius:0px !important;
+margin-bottom:5px;
+
+
+&.card-inverse {
+    background:#f1f1f1;
+}
+
+.card-header {
+border-radius:0px !important;
+
+
+}
+
+.card-letter-area {
+    background:#011fc4;
+    height:150px;
+    text-align: center;
+
+    h1.card-letter {
+        margin: 0 auto;
+        font-size:6.5em;
+        color:#fff;
+        margin: 0 auto;
+    position: relative;
+    }
+}
+
+.card-text {
+    white-space: pre-wrap !important;
+}
+
+.card-controls {
+
+    display:flex;
+    justify-content: flex-end;
+    position:absolute;
+    top:10px;
+    right:10px;
+    
+    .card-controls-item {
+        cursor:pointer;
+        margin-left:2px;
+        color:#666;
+    }
+
+}
+
+.card-bottom-controls {
+
+    display:flex;
+    justify-content: flex-end;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    
+    .card-controls-item {
+        cursor:pointer;
+        margin-left:2px;
+        color:#666;
+    }
+
+}
+
+}
+
+
+
+
+.card-body {
+    .card-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+}
+
+.usuario-card-container {
+    padding:5px !important;
+}
+
+.idioma-title {
+    color: brown;
+}
+
+.modal-lg {
+    max-width:1366px !important;
+}
+
+.modal-dialog {
+    top:20%;
+    z-index:9999;
+}
+
+.card-link {
+
+    color: #0465f2 !important;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
+    &:hover {
+        color: #0148ba !important;
+    }
+
+}
+
+.card-user-controls {
+    display:flex;
+    justify-content: flex-end;
+    padding:8px;
+    padding-left:15px;
+    padding-right:15px;
+    border-top:1px solid #f2f2f2;
+}
+
+.plus-add-btn {
+    color: #018913;
+    border:none;
+    cursor:pointer;
+    background:transparent;
+}
+
+.angle-accordeon-btn {
+    color: #0450cc !important;
+    border:none;
+    cursor:pointer;
+    background:transparent;
+    font-size:1.5em;
+    transition: all 0.3s;
+    margin-left: 10px;
+    &:hover {
+        font-size:2em;
+    }
+}
+
+.item-scale-on-hover {
+    transition: transform 0.3s;
+    transform: scale(1);
+
+    &:hover {
+        transform: scale(1.5);
+    }
+}
+
+
+.table .thead-dark-blue th {
+
+    color: #fff;
+    background: linear-gradient(to top, #013891, #02327f 120%);
+    border-color: #013891;
+
+}

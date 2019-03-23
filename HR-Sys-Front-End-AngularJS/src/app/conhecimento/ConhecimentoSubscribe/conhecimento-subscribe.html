@@ -1,0 +1,43 @@
+<form [formGroup]="ConhecimentoForm" (ngSubmit)=OnSubmit($event)>
+
+      
+        <label class="required"> Nome: </label>
+        <input name="conhecimento" 
+        [formControl]="ConhecimentoForm.get('Nome')" class="form-control"   placeholder="Nome" />
+
+        <div *ngIf="ConhecimentoForm.get('Nome').touched && ConhecimentoForm.get('Nome').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div> 
+
+        <label class="required"> Categoria: </label>
+        <select name="conhecimento" 
+        [formControl]="ConhecimentoForm.get('CategoriaConhecimentoId')" class="form-control">
+
+        <option value=""> Selecione uma categoria </option>
+
+        <option *ngFor="let categoriaConhecimento of categoriaConhecimentos" [value]="categoriaConhecimento.Id"> 
+            {{categoriaConhecimento.Categoria}}</option>
+
+        </select>
+        
+        <div *ngIf="ConhecimentoForm.get('CategoriaConhecimentoId').touched && ConhecimentoForm.get('CategoriaConhecimentoId').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div> 
+
+        <br />
+
+        <button  [disabled]="!ConhecimentoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+</form>
+        
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+<div modal-message #modalMessage></div>
+<div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação?" 
+(onConfirm)="Delete(conhecimentoModel.Id)"></div>

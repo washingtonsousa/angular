@@ -1,0 +1,212 @@
+/*  Cube Loading Icon */
+
+.sk-folding-cube {
+    margin: 20px auto;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+  }
+  
+  .sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1); 
+  }
+
+  .sk-folding-cube .sk-cube.sk-bg-white:before {
+    background-color: #fff;
+    color: #fff;
+  }
+  
+  .sk-folding-cube .sk-cube.sk-bg-medium-gray:before {
+    background-color: #ccc;
+    color:#ccc;
+  }
+  
+  .sk-folding-cube .sk-cube.sk-bg-gray:before {
+    background-color: #333;
+    color:#333;
+  }
+
+
+  .sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+            animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+  }
+  .sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+            transform: scale(1.1) rotateZ(90deg);
+  }
+  .sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+            transform: scale(1.1) rotateZ(180deg);
+  }
+  .sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+            transform: scale(1.1) rotateZ(270deg);
+  }
+  .sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+  }
+  .sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s; 
+  }
+  .sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+  }
+  @-webkit-keyframes sk-foldCubeAngle {
+    0%, 10% {
+      -webkit-transform: perspective(140px) rotateX(-180deg);
+              transform: perspective(140px) rotateX(-180deg);
+      opacity: 0; 
+    } 25%, 75% {
+      -webkit-transform: perspective(140px) rotateX(0deg);
+              transform: perspective(140px) rotateX(0deg);
+      opacity: 1; 
+    } 90%, 100% {
+      -webkit-transform: perspective(140px) rotateY(180deg);
+              transform: perspective(140px) rotateY(180deg);
+      opacity: 0; 
+    } 
+  }
+  
+  @keyframes sk-foldCubeAngle {
+    0%, 10% {
+      -webkit-transform: perspective(140px) rotateX(-180deg);
+              transform: perspective(140px) rotateX(-180deg);
+      opacity: 0; 
+    } 25%, 75% {
+      -webkit-transform: perspective(140px) rotateX(0deg);
+              transform: perspective(140px) rotateX(0deg);
+      opacity: 1; 
+    } 90%, 100% {
+      -webkit-transform: perspective(140px) rotateY(180deg);
+              transform: perspective(140px) rotateY(180deg);
+      opacity: 0; 
+    }
+  }
+
+
+  /*   Ms Loading Icon   */
+
+
+  .ms-loading-icon {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .ms-loading-icon div {
+    animation: ms-loading-icon 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 32px 32px;
+  }
+  .ms-loading-icon div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #222;
+    margin: -3px 0 0 -3px;
+  }
+  .ms-loading-icon div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .ms-loading-icon div:nth-child(1):after {
+    top: 50px;
+    left: 50px;
+  }
+  .ms-loading-icon div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .ms-loading-icon div:nth-child(2):after {
+    top: 54px;
+    left: 45px;
+  }
+  .ms-loading-icon div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .ms-loading-icon div:nth-child(3):after {
+    top: 57px;
+    left: 39px;
+  }
+  .ms-loading-icon div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .ms-loading-icon div:nth-child(4):after {
+    top: 58px;
+    left: 32px;
+  }
+  .ms-loading-icon div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .ms-loading-icon div:nth-child(5):after {
+    top: 57px;
+    left: 25px;
+  }
+  .ms-loading-icon div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .ms-loading-icon div:nth-child(6):after {
+    top: 54px;
+    left: 19px;
+  }
+  .ms-loading-icon div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .ms-loading-icon div:nth-child(7):after {
+    top: 50px;
+    left: 14px;
+  }
+  .ms-loading-icon div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .ms-loading-icon div:nth-child(8):after {
+    top: 45px;
+    left: 10px;
+  }
+  @keyframes ms-loading-icon {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  /* Inner Loader */
+
+  .component-inner-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 47, 119, 1);
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }

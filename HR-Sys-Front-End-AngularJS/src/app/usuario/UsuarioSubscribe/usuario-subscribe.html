@@ -1,0 +1,223 @@
+<p><small> Todos os campos marcados com asterisco são obrigatórios  </small></p>
+
+<p *ngIf="!isUpdate"><small> Escolha um email para que o nome do usuário seja preenchido automaticamente</small></p>
+
+<form [formGroup]="usuarioFormGroup" (ngSubmit)="Submit($event)">
+
+    <label class="required"> Nome: </label>
+    <input type="text" formControlName="Nome" name="nome" class="form-control"  />
+    <div *ngIf="usuarioFormGroup.get('Nome').touched && usuarioFormGroup.get('Nome').hasError('required')" class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+            
+    <label class="required"> Email: </label>
+    <ng-selectize name="email" [enabled]="!isUpdate" (ngModelChange)="onEmailChange($event)" 
+    [formControl]="usuarioFormGroup.get('Email')" [config]="selectizeEmailConfig" [options]="spUsers"  placeholder="Email" >
+    </ng-selectize>
+
+
+    <div *ngIf="usuarioFormGroup.get('Email').touched && usuarioFormGroup.get('Email').hasError('required')" 
+      class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <div *ngIf="usuarioFormGroup.get('Email').touched && usuarioFormGroup.get('Email').hasError('pattern')" 
+    class="alert alert-danger">
+
+          Formato incorreto 
+          
+  </div>
+
+
+  <label> Email Secundário p/ notificação: </label>
+    <input name="email" type="text" formControlName="Email_Secundario_Notificacao" class="form-control" placeholder="Email p/ notificação" />
+
+    <div *ngIf="usuarioFormGroup.get('Email_Secundario_Notificacao').touched && usuarioFormGroup.get('Email_Secundario_Notificacao').hasError('required')" 
+      class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <div *ngIf="usuarioFormGroup.get('Email_Secundario_Notificacao').touched && usuarioFormGroup.get('Email_Secundario_Notificacao').hasError('pattern')" 
+    class="alert alert-danger">
+
+          Formato incorreto 
+          
+  </div>
+
+    <label class="required">Ramal: </label>
+    <input type="text" formControlName="Ramal" name="ramal" class="form-control" />
+    <div *ngIf="usuarioFormGroup.get('Ramal').touched && usuarioFormGroup.get('Ramal').hasError('required')" class="alert alert-danger">
+
+                Campo obrigatório
+                
+        </div>
+
+    <label class="required">Matricula: </label>
+    <input type="text" formControlName="Matricula" name="matricula" class="form-control" />
+    <div *ngIf="usuarioFormGroup.get('Matricula').touched && usuarioFormGroup.get('Matricula').hasError('required')" class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+    <br />
+
+    <label class="required"> Sexo: </label>
+    
+    <br />
+
+    <input type="radio" id="sexoEscolha"
+    name="Sexo" value="Feminino" formControlName="Sexo" 
+    [checked]="(usuarioFormGroup.get('Sexo').value == 'Feminino') ? 'checked' : ''">
+    <label>Feminino</label>
+    
+    <br />
+
+    <input type="radio" id="sexoEscolha"
+     name="Sexo" value="Masculino" formControlName="Sexo" 
+     [checked]="(usuarioFormGroup.get('Sexo').value == 'Masculino') ? 'checked' : ''">
+
+    <label>Masculino</label>
+
+    <br />
+
+    <div *ngIf="usuarioFormGroup.get('Sexo').touched && usuarioFormGroup.get('Sexo').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <label class="required"> Estado Civil: </label>
+    <ng-selectize [formControl]="usuarioFormGroup.get('EstadoCivil')" name="estadocivil" [config]="selectizeNomeNomeConfig" [options]="estadosCivis" 
+    placeholder="EstadoCivil">
+    </ng-selectize>
+
+    <div *ngIf="usuarioFormGroup.get('EstadoCivil').touched && usuarioFormGroup.get('EstadoCivil').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <label class="required">Cargo: </label>
+    <ng-selectize name="cargo" [formControl]="usuarioFormGroup.get('CargoId')" [config]="selectizeIdNomeConfig" [options]="cargosAdapted" 
+    placeholder="Cargo" >
+    </ng-selectize>
+
+    <div *ngIf="usuarioFormGroup.get('CargoId').touched && usuarioFormGroup.get('CargoId').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <label class="required">Nivel Acesso: </label>
+    <ng-selectize name="nivelacesso" [config]="selectizeIdNivelConfig" 
+    [options]="nivelAcessos"  placeholder="Nivel Acesso" [formControl]="usuarioFormGroup.get('NivelAcessoId')">
+    </ng-selectize>
+
+    <div *ngIf="usuarioFormGroup.get('NivelAcessoId').touched && usuarioFormGroup.get('NivelAcessoId').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <label class="required">Status: </label>
+    <ng-selectize name="status" [config]="selectizeIdNomeConfig" [formControl]="usuarioFormGroup.get('StatusId')" 
+    [options]="status" placeholder="Status">
+    </ng-selectize>
+
+    <div *ngIf="usuarioFormGroup.get('StatusId').touched && usuarioFormGroup.get('StatusId').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+    <div class="input-group mb-3">
+                    
+    <label class="required">Data de admissão: </label>
+    <input (click)="da.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}" ngbDatepicker #da="ngbDatepicker"
+    class="form-control" name="DataAdmissao" [value]="usuarioFormGroup.get('DataAdmissao').value"
+    (dateSelect)="onDateTimeSelect('DataAdmissao', $event)" (keyup)="usuarioFormGroup.get('DataAdmissao').value = null"  />
+    
+    <div class="input-group-prepend">
+            <button (click)="da.toggle()" type="button" class="btn btn-primary">
+                <i class="fa fa-calendar"></i></button>
+    </div>
+            
+    </div>
+    
+
+    <div *ngIf="usuarioFormGroup.get('DataAdmissao').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+
+    <div class="input-group mb-3">
+
+        <label class="required">Data de nascimento: </label>
+        <input (click)="dn.toggle()" type="text" 
+        ngbDatepicker  #dn="ngbDatepicker" [minDate]="{year:1930, month: 1, day: 1}" class="form-control"
+        name="DataNasc" [value]="usuarioFormGroup.get('DataNasc').value"
+        (dateSelect)="onDateTimeSelect('DataNasc', $event)" (keyup)="usuarioFormGroup.get('DataNasc').value = null" /> 
+
+        <div class="input-group-prepend">
+                <button (click)="dn.toggle()" type="button" class="btn btn-primary"> 
+                    <i class="fa fa-calendar"></i></button>
+        </div>
+
+    </div>
+
+    <div *ngIf="usuarioFormGroup.get('DataNasc').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+    
+    <div class="input-group mb-3">
+
+        <label>Data de demissão: </label>
+        <input (click)="dd.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}"  [value]="usuarioFormGroup.get('Data_Demissao').value"
+        ngbDatepicker  #dd="ngbDatepicker" class="form-control"
+        name="DataDemissao" (keyup)="usuarioFormGroup.get('Data_Demissao').value = null" 
+        (dateSelect)="onDateTimeSelect('Data_Demissao', $event)" />
+
+        <div class="input-group-prepend">
+                <button (click)="dd.toggle()" type="button" class="btn btn-primary"> 
+                    <i class="fa fa-calendar"></i></button>
+        </div>    
+        
+    </div>
+
+    <div *ngIf="usuarioFormGroup.get('Data_Demissao').hasError('required')" 
+    class="alert alert-danger">
+
+            Campo obrigatório
+            
+    </div>
+
+
+    
+    <button class="btn btn-primary" [disabled]="usuarioFormGroup.invalid" type="submit"><i class="fa fa-save"></i> {{submitButtonText}} </button>
+
+</form>
+
+
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+
+<div modal-message #modalMessage></div>
+
+<div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que quer deletar esse usuário?" (onConfirm)="Delete(usuarioModel.Id)"></div>

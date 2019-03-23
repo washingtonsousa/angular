@@ -1,0 +1,49 @@
+<form [formGroup]="CertCursoForm" (ngSubmit)=OnSubmit($event)>
+
+
+      <label class="required"> Nome: </label>
+      <input class="form-control" type="text" formControlName="Nome" />   
+      <div *ngIf="CertCursoForm.get('Nome').touched && CertCursoForm.get('Nome').hasError('required')"
+      class="alert alert-danger">
+
+      Campo obrigatório
+
+      </div>
+
+        <label class="required"> Instituição: </label>
+        <input class="form-control" type="text" formControlName="Instituicao" />   
+        <div *ngIf="CertCursoForm.get('Instituicao').touched && CertCursoForm.get('Instituicao').hasError('required')"
+        class="alert alert-danger">
+    
+               Campo obrigatório
+
+       </div>
+
+        <label> Certificadora: </label>
+        <input class="form-control" type="text" formControlName="Certificadora" />   
+     
+
+        
+        <label class="required"> Período (Exemplo: 40 horas, 3 semanas, 6 meses) </label>
+        <input class="form-control" type="text" formControlName="Periodo" />   
+        <div *ngIf="CertCursoForm.get('Periodo').touched && CertCursoForm.get('Periodo').hasError('required')"
+         class="alert alert-danger">
+     
+               Campo obrigatório
+
+        </div>
+         
+        <label> Descrição </label>
+        <textarea class="form-control" formControlName="Descricao" ></textarea>
+      
+        <br />
+
+     
+        <button  [disabled]="!CertCursoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+         </form>
+
+
+         <div modal-message #modalMessage></div>
+         <div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>

@@ -1,0 +1,39 @@
+<form [formGroup]="IdiomaForm" (ngSubmit)=OnSubmit($event)>
+        
+        <label class="required"> Idioma: </label>
+        <ng-selectize name="idioma" 
+        [formControl]="IdiomaForm.get('Nome')" [config]="selectizeConfig" [options]="Idiomas"  placeholder="Idioma" >
+        </ng-selectize>
+
+        <div *ngIf="IdiomaForm.get('Nome').touched && IdiomaForm.get('Nome').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+        <label class="required"> Fluência: </label>
+        <ng-selectize name="idioma"
+        [formControl]="IdiomaForm.get('Fluencia')" [config]="selectizeConfig" [options]="Fluencias"  placeholder="Fluência" >
+        </ng-selectize>
+
+        <div *ngIf="IdiomaForm.get('Fluencia').touched && IdiomaForm.get('Fluencia').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+
+
+        
+
+        <br />
+
+        <button  [disabled]="!IdiomaForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+</form>
+        
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+<div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação?" (onConfirm)="Delete(IdiomaObject.Id)"></div>

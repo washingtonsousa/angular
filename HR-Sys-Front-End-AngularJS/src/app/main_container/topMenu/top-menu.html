@@ -1,0 +1,33 @@
+<nav id="topMenu" class="navbar navbar-expand-lg justify-content-between">
+
+    <a class="navbar-brand" [routerLink]="['/']"> <img src="assets/images/logo.png" class="logo-top" /></a>
+    <button class="navbar-toggler side-menu-toggle-bars side-menu-toggle-btn-do-not-close" type="button" (click)="sideMenu.toggle()">
+        <i class="fa fa-bars side-menu-toggle-btn-do-not-close"></i>
+    </button>
+   
+    <div class="collapse navbar-collapse" id="navTopRight">
+      <ul class="navbar-nav">
+      
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <profile-picture cssClass="profile-top-menu-picture"></profile-picture>  {{username}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item pointer" [routerLink]="['/myaccount/personalinfo']" >Minha Conta</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" (click)="logOut()"> Sair </a>
+          </div>
+        </li>
+
+        <li class="nav-item active">
+            <a  (click)="sideMenu.toggle()" class="pointer nav-link side-menu-toggle-bars side-menu-toggle-btn-do-not-close"><i class="fa fa-bars side-menu-toggle-btn-do-not-close"></i></a>
+        </li>
+
+      </ul>
+    </div>
+
+
+</nav>
+
+
+<side-menu #sideMenu></side-menu>

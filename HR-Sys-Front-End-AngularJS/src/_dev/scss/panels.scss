@@ -1,0 +1,175 @@
+/* Side Panel Component */ 
+
+
+.side-panel {
+
+    width:0px;
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+    right:0px;
+    z-index:9999;
+    display:block;
+    height:100%;
+    background: #f1f1f1;
+    @include box-shadow($shadowsColor -1px 0px 5px);
+   transition: width ease-in 0.4s;
+ 
+   
+
+   h2 {
+       color:#333;
+   }
+
+    &.side-panel-show {
+        width:400px;
+    }
+
+}
+
+.floatingControlsPanel {
+    width:100%;
+    padding:5px;
+    margin:5px;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    .control-item {
+        margin-right:3px;
+        font-size:2.6em;
+        color: #004ecc;
+        
+        &.btn {
+            background:transparent;
+            border:none;
+        }
+    }
+}
+
+.filterPanel {
+    background: #ddd;
+}
+
+.sidefilterPanel {
+    background: #f3f3f3;
+}
+
+.block-box-panel {
+    padding:15px;
+    margin-top: 5px !important;
+    background:#fff;
+    @include box-shadow(#ccc 0px 0px 5px);
+}
+
+.sideRightPanel {
+  
+  min-height:500px !important;
+
+  div .crud-items {
+      justify-content: center;
+      flex-direction: column;
+
+      div {
+          margin-bottom:2px;
+      }
+
+      div .plus-add-btn {
+        margin-left: -50px;
+      }
+  }
+
+}
+
+
+
+.side-panel-inner-container {
+    padding:10px;
+    padding-left:30px;
+    width:400px;
+    display:block;
+    overflow-y: hidden;
+    height:100%;
+    position: relative;
+    &:hover {
+        overflow-y: scroll;
+    }
+
+
+     
+   .side-panel-close {
+    color:#ccc;
+    position:absolute;
+    top:10px;
+    cursor:pointer;
+    display:inline-block;
+    right:10px;
+    font-size:1.5em;
+    &:hover {
+        color:#666;
+    }
+
+ }
+}
+
+
+
+/*  Crud Panel Component   */
+
+.crud-items {
+    display:flex;
+    padding:10px;
+    align-items: center;
+    justify-content: flex-start;
+
+    .crud-item {
+        margin-right:5px;
+    }
+}
+
+
+/* Bottom Right Side Panel */
+
+.bottom-right-side-panel-panel {
+    
+border: none;
+position:fixed;
+right:30px;
+bottom:10px;
+width: 0px;
+z-index: 9997;
+height:350px;
+overflow:hidden;
+background:#f1f1f1;
+transition: all ease-in-out 0.3s;
+
+.bottom-right-side-panel-close {
+    position: absolute;
+    top:5px;
+    right:10px;
+    cursor:pointer;
+    color:#666;
+
+    &:hover {
+    color:#ccc;
+    }
+}
+
+&:hover {
+    overflow-y:scroll;
+}
+
+&.bottom-right-side-panel-panel-show {
+    width:350px;
+    border: 1px solid #ccc;
+}
+
+.bottom-right-side-panel-inner {
+    padding:20px;
+    overflow-x:hidden;
+    width:350px;
+}
+
+
+}

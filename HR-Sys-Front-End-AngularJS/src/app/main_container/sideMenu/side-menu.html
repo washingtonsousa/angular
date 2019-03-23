@@ -1,0 +1,62 @@
+<div class="side-menu" [@scaleInOut]="visible">
+<div class="side-menu-container">
+
+<div class="side-menu-top">
+
+<div class="btn-group user-area-dropdown" dropdown>
+
+        <a dropdownToggle class="dropdown-toggle pointer user-menu-link"
+        aria-controls="dropdown-basic">
+        <profile-picture cssClass="side-menu-user-photo"></profile-picture>      
+        <h5>{{sideMenuUser}}</h5> <i class="fa fa-chevron-down"></i>
+        </a>
+
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu drop-down-user-side-menu"
+            role="menu" aria-labelledby="button-basic">
+          <li role="menuitem"><a class="dropdown-item" [routerLink]="['/myaccount/personalinfo']" >Minha Conta</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item" href="#">Sair</a>
+          </li>
+        </ul>
+</div>
+
+<button type="button" class="side-menu-close-button" (click)="hide()"><i class="fa fa-times"></i> </button>
+       
+</div>
+
+<div class="side-menu-content">
+
+    <a [routerLink]="['/']" class="side-menu-item">
+    <i class="fa fa-home"></i> Home
+    </a>
+    
+    <a [routerLink]="['/usuarios']" *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-users"></i> Usuarios
+    </a>
+
+    <a [routerLink]="['/areas']"  *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-building" aria-hidden="true"></i> Areas
+    </a>
+
+    <a [routerLink]="['/departamentos']"  *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-map-marker" aria-hidden="true"></i> Departamentos
+    </a>
+
+    <a [routerLink]="['/cargos']" *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-black-tie" aria-hidden="true"></i> Cargos
+    </a>
+
+    <a [routerLink]="['/conhecimentos']" *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-info"></i> Conhecimentos
+    </a>
+
+    <a [routerLink]="['/arquivos']" *ngIf="hasFullAccess" class="side-menu-item">
+    <i class="fa fa-file-o"></i> Arquivos e documentos
+    </a>
+
+
+</div>
+
+
+</div>
+</div>

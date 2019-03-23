@@ -1,0 +1,27 @@
+<form [formGroup]="CargoForm" (ngSubmit)=OnSubmit($event)>
+
+        <label class="required"> Nome: </label>
+        <input name="idioma" 
+        [formControl]="CargoForm.get('Nome')" class="form-control"   placeholder="Nome" />
+
+        <div *ngIf="CargoForm.get('Nome').touched && CargoForm.get('Nome').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+        <br />
+        <ng-selectize name="departamento"
+        [formControl]="CargoForm.get('DepartamentoId')" [config]="selectizeConfig" [options]="DepartamentosList"  placeholder="Selecione o departamento" >
+        </ng-selectize>
+        <br />
+
+        <button  [disabled]="!CargoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+</form>
+        
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+<div modal-message #modalMessage></div>
+<div modal-confirm-message #modalConfirmMessage Message="Tem certeza de que deseja realizar esta operação?" 
+(onConfirm)="Delete(CargoModel.Id)"></div>

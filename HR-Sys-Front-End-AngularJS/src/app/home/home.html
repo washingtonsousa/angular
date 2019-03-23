@@ -1,0 +1,56 @@
+<main-container>
+
+<div class="row">
+
+<div class="col-12">
+
+        <h1> <i class="fa fa-arrow-right"></i> Acesso rápido </h1>
+        <hr />
+
+        <div class="home-controls-buttons-panel">
+
+                <a [routerLink]="['/arquivos/upload']" tooltip="Fazer upload de arquivos" class="home-shortcut-item"> 
+                <i class="fa fa-upload"></i>   </a>
+        
+                <a [routerLink]="['/usuarios']" class="home-shortcut-item" tooltip="Listar usuários"> <i class="fa fa-users"></i>  </a>
+        
+                <a [routerLink]="['/arquivos']" tooltip="Pesquisar arquivos" class="home-shortcut-item">
+                <i class="fa fa-search"></i>  </a>
+        
+                <a [routerLink]="['/logs']" tooltip="Visualizar Logs do sistema" class="home-shortcut-item"> 
+                <i class="fa fa-history"></i>  </a>
+        
+            </div>
+</div>
+
+
+</div>
+
+        <div class="row">
+
+            <div class="col-xl-8 col-lg-8">
+                    <h3> <i class="fa fa-bar-chart"></i> Estatísticas de acesso </h3>
+                    <hr />
+                <log-access-bar-chart #accessLogChart></log-access-bar-chart>     
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+
+                    <h3> <i class="fa fa-bar-chart"></i> Logs de acesso </h3>
+                    <hr />
+                    <log-access-table #accessLogTable></log-access-table>
+                    <h3> <i class="fa fa-database"></i> Entidades </h3>
+                    <hr />
+                    <entidades-table></entidades-table>
+                    <h3> <i class="fa fa-users"></i> Usuarios </h3>
+                    <hr />
+                    <usuarios-table>  </usuarios-table>
+
+            </div>
+
+</div>
+
+
+
+    
+</main-container>

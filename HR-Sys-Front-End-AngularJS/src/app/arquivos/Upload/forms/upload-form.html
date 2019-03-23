@@ -1,0 +1,85 @@
+
+<h2> Inserir arquivos </h2>
+
+<hr />
+
+<form [formGroup]="arquivoFormGroup" (ngSubmit)="Submit($event)">
+
+    <p>
+     <small>
+        Selecione os arquivos para realizar o upload, no painel à direita os arquivos com usuários corretamente localizados serão
+        preparados para a fila de upload.
+        Campos marcados com asterisco são obrigatórios.
+      </small>
+    </p>
+   
+    <br />
+
+    <input #inputFile type="file" name="arquivos" style="display:none;" (change)="readFiles($event)" multiple/>
+
+    <button class="btn btn-lg btn-warning w-100" (click)="inputFile.click()">  
+      <i class="fa fa-file-o"></i> Selecionar arquivos </button>
+     
+
+      <p>
+
+
+          <span *ngIf="arquivoFormGroup.value.Arquivos?.length">
+
+              {{ arquivoFormGroup.value.Arquivos.length }}
+              arquivos selecionados
+
+          </span> 
+
+      </p>
+
+ 
+
+    <select name="tipodoc"  [formControl]="arquivoFormGroup.get('TipoDoc')" class="form-control"   placeholder="Nome" >
+      <option value=""> Selecione o tipo de documento  </option>
+      <option value="Holerite"> Holerite  </option>
+      <option value="IRF"> IRF  </option>
+      <option value="Outros"> Outros  </option>
+    </select>
+
+   
+
+    <label class="required">Data de referência: </label>
+
+    <div class="input-group mb-3">
+                    
+    
+    <input (click)="da.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}" ngbDatepicker #da="ngbDatepicker"
+    class="form-control" name="Data_Referencia" [value]="arquivoFormGroup.get('Data_Referencia').value"
+    (dateSelect)="onData_ReferenciaSelect($event)"  />
+    
+    <div class="input-group-prepend">
+            <button (click)="da.toggle()" type="button" class="btn btn-primary">
+                <i class="fa fa-calendar"></i></button>
+    </div>
+            
+    </div>
+
+    <label> Descrição: </label>
+    <textarea name="idioma" 
+    [formControl]="arquivoFormGroup.get('Descricao')" class="form-control"   placeholder="Descrição"></textarea>
+
+    <div *ngIf="arquivoFormGroup.get('Descricao').touched && arquivoFormGroup.get('Descricao').hasError('maxLength')"
+     class="alert alert-danger">
+ 
+     Máximo de caractéres excedido
+
+    </div>
+
+
+    <br />
+
+    <button class="btn btn-lg w-100" [disabled]="arquivoFormGroup.invalid" type="submit"><i class="fa fa-arrow-up"></i> 
+    Inserir
+    </button>
+
+</form>
+
+
+
+

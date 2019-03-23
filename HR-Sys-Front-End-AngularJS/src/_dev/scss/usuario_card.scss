@@ -1,0 +1,15 @@
+.usuario-card-box {
+    background:#fff;
+    
+    border-radius: 0px !important;
+   img {
+    border-radius: 0px !important;
+   }
+    &:hover {
+        @include box-shadow(#000 0px 0px 5px);
+    }
+}
+
+.usuario-card-container {
+    padding:5px;
+}

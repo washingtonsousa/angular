@@ -1,0 +1,68 @@
+<form [formGroup]="ContatoForm" (ngSubmit)=OnSubmit($event)>
+         
+        <label> Fixo com DDD: </label>
+        <input class="form-control" type="text" formControlName="Fixo" />   
+        <div *ngIf="ContatoForm.get('Fixo').touched && ContatoForm.get('Fixo').hasError('pattern')" class="alert alert-danger">
+    
+                Somente números são permitidos
+
+        </div>
+
+        <div *ngIf="ContatoForm.controls['Fixo'].hasError('minlength') || ContatoForm.controls['Fixo'].hasError('maxlength')" 
+        class="alert alert-danger">
+     
+               Digite um telefone fixo válido 
+
+        </div>
+
+        <label> Celular com DDD: </label>
+        <input class="form-control" type="text" formControlName="Celular" />   
+        <div *ngIf="ContatoForm.get('Celular').touched && ContatoForm.get('Celular').hasError('pattern')"
+         class="alert alert-danger">
+     
+                Somente números são permitidos
+
+        </div>
+
+        <div *ngIf="ContatoForm.controls['Celular'].hasError('minlength') || ContatoForm.controls['Celular'].hasError('maxlength')" 
+        class="alert alert-danger">
+     
+               Digito um celular válido
+
+        </div>
+
+        <label class="required"> Email: </label>
+        <input class="form-control" type="email" formControlName="EmailContato" />   
+        <div *ngIf="ContatoForm.get('EmailContato').touched && ContatoForm.get('EmailContato').hasError('email')"
+         class="alert alert-danger">
+     
+               Digite um email válido
+
+        </div>
+
+        <div *ngIf="ContatoForm.get('EmailContato').touched && ContatoForm.get('EmailContato').hasError('required')"
+         class="alert alert-danger">
+     
+               Campo obrigatório
+
+        </div>
+
+        <label class="required"> Descrição: </label>
+        <textarea class="form-control" formControlName="Descricao"> </textarea> 
+        <div *ngIf="!ContatoForm.valid"></div>
+        <div *ngIf="ContatoForm.get('Descricao').touched && ContatoForm.get('Descricao').hasError('required')"
+         class="alert alert-danger">
+     
+               Este campo é obrigatório
+
+        </div>
+        <br />
+        <button  [disabled]="!ContatoForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+         </form>
+        
+         <div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
+
+         <div modal-message #modalMessage></div>
+         

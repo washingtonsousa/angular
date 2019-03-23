@@ -1,0 +1,120 @@
+<main-container>
+
+<h1> <i class="fa fa-users"></i> Usuarios </h1>
+<hr />
+
+<div side-panel #novoUsuarioPainel class="side-panel" panelTitle="Novo Usuário">
+
+<div *ngIf="cargos.length" usuario-subscribe  [spUsers]="spUsers" [cargos]="cargos" [nivelAcessos]="nivelacessos" [status]="status"
+                class="form-container-relative" submitButtonText="Salvar">
+</div>
+
+</div>
+
+<div class="filterPanel" crud-top-panel tooltipAddEvent="Adicionar usuário" (addEventEmitter)="novoUsuarioPainel.show()">
+
+  <div class="col-xl-3">
+        <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome" 
+        (keyup)="onFilterUpdate($event, 'Nome')"/>
+  </div>
+
+  <div class="col-xl-3">
+    <select name="cargo" class="form-control" placeholder="Filtrar pelo cargo"  (change)="onFilterUpdate($event, 'CargoNome')" >
+            <option value=""> Selecione um cargo </option>
+                <option *ngFor="let cargo of cargos let i = index" [value]="cargo.Nome" > {{ cargo.Nome }} </option>
+    </select>
+</div>
+
+<div class="col-xl-2">
+        <select name="departamento" class="form-control" placeholder="Filtrar pelo departamento"  
+        (change)="onFilterUpdate($event, 'DepartamentoNome')" >
+                        <option value=""  > Selecione um departamento </option>       
+                <option *ngFor="let departamento of departamentos let i = index"
+                 [value]="departamento.Nome" > {{ departamento.Nome }} </option>
+
+        </select>
+</div>
+
+<div class="col-xl-2">
+  
+        <select name="area" class="form-control" placeholder="Filtrar pela área"  (change)="onFilterUpdate($event, 'AreaNome')" >
+                        <option value=""> Selecione uma área </option>
+                        <option *ngFor="let area of areas let i = index" [value]="area.Nome" > {{ area.Nome }} </option>
+        </select>
+    
+</div>
+
+
+<div class="col-xl-1">
+  
+                <button class="btn btn-primary w-100" (click)="conhecimentosFilterModal.openModal()">
+                         <i class="fa fa-graduation-cap"></i> </button>
+</div>
+
+<div class="col-xl-1">
+  
+                <button class="btn btn-warning w-100" (click)="Usuarios = Usuarios.reverse()">
+                         <i class="fa fa-exchange"></i> </button>
+</div>
+  
+</div>
+
+<div #conhecimentosFilterModal modal-content Title="Filtrar pelos conhecimentos">
+
+<div class="row">
+
+        <div *ngFor="let categoriaConhecimento of categoriaConhecimentos" class="col-xl-6 check-box-item">
+                       
+                <h3> {{  categoriaConhecimento.Categoria }} </h3>
+
+                <p  *ngFor="let conhecimento of categoriaConhecimento.Conhecimentos">
+                        
+                                <label> {{  conhecimento.Nome }} </label>
+                            
+                                <input type="checkbox"
+                                 [value]="conhecimento.Id" (change)="OnCheck($event.target.value)" 
+                                [checked]="filterQueryHandler.ConhecimentoIds.includes(conhecimento.Id)"/>
+                </p>
+              
+                        
+                </div>   
+
+</div>
+
+</div>
+
+ <div class="row innerList">
+
+  <div  *ngFor="let Usuario of Usuarios | usuarioPipe: filterQueryHandler | paginate:  { itemsPerPage: limit, currentPage: currentPage }; trackBy: trackUsuarios"
+   class="col-xl-2 col-lg-4 col-md-6 col-12 usuario-card-container">
+                
+     <div  card-usuario [Usuario]="Usuario" (deleteEventEmitter)="usuarioSubscribe.openDeleteConfirmMessage()"
+                (editEventEmitter)="atualizarUsuarioPainel.show()" (viewEventEmitter)="userProfileModal.openModal()"></div>
+
+        <div #userProfileModal modal-content Title="Perfil"> <usuario-profile [Usuario]="Usuario" >  </usuario-profile> </div>  
+
+
+           <div side-panel #atualizarUsuarioPainel panelTitle="Editar Usuário">
+                        <div usuario-subscribe [cargos]="cargos" [nivelAcessos]="nivelacessos" [status]="status"
+                         [spUsers]="spUsers" [isUpdate]="true" #usuarioSubscribe
+                                [usuarioModel]="Usuario" submitButtonText="Atualizar">   
+                                
+                        </div>
+                </div>
+        </div>
+</div> 
+
+
+<div *ngIf="!(Usuarios | usuarioPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger"> 
+        Não foram retornados resultados para sua pesquisa </div> 
+        
+        
+        <pagination-controls class="d-flex justify-content-center" (pageChange)="currentPage = $event" previousLabel="Anterior"
+        nextLabel="Próximo"></pagination-controls>
+
+
+<div #loadingIcon mskfolding [visible]="false" loadingText="Aguarde..." ></div>
+
+
+</main-container>
+

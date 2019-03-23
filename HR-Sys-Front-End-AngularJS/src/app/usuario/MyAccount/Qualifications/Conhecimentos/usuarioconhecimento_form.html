@@ -1,0 +1,33 @@
+<right-arrow-animated-btn (onTurn)="animateList()">
+</right-arrow-animated-btn>
+
+
+<div id="conhecimentos" class="row" [@verticalOpen]="state">
+
+<div *ngFor="let usuarioconhecimento of categoriaConhecimentos" class="col-xl-3 col-lg-4 col-md-6 col-12 check-box-item">
+
+<h3> {{ usuarioconhecimento.Categoria }}  </h3>
+
+
+ <div *ngFor="let conhecimento of usuarioconhecimento.Conhecimentos">
+         <p class="d-flex justify-content-between">
+        <label> {{  conhecimento.Nome }} </label>
+    
+        <input type="checkbox" [value]="conhecimento.Id" (change)="OnCheck($event.target.value)" 
+        [checked]="JsonObjectIdsObject.ConhecimentoIds.includes(conhecimento.Id)"/>
+</p>
+ </div> 
+ 
+</div> 
+
+<div class="col-12">
+        
+        <hr />
+
+        <button class="btn btn-success w-100" (click)="OnSubmit()"> <i class="fa fa-save"> </i> Salvar </button>
+
+</div>
+
+</div>
+
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>

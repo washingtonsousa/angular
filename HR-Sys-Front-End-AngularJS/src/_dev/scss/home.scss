@@ -1,0 +1,38 @@
+.home-controls-buttons-panel {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    padding:15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    background: #fff;
+    @include box-shadow(#ccc 0px 0px 3px);
+
+    .home-shortcut-item {
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        flex: 4 0 25%; 
+        padding:10px;
+        margin-bottom:5px;
+
+        i {
+            font-size:4em;
+            transform: scale(1);
+            transition: all 0.3s;
+            color:#0977ed;
+            @include text-shadow(#ccc 0px 0px 5px);
+        }
+
+        &:hover, &:active {
+            text-decoration: none;
+            i {
+                transform: scale(1.5);
+                @include text-shadow(#ccc 0px 0px 8px);
+            }
+        }
+    }
+}

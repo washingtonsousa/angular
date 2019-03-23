@@ -1,0 +1,31 @@
+<div my-account style="height:100%" iconClass="fa-certificate" title="Qualificações">
+
+<div resumo-block  [resumo]="usuarioModel?.Resumo" ></div>
+
+<div class="row">
+
+<div certcurso-block [certCursos]="usuarioModel.CertCursos" class="col-xl-9 col-lg-8 col-12"> </div>
+
+<div idioma-block [Idiomas]="usuarioModel.Idiomas" class="col-xl-3 col-lg-4 col-12"></div> 
+
+</div>
+
+<div class="row">
+<div formacademica-block [formAcademicas]="usuarioModel.FormAcademicas" class="col-12"> </div>
+</div>
+
+<br />
+
+<div class="row">
+   <div expprofissional-block [ExpProfissionais]="usuarioModel.ExpProfissionais" class="col-12"> </div>
+</div>
+
+<br />
+
+ <div class="row">
+        <div content-box [btnActionVisible]="false" iconClass="fa-check" Title="Conhecimentos" class="col-xl-12 col-12">
+                <div class="w-100" usuarioconhecimento-form [UsuarioConhecimentoList]="usuarioModel.UsuarioConhecimentos"></div> 
+        </div> 
+ </div>
+</div>
+ 

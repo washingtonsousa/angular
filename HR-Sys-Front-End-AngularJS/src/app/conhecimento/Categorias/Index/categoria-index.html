@@ -1,0 +1,50 @@
+
+<h4> <i class="fa fa-list-alt"></i> Categorias de conhecimento </h4>
+
+<br />
+
+<div side-panel #novaCategoriaConhecimentoPainel class="side-panel" panelTitle="Nova categoria">
+
+<div categoriaConhecimento-subscribe (emitter)="updateListOnCreate($event)" class="form-container-relative" buttonText="Salvar">
+
+</div>
+
+</div>
+
+<div class="filterPanel sidefilterPanel" buttonText="Adicionar" crud-top-panel tooltipAddEvent="Adicionar Categoria de conhecimento" 
+(addEventEmitter)="novaCategoriaConhecimentoPainel.show()">
+
+        <div class="col-xl-12">
+      
+              <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome"
+               (keyup)="onFilterUpdate($event, 'Categoria')"/>
+      
+        </div>
+
+        <div class="col-xl-12">
+  
+                <button class="btn btn-warning w-100" (click)="toggleOrderBy()"> <i class="fa fa-exchange"></i> </button>
+            
+        </div>
+  
+    
+    </div>
+
+<div class="row innerList">    
+<div *ngFor="let CategoriaConhecimento of CategoriaConhecimentos | categoriaConhecimentoPipe : filterQueryHandler 
+ let i = index" class="col-12">           
+    <div card-categoriaConhecimento [CategoriaConhecimento]="CategoriaConhecimento" 
+        (deleteEventEmitter)="categoriaConhecimentoSubscribe.modalConfirmMessage.openModal()" 
+        (editEventEmitter)="atualizarCategoriaConhecimentoPainel.show()"></div>
+   
+              <div side-panel #atualizarCategoriaConhecimentoPainel panelTitle="Editar categoria">
+                    <div categoriaConhecimento-subscribe (IdEmitter)="updateListOnDelete($event)" 
+                    (emitter)="updateListOnUpdateEvent($event)" #categoriaConhecimentoSubscribe
+                     [categoriaConhecimentoModel]="CategoriaConhecimento" buttonText="Atualizar">   
+                            
+        </div>
+    </div>
+</div>
+</div>
+
+<div *ngIf="!(CategoriaConhecimentos | categoriaConhecimentoPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger"> Não foram retornados resultados para sua pesquisa </div>   

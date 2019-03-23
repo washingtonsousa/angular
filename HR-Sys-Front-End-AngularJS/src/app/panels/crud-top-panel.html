@@ -1,0 +1,13 @@
+<div base-panel>
+
+        <div class="crud-items row">
+                
+         <ng-content></ng-content>
+
+         <div class="col-1">
+         <button *ngIf="addBtnVisible" [tooltip]="tooltipAddEvent" class="plus-add-btn btn item-scale-on-hover" (click)="addEventEmmiter()"> 
+                 {{ buttonText }} <i class="fa fa-plus"></i></button> 
+         </div>
+        </div>
+
+</div>

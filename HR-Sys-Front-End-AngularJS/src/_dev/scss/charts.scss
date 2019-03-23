@@ -1,0 +1,5 @@
+.chart-card-white {
+    background: #ffffff;
+    @include box-shadow(#ccc 0px 0px 5px);
+    padding: 10px;
+}

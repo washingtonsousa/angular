@@ -1,0 +1,44 @@
+<top-menu></top-menu>
+
+<div #templateRef class="no-padding fixed-with-side-menu-container">
+
+    <div class="left-fixed-side-menu">
+        
+        <div class="left-fixed-side-menu-container">
+
+                <a class="left-fixed-menu-item" (click)="toggleFullMenu()">  <i class="fa fa-bars fixed-menu-item-icon"></i> </a>
+
+                <a *ngFor="let item of sideMenuOptions" class="left-fixed-menu-item" [routerLink]="[item.link]"> 
+                     
+                 <i [class]="'fa ' + item.fa_class + ' fixed-menu-item-icon'"></i> 
+                 <span class="fixed-menu-item-text"> {{item.text}}  </span>
+             
+                </a>
+
+        </div>
+     
+    </div>  
+
+    <div class="right-fixed-content-box"> 
+
+        <div class="internal-container">
+
+            <h1 class="fixed-content-title"> <i [class]="'fa ' + iconClass"></i>  {{ pageTitle }}  </h1>
+        <br />
+
+        <ng-content></ng-content>
+
+
+       
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+    </div>
+</div>
+    </div>

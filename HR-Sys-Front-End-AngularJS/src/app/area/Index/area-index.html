@@ -1,0 +1,50 @@
+<main-container>
+
+
+<h1> <i class="fa fa-building"></i> Áreas </h1>
+
+<hr />
+
+<div side-panel #novaAreaPainel class="side-panel" panelTitle="Nova área">
+
+<div area-subscribe (emitter)="updateListOnCreate($event)" class="form-container-relative" buttonText="Salvar">
+
+</div>
+
+</div>
+
+<div class="filterPanel" crud-top-panel tooltipAddEvent="Adicionar area" (addEventEmitter)="novaAreaPainel.show()">
+
+
+
+        <div class="col-xl-3">
+      
+              <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo nome" (keyup)=" onFilterUpdate($event, 'AreaNome')"/>
+      
+        </div>
+
+        <div class="col-xl-1">
+  
+                <button class="btn btn-warning w-100" (click)="this.Areas = this.Areas.reverse()"> <i class="fa fa-exchange"></i> </button>
+            
+            
+                </div>
+  
+    
+    </div>
+
+    <div class="row innerList">    
+<div *ngFor="let Area of Areas | areaPipe : filterQueryHandler; let i = index" class="col-xl-2 col-lg-3 col-md-6 col-12">           
+        <div card-area [Area]="Area" (deleteEventEmitter)="areaSubscribe.modalConfirmMessage.openModal()"
+                            (editEventEmitter)="atualizarAreaPainel.show()"></div>
+   
+              <div side-panel #atualizarAreaPainel panelTitle="Editar área">
+                                           <div area-subscribe (IdEmitter)="updateListOnDelete($event)" (emitter)="updateListOnUpdateEvent($event)" 
+                                           #areaSubscribe [areaModel]="Area" buttonText="Atualizar">   
+                                                   
+        </div>
+    </div>
+</div>
+</div>
+
+</main-container>

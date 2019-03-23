@@ -1,0 +1,30 @@
+<div class="container-fluid fullscreen-size-centered">
+
+ <div id="loginBox" class="box">
+
+    <h1> <i  class="fa fa-lock"></i> Login  </h1>
+
+
+    <form (submit)="login($event)">
+
+        <label>Email</label>
+        
+        <input [(ngModel)]="username" name="username" type="text" class="form-control" />
+        
+        <label>Senha</label>
+        <input [(ngModel)]="password" name="password" type="password" class="form-control" />
+        <br />
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>Login</button>
+        
+    </form>
+   
+    
+
+    <div *ngIf="Message" class="alert alert-info">{{Message}}</div>
+
+    <div mskfolding #loaderMask [visible]="false" ></div>
+
+
+
+</div>
+</div>

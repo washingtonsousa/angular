@@ -1,0 +1,84 @@
+<main-container>
+
+<h1> <i class="fa fa-history"></i> Logs do sistema </h1>
+<hr />
+
+<div class="filterPanel" crud-top-panel [addBtnVisible]="false"> 
+
+        <div class="col-xl-3">
+
+                <input class="form-control crud-item" type="text" value="" placeholder="Filtrar pelo Usuário" 
+                (keyup)="onFilterUpdate($event, 'UsuarioNome')"/>
+        
+        </div>
+
+        <div class="col-xl-3">
+            <div class="input-group">
+
+                <input (click)="da.toggle()" type="text" [minDate]="{year:2000 , month: 1, day: 1}" ngbDatepicker 
+                #da="ngbDatepicker" class="form-control" name="DataStr" (keyup)="onFilterUpdate('', 'DataStr')"
+                [value]="filterQueryHandler.DataStr"
+                (dateSelect)="dateTimeFilterHandler($event, 'DataStr')"  />
+
+                <div class="input-group-prepend">
+                                <button (click)="da.toggle()" type="button" class="btn btn-primary">
+                                    <i class="fa fa-calendar"></i></button>
+                        </div>
+            </div>
+        </div>
+
+</div>
+
+<br />
+
+<div class="row" >
+
+<div class="col-12">
+<table class="table table-striped">
+<thead class="thead-dark">
+<tr> 
+    <th>  Tipo de ação   </th>   
+    <th> Usuário </th>  
+    <th> Host de origem </th>
+    <th>  Rota acessada  </th>
+    <th>  Detalhes  </th>
+    <th> Data / Hora  </th>
+</tr>
+</thead>
+
+<tbody>
+
+    <tr *ngFor="let log of logData | logListPipe: filterQueryHandler | paginate:  { itemsPerPage: limit, currentPage: currentPage }" 
+    
+    (change)="teste($event)">
+          
+        <td>  {{ log.Action_Type }}     </td>
+        <td>  {{ log.Usuario }}         </td>
+        <td>  {{ log.Host_Address }}    </td>
+        <td>  {{ log.Action_Dest }}     </td>
+        <td>  {{ log.Action_Details }} </td>
+        <td><small> <strong> Data: {{ log.Data_Acesso.split("T")[0] }} <br /> 
+        Hora: {{ log.Data_Acesso.split("T")[1].split("-")[0].split(".")[0] }} </strong> </small>  </td>
+    
+    </tr>
+
+</tbody>
+
+</table>
+
+    <div *ngIf="!(logData | logListPipe: filterQueryHandler)?.length"
+    class="alert col-12 alert-danger"> Não foram retornados resultados para sua pesquisa </div>   
+
+    <hr />
+
+    <pagination-controls class="d-flex justify-content-center" (pageChange)="currentPage = $event" previousLabel="Anterior"
+    nextLabel="Próximo"></pagination-controls>
+
+    </div>
+
+</div>
+
+
+
+
+</main-container>

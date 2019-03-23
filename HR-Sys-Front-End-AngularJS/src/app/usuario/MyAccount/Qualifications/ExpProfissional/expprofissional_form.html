@@ -1,0 +1,89 @@
+<form [formGroup]="ExpProfissionalForm" (ngSubmit)=OnSubmit($event)>
+         
+        <label class="required"> Empresa: </label>
+        <input class="form-control" type="text" formControlName="Empresa" />   
+        <div *ngIf="ExpProfissionalForm.get('Empresa').touched && ExpProfissionalForm.get('Empresa').hasError('required')"
+        class="alert alert-danger">
+    
+               Campo obrigatório
+
+       </div>
+
+        <label class="required"> Cargo: </label>
+        <input class="form-control" type="text" formControlName="Cargo" />   
+        <div *ngIf="ExpProfissionalForm.get('Cargo').touched && ExpProfissionalForm.get('Cargo').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+
+        <label> Último salário: (exemplo formato: 0000.00) </label>
+        <input class="form-control" type="text" formControlName="UltimoSalario" />   
+        <div *ngIf="ExpProfissionalForm.get('UltimoSalario').touched && ExpProfissionalForm.get('UltimoSalario').hasError('pattern')"
+        class="alert alert-danger">
+    
+         Formato incorreto, use o formato exemplo: 0000.00. Não use vírgula, use ponto!
+
+       </div>
+
+       <br />
+
+        <div class="input-group mb-3">
+
+        <label  class="required">Data de início: </label>
+        <input (click)="dd.toggle()" type="text" [minDate]="{year:1950 , month: 1, day: 1}"  [value]="ExpProfissionalForm.get('Inicio').value"
+        ngbDatepicker  #dd="ngbDatepicker" class="form-control"
+        name="DataDemissao" (keyup)="ExpProfissionalForm.get('Inicio').value = null" 
+        (dateSelect)="onData_DataInicioChange($event)" />
+
+        <div class="input-group-prepend">
+                <button (click)="dd.toggle()" type="button" class="btn btn-primary"> 
+                        <i class="fa fa-calendar"></i></button>
+        </div>    
+        
+        </div>
+
+
+        <div *ngIf="ExpProfissionalForm.get('Inicio').touched && ExpProfissionalForm.get('Inicio').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+
+        <div class="input-group mb-3">
+        <label>Data de Fim: </label>
+        <input (click)="de.toggle()" type="text" [minDate]="{year:1950 , month: 1, day: 1}" 
+        [value]="ExpProfissionalForm.get('Fim').value" ngbDatepicker  #de="ngbDatepicker" class="form-control"
+        name="DataDemissao" (keyup)="ExpProfissionalForm.get('Fim').value = null" (dateSelect)="onData_DataFimChange($event)" />
+
+        <div class="input-group-prepend">
+                <button (click)="de.toggle()" type="button" class="btn btn-primary"> 
+                        <i class="fa fa-calendar"></i></button>
+        </div>    
+        
+        </div>
+     
+
+        <label class="required"> Descrição das atividades: </label>
+        <textarea class="form-control" formControlName="Descricao"> </textarea>   
+        <div *ngIf="ExpProfissionalForm.get('Descricao').touched && ExpProfissionalForm.get('Descricao').hasError('required')"
+         class="alert alert-danger">
+     
+         Campo obrigatório
+
+        </div>
+
+
+        <br />
+     
+        <button  [disabled]="!ExpProfissionalForm.valid" class="btn btn-primary"> <i class="fa fa-save"></i>  
+            {{ buttonText }}   </button>
+        
+</form>
+        
+<div modal-message #modalMessage></div>
+<div mskfolding #loadingIcon [visible]="false" loadingText="Aguarde..." ></div>
