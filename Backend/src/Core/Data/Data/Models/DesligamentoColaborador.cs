@@ -7,7 +7,7 @@ namespace Core.Data.Models
     {
 
         public int ID { get; set; }
-        public String Title { get; set; }
+        public string Title { get; set; }
         public SP.FieldUserValue Colaborador { get; set; }
         public DateTime DataPesquisa { get; set; }
         public DateTime DataDesligamento { get; set; }
@@ -16,7 +16,7 @@ namespace Core.Data.Models
         public Double NotaConsultoria { get; set; }
         public Double NotaAdministrativo { get; set; }
         public Double NotaOperacao { get; set; }
-        public String Questao1 { get; set; }
+        public string Questao1 { get; set; }
         public Double Questao2 { get; set; }
         public Double Questao3 { get; set; }
         public Double Questao4 { get; set; }

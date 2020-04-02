@@ -24,7 +24,7 @@ namespace Core.Application.Providers
 
 
                 } }
-}
+
 
     }
 }

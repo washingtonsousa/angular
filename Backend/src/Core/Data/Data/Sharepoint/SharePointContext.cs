@@ -28,14 +28,14 @@ namespace Core.Data
         private readonly string spClientTag;
         private readonly string spProductNumber;
 
-        // <AccessTokenString, UtcExpiresOn>
+        // <AccessTokenstring, UtcExpiresOn>
         protected Tuple<string, DateTime> userAccessTokenForSPHost;
         protected Tuple<string, DateTime> userAccessTokenForSPAppWeb;
         protected Tuple<string, DateTime> appOnlyAccessTokenForSPHost;
         protected Tuple<string, DateTime> appOnlyAccessTokenForSPAppWeb;
 
         /// <summary>
-        /// Gets the SharePoint host url from QueryString of the specified HTTP request.
+        /// Gets the SharePoint host url from Querystring of the specified HTTP request.
         /// </summary>
         /// <param name="httpRequest">The specified HTTP request.</param>
         /// <returns>The SharePoint host url. Returns <c>null</c> if the HTTP request doesn't contain the SharePoint host url.</returns>
@@ -46,9 +46,9 @@ namespace Core.Data
                 throw new ArgumentNullException("httpRequest");
             }
 
-            string spHostUrlString = TokenHelper.EnsureTrailingSlash(httpRequest.QueryString[SPHostUrlKey]);
+            string spHostUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.Querystring[SPHostUrlKey]);
             Uri spHostUrl;
-            if (Uri.TryCreate(spHostUrlString, UriKind.Absolute, out spHostUrl) &&
+            if (Uri.TryCreate(spHostUrlstring, UriKind.Absolute, out spHostUrl) &&
                 (spHostUrl.Scheme == Uri.UriSchemeHttp || spHostUrl.Scheme == Uri.UriSchemeHttps))
             {
                 return spHostUrl;
@@ -58,7 +58,7 @@ namespace Core.Data
         }
 
         /// <summary>
-        /// Gets the SharePoint host url from QueryString of the specified HTTP request.
+        /// Gets the SharePoint host url from Querystring of the specified HTTP request.
         /// </summary>
         /// <param name="httpRequest">The specified HTTP request.</param>
         /// <returns>The SharePoint host url. Returns <c>null</c> if the HTTP request doesn't contain the SharePoint host url.</returns>
@@ -217,7 +217,7 @@ namespace Core.Data
         /// This method is deprecated because the autohosted option is no longer available.
         /// </summary>
         [ObsoleteAttribute("This method is deprecated because the autohosted option is no longer available.", true)]
-        public string GetDatabaseConnectionString()
+        public string GetDatabaseConnectionstring()
         {
             throw new NotSupportedException("This method is deprecated because the autohosted option is no longer available.");
         }
@@ -337,7 +337,7 @@ namespace Core.Data
 
             const string SPHasRedirectedToSharePointKey = "SPHasRedirectedToSharePoint";
 
-            if (!string.IsNullOrEmpty(httpContext.Request.QueryString[SPHasRedirectedToSharePointKey]) && !contextTokenExpired)
+            if (!string.IsNullOrEmpty(httpContext.Request.Querystring[SPHasRedirectedToSharePointKey]) && !contextTokenExpired)
             {
                 return RedirectionStatus.CanNotRedirect;
             }
@@ -349,14 +349,14 @@ namespace Core.Data
                 return RedirectionStatus.CanNotRedirect;
             }
 
-            if (StringComparer.OrdinalIgnoreCase.Equals(httpContext.Request.HttpMethod, "POST"))
+            if (stringComparer.OrdinalIgnoreCase.Equals(httpContext.Request.HttpMethod, "POST"))
             {
                 return RedirectionStatus.CanNotRedirect;
             }
 
             Uri requestUrl = httpContext.Request.Url;
 
-            var queryNameValueCollection = HttpUtility.ParseQueryString(requestUrl.Query);
+            var queryNameValueCollection = HttpUtility.ParseQuerystring(requestUrl.Query);
 
             // Removes the values that are included in {StandardTokens}, as {StandardTokens} will be inserted at the beginning of the query string.
             queryNameValueCollection.Remove(SharePointContext.SPHostUrlKey);
@@ -373,13 +373,13 @@ namespace Core.Data
 
             // Inserts StandardTokens.
             const string StandardTokens = "{StandardTokens}";
-            string returnUrlString = returnUrlBuilder.Uri.AbsoluteUri;
-            returnUrlString = returnUrlString.Insert(returnUrlString.IndexOf("?") + 1, StandardTokens + "&");
+            string returnUrlstring = returnUrlBuilder.Uri.AbsoluteUri;
+            returnUrlstring = returnUrlstring.Insert(returnUrlstring.IndexOf("?") + 1, StandardTokens + "&");
 
             // Constructs redirect url.
-            string redirectUrlString = TokenHelper.GetAppContextTokenRequestUrl(spHostUrl.AbsoluteUri, Uri.EscapeDataString(returnUrlString));
+            string redirectUrlstring = TokenHelper.GetAppContextTokenRequestUrl(spHostUrl.AbsoluteUri, Uri.EscapeDatastring(returnUrlstring));
 
-            redirectUrl = new Uri(redirectUrlString, UriKind.Absolute);
+            redirectUrl = new Uri(redirectUrlstring, UriKind.Absolute);
 
             return RedirectionStatus.ShouldRedirect;
         }
@@ -415,30 +415,30 @@ namespace Core.Data
             }
 
             // SPAppWebUrl
-            string spAppWebUrlString = TokenHelper.EnsureTrailingSlash(httpRequest.QueryString[SharePointContext.SPAppWebUrlKey]);
+            string spAppWebUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.Querystring[SharePointContext.SPAppWebUrlKey]);
             Uri spAppWebUrl;
-            if (!Uri.TryCreate(spAppWebUrlString, UriKind.Absolute, out spAppWebUrl) ||
+            if (!Uri.TryCreate(spAppWebUrlstring, UriKind.Absolute, out spAppWebUrl) ||
                 !(spAppWebUrl.Scheme == Uri.UriSchemeHttp || spAppWebUrl.Scheme == Uri.UriSchemeHttps))
             {
                 spAppWebUrl = null;
             }
 
             // SPLanguage
-            string spLanguage = httpRequest.QueryString[SharePointContext.SPLanguageKey];
+            string spLanguage = httpRequest.Querystring[SharePointContext.SPLanguageKey];
             if (string.IsNullOrEmpty(spLanguage))
             {
                 return null;
             }
 
             // SPClientTag
-            string spClientTag = httpRequest.QueryString[SharePointContext.SPClientTagKey];
+            string spClientTag = httpRequest.Querystring[SharePointContext.SPClientTagKey];
             if (string.IsNullOrEmpty(spClientTag))
             {
                 return null;
             }
 
             // SPProductNumber
-            string spProductNumber = httpRequest.QueryString[SharePointContext.SPProductNumberKey];
+            string spProductNumber = httpRequest.Querystring[SharePointContext.SPProductNumberKey];
             if (string.IsNullOrEmpty(spProductNumber))
             {
                 return null;
@@ -574,7 +574,7 @@ namespace Core.Data
         {
             get
             {
-                return GetAccessTokenString(ref this.userAccessTokenForSPHost,
+                return GetAccessTokenstring(ref this.userAccessTokenForSPHost,
                                             () => TokenHelper.GetAccessToken(this.contextTokenObj, this.SPHostUrl.Authority));
             }
         }
@@ -588,7 +588,7 @@ namespace Core.Data
                     return null;
                 }
 
-                return GetAccessTokenString(ref this.userAccessTokenForSPAppWeb,
+                return GetAccessTokenstring(ref this.userAccessTokenForSPAppWeb,
                                             () => TokenHelper.GetAccessToken(this.contextTokenObj, this.SPAppWebUrl.Authority));
             }
         }
@@ -597,7 +597,7 @@ namespace Core.Data
         {
             get
             {
-                return GetAccessTokenString(ref this.appOnlyAccessTokenForSPHost,
+                return GetAccessTokenstring(ref this.appOnlyAccessTokenForSPHost,
                                             () => TokenHelper.GetAppOnlyAccessToken(TokenHelper.SharePointPrincipal, this.SPHostUrl.Authority, TokenHelper.GetRealmFromTargetUrl(this.SPHostUrl)));
             }
         }
@@ -611,7 +611,7 @@ namespace Core.Data
                     return null;
                 }
 
-                return GetAccessTokenString(ref this.appOnlyAccessTokenForSPAppWeb,
+                return GetAccessTokenstring(ref this.appOnlyAccessTokenForSPAppWeb,
                                             () => TokenHelper.GetAppOnlyAccessToken(TokenHelper.SharePointPrincipal, this.SPAppWebUrl.Authority, TokenHelper.GetRealmFromTargetUrl(this.SPAppWebUrl)));
             }
         }
@@ -639,7 +639,7 @@ namespace Core.Data
         /// <param name="accessToken">The access token to verify.</param>
         /// <param name="tokenRenewalHandler">The token renewal handler.</param>
         /// <returns>The access token string.</returns>
-        private static string GetAccessTokenString(ref Tuple<string, DateTime> accessToken, Func<OAuth2AccessTokenResponse> tokenRenewalHandler)
+        private static string GetAccessTokenstring(ref Tuple<string, DateTime> accessToken, Func<OAuth2AccessTokenResponse> tokenRenewalHandler)
         {
             RenewAccessTokenIfNeeded(ref accessToken, tokenRenewalHandler);
 
@@ -689,8 +689,8 @@ namespace Core.Data
 
         protected override SharePointContext CreateSharePointContext(Uri spHostUrl, Uri spAppWebUrl, string spLanguage, string spClientTag, string spProductNumber, HttpRequestBase httpRequest)
         {
-            string contextTokenString = TokenHelper.GetContextTokenFromRequest(httpRequest);
-            if (string.IsNullOrEmpty(contextTokenString))
+            string contextTokenstring = TokenHelper.GetContextTokenFromRequest(httpRequest);
+            if (string.IsNullOrEmpty(contextTokenstring))
             {
                 return null;
             }
@@ -698,7 +698,7 @@ namespace Core.Data
             SharePointContextToken contextToken = null;
             try
             {
-                contextToken = TokenHelper.ReadAndValidateContextToken(contextTokenString, httpRequest.Url.Authority);
+                contextToken = TokenHelper.ReadAndValidateContextToken(contextTokenstring, httpRequest.Url.Authority);
             }
             catch (WebException)
             {
@@ -709,7 +709,7 @@ namespace Core.Data
                 return null;
             }
 
-            return new SharePointAcsContext(spHostUrl, spAppWebUrl, spLanguage, spClientTag, spProductNumber, contextTokenString, contextToken);
+            return new SharePointAcsContext(spHostUrl, spAppWebUrl, spLanguage, spClientTag, spProductNumber, contextTokenstring, contextToken);
         }
 
         protected override bool ValidateSharePointContext(SharePointContext spContext, HttpContextBase httpContext)
@@ -781,7 +781,7 @@ namespace Core.Data
         {
             get
             {
-                return GetAccessTokenString(ref this.userAccessTokenForSPHost,
+                return GetAccessTokenstring(ref this.userAccessTokenForSPHost,
                                             () => TokenHelper.GetS2SAccessTokenWithWindowsIdentity(this.SPHostUrl, this.LogonUserIdentity));
             }
         }
@@ -795,7 +795,7 @@ namespace Core.Data
                     return null;
                 }
 
-                return GetAccessTokenString(ref this.userAccessTokenForSPAppWeb,
+                return GetAccessTokenstring(ref this.userAccessTokenForSPAppWeb,
                                             () => TokenHelper.GetS2SAccessTokenWithWindowsIdentity(this.SPAppWebUrl, this.LogonUserIdentity));
             }
         }
@@ -804,7 +804,7 @@ namespace Core.Data
         {
             get
             {
-                return GetAccessTokenString(ref this.appOnlyAccessTokenForSPHost,
+                return GetAccessTokenstring(ref this.appOnlyAccessTokenForSPHost,
                                             () => TokenHelper.GetS2SAccessTokenWithWindowsIdentity(this.SPHostUrl, null));
             }
         }
@@ -818,7 +818,7 @@ namespace Core.Data
                     return null;
                 }
 
-                return GetAccessTokenString(ref this.appOnlyAccessTokenForSPAppWeb,
+                return GetAccessTokenstring(ref this.appOnlyAccessTokenForSPAppWeb,
                                             () => TokenHelper.GetS2SAccessTokenWithWindowsIdentity(this.SPAppWebUrl, null));
             }
         }
@@ -840,7 +840,7 @@ namespace Core.Data
         /// <param name="accessToken">The access token to verify.</param>
         /// <param name="tokenRenewalHandler">The token renewal handler.</param>
         /// <returns>The access token string.</returns>
-        private static string GetAccessTokenString(ref Tuple<string, DateTime> accessToken, Func<string> tokenRenewalHandler)
+        private static string GetAccessTokenstring(ref Tuple<string, DateTime> accessToken, Func<string> tokenRenewalHandler)
         {
             RenewAccessTokenIfNeeded(ref accessToken, tokenRenewalHandler);
 

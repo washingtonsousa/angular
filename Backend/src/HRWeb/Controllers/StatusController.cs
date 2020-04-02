@@ -18,7 +18,7 @@ namespace HRWeb.Controllers
 
         private StatusRepository StatusRepo;
         private JsonResultObjHelper jsonResultObjHelper;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
 
 
         public StatusController()
@@ -27,7 +27,7 @@ namespace HRWeb.Controllers
 
             jsonResultObjHelper = new JsonResultObjHelper();
             StatusRepo = new StatusRepository();
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
 
 
         }
@@ -79,7 +79,7 @@ namespace HRWeb.Controllers
 
 
 
-            if (usuarioRepo.GetUsuarios().Where(u => u.StatusId == Id).FirstOrDefault() == null
+            if (usuarioRepo.Get().Where(u => u.StatusId == Id).FirstOrDefault() == null
                 && Status.Nome != "ativo" && Status.Nome != "desativado" && Status != null)
             {
 

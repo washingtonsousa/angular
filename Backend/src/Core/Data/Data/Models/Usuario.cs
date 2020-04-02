@@ -13,13 +13,13 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        public String Email { get; set; }
-
+        public string Email { get; set; }
+        public string Password { get; set; }
     
-        public String Email_Secundario_Notificacao { get; set; }
+        public string Email_Secundario_Notificacao { get; set; }
 
         [Required]
         public long? Ramal { get; set; }
@@ -27,7 +27,7 @@ namespace Core.Data.Models
         [Required]
         public string Sexo { get; set; }
     
-        public String Matricula { get; set; }
+        public string Matricula { get; set; }
 
 
         public int NivelAcessoId { get; set; }
@@ -45,7 +45,7 @@ namespace Core.Data.Models
         
         public DateTime DataNasc { get; set; }
     
-        public String EstadoCivil { get; set; }
+        public string EstadoCivil { get; set; }
 
         public virtual Status Status { get; set; }
 
@@ -57,7 +57,7 @@ namespace Core.Data.Models
 
         public Endereco Endereco { get; set; }
 
-        public String profileImage64String { get; set; }
+        public string profileImage64string { get; set; }
 
 
     [DataType(DataType.Date)]

@@ -13,7 +13,7 @@ namespace HRWeb.Controllers
     public class StatisticsController : BasicApiAppController
   {
 
-    private UsuariosRepository usuarioRepo;
+    private UsuarioRepository usuarioRepo;
     private CargoRepository cargosRepo;
     private DepartamentoRepository departamentosRepo;
     private Log_ActionRepository logActionRepo;
@@ -21,7 +21,7 @@ namespace HRWeb.Controllers
     
     public StatisticsController()
     {
-      usuarioRepo = new UsuariosRepository();
+      usuarioRepo = new UsuarioRepository();
       cargosRepo = new CargoRepository();
       departamentosRepo = new DepartamentoRepository();
       logActionRepo = new Log_ActionRepository();
@@ -39,9 +39,9 @@ namespace HRWeb.Controllers
       ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
       SPUserRepository spUserRepository = new SPUserRepository(clientContext);
 
-      return Ok(new { Total_Cadastrado = usuarioRepo.GetUsuarios().Count,
-        Ativos = usuarioRepo.GetUsuarios().Where(u => u.Status.Nome == "ativo").ToList().Count,
-        Desativados = usuarioRepo.GetUsuarios().Where(u => u.Status.Nome == "desativado").ToList().Count,
+      return Ok(new { Total_Cadastrado = usuarioRepo.Get().Count,
+        Ativos = usuarioRepo.Get().Where(u => u.Status.Nome == "ativo").ToList().Count,
+        Desativados = usuarioRepo.Get().Where(u => u.Status.Nome == "desativado").ToList().Count,
         UsuariosSharepoint = spUserRepository.GetSPUsers().Count
       });
     }

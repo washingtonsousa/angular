@@ -12,11 +12,11 @@ namespace Core.Data.Models
        public int Id { get; set; }
 
        [Required]
-       public String Titulo { get; set; }
+       public string Titulo { get; set; }
 
        [Required]
        [Column(TypeName = "Text")]
-       public String Descricao { get; set; }
+       public string Descricao { get; set; }
 
        [Required]
        public DateTime DataAbertura { get; set; }
@@ -24,10 +24,10 @@ namespace Core.Data.Models
        public DateTime DataConclusao { get; set; }
 
        [Column(TypeName = "Text")]
-       public String TextoConclusao { get; set; }
+       public string TextoConclusao { get; set; }
 
        [Required]
-       public String Status { get; set; }
+       public string Status { get; set; }
 
        [Required]
        public int UsuarioId { get; set; }

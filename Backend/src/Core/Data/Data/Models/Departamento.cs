@@ -13,7 +13,7 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
      
 
         public int AreaId { get; set; }

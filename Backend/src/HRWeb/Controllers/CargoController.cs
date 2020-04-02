@@ -17,14 +17,14 @@ namespace HRWeb.Controllers
     {
         private CargoRepository cargoRepo;
         private DepartamentoRepository depRepo;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private JsonResultObjHelper jsonResultObjHelper;
 
         public CargoController()
         {
            
             cargoRepo = new CargoRepository();
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             depRepo = new DepartamentoRepository();
             jsonResultObjHelper = new JsonResultObjHelper();
         }
@@ -74,7 +74,7 @@ namespace HRWeb.Controllers
 
             Cargo cargo = cargoRepo.FindCargoById(id);
 
-            if (usuarioRepo.GetUsuarios().Where(u => u.CargoId == id).FirstOrDefault() == null) { 
+            if (usuarioRepo.Get().Where(u => u.CargoId == id).FirstOrDefault() == null) { 
 
                 cargoRepo.DeleteCargo(cargo);
                 cargoRepo.Save();

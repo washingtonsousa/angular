@@ -9,16 +9,16 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Nome { get; set; }
-        public String Descricao {get; set;}
+        public string Nome { get; set; }
+        public string Descricao {get; set;}
 
     [Required]
-    public String Periodo { get; set; }
+    public string Periodo { get; set; }
 
     [Required]
-    public String Instituicao { get; set; }
+    public string Instituicao { get; set; }
 
-        public String Certificadora { get; set; }
+        public string Certificadora { get; set; }
 
         [Required]
         public int UsuarioId { get; set; }

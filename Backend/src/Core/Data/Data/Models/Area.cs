@@ -19,9 +19,9 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Nome { get; set;}
+        public string Nome { get; set;}
 
-        public String imgStr { get; set; }
+        public string imgStr { get; set; }
 
 
           [IgnoreDataMember]

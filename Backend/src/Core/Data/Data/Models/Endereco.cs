@@ -10,23 +10,23 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Rua { get; set; }
+        public string Rua { get; set; }
         [Required]
         public int Numero { get; set; }
-        public String Complemento { get; set; }
+        public string Complemento { get; set; }
         [Required]
         public string CEP { get; set; }
         [Required]
-        public String Bairro { get; set; }
+        public string Bairro { get; set; }
         [Required]
         public int UsuarioId { get; set; }
 
         [IgnoreDataMember]
         public Usuario Usuario { get; set; }
         [Required]
-        public String Referencia { get; set; }
+        public string Referencia { get; set; }
         [Required]
-        public String Cidade { get; set; }
+        public string Cidade { get; set; }
 
      }
 }

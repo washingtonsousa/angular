@@ -65,8 +65,8 @@ namespace Core.Data.ORM
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MiriaSQL"].ConnectionString,
-            options => options.EnableRetryOnFailure()); // Chama connection String  e habilita nova tentativa quando ocorra falha ao salvar alterações
+            optionsBuilder.UseSqlServer(ConfigurationManager.Connectionstrings["MiriaSQL"].Connectionstring,
+            options => options.EnableRetryOnFailure()); // Chama connection string  e habilita nova tentativa quando ocorra falha ao salvar alterações
             base.OnConfiguring(optionsBuilder); // Executa método da classe Pai
 
     }
@@ -81,7 +81,7 @@ namespace Core.Data.ORM
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-      modelBuilder.Entity<Usuario>().Property(e => e.profileImage64String)
+      modelBuilder.Entity<Usuario>().Property(e => e.profileImage64string)
             .HasColumnType("text");
     
 

@@ -1,7 +1,8 @@
-HR-Sys-Add-in - SPA - Web API/HR Solution - RiscMiriaSysWeb/_dev/node_modules/
-HR-Sys-Add-in - SPA - Web API/HR Solution - RiscMiriaSysWeb/App_Data/**/*
-HR-Sys-Add-in - SPA - Web API/HR Solution - RiscMiriaSysWeb/obj/
-HR-Sys-Add-in - SPA - Web API/HR Solution - RiscMiriaSysWeb/bin/
-HR-Sys-Front-End-AngularJS/node_modules/
-HR-Sys-Front-End-AngularJS/JS/
+node_modules/
+App_Data/**/*
+obj/
+bin/
+node_modules/
+JS/
+packages/
 

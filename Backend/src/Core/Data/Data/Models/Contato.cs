@@ -12,7 +12,7 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public String Descricao { get; set; }
+        public string Descricao { get; set; }
 
         [Required]
         public long Fixo { get; set; }
@@ -21,7 +21,7 @@ namespace Core.Data.Models
         public long Celular { get; set; }
 
 
-        public String EmailContato { get; set; }
+        public string EmailContato { get; set; }
 
         [Required]
         public int UsuarioId { get; set; }

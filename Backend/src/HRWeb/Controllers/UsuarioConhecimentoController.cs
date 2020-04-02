@@ -15,7 +15,7 @@ namespace HRWeb.Controllers
     public class UsuarioConhecimentoController : BasicApiAppController
     {
 
-        private UsuariosRepository usrRepo;
+        private UsuarioRepository usrRepo;
         private JsonResultObjHelper jsonResultObjHelper;
         private ConhecimentoRepository conhecimentoRepo;
         private UsuarioConhecimentoRepository usrConhecimentoRepo;
@@ -24,7 +24,7 @@ namespace HRWeb.Controllers
         public UsuarioConhecimentoController()
         {
             
-            usrRepo = new UsuariosRepository();  
+            usrRepo = new UsuarioRepository();  
             conhecimentoRepo = new ConhecimentoRepository();
             usrConhecimentoRepo = new UsuarioConhecimentoRepository();
             jsonResultObjHelper = new JsonResultObjHelper();

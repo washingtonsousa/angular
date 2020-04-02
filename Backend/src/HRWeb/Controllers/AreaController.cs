@@ -17,7 +17,7 @@ namespace HRWeb.Controllers
     {
 
         private AreaRepository areaRepo;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private DepartamentoRepository depRepo;
         private JsonResultObjHelper jsonResultObjHelper;
 
@@ -25,7 +25,7 @@ namespace HRWeb.Controllers
         {
 
            
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             areaRepo = new AreaRepository();
             depRepo = new DepartamentoRepository();
             jsonResultObjHelper = new JsonResultObjHelper();

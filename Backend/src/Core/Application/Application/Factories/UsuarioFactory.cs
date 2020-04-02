@@ -9,7 +9,7 @@ namespace Core.Application.Factories
     {
 
 
-        public Usuario UsuarioInstallObjFactory(String Nome, String Email,  
+        public Usuario UsuarioInstallObjFactory(string Nome, string Email,  
         CargoRepository cargoRepo, NivelAcessoRepository nivelacessoRepo, StatusRepository statusRepo)
         {
             

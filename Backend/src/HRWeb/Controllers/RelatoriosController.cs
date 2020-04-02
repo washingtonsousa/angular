@@ -15,7 +15,7 @@ namespace HRWeb.Controllers
     [Authorize(Roles = "Administrador")]
     public class RelatoriosController : Controller
     {
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private ExpProfissionalRepository expProfissionalRepo;
         private FormAcademicaRepository formAcademicaRepo;
         private CertCursoRepository CertCursoRepo;
@@ -36,7 +36,7 @@ namespace HRWeb.Controllers
             this.hasConhecimentoRepo = new UsuarioConhecimentoRepository();
             this.statusRepo = new StatusRepository();
             this.contatosRepo = new ContatoRepository();
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
         }
 
         public ActionResult Index()
@@ -48,12 +48,12 @@ namespace HRWeb.Controllers
 
 
 
-        public void Get(String SearchStr = null, IList<int> ConhecimentoIds = null)
+        public void Get(string SearchStr = null, IList<int> ConhecimentoIds = null)
         {
 
     
 
-            IList<Usuario> Usuarios = this.usuarioRepo.GetUsuarios();
+            IList<Usuario> Usuarios = this.usuarioRepo.Get();
             IList<Conhecimento> Conhecimentos = this.conhecimentoRepo.GetConhecimentos();
             IList<UsuarioConhecimento> HasConhecimentos = this.hasConhecimentoRepo.GetUsuarioConhecimentos();
             IList<Usuario> UsuariosSearch = new List<Usuario>();

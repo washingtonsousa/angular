@@ -11,7 +11,7 @@ namespace Core.Data.Models
 
         [Required]
         [Column(TypeName = "Text")]
-        public String Texto {get; set;}
+        public string Texto {get; set;}
 
         [Required]
         public int ChamadoId { get; set; }

@@ -21,7 +21,7 @@ namespace HRWeb.Controllers
     public class PesquisaController : BasicApiAppController
     {
         private SPListComponentsHelper SPCompHelper;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private DepartamentoRepository depRepo;
         private CargoRepository cargoRepo;
         private PaginateHelper pgHelper;
@@ -37,7 +37,7 @@ namespace HRWeb.Controllers
         private void initializeComponents()
         {
         
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             depRepo = new DepartamentoRepository();
             cargoRepo = new CargoRepository();
             pgHelper = new PaginateHelper();

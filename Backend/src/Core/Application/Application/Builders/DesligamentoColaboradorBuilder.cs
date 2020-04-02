@@ -18,7 +18,7 @@ namespace Core.Application.Builders
   public class DesligamentoColaboradorBuilder : Builder 
     {
         private int ID;
-        private String Title;
+        private string Title;
         private SP.FieldUserValue Colaborador;
         private DateTime DataPesquisa;
         private DateTime DataDesligamento;
@@ -27,7 +27,7 @@ namespace Core.Application.Builders
         private Double NotaConsultoria;
         private Double NotaAdministrativo;
         private Double NotaOperacao; 
-        private String Questao1;
+        private string Questao1;
         private Double Questao2;
         private Double Questao3;
         private Double Questao4;
@@ -49,7 +49,7 @@ namespace Core.Application.Builders
 
             this.ID = ID;
         }
-        public void withQuestao1(String Questao1)
+        public void withQuestao1(string Questao1)
         {
 
             this.Questao1 = Questao1;
@@ -164,7 +164,7 @@ namespace Core.Application.Builders
 
     
 
-        public void withTitle(String Title)
+        public void withTitle(string Title)
         {
 
             this.Title = Title;

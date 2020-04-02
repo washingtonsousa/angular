@@ -24,7 +24,7 @@ namespace HRWeb.Controllers
   public class InstallController : BasicApiAppController
     {
 
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private CargoRepository cargoRepo;
         private StatusRepository statusRepo;
         private DepartamentoRepository depRepo;
@@ -53,7 +53,7 @@ namespace HRWeb.Controllers
         {
             
             SPListFactory = new SPListFactory();       
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             cargoRepo = new CargoRepository();
             statusRepo = new StatusRepository();
             nivelAcessoRepo = new NivelAcessoRepository();
@@ -130,7 +130,7 @@ namespace HRWeb.Controllers
                 depRepo.GetDepartamentos().Count == 0 && 
                 cargoRepo.GetCargos().Count == 0 &&
                 nivelAcessoRepo.GetNivelAcessos().Count == 0  &&
-                usuarioRepo.GetUsuarios().Count == 0)
+                usuarioRepo.Get().Count == 0)
             {
 
                 //Area padrão

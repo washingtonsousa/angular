@@ -487,7 +487,7 @@ namespace RiscServicesHRSharepointAddIn.Migrations
 
                     b.Property<int?>("StatusId");
 
-                    b.Property<string>("profileImage64String")
+                    b.Property<string>("profileImage64string")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

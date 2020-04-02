@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Linq;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.UserProfiles;
-using RiscServicesHRSharepointAddIn.Helpers;
 using Core.Data.Models;
 
 namespace Core.Data.Repositories
@@ -13,14 +12,14 @@ namespace Core.Data.Repositories
 
     private ClientContext clientContext;
     private SPPeopleManagerHelper peopleManagerHelper;
-    private UsuariosRepository usuarioRepo;
+    private UsuarioRepository usuarioRepo;
 
     public SPUserRepository(ClientContext clientContext)
         {
 
           this.clientContext = clientContext;
           peopleManagerHelper = new SPPeopleManagerHelper(this.clientContext);
-          usuarioRepo = new UsuariosRepository();
+          usuarioRepo = new UsuarioRepository();
          
         }
 

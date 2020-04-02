@@ -29,14 +29,14 @@ namespace Core.Application.Factories
             desligamentoGestorBuilder.withPontualidade((Double)listItem["Pontualidade"]);
             desligamentoGestorBuilder.withQualidadeEntregaveis((Double)listItem["QualidadeEntregaveis"]);
             desligamentoGestorBuilder.withFlexibilidadeInovacao((Double)listItem["FlexibilidadeInovacao"]);
-            desligamentoGestorBuilder.withQuestao1((String)listItem["Questao1"]);
+            desligamentoGestorBuilder.withQuestao1((string)listItem["Questao1"]);
             desligamentoGestorBuilder.withQuestao2((Double)listItem["Questao2"]);
             desligamentoGestorBuilder.withQuestao3((Double)listItem["Questao3"]);
             desligamentoGestorBuilder.withQuestao4((Double)listItem["Questao4"]);
             desligamentoGestorBuilder.withQuestao5((Double)listItem["Questao5"]);
             desligamentoGestorBuilder.withQuestao6((Double)listItem["Questao6"]);
             desligamentoGestorBuilder.withTempoAtendimentoDemandas((Double)listItem["TempoAtendimentoDemandas"]);
-            desligamentoGestorBuilder.withTitle((String)listItem["Title"]);
+            desligamentoGestorBuilder.withTitle((string)listItem["Title"]);
             desligamentoGestorBuilder.withColaborador((SP.FieldUserValue)listItem["Colaborador"]);
 
 

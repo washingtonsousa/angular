@@ -56,7 +56,7 @@ namespace Core.Application.Factories
 
             SPCompHelper.Save();
 
-            StringCollection questoesStr = new StringCollection();
+            stringCollection questoesStr = new stringCollection();
 
 
             questoesStr.Add("Qual sua opinião sobre o ambiente de trabalho da Risc?");
@@ -150,7 +150,7 @@ namespace Core.Application.Factories
 
             SPCompHelper.Save();
 
-            StringCollection questoesStr = new StringCollection();
+            stringCollection questoesStr = new stringCollection();
 
      
             questoesStr.Add("Qual a sua opinião sobre o conhecimento técnico do colaborador?");
@@ -242,7 +242,7 @@ namespace Core.Application.Factories
 
             SPCompHelper.Save();
 
-            StringCollection questoesStr = new StringCollection();
+            stringCollection questoesStr = new stringCollection();
 
             questoesStr.Add("Trabalho em Equipe");
             questoesStr.Add("Liderança");
@@ -291,9 +291,9 @@ namespace Core.Application.Factories
 
             SPCompHelper.Save();
 
-            StringCollection Choices = new StringCollection();
+            stringCollection Choices = new stringCollection();
 
-            StringCollection GridTxts = new StringCollection();
+            stringCollection GridTxts = new stringCollection();
 
             GridTxts.Add("Baixo");
 

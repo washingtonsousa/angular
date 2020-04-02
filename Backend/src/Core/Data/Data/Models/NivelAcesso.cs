@@ -11,7 +11,7 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Nivel { get; set; }
+        public string Nivel { get; set; }
   
     }
 }

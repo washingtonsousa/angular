@@ -14,15 +14,15 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
-        public String Descricao { get; set; }
-
-        [Required]
-        public String Ext { get; set; }
+        public string Descricao { get; set; }
 
         [Required]
-        public String Tipo { get; set; }
+        public string Ext { get; set; }
+
+        [Required]
+        public string Tipo { get; set; }
 
         [Required]
         public int UsuarioId { get; set; }
@@ -31,11 +31,11 @@ namespace Core.Data.Models
         public Usuario Usuario { get; set; }
 
         [Required]
-        public String URL { get; set; }
+        public string URL { get; set; }
 
         
         [Required]
-        public String NomeCompleto { get; set; }
+        public string NomeCompleto { get; set; }
 
         [Required]
         public DateTime Data_Referencia { get; set; }

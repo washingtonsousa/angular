@@ -13,13 +13,14 @@ using HRWeb.Hubs;
 using System.Web.Http.Description;
 using Core.Data;
 using Core.Application.Helpers;
+using Core.Application.Strategy.Errors;
 
 namespace HRWeb.Controllers
 {
 
   public class UsuarioController : BasicApiAppControllerWithHub<UsuariosHub>
   {
-    private UsuariosRepository usuarioRepo;
+    private UsuarioRepository usuarioRepo;
     private SPPeopleManagerHelper SPPeopleManager;
     private JsonResultObjHelper jsonResultObjHelper;
 
@@ -34,7 +35,7 @@ namespace HRWeb.Controllers
 
     private void initializeComponents()
     {
-      usuarioRepo = new UsuariosRepository();
+      usuarioRepo = new UsuarioRepository();
       jsonResultObjHelper = new JsonResultObjHelper();
       spAuthHelper = new BasicAuthHelper();
 
@@ -67,7 +68,7 @@ namespace HRWeb.Controllers
     [HttpPost]
     public HttpResponseMessage Post([FromBody]Usuario Usuario)
     {
-      IList<Usuario> Usuarios = usuarioRepo.GetUsuarios();
+      IList<Usuario> Usuarios = usuarioRepo.Get();
 
       if (Usuarios.Where(u => u.Email == Usuario.Email).FirstOrDefault() == null
           && Usuarios.Where(u => u.Email != Usuario.Email && u.Matricula == Usuario.Matricula).FirstOrDefault() == null
@@ -131,7 +132,7 @@ namespace HRWeb.Controllers
     {
 
 
-        var usuarios = await usuarioRepo.GetUsuariosAsync();
+        var usuarios = await usuarioRepo.GetAsync();
 
         return Ok(usuarios);
 
@@ -150,7 +151,7 @@ namespace HRWeb.Controllers
     [HttpPut]
     public IHttpActionResult Put([FromBody]Usuario Usuario)
     {
-      IList<Usuario> Usuarios = usuarioRepo.GetUsuarios();
+      IList<Usuario> Usuarios = usuarioRepo.Get();
 
       if (Usuarios.FirstOrDefault(u => u.Email == Usuario.Email) != null
           && Usuarios.FirstOrDefault(u => u.Email != Usuario.Email && u.Matricula == Usuario.Matricula) == null)
@@ -197,7 +198,7 @@ namespace HRWeb.Controllers
     /// </summary>
     /// <param name="Usuario"> Usuario a ser atuliazado, mas somente os dados autorizados conforme escopo
     /// do método </param>
-    /// <returns> Mensagem de sucesso ou de erro | String | Json </returns>
+    /// <returns> Mensagem de sucesso ou de erro | string | Json </returns>
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpPut]
     [ResponseType(typeof(Usuario))]
@@ -272,9 +273,9 @@ namespace HRWeb.Controllers
     [HttpGet]
     [ResponseType(typeof(Usuario))]
     [Route("api/Usuario/GetByMatricula/{matricula}")]
-    public async Task<IHttpActionResult> GetByMatricula([FromUri]string matricula)
+    public IHttpActionResult GetByMatricula([FromUri]string matricula)
     {
-      Usuario usuario = await new HrDbContext().Usuarios.FirstOrDefaultAsync(u => u.Matricula == matricula);
+      Usuario usuario = usuarioRepo.FindUsuarioByMatricula(matricula);
 
       return Ok(usuario);
 

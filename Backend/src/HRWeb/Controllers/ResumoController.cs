@@ -16,14 +16,14 @@ namespace HRWeb.Controllers
     {
   
         private ResumoRepository resumoRepo;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private JsonResultObjHelper jsonResultObjHelper;
 
         public ResumoController()
         {
 
             resumoRepo = new ResumoRepository();
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             jsonResultObjHelper = new JsonResultObjHelper();
 
 

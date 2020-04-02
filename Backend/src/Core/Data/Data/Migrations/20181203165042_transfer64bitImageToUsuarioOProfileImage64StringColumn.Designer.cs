@@ -10,8 +10,8 @@ using RiscServicesHRSharepointAddIn;
 namespace RiscServicesHRSharepointAddIn.Migrations
 {
     [DbContext(typeof(HrDbContext))]
-    [Migration("20181203165042_transfer64bitImageToUsuarioOProfileImage64StringColumn")]
-    partial class transfer64bitImageToUsuarioOProfileImage64StringColumn
+    [Migration("20181203165042_transfer64bitImageToUsuarioOProfileImage64stringColumn")]
+    partial class transfer64bitImageToUsuarioOProfileImage64stringColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -489,7 +489,7 @@ namespace RiscServicesHRSharepointAddIn.Migrations
 
                     b.Property<int?>("StatusId");
 
-                    b.Property<string>("profileImage64String")
+                    b.Property<string>("profileImage64string")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

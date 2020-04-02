@@ -11,14 +11,14 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Instituicao { get; set; }
+        public string Instituicao { get; set; }
         [Required]
-        public String Curso { get; set; }
+        public string Curso { get; set; }
         [Required]
-        public String TipoCurso { get; set; }
+        public string TipoCurso { get; set; }
 
 
-        public String Situacao {get; set;}
+        public string Situacao {get; set;}
 
         [Required]
         public int UsuarioId { get; set; }

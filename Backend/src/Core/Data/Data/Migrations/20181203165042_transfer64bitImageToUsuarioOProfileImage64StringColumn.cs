@@ -2,12 +2,12 @@
 
 namespace RiscServicesHRSharepointAddIn.Migrations
 {
-    public partial class transfer64bitImageToUsuarioOProfileImage64StringColumn : Migration
+    public partial class transfer64bitImageToUsuarioOProfileImage64stringColumn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "profileImage64String",
+                name: "profileImage64string",
                 table: "Usuarios",
                 type: "text",
                 nullable: true);
@@ -16,7 +16,7 @@ namespace RiscServicesHRSharepointAddIn.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "profileImage64String",
+                name: "profileImage64string",
                 table: "Usuarios");
         }
     }

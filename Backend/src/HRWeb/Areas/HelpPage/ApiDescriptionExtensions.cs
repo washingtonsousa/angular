@@ -17,21 +17,21 @@ namespace HRWeb.Areas.HelpPage
             string path = description.RelativePath;
             string[] urlParts = path.Split('?');
             string localPath = urlParts[0];
-            string queryKeyString = null;
+            string queryKeystring = null;
             if (urlParts.Length > 1)
             {
                 string query = urlParts[1];
-                string[] queryKeys = HttpUtility.ParseQueryString(query).AllKeys;
-                queryKeyString = String.Join("_", queryKeys);
+                string[] queryKeys = HttpUtility.ParseQuerystring(query).AllKeys;
+                queryKeystring = string.Join("_", queryKeys);
             }
 
-            StringBuilder friendlyPath = new StringBuilder();
+            stringBuilder friendlyPath = new stringBuilder();
             friendlyPath.AppendFormat("{0}-{1}",
                 description.HttpMethod.Method,
-                localPath.Replace("/", "-").Replace("{", String.Empty).Replace("}", String.Empty));
-            if (queryKeyString != null)
+                localPath.Replace("/", "-").Replace("{", string.Empty).Replace("}", string.Empty));
+            if (queryKeystring != null)
             {
-                friendlyPath.AppendFormat("_{0}", queryKeyString.Replace('.', '-'));
+                friendlyPath.AppendFormat("_{0}", queryKeystring.Replace('.', '-'));
             }
             return friendlyPath.ToString();
         }

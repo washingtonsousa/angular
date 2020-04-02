@@ -28,7 +28,7 @@ namespace HRWeb.Controllers
   {
 
 
-    private UsuariosRepository usuarioRepo;
+    private UsuarioRepository usuarioRepo;
     private ArquivoRepository ArquivoRepo;
     private ArquivosHelper ArquivosHelper;
     private JsonResultObjHelper jsonResultObjHelper;
@@ -44,7 +44,7 @@ namespace HRWeb.Controllers
     private void initializeComponents()
     {
       _logActionRepository = new Log_ActionRepository();
-      usuarioRepo = new UsuariosRepository();
+      usuarioRepo = new UsuarioRepository();
       ArquivoRepo = new ArquivoRepository();
       ArquivosHelper = new ArquivosHelper();
       jsonResultObjHelper = new JsonResultObjHelper();
@@ -60,7 +60,7 @@ namespace HRWeb.Controllers
 
       this.SetCurrentLoggedUserHandler();
 
-      IList<Usuario> Usuarios = usuarioRepo.GetUsuarios();
+      IList<Usuario> Usuarios = usuarioRepo.Get();
       IList<Arquivo> Arquivos = ArquivoRepo.GetArquivos();
 
       _logActionRepository.InsertLog_Action(Log_ActionFactory.Generate_AccessListArquivoLog_Action(Request.GetOwinContext().Request.RemoteIpAddress, usuarioRepo.FindUsuario(this.Usuario_Id),
@@ -313,8 +313,8 @@ namespace HRWeb.Controllers
           ConfigData config = configDataHelper.getConfigDataFromConfigFile();
 
 
-          if (!String.IsNullOrEmpty(config.EmailAccount) && !String.IsNullOrEmpty(config.EmailPort)
-               && !String.IsNullOrEmpty(config.EmailSmtpServer) && !String.IsNullOrEmpty(config.EmailPassword))
+          if (!string.IsNullOrEmpty(config.EmailAccount) && !string.IsNullOrEmpty(config.EmailPort)
+               && !string.IsNullOrEmpty(config.EmailSmtpServer) && !string.IsNullOrEmpty(config.EmailPassword))
           {
 
             EmailHandler _emailHandler = new EmailHandler(config, new MailMessageFactory()
@@ -372,7 +372,7 @@ namespace HRWeb.Controllers
       string Descricao = provider.FormData.Get("Descricao");
       Documento = provider.FileData.FirstOrDefault();
 
-      Usuario usuarioFromDb = usuarioRepo.GetUsuarios().Where(u => u.Matricula == Matricula).FirstOrDefault();
+      Usuario usuarioFromDb = usuarioRepo.Get().Where(u => u.Matricula == Matricula).FirstOrDefault();
 
 
       if (usuarioFromDb != null)
@@ -421,10 +421,10 @@ namespace HRWeb.Controllers
 
             StatisticsHub.updateLog_Action(_logActionRepository.GetLog_ActionsOrderedByData_Acesso().FirstOrDefault());
 
-            if (!String.IsNullOrEmpty(config.EmailAccount)
-                      && !String.IsNullOrEmpty(config.EmailPort)
-                      && !String.IsNullOrEmpty(config.EmailSmtpServer)
-                      && !String.IsNullOrEmpty(config.EmailPassword))
+            if (!string.IsNullOrEmpty(config.EmailAccount)
+                      && !string.IsNullOrEmpty(config.EmailPort)
+                      && !string.IsNullOrEmpty(config.EmailSmtpServer)
+                      && !string.IsNullOrEmpty(config.EmailPassword))
             {
 
 

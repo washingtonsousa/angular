@@ -11,7 +11,9 @@ namespace Core.Application.Interfaces
     public interface ITokenAppService
     {
 
-        AuthenticationTicket BuildAuthTicketByUsuario(Usuario usuario);
+        AuthenticationTicket BuildAuthTicketForUsuario(Usuario usuario);
+
+        AuthenticationTicket BuildAuthTicketForInstaller(string Email);
 
     }
 }

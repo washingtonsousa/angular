@@ -71,9 +71,9 @@ namespace Core.Data
                 {
                     return request.Form[paramName];
                 }
-                if (!string.IsNullOrEmpty(request.QueryString[paramName]))
+                if (!string.IsNullOrEmpty(request.Querystring[paramName]))
                 {
-                    return request.QueryString[paramName];
+                    return request.Querystring[paramName];
                 }
             }
             return null;
@@ -88,15 +88,15 @@ namespace Core.Data
         /// exception is thrown. If the token is valid, TokenHelper's static STS metadata url is updated based on the token contents
         /// and a JsonWebSecurityToken based on the context token is returned.
         /// </summary>
-        /// <param name="contextTokenString">The context token to validate</param>
+        /// <param name="contextTokenstring">The context token to validate</param>
         /// <param name="appHostName">The URL authority, consisting of  Domain Name System (DNS) host name or IP address and the port number, to use for token audience validation.
         /// If null, HostedAppHostName web.config setting is used instead. HostedAppHostNameOverride web.config setting, if present, will be used 
         /// for validation instead of <paramref name="appHostName"/> .</param>
         /// <returns>A JsonWebSecurityToken based on the context token.</returns>
-        public static SharePointContextToken ReadAndValidateContextToken(string contextTokenString, string appHostName = null)
+        public static SharePointContextToken ReadAndValidateContextToken(string contextTokenstring, string appHostName = null)
         {
             JsonWebSecurityTokenHandler tokenHandler = CreateJsonWebSecurityTokenHandler();
-            SecurityToken securityToken = tokenHandler.ReadToken(contextTokenString);
+            SecurityToken securityToken = tokenHandler.ReadToken(contextTokenstring);
             JsonWebSecurityToken jsonToken = securityToken as JsonWebSecurityToken;
             SharePointContextToken token = SharePointContextToken.Create(jsonToken);
 
@@ -109,7 +109,7 @@ namespace Core.Data
             tokenHandler.ValidateToken(jsonToken);
 
             string[] acceptableAudiences;
-            if (!String.IsNullOrEmpty(HostedAppHostNameOverride))
+            if (!string.IsNullOrEmpty(HostedAppHostNameOverride))
             {
                 acceptableAudiences = HostedAppHostNameOverride.Split(';');
             }
@@ -127,7 +127,7 @@ namespace Core.Data
             foreach (var audience in acceptableAudiences)
             {
                 string principal = GetFormattedPrincipal(ClientId, audience, realm);
-                if (StringComparer.OrdinalIgnoreCase.Equals(token.Audience, principal))
+                if (stringComparer.OrdinalIgnoreCase.Equals(token.Audience, principal))
                 {
                     validationSuccessful = true;
                     break;
@@ -137,8 +137,8 @@ namespace Core.Data
             if (!validationSuccessful)
             {
                 throw new AudienceUriValidationFailedException(
-                    String.Format(CultureInfo.CurrentCulture,
-                    "\"{0}\" is not the intended audience \"{1}\"", String.Join(";", acceptableAudiences), token.Audience));
+                    string.Format(CultureInfo.CurrentCulture,
+                    "\"{0}\" is not the intended audience \"{1}\"", string.Join(";", acceptableAudiences), token.Audience));
             }
 
             return token;
@@ -158,7 +158,7 @@ namespace Core.Data
             // Extract the refreshToken from the context token
             string refreshToken = contextToken.RefreshToken;
 
-            if (String.IsNullOrEmpty(refreshToken))
+            if (string.IsNullOrEmpty(refreshToken))
             {
                 return null;
             }
@@ -490,16 +490,16 @@ namespace Core.Data
         /// a client context
         /// </summary>
         /// <param name="targetUrl">Url of the target SharePoint site</param>
-        /// <param name="contextTokenString">Context token received from the target SharePoint site</param>
+        /// <param name="contextTokenstring">Context token received from the target SharePoint site</param>
         /// <param name="appHostUrl">Url authority of the hosted add-in.  If this is null, the value in the HostedAppHostName
         /// of web.config will be used instead</param>
         /// <returns>A ClientContext ready to call targetUrl with a valid access token</returns>
         public static ClientContext GetClientContextWithContextToken(
             string targetUrl,
-            string contextTokenString,
+            string contextTokenstring,
             string appHostUrl)
         {
-            SharePointContextToken contextToken = ReadAndValidateContextToken(contextTokenString, appHostUrl);
+            SharePointContextToken contextToken = ReadAndValidateContextToken(contextTokenstring, appHostUrl);
 
             Uri targetUri = new Uri(targetUrl);
 
@@ -608,7 +608,7 @@ namespace Core.Data
         /// Get authentication realm from SharePoint
         /// </summary>
         /// <param name="targetApplicationUri">Url of the target SharePoint site</param>
-        /// <returns>String representation of the realm GUID</returns>
+        /// <returns>string representation of the realm GUID</returns>
         public static string GetRealmFromTargetUrl(Uri targetApplicationUri)
         {
             WebRequest request = WebRequest.Create(targetApplicationUri + "/_vti_bin/client.svc");
@@ -634,7 +634,7 @@ namespace Core.Data
                 }
 
                 const string bearer = "Bearer realm=\"";
-                int bearerIndex = bearerResponseHeader.IndexOf(bearer, StringComparison.Ordinal);
+                int bearerIndex = bearerResponseHeader.IndexOf(bearer, stringComparison.Ordinal);
                 if (bearerIndex < 0)
                 {
                     return null;
@@ -729,14 +729,14 @@ namespace Core.Data
 
         private static ClientContext CreateAcsClientContextForUrl(SPRemoteEventProperties properties, Uri sharepointUrl)
         {
-            string contextTokenString = properties.ContextToken;
+            string contextTokenstring = properties.ContextToken;
 
-            if (String.IsNullOrEmpty(contextTokenString))
+            if (string.IsNullOrEmpty(contextTokenstring))
             {
                 return null;
             }
 
-            SharePointContextToken contextToken = ReadAndValidateContextToken(contextTokenString, OperationContext.Current.IncomingMessageHeaders.To.Host);
+            SharePointContextToken contextToken = ReadAndValidateContextToken(contextTokenstring, OperationContext.Current.IncomingMessageHeaders.To.Host);
             string accessToken = GetAccessToken(contextToken, sharepointUrl.Authority).AccessToken;
 
             return GetClientContextWithAccessToken(sharepointUrl.ToString(), accessToken);
@@ -749,12 +749,12 @@ namespace Core.Data
 
         private static string GetFormattedPrincipal(string principalName, string hostName, string realm)
         {
-            if (!String.IsNullOrEmpty(hostName))
+            if (!string.IsNullOrEmpty(hostName))
             {
-                return String.Format(CultureInfo.InvariantCulture, "{0}/{1}@{2}", principalName, hostName, realm);
+                return string.Format(CultureInfo.InvariantCulture, "{0}/{1}@{2}", principalName, hostName, realm);
             }
 
-            return String.Format(CultureInfo.InvariantCulture, "{0}@{1}", principalName, realm);
+            return string.Format(CultureInfo.InvariantCulture, "{0}@{1}", principalName, realm);
         }
 
         private static string GetAcsPrincipalName(string realm)
@@ -764,7 +764,7 @@ namespace Core.Data
 
         private static string GetAcsGlobalEndpointUrl()
         {
-            return String.Format(CultureInfo.InvariantCulture, "https://{0}.{1}/", GlobalEndPointPrefix, AcsHostUrl);
+            return string.Format(CultureInfo.InvariantCulture, "https://{0}.{1}/", GlobalEndPointPrefix, AcsHostUrl);
         }
 
         private static JsonWebSecurityTokenHandler CreateJsonWebSecurityTokenHandler()
@@ -775,10 +775,10 @@ namespace Core.Data
             handler.Configuration.CertificateValidator = X509CertificateValidator.None;
 
             List<byte[]> securityKeys = new List<byte[]>();
-            securityKeys.Add(Convert.FromBase64String(ClientSecret));
+            securityKeys.Add(Convert.FromBase64string(ClientSecret));
             if (!string.IsNullOrEmpty(SecondaryClientSecret))
             {
-                securityKeys.Add(Convert.FromBase64String(SecondaryClientSecret));
+                securityKeys.Add(Convert.FromBase64string(SecondaryClientSecret));
             }
 
             List<SecurityToken> securityTokens = new List<SecurityToken>();
@@ -862,12 +862,12 @@ namespace Core.Data
                 signingCredentials: SigningCredentials,
                 claims: actorClaims);
 
-            string actorTokenString = new JsonWebSecurityTokenHandler().WriteTokenAsString(actorToken);
+            string actorTokenstring = new JsonWebSecurityTokenHandler().WriteTokenAsstring(actorToken);
 
             if (appOnly)
             {
                 // App-only token is the same as actor token for delegated case
-                return actorTokenString;
+                return actorTokenstring;
             }
 
             #endregion Actor token
@@ -875,7 +875,7 @@ namespace Core.Data
             #region Outer token
 
             List<JsonWebTokenClaim> outerClaims = null == claims ? new List<JsonWebTokenClaim>() : new List<JsonWebTokenClaim>(claims);
-            outerClaims.Add(new JsonWebTokenClaim(ActorTokenClaimType, actorTokenString));
+            outerClaims.Add(new JsonWebTokenClaim(ActorTokenClaimType, actorTokenstring));
 
             JsonWebSecurityToken jsonToken = new JsonWebSecurityToken(
                 nameid, // outer token issuer should match actor token nameid
@@ -884,7 +884,7 @@ namespace Core.Data
                 DateTime.UtcNow.Add(HighTrustAccessTokenLifetime),
                 outerClaims);
 
-            string accessToken = new JsonWebSecurityTokenHandler().WriteTokenAsString(jsonToken);
+            string accessToken = new JsonWebSecurityTokenHandler().WriteTokenAsstring(jsonToken);
 
             #endregion Outer token
 
@@ -931,7 +931,7 @@ namespace Core.Data
 
             private static JsonMetadataDocument GetMetadataDocument(string realm)
             {
-                string acsMetadataEndpointUrlWithRealm = String.Format(CultureInfo.InvariantCulture, "{0}?realm={1}",
+                string acsMetadataEndpointUrlWithRealm = string.Format(CultureInfo.InvariantCulture, "{0}?realm={1}",
                                                                        GetAcsMetadataEndpointUrl(),
                                                                        realm);
                 byte[] acsMetadata;
@@ -940,10 +940,10 @@ namespace Core.Data
 
                     acsMetadata = webClient.DownloadData(acsMetadataEndpointUrlWithRealm);
                 }
-                string jsonResponseString = Encoding.UTF8.GetString(acsMetadata);
+                string jsonResponsestring = Encoding.UTF8.Getstring(acsMetadata);
 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
-                JsonMetadataDocument document = serializer.Deserialize<JsonMetadataDocument>(jsonResponseString);
+                JsonMetadataDocument document = serializer.Deserialize<JsonMetadataDocument>(jsonResponsestring);
 
                 if (null == document)
                 {
@@ -1073,7 +1073,7 @@ namespace Core.Data
                 }
 
                 ClientContext ctx = new ClientContext("http://tempuri.org");
-                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonString(appctx);
+                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonstring(appctx);
                 string cacheKey = (string)dict["CacheKey"];
 
                 return cacheKey;
@@ -1094,7 +1094,7 @@ namespace Core.Data
                 }
 
                 ClientContext ctx = new ClientContext("http://tempuri.org");
-                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonString(appctx);
+                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonstring(appctx);
                 string securityTokenServiceUri = (string)dict["SecurityTokenServiceUri"];
 
                 return securityTokenServiceUri;
@@ -1129,7 +1129,7 @@ namespace Core.Data
 
             foreach (JsonWebTokenClaim claim in token.Claims)
             {
-                if (StringComparer.Ordinal.Equals(claim.ClaimType, claimType))
+                if (stringComparer.Ordinal.Equals(claim.ClaimType, claimType))
                 {
                     return claim.Value;
                 }
@@ -1166,7 +1166,7 @@ namespace Core.Data
                 throw new ArgumentNullException("keys");
             }
 
-            if (String.IsNullOrEmpty(tokenId))
+            if (string.IsNullOrEmpty(tokenId))
             {
                 throw new ArgumentException("Value cannot be a null or empty string.", "tokenId");
             }

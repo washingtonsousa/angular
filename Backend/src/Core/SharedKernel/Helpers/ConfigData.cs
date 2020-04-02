@@ -15,5 +15,24 @@ namespace Core.Data.Models
         public static string URLSiteMandatorio        { get { return ConfigurationManager.AppSettings["URLSiteMandatorio"]; } }
         public static string ChamadoServiceEmail      { get { return    ConfigurationManager.AppSettings["ChamadoServiceEmail"]; } }
         public static string SenhaChamadoServiceEmail { get { return ConfigurationManager.AppSettings["SenhaChamadoServiceEmail"]; } }
-}
+        public static string InstallEmailAccount
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["InstallEmailAccount"];
+             
+              }
+        }
+
+
+        public static string InstallPassword
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["InstallPassword"];
+
+                    } 
+        
+        }
+    }
 }

@@ -23,7 +23,7 @@ namespace Core.Application.Factories
             desligamentoColaboradorBuilder.withNotaAdministrativo((Double)listItem["NotaAdministrativo"]);
             desligamentoColaboradorBuilder.withNotaOperacao((Double)listItem["NotaOperacao"]);
             desligamentoColaboradorBuilder.withID((int)listItem["ID"]);
-            desligamentoColaboradorBuilder.withQuestao1((String)listItem["Questao1"]);
+            desligamentoColaboradorBuilder.withQuestao1((string)listItem["Questao1"]);
             desligamentoColaboradorBuilder.withQuestao2((Double)listItem["Questao2"]);
             desligamentoColaboradorBuilder.withQuestao3((Double)listItem["Questao3"]);
             desligamentoColaboradorBuilder.withQuestao4((Double)listItem["Questao4"]);
@@ -35,7 +35,7 @@ namespace Core.Application.Factories
             desligamentoColaboradorBuilder.withQuestao10((Double)listItem["Questao10"]);
             desligamentoColaboradorBuilder.withQuestao11((Double)listItem["Questao11"]);
             desligamentoColaboradorBuilder.withEntrevistador((SP.FieldUserValue)listItem["Entrevistador"]);
-            desligamentoColaboradorBuilder.withTitle((String)listItem["Title"]);
+            desligamentoColaboradorBuilder.withTitle((string)listItem["Title"]);
             desligamentoColaboradorBuilder.withColaborador((SP.FieldUserValue)listItem["Colaborador"]);
             DesligamentoColaborador desligamentoColaborador = (DesligamentoColaborador) desligamentoColaboradorBuilder.Build();
 

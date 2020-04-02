@@ -9,16 +9,16 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String NomeArquivo { get; set; }
+        public string NomeArquivo { get; set; }
 
         [Required]
-        public String CaminhoArquivo { get; set; }
+        public string CaminhoArquivo { get; set; }
 
         [Required]
-        public String TipoArquivo { get; set; }
+        public string TipoArquivo { get; set; }
 
         [Required]
-        public String Ext { get; set; }
+        public string Ext { get; set; }
 
         [Required]
         public int ChamadoMensagemId { get; set; }

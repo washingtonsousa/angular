@@ -18,13 +18,13 @@ namespace HRWeb.Controllers
   {
      
         private DepartamentoRepository departamentoRepo;
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         private CargoRepository cargoRepo;
         private JsonResultObjHelper jsonResultObjHelper;
 
         public DepartamentoController()
         {
-            usuarioRepo = new UsuariosRepository();
+            usuarioRepo = new UsuarioRepository();
             departamentoRepo = new DepartamentoRepository();
             jsonResultObjHelper = new JsonResultObjHelper();
             cargoRepo = new CargoRepository();

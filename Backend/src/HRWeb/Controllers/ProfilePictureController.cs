@@ -24,11 +24,11 @@ namespace HRWeb.Controllers
     {
 
 
-    public UsuariosRepository usuarioRepo;
+    public UsuarioRepository usuarioRepo;
 
     public ProfilePictureController()
     {
-      usuarioRepo = new UsuariosRepository();
+      usuarioRepo = new UsuarioRepository();
     }
 
     [HttpGet]
@@ -45,9 +45,9 @@ namespace HRWeb.Controllers
       if (usuarioFromDb != null)
       {
 
-        if (usuarioFromDb.profileImage64String != null)
+        if (usuarioFromDb.profileImage64string != null)
         {
-          return Request.CreateResponse(HttpStatusCode.OK, usuarioFromDb.profileImage64String);
+          return Request.CreateResponse(HttpStatusCode.OK, usuarioFromDb.profileImage64string);
 
         }
 
@@ -74,10 +74,10 @@ namespace HRWeb.Controllers
       if (usuarioFromDb != null)
       {
 
-        if (usuarioFromDb.profileImage64String != null)
+        if (usuarioFromDb.profileImage64string != null)
         {
 
-          return Request.CreateResponse(HttpStatusCode.OK,  usuarioFromDb.profileImage64String);
+          return Request.CreateResponse(HttpStatusCode.OK,  usuarioFromDb.profileImage64string);
         }
         return Request.CreateResponse(HttpStatusCode.NotFound, "Imagem não existe");
       }
@@ -137,7 +137,7 @@ namespace HRWeb.Controllers
 
         byte[] b = System.IO.File.ReadAllBytes(provider.FileData[0].LocalFileName);
 
-        usuarioFromDb.profileImage64String = Convert.ToBase64String(b);
+        usuarioFromDb.profileImage64string = Convert.ToBase64string(b);
         usuarioRepo.Save();
         return Request.CreateResponse(HttpStatusCode.OK, "Executado com sucesso");
  
@@ -196,7 +196,7 @@ namespace HRWeb.Controllers
 
         byte[] b = System.IO.File.ReadAllBytes(provider.FileData[0].LocalFileName);
 
-        usuarioFromDb.profileImage64String = Convert.ToBase64String(b);
+        usuarioFromDb.profileImage64string = Convert.ToBase64string(b);
         usuarioRepo.Save();
 
         return Request.CreateResponse(HttpStatusCode.OK, "Executado com sucesso");
@@ -220,7 +220,7 @@ namespace HRWeb.Controllers
       string user_id = user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value;
 
       Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(int.Parse(user_id));
-      usuarioFromDb.profileImage64String = null;
+      usuarioFromDb.profileImage64string = null;
       usuarioRepo.Save();
       return Request.CreateResponse(HttpStatusCode.NotFound, "Arquivo não encontrado");
 

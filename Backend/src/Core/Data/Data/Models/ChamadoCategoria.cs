@@ -10,10 +10,10 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Template { get; set; }
+        public string Template { get; set; }
 
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
       
         public ICollection<Chamado> Chamados { get; set; }
 

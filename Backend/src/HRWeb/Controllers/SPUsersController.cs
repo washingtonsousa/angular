@@ -20,10 +20,10 @@ namespace HRWeb.Controllers
   public class SPUsersController : BasicApiAppController
     {
 
-        private UsuariosRepository usuarioRepo;
+        private UsuarioRepository usuarioRepo;
         public SPUsersController()
         { 
-      usuarioRepo = new UsuariosRepository();
+      usuarioRepo = new UsuarioRepository();
  
       this.spAuthHelper = new BasicAuthHelper();
          }

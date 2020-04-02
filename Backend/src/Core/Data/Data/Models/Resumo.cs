@@ -11,7 +11,7 @@ namespace Core.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public String Conteudo { get; set; }
+        public string Conteudo { get; set; }
        
         [Required]
         public int UsuarioId { get; set; }

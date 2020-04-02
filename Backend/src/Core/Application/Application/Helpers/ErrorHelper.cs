@@ -15,7 +15,7 @@ namespace Core.Application.Helpers
         }
 
 
-        public Error getGenericError(int code, String Message)
+        public Error getGenericError(int code, string Message)
         {
 
             Error error = new Error();

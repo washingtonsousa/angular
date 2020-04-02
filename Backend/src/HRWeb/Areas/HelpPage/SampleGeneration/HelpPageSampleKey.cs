@@ -21,10 +21,10 @@ namespace HRWeb.Areas.HelpPage
                 throw new ArgumentNullException("mediaType");
             }
 
-            ActionName = String.Empty;
-            ControllerName = String.Empty;
+            ActionName = string.Empty;
+            ControllerName = string.Empty;
             MediaType = mediaType;
-            ParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            ParameterNames = new HashSet<string>(stringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace HRWeb.Areas.HelpPage
 
             ControllerName = controllerName;
             ActionName = actionName;
-            ParameterNames = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
+            ParameterNames = new HashSet<string>(parameterNames, stringComparer.OrdinalIgnoreCase);
             SampleDirection = sampleDirection;
         }
 
@@ -138,8 +138,8 @@ namespace HRWeb.Areas.HelpPage
                 return false;
             }
 
-            return String.Equals(ControllerName, otherKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
-                String.Equals(ActionName, otherKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
+            return string.Equals(ControllerName, otherKey.ControllerName, stringComparison.OrdinalIgnoreCase) &&
+                string.Equals(ActionName, otherKey.ActionName, stringComparison.OrdinalIgnoreCase) &&
                 (MediaType == otherKey.MediaType || (MediaType != null && MediaType.Equals(otherKey.MediaType))) &&
                 ParameterType == otherKey.ParameterType &&
                 SampleDirection == otherKey.SampleDirection &&

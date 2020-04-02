@@ -43,7 +43,7 @@ namespace Core.Application.Helpers
     /// <param name="userName"></param>
     /// <param name="Password"></param>
     /// <returns></returns>
-    public bool ValidateUserByLdapCredentials(string userName, String Password)
+    public bool ValidateUserByLdapCredentials(string userName, string Password)
     {
       using (var context = new PrincipalContext(ContextType.Domain, ConfigurationManager.AppSettings["LdapDomain"],
         ConfigurationManager.AppSettings["UrlContext"]+ @"\userName", Password))
@@ -66,10 +66,10 @@ namespace Core.Application.Helpers
     }
 
 
-      public bool ValidateUserBySPCredentials(string userName, String Password)
+      public bool ValidateUserBySPCredentials(string userName, string Password)
     {
 
-      var securePassword = new SecureString();
+      var securePassword = new Securestring();
       foreach (var c in Password) { securePassword.AppendChar(c); }
 
       using (var context = new ClientContext(ConfigurationManager.AppSettings["UrlContext"]))

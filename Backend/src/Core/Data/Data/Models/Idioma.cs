@@ -13,9 +13,9 @@ namespace Core.Data.Models
         public Usuario Usuario { get; set; }
 
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
         [Required]
-        public String Fluencia { get; set; }
+        public string Fluencia { get; set; }
         [Required]
         public int UsuarioId { get; set; }
 

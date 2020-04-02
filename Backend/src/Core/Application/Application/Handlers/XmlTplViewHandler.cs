@@ -80,7 +80,7 @@ namespace Core.Application.Handlers
     /// Necessário apenas chamar uma vez, nas demais chame a propriedade viewData diretamente
     /// </summary>
     /// <returns>viewData</returns>
-    public string CompileViewString()
+    public string CompileViewstring()
     {
       return generateViewData();
     }

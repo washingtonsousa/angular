@@ -20,6 +20,7 @@
     <ProfileToSelectInPublishDialog>SPHAdd-in</ProfileToSelectInPublishDialog>
     <NameOfLastUsedPublishProfile>SPHAdd-in</NameOfLastUsedPublishProfile>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

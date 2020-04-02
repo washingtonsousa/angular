@@ -104,7 +104,7 @@ namespace HRWeb.Areas.HelpPage
             var actionSamples = GetAllActionSamples(controllerName, actionName, parameterNames, sampleDirection);
             foreach (var actionSample in actionSamples)
             {
-                samples.Add(actionSample.Key.MediaType, WrapSampleIfString(actionSample.Value));
+                samples.Add(actionSample.Key.MediaType, WrapSampleIfstring(actionSample.Value));
             }
 
             // Do the sample generation based on formatters only if an action doesn't return an HttpResponseMessage.
@@ -126,7 +126,7 @@ namespace HRWeb.Areas.HelpPage
                                 sample = WriteSampleObjectUsingFormatter(formatter, sampleObject, type, mediaType);
                             }
 
-                            samples.Add(mediaType, WrapSampleIfString(sample));
+                            samples.Add(mediaType, WrapSampleIfstring(sample));
                         }
                     }
                 }
@@ -296,7 +296,7 @@ namespace HRWeb.Areas.HelpPage
                 throw new ArgumentNullException("mediaType");
             }
 
-            object sample = String.Empty;
+            object sample = string.Empty;
             MemoryStream ms = null;
             HttpContent content = null;
             try
@@ -308,21 +308,21 @@ namespace HRWeb.Areas.HelpPage
                     formatter.WriteToStreamAsync(type, value, ms, content, null).Wait();
                     ms.Position = 0;
                     StreamReader reader = new StreamReader(ms);
-                    string serializedSampleString = reader.ReadToEnd();
+                    string serializedSamplestring = reader.ReadToEnd();
                     if (mediaType.MediaType.ToUpperInvariant().Contains("XML"))
                     {
-                        serializedSampleString = TryFormatXml(serializedSampleString);
+                        serializedSamplestring = TryFormatXml(serializedSamplestring);
                     }
                     else if (mediaType.MediaType.ToUpperInvariant().Contains("JSON"))
                     {
-                        serializedSampleString = TryFormatJson(serializedSampleString);
+                        serializedSamplestring = TryFormatJson(serializedSamplestring);
                     }
 
-                    sample = new TextSample(serializedSampleString);
+                    sample = new TextSample(serializedSamplestring);
                 }
                 else
                 {
-                    sample = new InvalidSample(String.Format(
+                    sample = new InvalidSample(string.Format(
                         CultureInfo.CurrentCulture,
                         "Failed to generate the sample for media type '{0}'. Cannot use formatter '{1}' to write type '{2}'.",
                         mediaType,
@@ -332,7 +332,7 @@ namespace HRWeb.Areas.HelpPage
             }
             catch (Exception e)
             {
-                sample = new InvalidSample(String.Format(
+                sample = new InvalidSample(string.Format(
                     CultureInfo.CurrentCulture,
                     "An exception has occurred while using the formatter '{0}' to generate sample for media type '{1}'. Exception message: {2}",
                     formatter.GetType().Name,
@@ -416,12 +416,12 @@ namespace HRWeb.Areas.HelpPage
 
         private IEnumerable<KeyValuePair<HelpPageSampleKey, object>> GetAllActionSamples(string controllerName, string actionName, IEnumerable<string> parameterNames, SampleDirection sampleDirection)
         {
-            HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
+            HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, stringComparer.OrdinalIgnoreCase);
             foreach (var sample in ActionSamples)
             {
                 HelpPageSampleKey sampleKey = sample.Key;
-                if (String.Equals(controllerName, sampleKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
-                    String.Equals(actionName, sampleKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
+                if (string.Equals(controllerName, sampleKey.ControllerName, stringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(actionName, sampleKey.ActionName, stringComparison.OrdinalIgnoreCase) &&
                     (sampleKey.ParameterNames.SetEquals(new[] { "*" }) || parameterNamesSet.SetEquals(sampleKey.ParameterNames)) &&
                     sampleDirection == sampleKey.SampleDirection)
                 {
@@ -430,7 +430,7 @@ namespace HRWeb.Areas.HelpPage
             }
         }
 
-        private static object WrapSampleIfString(object sample)
+        private static object WrapSampleIfstring(object sample)
         {
             string stringSample = sample as string;
             if (stringSample != null)

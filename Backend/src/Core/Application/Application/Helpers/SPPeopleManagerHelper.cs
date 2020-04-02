@@ -26,7 +26,7 @@ namespace Core.Application.Helpers
 
         }
 
-        public PersonProperties getPersonPropertiesByEmail(String Email)
+        public PersonProperties getPersonPropertiesByEmail(string Email)
         {
             personProperties = peopleManager.GetPropertiesFor(@"i:0#.f|membership|" + Email);
 

@@ -30,7 +30,7 @@ namespace Core.Data.Repositories
     }
 
 
-    public Departamento FindDepartamentoByNome(String Nome)
+    public Departamento FindDepartamentoByNome(string Nome)
     {
       Departamento departamento = this.Context.Departamentos.Where(u => u.Nome == Nome).FirstOrDefault();
 

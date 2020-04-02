@@ -14,7 +14,7 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [IgnoreDataMember]
         public ICollection<Usuario> Usuarios { get; set; }  

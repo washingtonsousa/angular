@@ -12,11 +12,11 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Empresa { get; set; }
+        public string Empresa { get; set; }
         [Required]
-        public String Cargo { get; set; }
+        public string Cargo { get; set; }
         [Required]
-        public String Descricao { get; set; }
+        public string Descricao { get; set; }
         public float UltimoSalario { get; set; }
         [Required]
         public DateTime Inicio { get; set; }

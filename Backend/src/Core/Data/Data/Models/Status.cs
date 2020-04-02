@@ -14,7 +14,7 @@ namespace Core.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [Required]
         public int Codigo { get; set; }

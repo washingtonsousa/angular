@@ -91,7 +91,7 @@ namespace Core.Application.Providers
                 OAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
 
                 var ticket = new AuthenticationTicket(OAuthIdentity, new AuthenticationProperties() { });
-
+            
                 context.Validated(ticket);
 
               } else {

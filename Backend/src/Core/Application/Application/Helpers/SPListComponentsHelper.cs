@@ -28,13 +28,13 @@ namespace Core.Application.Helpers
         {
         }
 
-        public String getXMLTextField(string Name, string staticName, string displayName) {
+        public string getXMLTextField(string Name, string staticName, string displayName) {
 
             return "<Field Type='Text' Name='"+ Name + "' StaticName='"+ staticName + "'" +
                 " DisplayName='"+ displayName + "' > </Field>";
         }
 
-        public String getXMLDateTimeField(string Name, string staticName, string displayName, string Format = "DateOnly",
+        public string getXMLDateTimeField(string Name, string staticName, string displayName, string Format = "DateOnly",
             string Default = "[Today]")
         {
 
@@ -42,7 +42,7 @@ namespace Core.Application.Helpers
                 "DisplayName='"+ displayName + "' Format='"+ Format + "'> <Default>"+ Default + "</Default></Field>";
         }
 
-        public String getXMLNumberStrictedField(string Name, string staticName, string displayName,
+        public string getXMLNumberStrictedField(string Name, string staticName, string displayName,
             int Min, int Max)
         {
 
@@ -52,7 +52,7 @@ namespace Core.Application.Helpers
 
         }
 
-        public String getXMLNumberField(string Name, string staticName, string displayName)
+        public string getXMLNumberField(string Name, string staticName, string displayName)
         {
 
 
@@ -61,14 +61,14 @@ namespace Core.Application.Helpers
 
         }
 
-        public String getXMLUserField(string Name, string staticName, string displayName) {
+        public string getXMLUserField(string Name, string staticName, string displayName) {
 
             return "<Field  Type='User' Name='"+ Name + "' StaticName='"+ staticName + "' DisplayName='"+ displayName + "' ></Field>";
 
 
         }
 
-        public IList<QuestaoSPList> getMultipleQuestionsNumberFieldsCollection(StringCollection Questions, String questionPrefix, int index)
+        public IList<QuestaoSPList> getMultipleQuestionsNumberFieldsCollection(stringCollection Questions, string questionPrefix, int index)
         {
 
             IList<QuestaoSPList> Questoes = new List<QuestaoSPList>();
@@ -88,15 +88,15 @@ namespace Core.Application.Helpers
             return Questoes;
         }
 
-        public String GetXMLFieldNumberQuestionByModel(QuestaoSPList Questao)
+        public string GetXMLFieldNumberQuestionByModel(QuestaoSPList Questao)
         {
             return "<Field Type='Number' Name='" + Questao.Name + "' StaticName='" + Questao.staticName + "' " +
               "DisplayName = '" + Questao.displayName + "' Min='" + Questao.Min + "' Max='" + Questao.Max + "'> </Field>";
         }
 
 
-        public String getXMLSurveyGridChoiceQuestion(string Name, string staticName, string displayName, 
-            StringCollection GridTxts, StringCollection Choices, int Min = 1, int Max = 5,  String Required = "TRUE" )
+        public string getXMLSurveyGridChoiceQuestion(string Name, string staticName, string displayName, 
+            stringCollection GridTxts, stringCollection Choices, int Min = 1, int Max = 5,  string Required = "TRUE" )
         {
             string xmlField = "";
 
@@ -128,7 +128,7 @@ namespace Core.Application.Helpers
 
         }
 
-        public Field execXMLField(SP.List List, String XML)
+        public Field execXMLField(SP.List List, string XML)
         {
             return List.Fields.AddFieldAsXml(XML, true, AddFieldOptions.AddFieldInternalNameHint);
 

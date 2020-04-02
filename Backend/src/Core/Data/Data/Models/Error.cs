@@ -7,9 +7,9 @@ namespace Core.Data.Models
 
         public int code { get; set; }
 
-        public String message { get; set; }
+        public string message { get; set; }
 
-        public String detailedMessage { get; set; }
+        public string detailedMessage { get; set; }
 
   }
 }
