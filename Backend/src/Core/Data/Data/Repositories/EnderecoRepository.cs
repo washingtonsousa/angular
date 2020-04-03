@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 
 namespace Core.Data.Repositories
 {
-  public class EnderecoRepository : RepositoryTemplate
+  public class EnderecoRepository : RepositoryTemplate, IEnderecoRepository
     {
       
         public EnderecoRepository()
@@ -15,49 +17,64 @@ namespace Core.Data.Repositories
 
       
 
-        public Endereco FindEnderecoByUsuarioId(int UsuarioId)
+        public Endereco FindByUsuarioId(int UsuarioId)
         {
             return this.Context.Enderecos.Where(e => e.UsuarioId == UsuarioId).FirstOrDefault();
 
         }
 
-        public Endereco FindEnderecoByBothIds(int Id, int UsuarioId)
+        public Endereco FindByBothIds(int Id, int UsuarioId)
         {
 
             return this.Context.Enderecos.Where(e => e.Id == Id && e.UsuarioId == UsuarioId).FirstOrDefault();
 
         }
 
-        public IList<Endereco> GetEnderecos()
+        public IList<Endereco> Get()
         {
             return this.Context.Enderecos.ToList();
 
         }
 
-        public Endereco FindEndereco(int Id)
+        public Endereco Find(int Id)
         {
             return this.Context.Enderecos.Where(e => e.Id == Id).FirstOrDefault();
 
         }
 
-        public void InsertEndereco(Endereco endereco)
+        public void Insert(Endereco endereco)
         {
 
             this.Context.Add(endereco);
         }
 
 
-        public void DeleteEndereco(Endereco endereco)
+        public void Delete(Endereco endereco)
         {
             this.Context.Enderecos.Remove(endereco);
 
         }
 
-        public void UpdateEndereco(Endereco enderecoData)
+        public void Update(Endereco enderecoData)
         {
             enderecoData.Atualizado_em = System.DateTime.Now;
             this.Context.Enderecos.Update(enderecoData);
 
+        }
+
+        public Task<Endereco> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<Endereco>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

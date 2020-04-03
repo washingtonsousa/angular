@@ -45,11 +45,6 @@ namespace Core.Data.Repositories
 
         }
 
-        internal dynamic getTotalNumberCountRegisters()
-        {
-            return this.Context.Areas.Count();
-        }
-
         public Task<Area> FindAsync(int Id)
         {
             throw new System.NotImplementedException();
@@ -63,6 +58,11 @@ namespace Core.Data.Repositories
         public Task<IList<Area>> GetAsync()
         {
             throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            return this.Context.Areas.Count();
         }
     }
 }

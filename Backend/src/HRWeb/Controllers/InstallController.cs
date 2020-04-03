@@ -39,7 +39,7 @@ namespace HRWeb.Controllers
         private SPListComponentsHelper SPCompHelper;
         private SPListFactory SPListFactory;
         private ListCollection listCollection;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public InstallController()
         {
@@ -65,7 +65,7 @@ namespace HRWeb.Controllers
             usuarioFactory = new UsuarioFactory();
             areaRepo = new AreaRepository();
             areaFactory = new AreaFactory();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
 
         }
 
@@ -175,7 +175,7 @@ namespace HRWeb.Controllers
 
                 usuarioRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK , jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK , null);
 
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new BasicComponentsInstallError()));

@@ -19,14 +19,14 @@ namespace HRWeb.Controllers
 
 
     private CategoriaConhecimentoRepository categoriaCategoriaConhecimentoRepo;
-    private JsonResultObjHelper jsonResultObjHelper;
+    ;
 
     public CategoriaConhecimentoController()
     {
 
 
       categoriaCategoriaConhecimentoRepo = new CategoriaConhecimentoRepository();
-      jsonResultObjHelper = new JsonResultObjHelper();
+      
 
     }
 
@@ -62,7 +62,7 @@ namespace HRWeb.Controllers
 
         categoriaCategoriaConhecimentoRepo.Save();
 
-        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+        return Request.CreateResponse(HttpStatusCode.OK, null);
         }
         else
         {

@@ -1,20 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class DepartamentoRepository : RepositoryTemplate
-  {
+  public class DepartamentoRepository : RepositoryTemplate, IDepartamentoRepository
+    {
 
 
     public DepartamentoRepository()
     {
     }
 
-    public Departamento FindDepartamento(int Id)
+    public Departamento Find(int Id)
     {
       return this.Context.Departamentos.Where(u => u.Id == Id).FirstOrDefault();
 
@@ -22,7 +24,7 @@ namespace Core.Data.Repositories
 
     }
 
-    public void DeleteDepartamento(Departamento departamento)
+    public void Delete(Departamento departamento)
     {
 
       this.Context.Departamentos.Remove(departamento);
@@ -30,7 +32,7 @@ namespace Core.Data.Repositories
     }
 
 
-    public Departamento FindDepartamentoByNome(string Nome)
+    public Departamento FindByNome(string Nome)
     {
       Departamento departamento = this.Context.Departamentos.Where(u => u.Nome == Nome).FirstOrDefault();
 
@@ -41,7 +43,7 @@ namespace Core.Data.Repositories
 
 
 
-    public void UpdateDepartamento(Departamento departamentoData)
+    public void Update(Departamento departamentoData)
     {
 
 
@@ -54,7 +56,7 @@ namespace Core.Data.Repositories
 
 
 
-    public void InsertDepartamento(Departamento departamento)
+    public void Insert(Departamento departamento)
     {
 
 
@@ -62,7 +64,7 @@ namespace Core.Data.Repositories
 
     }
 
-    public IList<Departamento> GetDepartamentos()
+    public IList<Departamento> Get()
     {
 
 
@@ -82,5 +84,19 @@ namespace Core.Data.Repositories
 
     }
 
-  }
+        public Task<Departamento> FindAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Departamento>> GetAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

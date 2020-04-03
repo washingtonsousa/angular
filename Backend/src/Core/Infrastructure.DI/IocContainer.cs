@@ -1,13 +1,9 @@
 ﻿using Application;
+using Core.Application;
 using Core.Application.Interfaces;
 using Core.Data.Interfaces;
 using Core.Data.Repositories;
 using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.DI
 {
@@ -34,6 +30,7 @@ namespace Infrastructure.DI
         {
             kernel.Bind<ITokenAppService, TokenAppService>();
             kernel.Bind<IAuthAppService, AuthAppService>();
+            kernel.Bind<IUsuarioAppService, UsuarioAppService>();
         }
 
 

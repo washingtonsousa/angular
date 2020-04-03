@@ -16,7 +16,7 @@ namespace Core.Data.Interfaces
         void Delete(T model);
 
 
-        void Update(T model, T modelFromDb);
+        void Update(T model);
 
 
         void Insert(T model);
@@ -24,5 +24,8 @@ namespace Core.Data.Interfaces
         IList<T> Get();
 
         Task<IList<T>> GetAsync();
+
+        int GetCount();
+
     }
 }

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class ConhecimentoRepository : RepositoryTemplate
+  public class ConhecimentoRepository : RepositoryTemplate, IConhecimentoRepository
     {
     
         public ConhecimentoRepository() { }
@@ -17,7 +19,7 @@ namespace Core.Data.Repositories
 
         }
 
-        public IList<Conhecimento> GetConhecimentos()
+        public IList<Conhecimento> Get()
         {
 
             IList<Conhecimento> conhecimentos = this.Context.Conhecimentos.Include(c => c.UsuarioConhecimentos).Include(c => c.CategoriaConhecimento)
@@ -27,31 +29,46 @@ namespace Core.Data.Repositories
 
         }
 
-        public Conhecimento FindConhecimento(int Id)
+        public Conhecimento Find(int Id)
         {
             return this.Context.Conhecimentos.Include(c => c.CategoriaConhecimento).FirstOrDefault(e => e.Id == Id);
 
         }
 
-        public void InsertConhecimento(Conhecimento Conhecimento)
+        public void Insert(Conhecimento Conhecimento)
         {
         
             this.Context.Conhecimentos.Add(Conhecimento);
         }
 
 
-        public void DeleteConhecimento(Conhecimento Conhecimento)
+        public void Delete(Conhecimento Conhecimento)
         {
             this.Context.Conhecimentos.Remove(Conhecimento);
 
         }
 
-        public void UpdateConhecimento(Conhecimento ConhecimentoData)
+        public void Update(Conhecimento ConhecimentoData)
         {
             ConhecimentoData.Atualizado_em = System.DateTime.Now;
       ConhecimentoData.Atualizado_em = System.DateTime.Now;
       this.Context.Conhecimentos.Update(ConhecimentoData);
 
+        }
+
+        public Task<Conhecimento> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<Conhecimento>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

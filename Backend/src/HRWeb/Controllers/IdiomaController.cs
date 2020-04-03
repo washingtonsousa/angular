@@ -16,13 +16,13 @@ namespace HRWeb.Controllers
     {
      
         private IdiomaRepository idiomaRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public IdiomaController()
         {
      
             idiomaRepo = new IdiomaRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
     }
 
         [Authorize(Roles ="Administrador, Funcionario")]
@@ -35,7 +35,7 @@ namespace HRWeb.Controllers
             idiomaRepo.InsertIdioma(Idioma);
             idiomaRepo.Save();
 
-            return Json(jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+            return Json(null);
         }
 
     [Authorize(Roles = "Administrador, Funcionario")]
@@ -58,7 +58,7 @@ namespace HRWeb.Controllers
                 idiomaRepo.UpdateIdioma(IdiomaFromDb);
                 idiomaRepo.Save();
 
-                return Json(jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Json(null);
 
 
             }
@@ -80,7 +80,7 @@ namespace HRWeb.Controllers
                 idiomaRepo.DeleteIdioma(IdiomaFromDb);
                 idiomaRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK,jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK,null);
 
             }
 
@@ -147,7 +147,7 @@ namespace HRWeb.Controllers
                 idiomaRepo.DeleteIdioma(IdiomaFromDb);
                 idiomaRepo.Save();
 
-        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+        return Request.CreateResponse(HttpStatusCode.OK, null);
 
             }
       return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));

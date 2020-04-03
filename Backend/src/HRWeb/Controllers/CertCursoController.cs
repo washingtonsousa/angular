@@ -18,13 +18,13 @@ namespace HRWeb.Controllers
     {
      
         private CertCursoRepository certCurRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public CertCursoController()
         {
             
             certCurRepo = new CertCursoRepository();
-              jsonResultObjHelper = new JsonResultObjHelper();
+              
     }
 
 
@@ -112,7 +112,7 @@ namespace HRWeb.Controllers
 
                 certCurRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK, null);
 
             }
 

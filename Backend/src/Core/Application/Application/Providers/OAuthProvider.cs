@@ -111,8 +111,8 @@ namespace Core.Application.Providers
       string clientId;
       string clientSecret;
 
-      if (context.TryGetFormCredentials(out clientId, out clientSecret) ||
-               context.TryGetBasicCredentials(out clientId, out clientSecret)) {
+      if (context.TrygetFormCredentials(out clientId, out clientSecret) ||
+               context.TrygetBasicCredentials(out clientId, out clientSecret)) {
 
          string clientIdFromConfig = ConfigurationManager.AppSettings["ClientId"];
          string clientSecretFromConfig = ConfigurationManager.AppSettings["ClientSecret"];

@@ -15,12 +15,12 @@ namespace Core.Application.Helpers
         public static DateTime convertDateToDateTimeBR(this DateTime dataRef)
         {
 
-            return DateTime.ParseExact(GetstringDateTimeFromDate(dataRef), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(getstringDateTimeFromDate(dataRef), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
         }
 
 
-        private static string GetstringDateTimeFromDate(this DateTime dataRef)
+        private static string getstringDateTimeFromDate(this DateTime dataRef)
         {
             return dataRef.Day.ToString("00") + "/" + dataRef.Month.ToString("00") + "/" + dataRef.Year.ToString("0000");
         }

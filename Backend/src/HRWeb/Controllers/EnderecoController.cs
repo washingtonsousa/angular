@@ -18,13 +18,13 @@ namespace HRWeb.Controllers
     {
         private EnderecoRepository endRepo;
         private DepartamentoRepository depRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
  
         public EnderecoController()
         {
             endRepo = new EnderecoRepository();
             depRepo = new DepartamentoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();  
+              
         } // Fim método
 
         [Authorize(Roles = "Administrador")]
@@ -69,7 +69,7 @@ namespace HRWeb.Controllers
             {
                 endRepo.DeleteEndereco(enderecoFromDb);
                 endRepo.Save();
-                return Request.CreateResponse(HttpStatusCode.OK ,jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK ,null);
             }
 
            
@@ -157,7 +157,7 @@ namespace HRWeb.Controllers
             {
                 endRepo.DeleteEndereco(enderecoFromDb);
                 endRepo.Save();
-                return Request.CreateResponse(HttpStatusCode.OK , jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK , null);
             }
      
 

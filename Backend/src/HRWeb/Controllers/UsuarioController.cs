@@ -21,8 +21,8 @@ namespace HRWeb.Controllers
   public class UsuarioController : BasicApiAppControllerWithHub<UsuariosHub>
   {
     private UsuarioRepository usuarioRepo;
-    private SPPeopleManagerHelper SPPeopleManager;
-    private JsonResultObjHelper jsonResultObjHelper;
+    private SharepointPeopleManagerAppService SPPeopleManager;
+    ;
 
 
     public UsuarioController()
@@ -36,7 +36,7 @@ namespace HRWeb.Controllers
     private void initializeComponents()
     {
       usuarioRepo = new UsuarioRepository();
-      jsonResultObjHelper = new JsonResultObjHelper();
+      
       spAuthHelper = new BasicAuthHelper();
 
     }
@@ -75,7 +75,7 @@ namespace HRWeb.Controllers
           )
       {
         ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
-        this.SPPeopleManager = new SPPeopleManagerHelper(clientContext);
+        this.SPPeopleManager = new SharepointPeopleManagerAppService(clientContext);
 
         var peopleManager = new PeopleManager(clientContext);
 

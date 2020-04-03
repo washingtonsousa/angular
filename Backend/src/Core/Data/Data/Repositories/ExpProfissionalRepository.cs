@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 
 namespace Core.Data.Repositories
 {
-  public class ExpProfissionalRepository : RepositoryTemplate
+  public class ExpProfissionalRepository : RepositoryTemplate, IExpProfissionalRepository
     {
 
    
@@ -17,7 +19,7 @@ namespace Core.Data.Repositories
 
 
 
-        public IList<ExpProfissional> GetExpProfissionais()
+        public IList<ExpProfissional> Get()
         {
 
             return this.Context.ExpProfissionais.ToList();
@@ -26,7 +28,7 @@ namespace Core.Data.Repositories
 
         }
 
-        public void InsertExpProfissional(ExpProfissional ExpProfissional)
+        public void Insert(ExpProfissional ExpProfissional)
         {
             
 
@@ -34,19 +36,19 @@ namespace Core.Data.Repositories
 
         }
 
-        internal ExpProfissional FindExpProfissionalByUsuarioId(int UsuarioId)
+        internal ExpProfissional FindByUsuarioId(int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(e => e.UsuarioId == UsuarioId).FirstOrDefault();
         }
 
-        public void DeleteExpProfissional(ExpProfissional ExpProfissional)
+        public void Delete(ExpProfissional ExpProfissional)
         {
 
             this.Context.ExpProfissionais.Remove(ExpProfissional);
 
         }
 
-        public void UpdateExpProfissional(ExpProfissional ExpProfissionalData)
+        public void Update(ExpProfissional ExpProfissionalData)
         {
 
             ExpProfissionalData.Atualizado_em = System.DateTime.Now;
@@ -57,20 +59,35 @@ namespace Core.Data.Repositories
 
 
 
-        public ExpProfissional FindExpProfissionalById(int id)
+        public ExpProfissional Find(int id)
         {
 
             return this.Context.ExpProfissionais.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        internal ExpProfissional FindExpProfissionalByBothIds(int Id, int UsuarioId)
+        internal ExpProfissional FindByBothIds(int Id, int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        internal IList<ExpProfissional> GetExpProfissionaisByUsuarioId(int UsuarioId)
+        internal IList<ExpProfissional> GetByUsuarioId(int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(e => e.UsuarioId == UsuarioId).ToList();
+        }
+
+        public Task<ExpProfissional> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<ExpProfissional>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

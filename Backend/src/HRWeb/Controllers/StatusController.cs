@@ -17,7 +17,7 @@ namespace HRWeb.Controllers
     {
 
         private StatusRepository StatusRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
         private UsuarioRepository usuarioRepo;
 
 
@@ -25,7 +25,7 @@ namespace HRWeb.Controllers
         {
  
 
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
             StatusRepo = new StatusRepository();
             usuarioRepo = new UsuarioRepository();
 
@@ -86,7 +86,7 @@ namespace HRWeb.Controllers
                 StatusRepo.DeleteStatus(Status);
                 StatusRepo.Save();
 
-        return Request.CreateResponse(System.Net.HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+        return Request.CreateResponse(System.Net.HttpStatusCode.OK, null);
             }
 
       return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));

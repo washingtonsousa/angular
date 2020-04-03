@@ -18,13 +18,13 @@ namespace HRWeb.Controllers
     {
 
         private FormAcademicaRepository formAcademicaRepo;
-        private JsonResultObjHelper JsonResultObjHelper;
+        ;
 
         public FormAcademicaController()
         {
         
             formAcademicaRepo = new FormAcademicaRepository();
-            JsonResultObjHelper = new JsonResultObjHelper();
+            
         } // Fim método
 
 
@@ -115,7 +115,7 @@ namespace HRWeb.Controllers
                 formAcademicaRepo.DeleteFormAcademica(FormAcademicaFromDb);
                 formAcademicaRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK , JsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK , null);
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));
@@ -143,7 +143,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Put(FormAcademica FormAcademica)
         {
 
-            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindFormAcademicaByBothIds(FormAcademica.Id, FormAcademica.UsuarioId);
+            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindByBothIds(FormAcademica.Id, FormAcademica.UsuarioId);
 
             if (FormAcademicaFromDb != null)
             {
@@ -177,7 +177,7 @@ namespace HRWeb.Controllers
                 formAcademicaRepo.DeleteFormAcademica(FormAcademicaFromDb);
                 formAcademicaRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK , JsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK , null);
                 
 
             }

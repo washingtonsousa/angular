@@ -573,7 +573,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CategoriaConhecimentoController.cs" />
-    <Compile Include="Controllers\ChamadoController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\NivelAcessoController.cs" />
     <Compile Include="Controllers\ProfilePictureController.cs" />
@@ -672,6 +671,10 @@
     <ProjectReference Include="..\Core\Infrastructure.DI\Infrastructure.DI.csproj">
       <Project>{BB6AB1D3-169D-4D88-81AE-6430EB4BF906}</Project>
       <Name>Infrastructure.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\SharedKernel\SharedKernel.csproj">
+      <Project>{AAEE7517-4900-4AC9-B17A-A60D0905943C}</Project>
+      <Name>SharedKernel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -26,7 +26,7 @@ namespace Core.Application.Factories
     /// <param name="arquivo"> Model do Arquivo enviado para o usuário</param>
     /// <param name="url">Url do sistema de destino do arquivo</param>
     /// <returns>MailMessage</returns>
-    public MailMessage arquivoEnviadoTemplateToMailMessage(Usuario usuario, Arquivo arquivo, string url)
+    public MailMessage ArquivoEnviadoTemplateToMailMessage(Usuario usuario, Arquivo arquivo, string url)
         {
 
       tplHandler = new XMLTplViewHandler(HostingEnvironment.MapPath("~/Templates") + @"\ArquivoEnviadoMailTemplate.xml",

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 
 namespace Core.Data.Repositories
 {
-  public class ContatoRepository : RepositoryTemplate
+  public class ContatoRepository : RepositoryTemplate, IContatoRepository
     { 
 
         public ContatoRepository()
@@ -12,14 +14,14 @@ namespace Core.Data.Repositories
     
         }
 
-        public IList<Contato> GetContatos()
+        public IList<Contato> Get()
         {
 
             return this.Context.Contatos.ToList();
 
         }
 
-        public Contato FindContato(int Id)
+        public Contato Find(int Id)
         {
 
             return this.Context.Contatos.Where(c => c.Id == Id).FirstOrDefault();
@@ -37,25 +39,39 @@ namespace Core.Data.Repositories
             return this.Context.Contatos.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        public void UpdateContato(Contato contatoData)
+        public void Update(Contato contatoData)
         {
             contatoData.Atualizado_em = System.DateTime.Now;
             this.Context.Contatos.Update(contatoData);
 
         }
 
-        public void InsertContato(Contato contato)
+        public void Insert(Contato contato)
         {
             this.Context.Contatos.Add(contato);
             
 
         }
 
-        public void DeleteContato(Contato contato)
+        public void Delete(Contato contato)
         {
             this.Context.Contatos.Remove(contato);
 
         }
 
+        public Task<Contato> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<Contato>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

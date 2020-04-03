@@ -6,12 +6,14 @@ namespace HRWeb.App_Start
     using System;
     using System.Web;
     using System.Web.Http;
+    using Core.Shared.Kernel.Events;
     using Infrastructure.DI;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using Vannon.Ecommerce.Web.App_Start;
 
     public static class NinjectWebCommon 
     {
@@ -62,9 +64,13 @@ namespace HRWeb.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+
+            
+            var resolver = kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>(); 
             IocContainer.InjectRepositories(kernel);
             IocContainer.InjectServices(kernel);
-            GlobalConfiguration.Configuration.DependencyResolver = kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>();
+            DomainEvent.Container = new DomainEventsContainer(resolver);
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
     }
 }

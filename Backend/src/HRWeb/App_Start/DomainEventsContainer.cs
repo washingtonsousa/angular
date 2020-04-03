@@ -1,3 +1,5 @@
+using Core.Shared.Kernel.Interfaces;
+using Core.SharedKernel.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
@@ -5,8 +7,8 @@ using System.Web.Http.Dependencies;
 
 namespace Vannon.Ecommerce.Web.App_Start
 {
-    public class DomainEventsContainer //: IContainer
-    {
+    public class DomainEventsContainer : IContainer
+  {
         private IDependencyResolver _resolver;
 
         public DomainEventsContainer(IDependencyResolver resolver)

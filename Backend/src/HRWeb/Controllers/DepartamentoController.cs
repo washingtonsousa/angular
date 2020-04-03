@@ -20,13 +20,13 @@ namespace HRWeb.Controllers
         private DepartamentoRepository departamentoRepo;
         private UsuarioRepository usuarioRepo;
         private CargoRepository cargoRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public DepartamentoController()
         {
             usuarioRepo = new UsuarioRepository();
             departamentoRepo = new DepartamentoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
             cargoRepo = new CargoRepository();
         }
 
@@ -105,7 +105,7 @@ namespace HRWeb.Controllers
 
                 
 
-                return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK, null);
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));

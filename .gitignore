@@ -5,4 +5,7 @@ bin/
 node_modules/
 JS/
 packages/
+.vs/
+obj/
+Debug/
 

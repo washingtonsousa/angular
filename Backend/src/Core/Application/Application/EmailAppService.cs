@@ -1,23 +1,21 @@
 using Core.Application.Helpers;
 using Core.Data.Models;
 using System;
-using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
-namespace Core.Application.Handlers
+
+namespace Core.Application
 {
-  public class EmailHandler
+  public class EmailAppService
     {
-        private ConfigData configData;
-        private SmtpClient client;
+
+        private SmtpClient Client;
         private MailMessage mailMessage;
 
-        public EmailHandler(ConfigData configData, MailMessage mailMessage)
+        public EmailAppService(MailMessage mailMessage)
         {
-            this.configData = configData;
             this.mailMessage = mailMessage;
-            this.mailMessage.From = new MailAddress(this.configData.EmailAccount);
+            this.mailMessage.From = new MailAddress(ConfigData.EmailAccount);
             this.mailMessage.IsBodyHtml = true;
             initializeComponents();
         }
@@ -25,20 +23,20 @@ namespace Core.Application.Handlers
        
             private void initializeComponents()
             {
-              client = new SmtpClient();
-              client.UseDefaultCredentials = false;
-              client.Credentials = new  System.Net.NetworkCredential(configData.EmailAccount, configData.EmailPassword);
-              client.EnableSsl = true;
-              client.Port = int.Parse(configData.EmailPort);
-              client.DeliveryMethod = SmtpDeliveryMethod.Network;
-              client.Host = configData.EmailSmtpServer;
-              client.Timeout = 600000;
+              Client = new SmtpClient();
+              Client.UseDefaultCredentials = false;
+              Client.Credentials = new  System.Net.NetworkCredential(ConfigData.EmailAccount, ConfigData.EmailPassword);
+              Client.EnableSsl = true;
+              Client.Port = int.Parse(ConfigData.EmailPort);
+              Client.DeliveryMethod = SmtpDeliveryMethod.Network;
+              Client.Host = ConfigData.EmailSmtpServer;
+              Client.Timeout = 600000;
 
             }
 
     
 
-        public void addDestinyAddressFromUsuario(Usuario usuario)
+        public void AddDestinyAddressFromUsuario(Usuario usuario)
         {
             if(usuario.Email_Secundario_Notificacao == null || usuario.Email_Secundario_Notificacao == "")
             {
@@ -56,7 +54,7 @@ namespace Core.Application.Handlers
         }
 
 
-        public void addDestinyAddress(string email)
+        public void AddDestinyAddress(string email)
         {
 
             this.mailMessage.To.Add(email);
@@ -68,8 +66,8 @@ namespace Core.Application.Handlers
         {
             try
             {
-                client.Send(this.mailMessage);
-                client.Dispose();
+                Client.Send(this.mailMessage);
+                Client.Dispose();
 
                return new JsonResultObjHelper().getArquivoJsonResultSuccessObj();
 

@@ -110,6 +110,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Security.SecureString, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.Security.SecureString.4.3.0\lib\net46\System.Security.SecureString.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -123,33 +129,29 @@
     <Compile Include="Builders\Builder.cs" />
     <Compile Include="Builders\DesligamentoColaboradorBuilder.cs" />
     <Compile Include="Builders\DesligamentoGestorBuilder.cs" />
-    <Compile Include="Factories\AreaFactory.cs" />
-    <Compile Include="Factories\CargoFactory.cs" />
     <Compile Include="Factories\DepartamentoFactory.cs" />
     <Compile Include="Factories\DesligamentoColaboradorFactory.cs" />
     <Compile Include="Factories\DesligamentoGestorFactory.cs" />
     <Compile Include="Factories\Log_ActionFactory.cs" />
     <Compile Include="Factories\MailMessageFactory.cs" />
-    <Compile Include="Factories\NivelAcessoFactory.cs" />
     <Compile Include="Factories\SPListFactory.cs" />
-    <Compile Include="Factories\StatusFactory.cs" />
     <Compile Include="Factories\UsuarioFactory.cs" />
-    <Compile Include="Handlers\EmailHandler.cs" />
+    <Compile Include="EmailAppService.cs" />
     <Compile Include="Handlers\XmlTplViewHandler.cs" />
     <Compile Include="Helpers\ArquivosHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\ErrorHelper.cs" />
-    <Compile Include="Helpers\JsonResultObjHelper.cs" />
     <Compile Include="Helpers\PaginateHelper.cs" />
-    <Compile Include="Helpers\SPAuthHelper.cs" />
-    <Compile Include="Helpers\SPListComponentsHelper.cs" />
-    <Compile Include="Helpers\SPObjectsHelperTemplate.cs" />
-    <Compile Include="Helpers\SPPeopleManagerHelper.cs" />
+    <Compile Include="Interfaces\IUsuarioAppService.cs" />
+    <Compile Include="Sharepoint\Services\SharepointListAppServices.cs" />
+    <Compile Include="Sharepoint\Services\SharepointAppServiceTemplate.cs" />
+    <Compile Include="Sharepoint\Services\SharepointPeopleManagerAppService.cs" />
     <Compile Include="Interfaces\IAuthAppService.cs" />
     <Compile Include="Interfaces\ITokenAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\OAuthConfigProvider.cs" />
     <Compile Include="Providers\OAuthProvider.cs" />
+    <Compile Include="Sharepoint\Services\SharepointAuthAppService.cs" />
     <Compile Include="SignalIR\Hubs\StatisticsHub.cs" />
     <Compile Include="SignalIR\Hubs\UsuariosHub.cs" />
     <Compile Include="Strategy\Errors\AccessDeniedError.cs" />
@@ -170,6 +172,8 @@
     <Compile Include="Strategy\Errors\SPUserNotFoundError.cs" />
     <Compile Include="Strategy\Errors\UserNotFoundError.cs" />
     <Compile Include="TokenAppService.cs" />
+    <Compile Include="UsuarioAppService.cs" />
+    <Compile Include="ViewModel\ResponseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />

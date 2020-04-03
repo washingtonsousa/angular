@@ -17,14 +17,14 @@ namespace HRWeb.Controllers
   
         private ResumoRepository resumoRepo;
         private UsuarioRepository usuarioRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public ResumoController()
         {
 
             resumoRepo = new ResumoRepository();
             usuarioRepo = new UsuarioRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
 
 
         } // Fim mpetodo
@@ -88,7 +88,7 @@ namespace HRWeb.Controllers
                 resumoRepo.DeleteResumo(ResumoFromDb);
                 resumoRepo.Save();
 
-                return Request.CreateResponse(jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(null);
             }
 
 
@@ -158,7 +158,7 @@ namespace HRWeb.Controllers
                 resumoRepo.DeleteResumo(Resumo);
                 resumoRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK , jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK , null);
                
 
             }

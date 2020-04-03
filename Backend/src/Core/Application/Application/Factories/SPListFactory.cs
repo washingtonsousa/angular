@@ -12,51 +12,51 @@ namespace Core.Application.Factories
     {
 
 
-        public void PesquisaColaboradorListFactory(SPListComponentsHelper SPCompHelper)
+        public void PesquisaColaboradorListFactory(SharepointListAppServices SPCompHelper)
         {
 
             SPCompHelper.setListCreationInfo("Pesquisa - Desligamento - Colaborador", "", (int)ListTemplateType.GenericList);
             SP.List newList = SPCompHelper.getNewList();
 
-            SPCompHelper.clientContext.Load(newList);
+            SPCompHelper.ClientContext.Load(newList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            SP.List spList = SPCompHelper.clientContext.Web.Lists.GetByTitle("Pesquisa - Desligamento - Colaborador");
+            SP.List spList = SPCompHelper.ClientContext.Web.Lists.GetByTitle("Pesquisa - Desligamento - Colaborador");
 
-            SPCompHelper.clientContext.Load(spList);
+            SPCompHelper.ClientContext.Load(spList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field ColaboradorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Colaborador", "Colaborador", "Colaborador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             Field EntrevistadorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Entrevistador", "Entrevistador", "Entrevistador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             Field DataDesligamentoField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLDateTimeField("DataDesligamento", "DataDesligamento", "Data do desligamento"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLDateTimeField("DataPesquisa", "DataPesquisa", "Data da pesquisa"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field field = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLTextField("Questao1", "Questao1", "Motivo"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            stringCollection questoesStr = new stringCollection();
+            StringCollection questoesStr = new StringCollection();
 
 
             questoesStr.Add("Qual sua opinião sobre o ambiente de trabalho da Risc?");
@@ -76,81 +76,81 @@ namespace Core.Application.Factories
             foreach (var Questao in Questoes)
             {
                 Field QuestaoField = SPCompHelper.execXMLField(spList,
-                SPCompHelper.GetXMLFieldNumberQuestionByModel(Questao));
+                SPCompHelper.getXMLFieldNumberQuestionByModel(Questao));
                 SPCompHelper.Update(spList);
-                SPCompHelper.Save();
+                SPCompHelper.ExecuteRequest();
 
             }
 
             Field fieldNotaRh = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("NotaRh", "NotaRh", "Nota Rh", 1, 5));
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field fieldNotaOperacao = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("NotaOperacao", "NotaOperacao", "Nota Operação", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field fieldNotaAdministrativo = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("NotaAdministrativo", "NotaAdministrativo", "Nota Administrativo", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field fieldNotaConsultoria = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("NotaConsultoria", "NotaConsultoria", "Nota Consultoria", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
         }
 
 
 
-        public void PesquisaGestorListFactory(SPListComponentsHelper SPCompHelper)
+        public void PesquisaGestorListFactory(SharepointListAppServices SPCompHelper)
         {
 
             SPCompHelper.setListCreationInfo("Pesquisa - Desligamento - Gestor", "", (int)ListTemplateType.GenericList);
             SP.List newList = SPCompHelper.getNewList();
 
-            SPCompHelper.clientContext.Load(newList);
+            SPCompHelper.ClientContext.Load(newList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            SP.List spList = SPCompHelper.clientContext.Web.Lists.GetByTitle("Pesquisa - Desligamento - Gestor");
+            SP.List spList = SPCompHelper.ClientContext.Web.Lists.GetByTitle("Pesquisa - Desligamento - Gestor");
 
-            SPCompHelper.clientContext.Load(spList);
+            SPCompHelper.ClientContext.Load(spList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field ColaboradorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Colaborador", "Colaborador", "Colaborador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             Field EntrevistadorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Entrevistador", "Entrevistador", "Entrevistador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             Field DataDesligamentoField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLDateTimeField("DataDesligamento", "DataDesligamento", "Data do desligamento"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field fieldDataPesquisa =
             SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLDateTimeField("DataPesquisa", "DataPesquisa", "Data da pesquisa"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field field = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLTextField("Questao1", "Questao1", "Motivo"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            stringCollection questoesStr = new stringCollection();
+            StringCollection questoesStr = new StringCollection();
 
      
             questoesStr.Add("Qual a sua opinião sobre o conhecimento técnico do colaborador?");
@@ -164,31 +164,31 @@ namespace Core.Application.Factories
             foreach (var Questao in Questoes)
             {
                 Field QuestaoField = SPCompHelper.execXMLField(spList,
-                SPCompHelper.GetXMLFieldNumberQuestionByModel(Questao));
+                SPCompHelper.getXMLFieldNumberQuestionByModel(Questao));
                 SPCompHelper.Update(spList);
-                SPCompHelper.Save();
+                SPCompHelper.ExecuteRequest();
 
             }
 
 
             Field FacilicidadeRelacionamento = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("FacilidadeRelacionamento", "FacilicidadeRelacionamento", "Facilicidade de Relacionamento", 1, 5));
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field fieldComprometimentoDedicacao = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("ComprometimentoDedicacao", "ComprometimentoDedicacao", "Comprometimento e Dedicação", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field AgilidadeEficacia = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("AgilidadeEficacia", "AgilidadeEficacia", "Agilidade e Eficácia", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field FlexibilidadeInovacao = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("FlexibilidadeInovacao", "FlexibilidadeInovacao", "Flexibilidade e Inovação", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field QualidadeEntregaveis = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLNumberStrictedField("QualidadeEntregaveis", "QualidadeEntregaveis", "Qualidade dos Entregáveis", 1, 5));
@@ -202,47 +202,47 @@ namespace Core.Application.Factories
             Field Pontualidade = SPCompHelper.execXMLField(spList,
                        SPCompHelper.getXMLNumberStrictedField("Pontualidade", "Pontualidade", "Pontualidade", 1, 5));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
         }
 
-        public void PesquisaDesempenhoListFactory(SPListComponentsHelper SPCompHelper)
+        public void PesquisaDesempenhoListFactory(SharepointListAppServices SPCompHelper)
         {
 
             SPCompHelper.setListCreationInfo("Pesquisa - Desempenho", "", (int)ListTemplateType.GenericList);
             SP.List newList = SPCompHelper.getNewList();
 
-            SPCompHelper.clientContext.Load(newList);
+            SPCompHelper.ClientContext.Load(newList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            SP.List spList = SPCompHelper.clientContext.Web.Lists.GetByTitle("Pesquisa - Desempenho");
+            SP.List spList = SPCompHelper.ClientContext.Web.Lists.GetByTitle("Pesquisa - Desempenho");
 
-            SPCompHelper.clientContext.Load(spList);
+            SPCompHelper.ClientContext.Load(spList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
           
 
             Field ColaboradorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Colaborador", "Colaborador", "Colaborador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
 
             Field EntrevistadorField = SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLUserField("Entrevistador", "Entrevistador", "Entrevistador"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
             Field DataPesquisa = 
             SPCompHelper.execXMLField(spList,
             SPCompHelper.getXMLDateTimeField("DataPesquisa", "DataPesquisa", "Data da pesquisa"));
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            stringCollection questoesStr = new stringCollection();
+            StringCollection questoesStr = new StringCollection();
 
             questoesStr.Add("Trabalho em Equipe");
             questoesStr.Add("Liderança");
@@ -266,34 +266,34 @@ namespace Core.Application.Factories
             foreach(var Questao in Questoes)
             {
                 Field QuestaoField = SPCompHelper.execXMLField(spList,
-                SPCompHelper.GetXMLFieldNumberQuestionByModel(Questao));
+                SPCompHelper.getXMLFieldNumberQuestionByModel(Questao));
                 SPCompHelper.Update(spList);
-                SPCompHelper.Save();
+                SPCompHelper.ExecuteRequest();
 
             }
 
         }
 
 
-            public void PesquisaClimaSurveyListFactory(SPListComponentsHelper SPCompHelper)
+            public void PesquisaClimaSurveyListFactory(SharepointListAppServices SPCompHelper)
         {
             SPCompHelper.setListCreationInfo("Pesquisa de Clima Organizacional "+DateTime.Now.Year, "", (int)SP.ListTemplateType.Survey);
 
             SP.List newList = SPCompHelper.getNewList();
 
-            SPCompHelper.clientContext.Load(newList);
+            SPCompHelper.ClientContext.Load(newList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            SP.List spList = SPCompHelper.clientContext.Web.Lists.GetByTitle("Pesquisa de Clima Organizacional " + DateTime.Now.Year);
+            SP.List spList = SPCompHelper.ClientContext.Web.Lists.GetByTitle("Pesquisa de Clima Organizacional " + DateTime.Now.Year);
 
-            SPCompHelper.clientContext.Load(spList);
+            SPCompHelper.ClientContext.Load(spList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
-            stringCollection Choices = new stringCollection();
+            StringCollection Choices = new StringCollection();
 
-            stringCollection GridTxts = new stringCollection();
+            StringCollection GridTxts = new StringCollection();
 
             GridTxts.Add("Baixo");
 
@@ -312,7 +312,7 @@ namespace Core.Application.Factories
 
             SPCompHelper.Update(spList);
 
-            SPCompHelper.Save();
+            SPCompHelper.ExecuteRequest();
 
         }
     }

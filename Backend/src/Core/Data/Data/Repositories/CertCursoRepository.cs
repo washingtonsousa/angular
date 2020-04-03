@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 
 namespace Core.Data.Repositories
 {
-  public class CertCursoRepository : RepositoryTemplate
+  public class CertCursoRepository : RepositoryTemplate, ICertCursoRepository
     {
  
 
@@ -13,14 +15,14 @@ namespace Core.Data.Repositories
     
         }
 
-        public IList<CertCurso> GetCertCursos()
+        public IList<CertCurso> Get()
         {
 
             return this.Context.CertCursos.ToList();
 
         }
 
-        public CertCurso FindCertCurso(int Id)
+        public CertCurso Find(int Id)
         {
 
             return this.Context.CertCursos.Where(c => c.Id == Id).FirstOrDefault();
@@ -43,25 +45,39 @@ namespace Core.Data.Repositories
             return this.Context.CertCursos.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        public void UpdateCertCurso(CertCurso CertCursoData)
+        public void Update(CertCurso CertCursoData)
         {
             CertCursoData.Atualizado_em = System.DateTime.Now;
             this.Context.CertCursos.Update(CertCursoData);
 
         }
 
-        public void InsertCertCurso(CertCurso CertCurso)
+        public void Insert(CertCurso CertCurso)
         {
             this.Context.CertCursos.Add(CertCurso);
 
 
         }
 
-        public void DeleteCertCurso(CertCurso CertCurso)
+        public void Delete(CertCurso CertCurso)
         {
             this.Context.CertCursos.Remove(CertCurso);
 
         }
 
+        public Task<CertCurso> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<CertCurso>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -13,7 +13,7 @@
     {
         private int offset;
 
-        public int GetAbsolutePage(int page, int limit)
+        public int getAbsolutePage(int page, int limit)
         {
 
             if (page > 1)

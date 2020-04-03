@@ -65,8 +65,10 @@ namespace Core.Data.ORM
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-            optionsBuilder.UseSqlServer(ConfigurationManager.Connectionstrings["MiriaSQL"].Connectionstring,
-            options => options.EnableRetryOnFailure()); // Chama connection string  e habilita nova tentativa quando ocorra falha ao salvar alterações
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MiriaSQL"].ConnectionString;
+
+            optionsBuilder.UseMySql(ConfigurationManager.ConnectionStrings["MiriaMySQL"].ConnectionString,
+            options => options.EnableRetryOnFailure());// Chama connection string  e habilita nova tentativa quando ocorra falha ao salvar alterações
             base.OnConfiguring(optionsBuilder); // Executa método da classe Pai
 
     }

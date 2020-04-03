@@ -16,7 +16,7 @@ namespace HRWeb.Controllers
     {
 
         private UsuarioRepository usrRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
         private ConhecimentoRepository conhecimentoRepo;
         private UsuarioConhecimentoRepository usrConhecimentoRepo;
 
@@ -27,7 +27,7 @@ namespace HRWeb.Controllers
             usrRepo = new UsuarioRepository();  
             conhecimentoRepo = new ConhecimentoRepository();
             usrConhecimentoRepo = new UsuarioConhecimentoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
 
         }
   
@@ -127,7 +127,7 @@ namespace HRWeb.Controllers
             }
 
 
-             return Request.CreateResponse(System.Net.HttpStatusCode.OK, this.jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+             return Request.CreateResponse(System.Net.HttpStatusCode.OK, this.null);
 
         } // Método @UpdateAction
 
@@ -221,7 +221,7 @@ namespace HRWeb.Controllers
       }
 
 
-      return Request.CreateResponse(System.Net.HttpStatusCode.OK, this.jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+      return Request.CreateResponse(System.Net.HttpStatusCode.OK, this.null);
 
     } // Método @UpdateAction
 

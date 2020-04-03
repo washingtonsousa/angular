@@ -5,7 +5,7 @@ namespace Core.Application.Strategy.Errors
   public class DatabaseNullResultError : IError
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
             Error error = new Error();
 

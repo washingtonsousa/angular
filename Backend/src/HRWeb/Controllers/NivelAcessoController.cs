@@ -15,13 +15,13 @@ namespace HRWeb.Controllers
   public class NivelAcessoController : BasicApiAppController
   {
     private NivelAcessoRepository NivelAcessoRepo;
-    private JsonResultObjHelper jsonResultObjHelper;
+    ;
 
     public NivelAcessoController()
     {
 
       NivelAcessoRepo = new NivelAcessoRepository();
-      jsonResultObjHelper = new JsonResultObjHelper();
+      
 
     } // Fim método
 

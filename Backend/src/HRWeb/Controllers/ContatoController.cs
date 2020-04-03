@@ -17,13 +17,13 @@ namespace HRWeb.Controllers
     public class ContatoController : BasicApiAppController
     {
         private ContatoRepository contatoRepo;   
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public ContatoController()
         {
            
             contatoRepo = new ContatoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
 
         } // Fim método
 
@@ -71,7 +71,7 @@ namespace HRWeb.Controllers
             {
                 contatoRepo.DeleteContato(Contato);
                 contatoRepo.Save();
-                return Request.CreateResponse(HttpStatusCode.OK,jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK,null);
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
@@ -101,7 +101,7 @@ namespace HRWeb.Controllers
                
 
 
-                return Request.CreateResponse(HttpStatusCode.OK,jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK,null);
 
             }
 
@@ -153,7 +153,7 @@ namespace HRWeb.Controllers
                 contatoRepo.DeleteContato(Contato);
                 contatoRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK,jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK,null);
 
             }
 

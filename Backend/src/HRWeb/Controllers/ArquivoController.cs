@@ -31,7 +31,7 @@ namespace HRWeb.Controllers
     private UsuarioRepository usuarioRepo;
     private ArquivoRepository ArquivoRepo;
     private ArquivosHelper ArquivosHelper;
-    private JsonResultObjHelper jsonResultObjHelper;
+    ;
     private Log_ActionRepository _logActionRepository;
     private ConfigDataHelper configDataHelper;
     public ArquivoController()
@@ -47,7 +47,7 @@ namespace HRWeb.Controllers
       usuarioRepo = new UsuarioRepository();
       ArquivoRepo = new ArquivoRepository();
       ArquivosHelper = new ArquivosHelper();
-      jsonResultObjHelper = new JsonResultObjHelper();
+      
       configDataHelper = new ConfigDataHelper();
 
     }
@@ -61,7 +61,7 @@ namespace HRWeb.Controllers
       this.SetCurrentLoggedUserHandler();
 
       IList<Usuario> Usuarios = usuarioRepo.Get();
-      IList<Arquivo> Arquivos = ArquivoRepo.GetArquivos();
+      IList<Arquivo> Arquivos = ArquivoRepo.Get();
 
       _logActionRepository.InsertLog_Action(Log_ActionFactory.Generate_AccessListArquivoLog_Action(Request.GetOwinContext().Request.RemoteIpAddress, usuarioRepo.FindUsuario(this.Usuario_Id),
         Request.GetOwinContext().Request.Host.ToString() + Request.GetOwinContext().Request.Path.Value));
@@ -83,7 +83,7 @@ namespace HRWeb.Controllers
 
       this.SetCurrentLoggedUserHandler();
 
-      IList<Arquivo> Arquivos = ArquivoRepo.GetArquivos().Where(a => a.UsuarioId == this.Usuario_Id)
+      IList<Arquivo> Arquivos = ArquivoRepo.Get().Where(a => a.UsuarioId == this.Usuario_Id)
         .OrderBy(pair => pair.Data_Referencia).ToList();
 
 
@@ -107,7 +107,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Delete(int Id)
     {
       this.SetCurrentLoggedUserHandler();
-      Arquivo arqFromDatabase = ArquivoRepo.FindArquivo(Id);
+      Arquivo arqFromDatabase = ArquivoRepo.Find(Id);
 
 
       if (arqFromDatabase != null)
@@ -119,7 +119,7 @@ namespace HRWeb.Controllers
           System.IO.File.Delete(filepath);
         }
 
-        ArquivoRepo.DeleteArquivo(arqFromDatabase);
+        ArquivoRepo.Delete(arqFromDatabase);
 
         // Use isso para burlar falhas de SQL resiliente em ações massivas
         ArquivoRepo.Save();
@@ -135,7 +135,7 @@ namespace HRWeb.Controllers
 
 
 
-        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+        return Request.CreateResponse(HttpStatusCode.OK, null);
 
       }
 
@@ -151,7 +151,7 @@ namespace HRWeb.Controllers
       this.SetCurrentLoggedUserHandler();
       HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
 
-      Arquivo arqFromDatabase = ArquivoRepo.FindArquivo(Id);
+      Arquivo arqFromDatabase = ArquivoRepo.Find(Id);
 
       if (this.Usuario_Id != arqFromDatabase.UsuarioId)
       {
@@ -195,7 +195,7 @@ namespace HRWeb.Controllers
       this.SetCurrentLoggedUserHandler();
       HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
 
-      Arquivo arqFromDatabase = ArquivoRepo.FindArquivo(Id);
+      Arquivo arqFromDatabase = ArquivoRepo.Find(Id);
 
       string filepath = ArquivosHelper.getArquivoFileAbsolutePathForDownload(HostingEnvironment.MapPath("~/App_data/Uploads"), arqFromDatabase);
 
@@ -289,7 +289,7 @@ namespace HRWeb.Controllers
           {
             try
             {
-              ArquivoRepo.InsertArquivo(Arquivo);
+              ArquivoRepo.Insert(Arquivo);
               ArquivoRepo.Save();
               transaction.Commit();
 
@@ -407,7 +407,7 @@ namespace HRWeb.Controllers
             Arquivo.Nome = newName.Split(".".ToCharArray()).FirstOrDefault();
             Arquivo.Ext = ext;
             Arquivo.Descricao = Descricao;
-            ArquivoRepo.InsertArquivo(Arquivo);
+            ArquivoRepo.Insert(Arquivo);
 
 
             // Use isso para burlar falhas de SQL resiliente em ações massivas

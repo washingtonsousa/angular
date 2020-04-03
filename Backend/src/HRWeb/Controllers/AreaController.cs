@@ -1,36 +1,36 @@
 using System.Collections.Generic;
 using System.Linq;
-using HRWeb.Helpers;
 using Core.Data.Models;
 using Core.Data.Repositories;
-using HRWeb.Strategy.Errors;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Net.Http;
 using System.Net;
 using System.Web.Http.Description;
+using Core.Application.Helpers;
+using Core.Application.Strategy.Errors;
 
 namespace HRWeb.Controllers
 {
   [Authorize(Roles = "Administrador")]
   public class AreaController : BasicApiAppController
-    {
+  {
 
-        private AreaRepository areaRepo;
-        private UsuarioRepository usuarioRepo;
-        private DepartamentoRepository depRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+    private AreaRepository areaRepo;
+    private UsuarioRepository usuarioRepo;
+    private DepartamentoRepository depRepo;
+        ;
 
         public AreaController()
-        {
+    {
 
-           
-            usuarioRepo = new UsuarioRepository();
-            areaRepo = new AreaRepository();
-            depRepo = new DepartamentoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
 
-        }
+      usuarioRepo = new UsuarioRepository();
+      areaRepo = new AreaRepository();
+      depRepo = new DepartamentoRepository();
+
+
+    }
 
     /// <summary>
     /// 
@@ -40,12 +40,12 @@ namespace HRWeb.Controllers
     [HttpOptions]
     [ResponseType(typeof(IList<Area>))]
     public IHttpActionResult Get()
-        {
-          
-            IList<Area> Areas = areaRepo.GetAreas().OrderBy(a => a.Nome).ToList(); 
-            return Ok(Areas);
+    {
 
-        }
+      IList<Area> Areas = areaRepo.Get().OrderBy(a => a.Nome).ToList();
+      return Ok(Areas);
+
+    }
 
 
     /// <summary>
@@ -59,9 +59,9 @@ namespace HRWeb.Controllers
     public IHttpActionResult Get(int Id)
     {
 
-      Area Area =  areaRepo.GetAreas().Where(a => a.Id == Id).FirstOrDefault();
+      Area Area = areaRepo.Get().Where(a => a.Id == Id).FirstOrDefault();
 
-      if(Area == null)
+      if (Area == null)
       {
         return NotFound();
       }
@@ -80,23 +80,23 @@ namespace HRWeb.Controllers
     [HttpOptions]
     [ResponseType(typeof(Area))]
     public HttpResponseMessage Post([FromBody]Area Area)
-        {
-            Area areafromDb = areaRepo.GetAreas().Where(a => a.Nome == Area.Nome).FirstOrDefault();
+    {
+      Area areafromDb = areaRepo.Get().Where(a => a.Nome == Area.Nome).FirstOrDefault();
 
-            if (areafromDb == null)
-            {
+      if (areafromDb == null)
+      {
 
-                areaRepo.InsertArea(Area);
-                areaRepo.Save();
+        areaRepo.Insert(Area);
+        areaRepo.Save();
 
 
-                return Request.CreateResponse(HttpStatusCode.OK, Area);  
+        return Request.CreateResponse(HttpStatusCode.OK, Area);
 
-            }
+      }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
+      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
 
-        }
+    }
 
     /// <summary>
     /// 
@@ -107,29 +107,29 @@ namespace HRWeb.Controllers
     [HttpOptions]
     [ResponseType(typeof(object))]
     public HttpResponseMessage Delete(int Id)
+    {
+      Area Area = areaRepo.Find(Id);
+
+      if (Area != null)
+      {
+
+        if (depRepo.GetDepartamentos().Where(d => d.AreaId == Area.Id).FirstOrDefault() != null)
+
         {
-            Area Area = areaRepo.FindArea(Id);
-
-            if (Area != null)
-            {
-
-                if (depRepo.GetDepartamentos().Where(d => d.AreaId == Area.Id).FirstOrDefault() != null)
-                    
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseEntityError()));
-                }
-
-                    areaRepo.DeleteArea(Area);
-                    areaRepo.Save();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
-                
-            }
-
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
+          return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
         }
+
+        areaRepo.Delete(Area);
+        areaRepo.Save();
+
+        return Request.CreateResponse(HttpStatusCode.OK, new { });
+
+      }
+
+
+      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+
+    }
 
 
 
@@ -142,28 +142,28 @@ namespace HRWeb.Controllers
     [HttpOptions]
     [ResponseType(typeof(Area))]
     public HttpResponseMessage Put([FromBody]Area Area)
-        {
-            Area AreaFromDb = areaRepo.FindArea(Area.Id);
+    {
+      Area AreaFromDb = areaRepo.Find(Area.Id);
 
 
-            if (areaRepo.GetAreas().Where(a => a.Nome == Area.Nome && a.Id != Area.Id).FirstOrDefault() != null)
-            {
-                Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));      
-            }
+      if (areaRepo.Get().Where(a => a.Nome == Area.Nome && a.Id != Area.Id).FirstOrDefault() != null)
+      {
+        Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
+      }
 
-            if (AreaFromDb != null)
-            {
+      if (AreaFromDb != null)
+      {
 
-                AreaFromDb.Nome = Area.Nome;
-                AreaFromDb.imgStr = Area.imgStr;
-                areaRepo.UpdateArea(AreaFromDb);
-                areaRepo.Save();
-            return    Request.CreateResponse(HttpStatusCode.OK, AreaFromDb);
+        AreaFromDb.Nome = Area.Nome;
+        AreaFromDb.imgStr = Area.imgStr;
+        areaRepo.Update(AreaFromDb);
+        areaRepo.Save();
+        return Request.CreateResponse(HttpStatusCode.OK, AreaFromDb);
 
-            }
+      }
 
-         return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-   
-        }
+      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+
     }
+  }
 }

@@ -5,7 +5,6 @@ namespace Core.Application.Strategy.Errors
   public class ModelStateGenericError : IError
     {
 
-
         public override Error getError()
         {
             Error error = new Error();

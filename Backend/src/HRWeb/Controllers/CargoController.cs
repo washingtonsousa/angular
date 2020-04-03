@@ -18,7 +18,7 @@ namespace HRWeb.Controllers
         private CargoRepository cargoRepo;
         private DepartamentoRepository depRepo;
         private UsuarioRepository usuarioRepo;
-        private JsonResultObjHelper jsonResultObjHelper;
+        ;
 
         public CargoController()
         {
@@ -26,7 +26,7 @@ namespace HRWeb.Controllers
             cargoRepo = new CargoRepository();
             usuarioRepo = new UsuarioRepository();
             depRepo = new DepartamentoRepository();
-            jsonResultObjHelper = new JsonResultObjHelper();
+            
         }
 
         public IHttpActionResult Get()
@@ -79,7 +79,7 @@ namespace HRWeb.Controllers
                 cargoRepo.DeleteCargo(cargo);
                 cargoRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+                return Request.CreateResponse(HttpStatusCode.OK, null);
 
 
             }

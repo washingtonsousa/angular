@@ -1,8 +1,6 @@
 using System;
 using Core.Data.Repositories;
 using Core.Data.Models;
-using HRWeb.Helpers;
-using HRWeb.Strategy.Errors;
 using System.Web.Http;
 using System.Net.Http;
 using HRWeb.Controllers.TemplateControllers;
@@ -17,13 +15,13 @@ namespace HRWeb.Controllers
     {
 
         private ExpProfissionalRepository expRepo;
-        private JsonResultObjHelper JsonResultObjHelper;
+        ;
 
         public ExpProfissionalController()
         {
         
             expRepo = new ExpProfissionalRepository();
-            JsonResultObjHelper = new JsonResultObjHelper();       }
+                   }
 
 
     [Authorize(Roles = "Administrador")]
@@ -178,7 +176,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Delete(int Id)
         {
 
-            ExpProfissional ExpProfissionalFromDb = expRepo.FindExpProfissionalById(Id);
+            ExpProfissional ExpProfissionalFromDb = expRepo.Find(Id);
 
             if (ExpProfissionalFromDb != null)
             {

@@ -7,6 +7,8 @@ namespace Core.Data.Models
 {
     public class ConfigData
     {
+        public static string ContextAppUrl { get { return ConfigurationManager.AppSettings["UrlContext"]; } }
+
         public static string EmailAccount             { get { return ConfigurationManager.AppSettings["EmailAccount"]; } }
         public static string EmailPassword            { get { return  ConfigurationManager.AppSettings["EmailPassword"]; } }
         public static string EmailPort                { get { return      ConfigurationManager.AppSettings["EmailPort"]; } }
