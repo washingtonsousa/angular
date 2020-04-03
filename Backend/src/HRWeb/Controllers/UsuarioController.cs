@@ -14,6 +14,8 @@ using System.Web.Http.Description;
 using Core.Data;
 using Core.Application.Helpers;
 using Core.Application.Strategy.Errors;
+using Core.Application.Interfaces;
+using Core.Application.Sharepoint.Services;
 
 namespace HRWeb.Controllers
 {
@@ -21,25 +23,16 @@ namespace HRWeb.Controllers
   public class UsuarioController : BasicApiAppControllerWithHub<UsuariosHub>
   {
     private UsuarioRepository usuarioRepo;
-    private SharepointPeopleManagerAppService SPPeopleManager;
-    ;
+    private SharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
 
+    private IUsuarioAppService _usuarioAppService;
 
-    public UsuarioController()
+    public UsuarioController(IUsuarioAppService usuarioAppService)
     {
-
-      this.initializeComponents();
+      _usuarioAppService = usuarioAppService;
     }
 
 
-
-    private void initializeComponents()
-    {
-      usuarioRepo = new UsuarioRepository();
-      
-      spAuthHelper = new BasicAuthHelper();
-
-    }
 
     /// <summary>
     /// Retorna busca de usuário pelo Id do mesmo
@@ -52,9 +45,8 @@ namespace HRWeb.Controllers
     public IHttpActionResult Get(int id)
     {
 
-      Usuario usuario = usuarioRepo.Find(id);
-
-      return Ok(usuario);
+      Usuario usuario =  _usuarioAppService.GetUsuarioById(id);
+      return GetResponseWithNotifications(usuario);
 
     }
 
@@ -74,16 +66,15 @@ namespace HRWeb.Controllers
           && Usuarios.Where(u => u.Email != Usuario.Email && u.Matricula == Usuario.Matricula).FirstOrDefault() == null
           )
       {
-        ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
-        this.SPPeopleManager = new SharepointPeopleManagerAppService(clientContext);
+        ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, spAuthHelper.GetSPAppToken());
+        _sharepointPeopleManagerAppService = new SharepointPeopleManagerAppService(clientContext);
 
         var peopleManager = new PeopleManager(clientContext);
 
+        _sharepointPeopleManagerAppService.GetPersonPropertiesByEmail(Usuario.Email);
+        bool result = _sharepointPeopleManagerAppService.ExecuteRequest();
 
-        this.SPPeopleManager.getPersonPropertiesByEmail(Usuario.Email);
-        this.SPPeopleManager.execQuery();
-
-        if (this.SPPeopleManager.execQuery() == true)
+        if (SPPeopleManager.execQuery() == true)
         {
 
           usuarioRepo.Insert(Usuario);

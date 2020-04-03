@@ -4,19 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class DepartamentoRepository : RepositoryTemplate, IDepartamentoRepository
+  public class DepartamentoRepository :  IDepartamentoRepository
     {
 
+        private HrDbContext Context;
+        public DepartamentoRepository(HrDbContext context)
+        {
+            Context = context;
+        }
 
-    public DepartamentoRepository()
-    {
-    }
 
-    public Departamento Find(int Id)
+        public Departamento Find(int Id)
     {
       return this.Context.Departamentos.Where(u => u.Id == Id).FirstOrDefault();
 

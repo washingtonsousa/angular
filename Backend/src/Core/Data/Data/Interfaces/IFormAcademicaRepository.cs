@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IFormAcademicaRepository : IRepository<FormAcademica>
+    public interface IFormAcademicaRepository : IRepository<FormAcademica>
     {
     }
 }

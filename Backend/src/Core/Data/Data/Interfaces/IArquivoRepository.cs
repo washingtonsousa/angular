@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Data.Interfaces
 {
-     interface IArquivoRepository : IRepository<Arquivo>
+     public interface IArquivoRepository : IRepository<Arquivo>
     {
 
         Arquivo FindByBothIds(int Id, int UsuarioId);

@@ -3,17 +3,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class FormAcademicaRepository : RepositoryTemplate, IFormAcademicaRepository
+  public class FormAcademicaRepository :  IFormAcademicaRepository
     {
-      
 
-        public FormAcademicaRepository()
+
+        private HrDbContext Context;
+        public FormAcademicaRepository(HrDbContext context)
         {
-
+            Context = context;
         }
+
 
         public IList<FormAcademica> Get()
         {

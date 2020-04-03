@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IIdiomaRepository : IRepository<Area>
+    public interface IIdiomaRepository : IRepository<Idioma>
     {
     }
 }

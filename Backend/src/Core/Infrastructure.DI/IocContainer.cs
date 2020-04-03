@@ -1,28 +1,39 @@
 ﻿using Application;
 using Core.Application;
 using Core.Application.Interfaces;
+using Core.Application.Sharepoint.Services;
 using Core.Data.Interfaces;
+using Core.Data.ORM;
 using Core.Data.Repositories;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace Infrastructure.DI
 {
     public static class IocContainer
     {
 
-        public static void InjectRepositories(IKernel kernel)
+        public static void InjectDataDriven(IKernel kernel)
         {
+
+            kernel.Bind<HrDbContext>().To<HrDbContext>().InRequestScope();
+            kernel.Bind<IUnityOfWork>().To<UnityOfWork>().InRequestScope();
             kernel.Bind<IUsuarioRepository, UsuarioRepository>();
-            kernel.Bind<IUsuarioRepository, AreaRepository>();
-            kernel.Bind<IUsuarioRepository, ArquivoRepository>();
-            kernel.Bind<IUsuarioRepository, CargoRepository>();
-            kernel.Bind<IUsuarioRepository, DepartamentoRepository>();
-            kernel.Bind<IUsuarioRepository, IdiomaRepository>();
-            kernel.Bind<IUsuarioRepository, FormAcademicaRepository>();
-            kernel.Bind<IUsuarioRepository, NivelAcessoRepository>();
-            kernel.Bind<IUsuarioRepository, ResumoRepository>();
-            kernel.Bind<IUsuarioRepository, StatusRepository>();
-            kernel.Bind<IUsuarioRepository, UsuarioConhecimentoRepository>();
+            kernel.Bind<IAreaRepository, AreaRepository>();
+            kernel.Bind<IIdiomaRepository, IdiomaRepository>();
+            kernel.Bind<IArquivoRepository, ArquivoRepository>();
+            kernel.Bind<ICargoRepository, CargoRepository>();
+            kernel.Bind<IDepartamentoRepository, DepartamentoRepository>();
+            kernel.Bind<IFormAcademicaRepository, FormAcademicaRepository>();
+            kernel.Bind<INivelAcessoRepository, NivelAcessoRepository>();
+            kernel.Bind<IResumoRepository, ResumoRepository>();
+            kernel.Bind<IStatusRepository, StatusRepository>();
+            kernel.Bind<IUsuarioConhecimentoRepository, UsuarioConhecimentoRepository>();
+            kernel.Bind<IConhecimentoRepository, ConhecimentoRepository>();
+            kernel.Bind<ILog_ActionRepository, Log_ActionRepository>();
+            kernel.Bind<IExpProfissionalRepository, ExpProfissionalRepository>();
+            kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
+
         }
 
 

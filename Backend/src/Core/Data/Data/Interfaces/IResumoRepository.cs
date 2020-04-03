@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IResumoRepository : IRepository<Area>
+    public interface IResumoRepository : IRepository<Resumo>
     {
     }
 }

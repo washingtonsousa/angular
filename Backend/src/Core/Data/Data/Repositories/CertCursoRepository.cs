@@ -3,16 +3,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class CertCursoRepository : RepositoryTemplate, ICertCursoRepository
+  public class CertCursoRepository :  ICertCursoRepository
     {
- 
 
-        public CertCursoRepository() 
+
+
+        private HrDbContext Context;
+        public CertCursoRepository(HrDbContext context)
         {
-    
+            Context = context;
         }
 
         public IList<CertCurso> Get()

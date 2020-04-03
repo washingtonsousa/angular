@@ -1,25 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class IdiomaRepository : RepositoryTemplate
+  public class IdiomaRepository :  IIdiomaRepository
     {
 
 
-        public IdiomaRepository()
+        private HrDbContext Context;
+        public IdiomaRepository(HrDbContext context)
         {
+            Context = context;
         }
 
-        public IList<Idioma> GetIdiomas()
+
+        public IList<Idioma> Get()
         {
 
             return this.Context.Idiomas.ToList();
 
         }
 
-        public Idioma FindIdioma(int Id)
+        public Idioma Find(int Id)
         {
 
             return this.Context.Idiomas.Where(c => c.Id == Id).FirstOrDefault();
@@ -27,19 +33,19 @@ namespace Core.Data.Repositories
 
        
 
-        public IList<Idioma> GetIdiomasByUsuarioId(int UsuarioId)
+        public IList<Idioma> GetByUsuarioId(int UsuarioId)
         {
 
             return this.Context.Idiomas.Where(c => c.UsuarioId == UsuarioId).ToList();
         }
 
-        public Idioma FindIdiomaByBothIds(int Id, int UsuarioId)
+        public Idioma FindByBothIds(int Id, int UsuarioId)
         {
 
             return this.Context.Idiomas.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        public void UpdateIdioma(Idioma IdiomaData)
+        public void Update(Idioma IdiomaData)
         {
             IdiomaData.Atualizado_em = System.DateTime.Now;
             this.Context.Idiomas.Update(IdiomaData);
@@ -48,18 +54,32 @@ namespace Core.Data.Repositories
 
 
 
-        public void InsertIdioma(Idioma Idioma)
+        public void Insert(Idioma Idioma)
         {
             this.Context.Idiomas.Add(Idioma);
 
 
         }
 
-        public void DeleteIdioma(Idioma Idioma)
+        public void Delete(Idioma Idioma)
         {
             this.Context.Idiomas.Remove(Idioma);
 
         }
 
+        public Task<Idioma> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<Idioma>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

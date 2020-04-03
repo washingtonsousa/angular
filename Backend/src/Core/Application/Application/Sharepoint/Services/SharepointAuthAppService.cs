@@ -1,4 +1,5 @@
-﻿using Core.Data;
+﻿using Core.Application.Interfaces;
+using Core.Data;
 using Core.Data.Models;
 using Microsoft.SharePoint.Client;
 using System;
@@ -6,25 +7,25 @@ using System.Security;
 
 namespace Core.Application.Sharepoint.Services
 {
-    public class SharepointAuthAppService
+    public class SharepointAuthAppService : ISharepointAuthAppService
     {
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public string getApplicationToken()
+        public string GetApplicationToken()
         {
             Uri webUri = new Uri(ConfigData.ContextAppUrl);
-            string realm = TokenHelper.getRealmFromTargetUrl(webUri);
-            return TokenHelper.getAppOnlyAccessToken(TokenHelper.SharePointPrincipal, webUri.Authority, realm).AccessToken;
+            string realm = TokenHelper.GetRealmFromTargetUrl(webUri);
+            return TokenHelper.GetAppOnlyAccessToken(TokenHelper.SharePointPrincipal, webUri.Authority, realm).AccessToken;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public ClientContext getAppOnlyClientContextByToken() => TokenHelper.getClientContextWithAccessToken(ConfigData.ContextAppUrl, getApplicationToken());
+        public ClientContext GetAppOnlyClientContextByToken() => TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, GetApplicationToken());
         
 
         public bool ValidateUserBySPCredentials(string userName, string Password)

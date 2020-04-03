@@ -3,19 +3,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class EnderecoRepository : RepositoryTemplate, IEnderecoRepository
+  public class EnderecoRepository :  IEnderecoRepository
     {
-      
-        public EnderecoRepository()
+
+        private HrDbContext Context;
+        public EnderecoRepository(HrDbContext context)
         {
-
-
+            Context = context;
         }
 
-      
+
+
 
         public Endereco FindByUsuarioId(int UsuarioId)
         {

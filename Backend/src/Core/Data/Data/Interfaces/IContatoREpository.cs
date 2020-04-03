@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IContatoRepository : IRepository<Contato>
+    public interface IContatoRepository : IRepository<Contato>
     {
     }
 }

@@ -3,15 +3,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class ContatoRepository : RepositoryTemplate, IContatoRepository
-    { 
+  public class ContatoRepository :  IContatoRepository
+    {
 
-        public ContatoRepository()
+
+        private HrDbContext Context;
+        public ContatoRepository(HrDbContext context)
         {
-    
+            Context = context;
         }
 
         public IList<Contato> Get()

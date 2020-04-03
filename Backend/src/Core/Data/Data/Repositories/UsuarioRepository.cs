@@ -6,15 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Queries.Joins;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-    public class UsuarioRepository : RepositoryTemplate, IUsuarioRepository
+    public class UsuarioRepository :  IUsuarioRepository
     {
 
-        public UsuarioRepository()
+        private HrDbContext Context;
+        public UsuarioRepository(HrDbContext context)
         {
+            Context = context;
         }
+
         public Usuario AuthVerify(string userName, bool checkPassword, string password)
         {
             var usuario = Context.Usuarios.Include(u => u.Status).Include(u => u.NivelAcesso)
@@ -48,19 +52,19 @@ namespace Core.Data.Repositories
 
         }
 
-        public void Update(Usuario Usuario, Usuario usuarioFromDb)
+        public void Update(Usuario Usuario)
         {
-            usuarioFromDb.CargoId = Usuario.CargoId;
-            usuarioFromDb.NivelAcessoId = Usuario.NivelAcessoId;
-            usuarioFromDb.Nome = Usuario.Nome;
-            usuarioFromDb.StatusId = Usuario.StatusId;
-            usuarioFromDb.Email = Usuario.Email;
-            usuarioFromDb.Matricula = Usuario.Matricula;
-            usuarioFromDb.DataAdmissao = Usuario.DataAdmissao;
-            usuarioFromDb.DataNasc = Usuario.DataNasc;
-            usuarioFromDb.EstadoCivil = Usuario.EstadoCivil;
-            usuarioFromDb.Ramal = Usuario.Ramal;
-            usuarioFromDb.Sexo = Usuario.Sexo;
+            //usuarioFromDb.CargoId = Usuario.CargoId;
+            //usuarioFromDb.NivelAcessoId = Usuario.NivelAcessoId;
+            //usuarioFromDb.Nome = Usuario.Nome;
+            //usuarioFromDb.StatusId = Usuario.StatusId;
+            //usuarioFromDb.Email = Usuario.Email;
+            //usuarioFromDb.Matricula = Usuario.Matricula;
+            //usuarioFromDb.DataAdmissao = Usuario.DataAdmissao;
+            //usuarioFromDb.DataNasc = Usuario.DataNasc;
+            //usuarioFromDb.EstadoCivil = Usuario.EstadoCivil;
+            //usuarioFromDb.Ramal = Usuario.Ramal;
+            //usuarioFromDb.Sexo = Usuario.Sexo;
         }
 
 
@@ -91,6 +95,11 @@ namespace Core.Data.Repositories
         public Usuario FindUsuarioByMatricula(string matricula)
         {
           return  Context.Usuarios.FirstOrDefault(u => u.Matricula == matricula);
+        }
+
+        public int GetCount()
+        {
+            throw new NotImplementedException();
         }
     }
 }

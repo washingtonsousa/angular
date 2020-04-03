@@ -73,7 +73,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Delete(int id)
     {
 
-      NivelAcesso NivelAcesso = NivelAcessoRepo.FindNivelAcessoById(id);
+      NivelAcesso NivelAcesso = NivelAcessoRepo.Find(id);
       if (NivelAcesso != null)
       {
         NivelAcessoRepo.DeleteNivelAcesso(NivelAcesso);
@@ -93,7 +93,7 @@ namespace HRWeb.Controllers
     [HttpPost]
     public HttpResponseMessage Put([FromBody]NivelAcesso NivelAcesso)
     {
-      NivelAcesso NivelAcessoFromDb = NivelAcessoRepo.FindNivelAcessoById(NivelAcesso.Id);
+      NivelAcesso NivelAcessoFromDb = NivelAcessoRepo.Find(NivelAcesso.Id);
 
       if (NivelAcessoFromDb != null)
       {

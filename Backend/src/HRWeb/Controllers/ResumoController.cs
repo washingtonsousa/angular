@@ -105,7 +105,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Post([FromBody]Resumo Resumo)
         {
 
-            Resumo ResumoFromDb = resumoRepo.FindResumoByUsuarioId(Resumo.UsuarioId);
+            Resumo ResumoFromDb = resumoRepo.FindByUsuarioId(Resumo.UsuarioId);
 
             if (ResumoFromDb != null)
             {
@@ -128,7 +128,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Put([FromBody]Resumo Resumo)
         {
 
-            Resumo ResumoFromDb = resumoRepo.FindResumoByBothIds(Resumo.Id, Resumo.UsuarioId);
+            Resumo ResumoFromDb = resumoRepo.FindReByBothIds(Resumo.Id, Resumo.UsuarioId);
 
             if (ResumoFromDb != null)
             {
@@ -151,7 +151,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Delete([FromBody]Resumo Resumo)
         {
 
-            Resumo ResumoFromDb = resumoRepo.FindResumoByBothIds(Resumo.Id, Resumo.UsuarioId);
+            Resumo ResumoFromDb = resumoRepo.FindReByBothIds(Resumo.Id, Resumo.UsuarioId);
 
             if (ResumoFromDb != null)
             {

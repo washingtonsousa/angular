@@ -67,7 +67,7 @@ namespace HRWeb.App_Start
 
             
             var resolver = kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>(); 
-            IocContainer.InjectRepositories(kernel);
+            IocContainer.InjectDataDriven(kernel);
             IocContainer.InjectServices(kernel);
             DomainEvent.Container = new DomainEventsContainer(resolver);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

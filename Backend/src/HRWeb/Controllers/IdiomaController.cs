@@ -95,7 +95,7 @@ namespace HRWeb.Controllers
         public HttpResponseMessage Post([FromBody]Idioma Idioma)
         {
 
-            Idioma IdiomaFromDb = idiomaRepo.FindIdiomaByBothIds(Idioma.Id, Idioma.UsuarioId);
+            Idioma IdiomaFromDb = idiomaRepo.FindByBothIds(Idioma.Id, Idioma.UsuarioId);
 
             if (IdiomaFromDb == null)
             {
@@ -115,7 +115,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Put([FromBody]Idioma Idioma)
         {
 
-            Idioma IdiomaFromDb = idiomaRepo.FindIdiomaByBothIds(Idioma.Id, Idioma.UsuarioId);
+            Idioma IdiomaFromDb = idiomaRepo.FindByBothIds(Idioma.Id, Idioma.UsuarioId);
 
             if (IdiomaFromDb != null)
             {

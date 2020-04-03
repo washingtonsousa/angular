@@ -3,7 +3,7 @@
 namespace Core.Data.Interfaces
 {
 
-    interface ICargoRepository : IRepository<Cargo>
+   public interface ICargoRepository : IRepository<Cargo>
     {
     }
 }

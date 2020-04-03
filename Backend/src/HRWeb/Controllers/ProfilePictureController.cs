@@ -1,9 +1,7 @@
 using Microsoft.Owin;
 using HRWeb.Controllers.TemplateControllers;
-using HRWeb.Helpers;
 using Core.Data.Models;
 using Core.Data.Repositories;
-using HRWeb.Strategy.Errors;
 using System;
 using System.Collections.Generic;
 using System.IO;

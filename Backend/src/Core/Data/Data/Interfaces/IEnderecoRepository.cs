@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IEnderecoRepository : IRepository<Endereco>
+    public interface IEnderecoRepository : IRepository<Endereco>
     {
     }
 }

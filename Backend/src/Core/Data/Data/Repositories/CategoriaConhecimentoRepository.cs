@@ -3,14 +3,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class CategoriaConhecimentoRepository : RepositoryTemplate, ICategoriaConhecimentoRepository
+  public class CategoriaConhecimentoRepository :  ICategoriaConhecimentoRepository
     {
-    
-        public CategoriaConhecimentoRepository() { }
+
+        private HrDbContext Context;
+        public CategoriaConhecimentoRepository(HrDbContext context)
+        {
+            Context = context;
+        }
+
 
         public IList<CategoriaConhecimento> Get()
         {

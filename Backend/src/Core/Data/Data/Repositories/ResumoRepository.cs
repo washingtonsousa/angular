@@ -1,44 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class ResumoRepository : RepositoryTemplate
+  public class ResumoRepository :  IResumoRepository
     {
 
 
-        public ResumoRepository()
+        private HrDbContext Context;
+        public ResumoRepository(HrDbContext context)
         {
-         
+            Context = context;
         }
 
-        public IList<Resumo> GetResumos()
+
+        public IList<Resumo> Get()
         {
 
             return this.Context.Resumos.ToList();
 
         }
 
-        public Resumo FindResumo(int Id)
+        public Resumo Find(int Id)
         {
 
             return this.Context.Resumos.Where(c => c.Id == Id).FirstOrDefault();
         }
 
-        public Resumo FindResumoByUsuarioId(int UsuarioId)
+        public Resumo FindByUsuarioId(int UsuarioId)
         {
 
             return this.Context.Resumos.Where(c => c.UsuarioId == UsuarioId).FirstOrDefault();
         }
 
-        public Resumo FindResumoByBothIds(int Id, int UsuarioId)
+        public Resumo FindByBothIds(int Id, int UsuarioId)
         {
 
             return this.Context.Resumos.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        public void UpdateResumo(Resumo ResumoData)
+        public void Update(Resumo ResumoData)
         {
             ResumoData.Atualizado_em = System.DateTime.Now;
             this.Context.Resumos.Update(ResumoData);
@@ -47,18 +52,32 @@ namespace Core.Data.Repositories
 
       
 
-        public void InsertResumo(Resumo Resumo)
+        public void Insert(Resumo Resumo)
         {
             this.Context.Resumos.Add(Resumo);
 
 
         }
 
-        public void DeleteResumo(Resumo Resumo)
+        public void Delete(Resumo Resumo)
         {
             this.Context.Resumos.Remove(Resumo);
 
         }
 
+        public Task<Resumo> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IList<Resumo>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

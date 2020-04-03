@@ -142,6 +142,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\PaginateHelper.cs" />
+    <Compile Include="Interfaces\ISharepointAuthService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
     <Compile Include="Sharepoint\Services\SharepointListAppServices.cs" />
     <Compile Include="Sharepoint\Services\SharepointAppServiceTemplate.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Providers\OAuthConfigProvider.cs" />
     <Compile Include="Providers\OAuthProvider.cs" />
     <Compile Include="Sharepoint\Services\SharepointAuthAppService.cs" />
+    <Compile Include="Sharepoint\Services\SharepointUsersRepository.cs" />
     <Compile Include="SignalIR\Hubs\StatisticsHub.cs" />
     <Compile Include="SignalIR\Hubs\UsuariosHub.cs" />
     <Compile Include="Strategy\Errors\AccessDeniedError.cs" />

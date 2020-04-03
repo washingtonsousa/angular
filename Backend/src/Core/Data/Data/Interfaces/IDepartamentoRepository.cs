@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IDepartamentoRepository : IRepository<Departamento>
+    public interface IDepartamentoRepository : IRepository<Departamento>
     {
     }
 }

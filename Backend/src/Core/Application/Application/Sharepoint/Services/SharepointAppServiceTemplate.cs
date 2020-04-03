@@ -1,4 +1,5 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using Core.Application.Interfaces;
+using Microsoft.SharePoint.Client;
 using System;
 
 namespace Core.Application.Sharepoint.Services
@@ -8,12 +9,23 @@ namespace Core.Application.Sharepoint.Services
 
         private bool Disposed = false;
         public ClientContext ClientContext;
+        ISharepointAuthAppService _sharepointAuthAppService;
 
-        protected SharepointAppServiceTemplate(ClientContext clientContext)
+        public SharepointAppServiceTemplate(ISharepointAuthAppService sharepointAuthAppService)
+        {
+            _sharepointAuthAppService = sharepointAuthAppService;
+            Initialize();
+        }
+
+        public SharepointAppServiceTemplate(ClientContext clientContext)
         {
             ClientContext = clientContext;
         }
 
+        public void Initialize()
+        {
+            ClientContext = _sharepointAuthAppService.GetAppOnlyClientContextByToken();
+        }
         protected virtual void Dispose(bool disposing)
         {
             if (!this.Disposed)

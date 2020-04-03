@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface IConhecimentoRepository : IRepository<Conhecimento>
+    public interface IConhecimentoRepository : IRepository<Conhecimento>
     {
     }
 }

@@ -1,23 +1,24 @@
+using Core.Data.ORM;
+
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Core.Data.Interfaces;
 using Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class UsuarioConhecimentoRepository : RepositoryTemplate
+  public class UsuarioConhecimentoRepository :  IUsuarioConhecimentoRepository
     {
-
-
-  
-
-        public UsuarioConhecimentoRepository()
+        private HrDbContext Context;
+        public UsuarioConhecimentoRepository(HrDbContext context)
         {
+            Context = context;
         }
 
 
-
-        public IList<UsuarioConhecimento> GetUsuarioConhecimentos()
+        public IList<UsuarioConhecimento> Get()
         {
 
             return this.Context.UsuarioConhecimentos.Include(us=>us.Usuario)
@@ -28,7 +29,7 @@ namespace Core.Data.Repositories
 
         }
 
-        public void InsertUsuarioConhecimento(UsuarioConhecimento UsuarioConhecimento)
+        public void Insert(UsuarioConhecimento UsuarioConhecimento)
         {
         
 
@@ -36,14 +37,14 @@ namespace Core.Data.Repositories
 
         }
 
-        public void DeleteUsuarioConhecimento(UsuarioConhecimento UsuarioConhecimento)
+        public void Delete(UsuarioConhecimento UsuarioConhecimento)
         {
 
             this.Context.UsuarioConhecimentos.Remove(UsuarioConhecimento);
 
         }
 
-        public void UpdateUsuarioConhecimento(UsuarioConhecimento UsuarioConhecimentoData)
+        public void Update(UsuarioConhecimento UsuarioConhecimentoData)
         {
 
             UsuarioConhecimentoData.Atualizado_em = System.DateTime.Now;
@@ -54,12 +55,25 @@ namespace Core.Data.Repositories
 
 
 
-        public UsuarioConhecimento FindUsuarioConhecimento(int Id)
+        public UsuarioConhecimento Find(int Id)
         {
 
             return this.Context.UsuarioConhecimentos.Where(c => c.Id == Id).FirstOrDefault();
         }
 
+        public Task<UsuarioConhecimento> FindAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
 
+        public Task<IList<UsuarioConhecimento>> GetAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetCount()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

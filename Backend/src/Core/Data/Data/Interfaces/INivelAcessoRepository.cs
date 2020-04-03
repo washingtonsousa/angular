@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface INivelAcessoRepository : IRepository<Area>
+    public interface INivelAcessoRepository : IRepository<NivelAcesso>
     {
     }
 }

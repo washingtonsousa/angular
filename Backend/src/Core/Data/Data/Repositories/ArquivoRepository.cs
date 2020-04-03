@@ -3,17 +3,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class ArquivoRepository : RepositoryTemplate, IArquivoRepository
+  public class ArquivoRepository :  IArquivoRepository
     {
-
-        public ArquivoRepository() 
+        private HrDbContext Context;
+        public ArquivoRepository(HrDbContext context)
         {
-  
-
+            Context = context;
         }
 
 

@@ -2,7 +2,7 @@
 
 namespace Core.Data.Interfaces
 {
-    interface ICertCursoRepository : IRepository<CertCurso>
+    public interface ICertCursoRepository : IRepository<CertCurso>
     {
     }
 }

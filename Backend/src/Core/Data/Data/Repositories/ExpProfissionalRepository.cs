@@ -3,19 +3,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class ExpProfissionalRepository : RepositoryTemplate, IExpProfissionalRepository
+  public class ExpProfissionalRepository :  IExpProfissionalRepository
     {
 
-   
 
-        public ExpProfissionalRepository()
+
+        private HrDbContext Context;
+        public ExpProfissionalRepository(HrDbContext context)
         {
-
-        
+            Context = context;
         }
+
 
 
 

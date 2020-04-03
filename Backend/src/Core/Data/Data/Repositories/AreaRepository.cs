@@ -3,14 +3,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 
 namespace Core.Data.Repositories
 {
-  public class AreaRepository : RepositoryTemplate, IAreaRepository
+  public class AreaRepository : IAreaRepository
     {
-
-        public AreaRepository()
+        private HrDbContext Context;
+        public AreaRepository(HrDbContext context) 
         {
+            Context = context;
         }
 
         public IList<Area> Get()

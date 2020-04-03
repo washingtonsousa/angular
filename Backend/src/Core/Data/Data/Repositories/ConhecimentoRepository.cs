@@ -3,16 +3,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Data.ORM;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class ConhecimentoRepository : RepositoryTemplate, IConhecimentoRepository
+  public class ConhecimentoRepository :  IConhecimentoRepository
     {
-    
-        public ConhecimentoRepository() { }
 
-      public int getTotalNumberCountRegisters()
+
+        private HrDbContext Context;
+        public ConhecimentoRepository(HrDbContext context)
+        {
+            Context = context;
+        }
+
+        public int getTotalNumberCountRegisters()
         {
 
             return this.Context.Conhecimentos.Count();
