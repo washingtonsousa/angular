@@ -40,7 +40,7 @@ namespace Core.Application
         {
             Area areafromDb = areaRepo.Get().Where(a => a.Nome == Area.Nome).FirstOrDefault();
 
-            if (areafromDb.Exists())
+            if (areafromDb.NotExists())
                 return null;
 
             areaRepo.Insert(Area);

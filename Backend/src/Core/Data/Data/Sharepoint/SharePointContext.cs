@@ -35,7 +35,7 @@ namespace Core.Data
         protected Tuple<string, DateTime> appOnlyAccessTokenForSPAppWeb;
 
         /// <summary>
-        /// Gets the SharePoint host url from Querystring of the specified HTTP request.
+        /// Gets the SharePoint host url from QueryString of the specified HTTP request.
         /// </summary>
         /// <param name="httpRequest">The specified HTTP request.</param>
         /// <returns>The SharePoint host url. Returns <c>null</c> if the HTTP request doesn't contain the SharePoint host url.</returns>
@@ -46,7 +46,7 @@ namespace Core.Data
                 throw new ArgumentNullException("httpRequest");
             }
 
-            string spHostUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.Querystring[SPHostUrlKey]);
+            string spHostUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.QueryString[SPHostUrlKey]);
             Uri spHostUrl;
             if (Uri.TryCreate(spHostUrlstring, UriKind.Absolute, out spHostUrl) &&
                 (spHostUrl.Scheme == Uri.UriSchemeHttp || spHostUrl.Scheme == Uri.UriSchemeHttps))
@@ -58,7 +58,7 @@ namespace Core.Data
         }
 
         /// <summary>
-        /// Gets the SharePoint host url from Querystring of the specified HTTP request.
+        /// Gets the SharePoint host url from QueryString of the specified HTTP request.
         /// </summary>
         /// <param name="httpRequest">The specified HTTP request.</param>
         /// <returns>The SharePoint host url. Returns <c>null</c> if the HTTP request doesn't contain the SharePoint host url.</returns>
@@ -337,7 +337,7 @@ namespace Core.Data
 
             const string SPHasRedirectedToSharePointKey = "SPHasRedirectedToSharePoint";
 
-            if (!string.IsNullOrEmpty(httpContext.Request.Querystring[SPHasRedirectedToSharePointKey]) && !contextTokenExpired)
+            if (!string.IsNullOrEmpty(httpContext.Request.QueryString[SPHasRedirectedToSharePointKey]) && !contextTokenExpired)
             {
                 return RedirectionStatus.CanNotRedirect;
             }
@@ -349,14 +349,14 @@ namespace Core.Data
                 return RedirectionStatus.CanNotRedirect;
             }
 
-            if (stringComparer.OrdinalIgnoreCase.Equals(httpContext.Request.HttpMethod, "POST"))
+            if (StringComparer.OrdinalIgnoreCase.Equals(httpContext.Request.HttpMethod, "POST"))
             {
                 return RedirectionStatus.CanNotRedirect;
             }
 
             Uri requestUrl = httpContext.Request.Url;
 
-            var queryNameValueCollection = HttpUtility.ParseQuerystring(requestUrl.Query);
+            var queryNameValueCollection = HttpUtility.ParseQueryString(requestUrl.Query);
 
             // Removes the values that are included in {StandardTokens}, as {StandardTokens} will be inserted at the beginning of the query string.
             queryNameValueCollection.Remove(SharePointContext.SPHostUrlKey);
@@ -377,7 +377,7 @@ namespace Core.Data
             returnUrlstring = returnUrlstring.Insert(returnUrlstring.IndexOf("?") + 1, StandardTokens + "&");
 
             // Constructs redirect url.
-            string redirectUrlstring = TokenHelper.GetAppContextTokenRequestUrl(spHostUrl.AbsoluteUri, Uri.EscapeDatastring(returnUrlstring));
+            string redirectUrlstring = TokenHelper.GetAppContextTokenRequestUrl(spHostUrl.AbsoluteUri, Uri.EscapeDataString(returnUrlstring));
 
             redirectUrl = new Uri(redirectUrlstring, UriKind.Absolute);
 
@@ -415,7 +415,7 @@ namespace Core.Data
             }
 
             // SPAppWebUrl
-            string spAppWebUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.Querystring[SharePointContext.SPAppWebUrlKey]);
+            string spAppWebUrlstring = TokenHelper.EnsureTrailingSlash(httpRequest.QueryString[SharePointContext.SPAppWebUrlKey]);
             Uri spAppWebUrl;
             if (!Uri.TryCreate(spAppWebUrlstring, UriKind.Absolute, out spAppWebUrl) ||
                 !(spAppWebUrl.Scheme == Uri.UriSchemeHttp || spAppWebUrl.Scheme == Uri.UriSchemeHttps))
@@ -424,21 +424,21 @@ namespace Core.Data
             }
 
             // SPLanguage
-            string spLanguage = httpRequest.Querystring[SharePointContext.SPLanguageKey];
+            string spLanguage = httpRequest.QueryString[SharePointContext.SPLanguageKey];
             if (string.IsNullOrEmpty(spLanguage))
             {
                 return null;
             }
 
             // SPClientTag
-            string spClientTag = httpRequest.Querystring[SharePointContext.SPClientTagKey];
+            string spClientTag = httpRequest.QueryString[SharePointContext.SPClientTagKey];
             if (string.IsNullOrEmpty(spClientTag))
             {
                 return null;
             }
 
             // SPProductNumber
-            string spProductNumber = httpRequest.Querystring[SharePointContext.SPProductNumberKey];
+            string spProductNumber = httpRequest.QueryString[SharePointContext.SPProductNumberKey];
             if (string.IsNullOrEmpty(spProductNumber))
             {
                 return null;

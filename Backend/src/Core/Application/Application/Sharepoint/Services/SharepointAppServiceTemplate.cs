@@ -4,7 +4,7 @@ using System;
 
 namespace Core.Application.Sharepoint.Services
 {
-    abstract public class SharepointAppServiceTemplate : IDisposable
+    abstract public class SharepointAppServiceTemplate : IDisposable, ISharepointAppService
     {
 
         private bool Disposed = false;

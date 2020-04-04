@@ -1,39 +1,40 @@
 using Core.Data.Models;
 using System;
 using System.IO;
+using System.Web.Hosting;
 
 namespace Core.Application.Helpers
 {
   public static class ArquivosHelper
     {
 
-        public static string getArquivoFileAbsolutePath(this Arquivo Arquivo, string UploadPath)
+        public static string getArquivoFileAbsolutePath(this Arquivo Arquivo)
         {
 
-            return UploadPath + "/" + Arquivo.UsuarioId + "/" + Arquivo.Data_Referencia.Day.ToString("00") + "-" + Arquivo.Data_Referencia.Month.ToString("00") + "-" + Arquivo.Data_Referencia.Year.ToString("0000") + "/" + Arquivo.NomeCompleto;
+            return HostingEnvironment.MapPath("~/App_data/Uploads") + "/" + Arquivo.UsuarioId + "/" + Arquivo.Data_Referencia.Day.ToString("00") + "-" + Arquivo.Data_Referencia.Month.ToString("00") + "-" + Arquivo.Data_Referencia.Year.ToString("0000") + "/" + Arquivo.NomeCompleto;
         }
 
 
-        public static string getArquivoFileAbsolutePathForDownload(this Arquivo Arquivo, string UploadPath)
+        public static string getArquivoFileAbsolutePathForDownload(this Arquivo Arquivo)
         {
 
-            return UploadPath + "\\" + Arquivo.UsuarioId + "\\" + Arquivo.Data_Referencia.Day.ToString("00") + "-" + Arquivo.Data_Referencia.Month.ToString("00") + "-" + Arquivo.Data_Referencia.Year.ToString("0000") + "\\" + Arquivo.NomeCompleto;
+            return HostingEnvironment.MapPath("~/App_data/Uploads") + "\\" + Arquivo.UsuarioId + "\\" + Arquivo.Data_Referencia.Day.ToString("00") + "-" + Arquivo.Data_Referencia.Month.ToString("00") + "-" + Arquivo.Data_Referencia.Year.ToString("0000") + "\\" + Arquivo.NomeCompleto;
         }
 
 
-        public static string getArquivoDirectoryAbsolutepath(this Arquivo Arquivo, string UploadPath)
+        public static string getArquivoDirectoryAbsolutepath(this Arquivo Arquivo)
         {
 
-            return UploadPath + "/" +
+            return HostingEnvironment.MapPath("~/App_data/Uploads") + "/" +
                    +Arquivo.UsuarioId + "/" + Arquivo.Data_Referencia.Day.ToString("00") + "-" + Arquivo.Data_Referencia.Month.ToString("00")
                    + "-" + Arquivo.Data_Referencia.Year.ToString("0000");
 
         }
 
-        public static string createArquivoDirectoryIfNotExists(this Arquivo arquivo, string UploadPath)
+        public static string createArquivoDirectoryIfNotExists(this Arquivo arquivo)
         {
 
-            string UserFilesPath = arquivo.getArquivoDirectoryAbsolutepath(UploadPath); 
+            string UserFilesPath = arquivo.getArquivoDirectoryAbsolutepath(); 
 
             if (!Directory.Exists(UserFilesPath))
             {

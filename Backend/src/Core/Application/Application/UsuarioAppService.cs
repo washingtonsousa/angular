@@ -107,7 +107,7 @@ namespace Core.Application
         {
             Usuario usuarioFromDb = _usuarioRepo.FindByMatriculaOrEmail(usuario.Matricula, usuario.Email);
 
-            if (usuarioFromDb.Exists())
+            if (usuarioFromDb.NotExists())
                 return null;
 
             //Funções de Sharepoint comentadas temporariamente
@@ -118,13 +118,15 @@ namespace Core.Application
             //{
 
             _usuarioRepo.Insert(usuario);
-            _unityOfWork.Commit();
+            bool result  = _unityOfWork.Commit();
 
-            usuarioFromDb = _usuarioRepo.FindUsuarioByEmail(usuario.Email);
 
-            usuarioFromDb.Status.Usuarios = null;
-            usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
-
+            if (result)
+            {
+                usuarioFromDb = _usuarioRepo.FindUsuarioByEmail(usuario.Email);
+                usuarioFromDb.Status.Usuarios = null;
+                usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
+            }
             UsuariosHub.newUsuario(usuarioFromDb);
 
             return usuarioFromDb;
@@ -132,7 +134,7 @@ namespace Core.Application
 
         }
 
-        public IList<Usuario> GetAll()
+        public IList<Usuario> Get()
         {
             return _usuarioRepo.Get();
         }

@@ -33,7 +33,7 @@ namespace HRWeb.Controllers
         public IHttpActionResult Get()
         {
       ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
-      SharepointUsersRepository spUserRepository = new SharepointUsersRepository(clientContext);
+      SharepointUsersService spUserRepository = new SharepointUsersService(clientContext);
       return Ok(spUserRepository.GetSPUsers());
 
         } 

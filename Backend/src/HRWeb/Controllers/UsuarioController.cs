@@ -70,7 +70,7 @@ namespace HRWeb.Controllers
     public  HttpResponseMessage Get()
     {
 
-        var usuarios = _usuarioAppService.GetAll();
+        var usuarios = _usuarioAppService.Get();
         return ResponseWithNotifications(usuarios);
 
     }

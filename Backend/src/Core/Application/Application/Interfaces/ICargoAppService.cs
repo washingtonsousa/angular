@@ -1,12 +1,21 @@
-﻿using System;
+﻿using Core.Data.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Application.Interfaces
 {
-    interface ICargoAppService
+    public interface ICargoAppService
     {
+
+        IList<Cargo> Get();
+
+        Cargo Get(int id);
+
+        Cargo Insert(Cargo cargo);
+
+
+        void Delete(int id);
+
+         Cargo Update(Cargo cargo);
+
     }
 }

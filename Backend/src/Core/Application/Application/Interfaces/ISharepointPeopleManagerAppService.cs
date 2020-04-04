@@ -1,15 +1,11 @@
 ﻿using Microsoft.SharePoint.Client.UserProfiles;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Core.Application.Interfaces
 {
-    public interface ISharepointPeopleManagerAppService
+    public interface ISharepointPeopleManagerAppService : ISharepointAppService
     {
 
+        void Initialize();
 
         PersonProperties GetPersonPropertiesByEmail(string Email);
 

@@ -13,7 +13,7 @@ namespace Core.Hubs
   public class UsuariosHub : Hub
   {
 
-    private static IHubContext hubContext = GlobalHost.ConnectionManager.getHubContext<UsuariosHub>();
+    private static IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<UsuariosHub>();
 
 
     public static void newUsuario(Usuario usuario)

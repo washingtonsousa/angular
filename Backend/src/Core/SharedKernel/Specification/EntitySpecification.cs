@@ -13,7 +13,7 @@ namespace Core.SharedKernel.Specification
 
         public static bool Exists(this Entity entity)
         {
-            return AssertionConcern.IsSatisfiedBy(
+            return !AssertionConcern.IsSatisfiedBy(
 
                 AssertionConcern.AssertNull(entity, "Entidade já existe no sistema e operação não pode ser realizada")
 
@@ -24,7 +24,7 @@ namespace Core.SharedKernel.Specification
 
         public static bool NotExists(this Entity entity)
         {
-            return AssertionConcern.IsSatisfiedBy(
+            return !AssertionConcern.IsSatisfiedBy(
 
                 AssertionConcern.AssertNotNull(entity, "Entidade não existe no sistema ou não foi encontrado e operação não pode ser realizada")
 

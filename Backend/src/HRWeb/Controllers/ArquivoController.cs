@@ -5,10 +5,6 @@ using System.Linq;
 using System.Web;
 using Core.Data.Models;
 using Core.Data.Repositories;
-using HRWeb.Helpers;
-using HRWeb.Strategy.Errors;
-using HRWeb.Factories;
-using HRWeb.Handlers;
 using HRWeb.Controllers.TemplateControllers;
 using System.Net.Http;
 using System.Web.Http;
@@ -18,7 +14,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Globalization;
-using HRWeb.Hubs;
+
 
 
 namespace HRWeb.Controllers
@@ -31,7 +27,7 @@ namespace HRWeb.Controllers
     private UsuarioRepository usuarioRepo;
     private ArquivoRepository ArquivoRepo;
     private ArquivosHelper ArquivosHelper;
-    ;
+    
     private Log_ActionRepository _logActionRepository;
     private ConfigDataHelper configDataHelper;
     public ArquivoController()

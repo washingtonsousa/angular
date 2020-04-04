@@ -71,9 +71,9 @@ namespace Core.Data
                 {
                     return request.Form[paramName];
                 }
-                if (!string.IsNullOrEmpty(request.Querystring[paramName]))
+                if (!string.IsNullOrEmpty(request.QueryString[paramName]))
                 {
-                    return request.Querystring[paramName];
+                    return request.QueryString[paramName];
                 }
             }
             return null;
@@ -127,7 +127,7 @@ namespace Core.Data
             foreach (var audience in acceptableAudiences)
             {
                 string principal = GetFormattedPrincipal(ClientId, audience, realm);
-                if (stringComparer.OrdinalIgnoreCase.Equals(token.Audience, principal))
+                if (StringComparer.OrdinalIgnoreCase.Equals(token.Audience, principal))
                 {
                     validationSuccessful = true;
                     break;
@@ -634,7 +634,7 @@ namespace Core.Data
                 }
 
                 const string bearer = "Bearer realm=\"";
-                int bearerIndex = bearerResponseHeader.IndexOf(bearer, stringComparison.Ordinal);
+                int bearerIndex = bearerResponseHeader.IndexOf(bearer, StringComparison.Ordinal);
                 if (bearerIndex < 0)
                 {
                     return null;
@@ -775,10 +775,10 @@ namespace Core.Data
             handler.Configuration.CertificateValidator = X509CertificateValidator.None;
 
             List<byte[]> securityKeys = new List<byte[]>();
-            securityKeys.Add(Convert.FromBase64string(ClientSecret));
+            securityKeys.Add(Convert.FromBase64String(ClientSecret));
             if (!string.IsNullOrEmpty(SecondaryClientSecret))
             {
-                securityKeys.Add(Convert.FromBase64string(SecondaryClientSecret));
+                securityKeys.Add(Convert.FromBase64String(SecondaryClientSecret));
             }
 
             List<SecurityToken> securityTokens = new List<SecurityToken>();
@@ -862,7 +862,7 @@ namespace Core.Data
                 signingCredentials: SigningCredentials,
                 claims: actorClaims);
 
-            string actorTokenstring = new JsonWebSecurityTokenHandler().WriteTokenAsstring(actorToken);
+            string actorTokenstring = new JsonWebSecurityTokenHandler().WriteTokenAsString(actorToken);
 
             if (appOnly)
             {
@@ -884,7 +884,7 @@ namespace Core.Data
                 DateTime.UtcNow.Add(HighTrustAccessTokenLifetime),
                 outerClaims);
 
-            string accessToken = new JsonWebSecurityTokenHandler().WriteTokenAsstring(jsonToken);
+            string accessToken = new JsonWebSecurityTokenHandler().WriteTokenAsString(jsonToken);
 
             #endregion Outer token
 
@@ -940,7 +940,7 @@ namespace Core.Data
 
                     acsMetadata = webClient.DownloadData(acsMetadataEndpointUrlWithRealm);
                 }
-                string jsonResponsestring = Encoding.UTF8.Getstring(acsMetadata);
+                string jsonResponsestring = Encoding.UTF8.GetString(acsMetadata);
 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 JsonMetadataDocument document = serializer.Deserialize<JsonMetadataDocument>(jsonResponsestring);
@@ -1073,7 +1073,7 @@ namespace Core.Data
                 }
 
                 ClientContext ctx = new ClientContext("http://tempuri.org");
-                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonstring(appctx);
+                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonString(appctx);
                 string cacheKey = (string)dict["CacheKey"];
 
                 return cacheKey;
@@ -1094,7 +1094,7 @@ namespace Core.Data
                 }
 
                 ClientContext ctx = new ClientContext("http://tempuri.org");
-                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonstring(appctx);
+                Dictionary<string, object> dict = (Dictionary<string, object>)ctx.ParseObjectFromJsonString(appctx);
                 string securityTokenServiceUri = (string)dict["SecurityTokenServiceUri"];
 
                 return securityTokenServiceUri;
@@ -1129,7 +1129,7 @@ namespace Core.Data
 
             foreach (JsonWebTokenClaim claim in token.Claims)
             {
-                if (stringComparer.Ordinal.Equals(claim.ClaimType, claimType))
+                if (StringComparer.Ordinal.Equals(claim.ClaimType, claimType))
                 {
                     return claim.Value;
                 }

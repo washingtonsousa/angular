@@ -37,7 +37,7 @@ namespace HRWeb.Controllers
     {
 
       ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
-      SharepointUsersRepository spUserRepository = new SharepointUsersRepository(clientContext);
+      SharepointUsersService spUserRepository = new SharepointUsersService(clientContext);
 
       return Ok(new { Total_Cadastrado = usuarioRepo.Get().Count,
         Ativos = usuarioRepo.Get().Where(u => u.Status.Nome == "ativo").ToList().Count,

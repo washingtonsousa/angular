@@ -36,7 +36,7 @@ namespace Core.Data.Repositories
         public IList<Arquivo> GetByUsuarioId(int UsuarioId)
         {
 
-            return this.Context.Arquivos.Where(e => e.UsuarioId == UsuarioId).ToList();
+            return Context.Arquivos.Include(a => a.Usuario).Where(e => e.UsuarioId == UsuarioId).OrderBy(a => a.Criado_em).ToList();
 
         }
 
@@ -48,6 +48,8 @@ namespace Core.Data.Repositories
             return this.Context.Arquivos.Include(a => a.Usuario).OrderByDescending(a=> a.Criado_em).ToList();
 
         }
+
+
 
         public async Task<IList<Arquivo>> GetAsync()
         {

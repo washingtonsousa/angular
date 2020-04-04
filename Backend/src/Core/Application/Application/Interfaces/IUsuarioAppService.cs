@@ -9,7 +9,7 @@ namespace Core.Application.Interfaces
 {
     public interface IUsuarioAppService
     {
-        IList<Usuario> GetAll();
+        IList<Usuario> Get();
         void Delete(int id);
         int GetUsuarioLoggedInId();
          Usuario GetUsuarioLoggedIn();

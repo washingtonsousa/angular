@@ -23,7 +23,7 @@ namespace Core.Data.Repositories
 
 
 
-            IList<Cargo> cargos = this.Context.Cargos.Include(c => c.Departamento).ThenInclude(e => e.Area).ToList();
+            IList<Cargo> cargos = this.Context.Cargos.Include(c => c.Departamento).ThenInclude(e => e.Area).OrderBy(c => c.Nome).ToList();
 
             /*
           *
@@ -67,8 +67,7 @@ namespace Core.Data.Repositories
 
         public Cargo Find(int id)
         {
-
-            return this.Context.Cargos.Where(c => c.Id == id).FirstOrDefault();
+            return Context.Cargos.Include(u => u.Usuarios).Where(c => c.Id == id).FirstOrDefault();
         }
 
         public int getTotalNumberCountRegisters()

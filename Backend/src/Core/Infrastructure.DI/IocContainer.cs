@@ -1,6 +1,7 @@
 ﻿using Application;
 using Core.Application;
 using Core.Application.Interfaces;
+using Core.Application.Operations;
 using Core.Application.Sharepoint.Services;
 using Core.Data.Interfaces;
 using Core.Data.ORM;
@@ -32,7 +33,6 @@ namespace Infrastructure.DI
             kernel.Bind<IConhecimentoRepository>().To<ConhecimentoRepository>();
             kernel.Bind<ILog_ActionRepository>().To<Log_ActionRepository>();
             kernel.Bind<IExpProfissionalRepository>().To<ExpProfissionalRepository>();
-            kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
 
         }
 
@@ -44,6 +44,9 @@ namespace Infrastructure.DI
             kernel.Bind<IAuthAppService>().To<AuthAppService>();
             kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
             kernel.Bind<IAreaAppService>().To<AreaAppService>();
+            kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
+            kernel.Bind<ICargoAppService>().To<CargoAppService>();
+
         }
 
 

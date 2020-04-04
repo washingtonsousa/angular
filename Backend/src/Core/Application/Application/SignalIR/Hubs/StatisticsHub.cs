@@ -13,7 +13,7 @@ namespace Core.Hubs
   public class StatisticsHub : Hub
   {
 
-    private static IHubContext hubContext = GlobalHost.ConnectionManager.getHubContext<StatisticsHub>();
+    private static IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<StatisticsHub>();
 
 
     public static void updateLog_Action(Log_Action log_action)
