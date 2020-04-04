@@ -13,5 +13,7 @@ namespace Core.Data.Interfaces
         Usuario FindUsuarioByEmail(string Email);
 
         Usuario FindUsuarioByMatricula(string Matricula);
+
+        Usuario FindByMatriculaOrEmail(string matricula, string email);
     }
 }

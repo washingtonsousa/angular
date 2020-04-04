@@ -1,33 +1,23 @@
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Data.Models;
-using Core.Data.Repositories;
-using Microsoft.SharePoint.Client;
-using System.Threading.Tasks;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Net.Http;
-using Microsoft.SharePoint.Client.UserProfiles;
-using HRWeb.Hubs;
 using System.Web.Http.Description;
-using Core.Data;
 using Core.Application.Helpers;
 using Core.Application.Strategy.Errors;
 using Core.Application.Interfaces;
-using Core.Application.Sharepoint.Services;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
 
 namespace HRWeb.Controllers
 {
 
-  public class UsuarioController : BasicApiAppControllerWithHub<UsuariosHub>
+  public class UsuarioController : BasicApiAppController
   {
-    private UsuarioRepository usuarioRepo;
-    private SharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
+    IUsuarioAppService _usuarioAppService;
 
-    private IUsuarioAppService _usuarioAppService;
-
-    public UsuarioController(IUsuarioAppService usuarioAppService)
+    public UsuarioController(IUsuarioAppService usuarioAppService, IDomainNotificationHandler<DomainNotification> domainNotification) : base(domainNotification)
     {
       _usuarioAppService = usuarioAppService;
     }
@@ -42,11 +32,11 @@ namespace HRWeb.Controllers
     [Authorize(Roles = "Administrador, Funcionario")]
     [ResponseType(typeof(Usuario))]
     [HttpGet]
-    public IHttpActionResult Get(int id)
+    public HttpResponseMessage Get(int id)
     {
 
       Usuario usuario =  _usuarioAppService.GetUsuarioById(id);
-      return GetResponseWithNotifications(usuario);
+      return ResponseWithNotifications(usuario);
 
     }
 
@@ -60,51 +50,9 @@ namespace HRWeb.Controllers
     [HttpPost]
     public HttpResponseMessage Post([FromBody]Usuario Usuario)
     {
-      IList<Usuario> Usuarios = usuarioRepo.Get();
 
-      if (Usuarios.Where(u => u.Email == Usuario.Email).FirstOrDefault() == null
-          && Usuarios.Where(u => u.Email != Usuario.Email && u.Matricula == Usuario.Matricula).FirstOrDefault() == null
-          )
-      {
-        ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, spAuthHelper.GetSPAppToken());
-        _sharepointPeopleManagerAppService = new SharepointPeopleManagerAppService(clientContext);
-
-        var peopleManager = new PeopleManager(clientContext);
-
-        _sharepointPeopleManagerAppService.GetPersonPropertiesByEmail(Usuario.Email);
-        bool result = _sharepointPeopleManagerAppService.ExecuteRequest();
-
-        if (SPPeopleManager.execQuery() == true)
-        {
-
-          usuarioRepo.Insert(Usuario);
-          usuarioRepo.Save();
-
-          Usuario usuarioFromDb = usuarioRepo.FindUsuarioByEmail(Usuario.Email);
-
-
-
-          usuarioFromDb.Status.Usuarios = null;
-          usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
-
-
-
-          UsuariosHub.newUsuario(usuarioFromDb);
-
-
-          return Request.CreateResponse(System.Net.HttpStatusCode.OK, usuarioFromDb);
-        }
-
-        else
-        {
-
-          return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new SPUserNotFoundError()));
-
-        }
-
-      }
-
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
+      var usuario = _usuarioAppService.InsertUsuario(Usuario);
+      return ResponseWithNotifications(usuario);
 
     }
 
@@ -119,15 +67,11 @@ namespace HRWeb.Controllers
     [Authorize(Roles = "Administrador")]
     [HttpGet]
     [ResponseType(typeof(IList<Usuario>))]
-    public async Task<IHttpActionResult> Get()
+    public  HttpResponseMessage Get()
     {
 
-
-        var usuarios = await usuarioRepo.GetAsync();
-
-        return Ok(usuarios);
-
-      
+        var usuarios = _usuarioAppService.GetAll();
+        return ResponseWithNotifications(usuarios);
 
     }
 
@@ -140,46 +84,11 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Usuario))]
     [Authorize(Roles = "Administrador")]
     [HttpPut]
-    public IHttpActionResult Put([FromBody]Usuario Usuario)
+    public HttpResponseMessage Put([FromBody]Usuario Usuario)
     {
-      IList<Usuario> Usuarios = usuarioRepo.Get();
 
-      if (Usuarios.FirstOrDefault(u => u.Email == Usuario.Email) != null
-          && Usuarios.FirstOrDefault(u => u.Email != Usuario.Email && u.Matricula == Usuario.Matricula) == null)
-      {
-
-        Usuario usuarioFromDb = usuarioRepo.Find(Usuario.Id);
-
-        if (usuarioFromDb != null)
-        {
-
-          usuarioFromDb.CargoId = Usuario.CargoId;
-          usuarioFromDb.NivelAcessoId = Usuario.NivelAcessoId;
-          usuarioFromDb.Nome = Usuario.Nome;
-          usuarioFromDb.StatusId = Usuario.StatusId;
-          usuarioFromDb.Email = Usuario.Email;
-          usuarioFromDb.Matricula = Usuario.Matricula;
-          usuarioFromDb.DataAdmissao = Usuario.DataAdmissao;
-          usuarioFromDb.DataNasc = Usuario.DataNasc;
-          usuarioFromDb.EstadoCivil = Usuario.EstadoCivil;
-          usuarioFromDb.Ramal = Usuario.Ramal;
-          usuarioFromDb.Sexo = Usuario.Sexo;
-          usuarioRepo.Save();
-
-
-          UsuariosHub.updateUsuario(usuarioFromDb);
-
-
-          usuarioFromDb.Status.Usuarios = null;
-          usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
-
-
-          return Ok(usuarioFromDb);
-
-        }
-      }
-
-      return BadRequest(new ErrorHelper().getError(new ModelStateGenericError()).ToString());
+      Usuario usuarioFromDb = _usuarioAppService.Atualizar(Usuario);
+      return ResponseWithNotifications(usuarioFromDb);
 
     }
 
@@ -195,21 +104,8 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Usuario))]
     public HttpResponseMessage PutSecure([FromBody]Usuario Usuario)
     {
-      Usuario _usuario = usuarioRepo.Find(Usuario.Id);
-
-      if (_usuario != null)
-      {
-
-
-        _usuario.Email_Secundario_Notificacao = Usuario.Email_Secundario_Notificacao;
-        usuarioRepo.Save();
-
-        return Request.CreateResponse(System.Net.HttpStatusCode.OK, "Dado atualizado com sucesso");
-
-      }
-
-
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new ModelStateGenericError()));
+      Usuario _usuario = _usuarioAppService.AtualizarParcial(Usuario);
+      return ResponseWithNotifications(_usuario);
     }
 
 
@@ -223,34 +119,7 @@ namespace HRWeb.Controllers
     [HttpDelete]
     public HttpResponseMessage Delete(int id)
     {
-      Usuario usuario = usuarioRepo.Find(id);
-
-
-      if (usuario != null)
-      {
-        try
-        {
-
-
-          usuarioRepo.Delete(usuario);
-          usuarioRepo.Save();
-
-
-          UsuariosHub.deleteUsuario(usuario);
-          return Request.CreateResponse(System.Net.HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
-
-
-        }
-        catch (DbUpdateException e)
-        {
-
-          Error error = new ErrorHelper().getError(new DatabaseEntityError());
-          error.detailedMessage = e.InnerException.Message;
-          return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, error);
-
-        }
-      }
-
+       _usuarioAppService.Delete(id);
       return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new UserNotFoundError()).message);
 
     }
@@ -264,13 +133,10 @@ namespace HRWeb.Controllers
     [HttpGet]
     [ResponseType(typeof(Usuario))]
     [Route("api/Usuario/GetByMatricula/{matricula}")]
-    public IHttpActionResult GetByMatricula([FromUri]string matricula)
+    public HttpResponseMessage GetByMatricula([FromUri]string matricula)
     {
-      Usuario usuario = usuarioRepo.FindUsuarioByMatricula(matricula);
-
-      return Ok(usuario);
-
-
+      Usuario usuario = _usuarioAppService.GetByMatricula(matricula);
+      return ResponseWithNotifications(usuario);
     }
 
 

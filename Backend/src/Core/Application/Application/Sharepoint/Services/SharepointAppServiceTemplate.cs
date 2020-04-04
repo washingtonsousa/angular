@@ -22,7 +22,7 @@ namespace Core.Application.Sharepoint.Services
             ClientContext = clientContext;
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             ClientContext = _sharepointAuthAppService.GetAppOnlyClientContextByToken();
         }

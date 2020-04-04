@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class Arquivo : LogableModelTemplate
+  public class Arquivo : Entity
     {
 
 

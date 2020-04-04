@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class CertCurso : LogableModelTemplate
+  public class CertCurso : Entity
     {
         public CertCurso() : base() { }
         [Key]

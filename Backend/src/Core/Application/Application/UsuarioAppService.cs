@@ -1,29 +1,103 @@
-﻿using Core.Application.Interfaces;
+﻿using Core.Application.Abstractions;
+using Core.Application.Interfaces;
 using Core.Data.Interfaces;
 using Core.Data.Models;
+using Core.Hubs;
+using Core.SharedKernel.Specification;
 using Microsoft.Owin;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Core.Application
 {
-    public class UsuarioAppService : IUsuarioAppService
+    public class UsuarioAppService : AppServiceWithHub<UsuariosHub>, IUsuarioAppService
     {
         private IUsuarioRepository _usuarioRepo;
-
-        public UsuarioAppService( IUsuarioRepository usuarioRepo) {
+        private ISharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
+        public UsuarioAppService(IUsuarioRepository usuarioRepo, IUnityOfWork unityOfWork, ISharepointPeopleManagerAppService sharepointPeopleManagerAppService) : base(unityOfWork)
+        {
             _usuarioRepo = usuarioRepo;
+            _sharepointPeopleManagerAppService = sharepointPeopleManagerAppService;
         }
 
         public Usuario GetUsuarioLoggedIn()
         {
 
-           var usuario = GetUsuarioById(GetUsuarioLoggedInId());
+            var usuario = GetUsuarioById(GetUsuarioLoggedInId());
+            return usuario;
+
+        }
+
+        public Usuario Atualizar(Usuario usuario)
+        {
+            Usuario usuarioFromDb = _usuarioRepo.FindByMatriculaOrEmail(usuario.Matricula, usuario.Email);
+
+            if (usuarioFromDb.NotExists())
+                return null;
+
+            usuarioFromDb.CargoId = usuario.CargoId;
+            usuarioFromDb.NivelAcessoId = usuario.NivelAcessoId;
+            usuarioFromDb.Nome = usuario.Nome;
+            usuarioFromDb.StatusId = usuario.StatusId;
+            usuarioFromDb.Email = usuario.Email;
+            usuarioFromDb.Matricula = usuario.Matricula;
+            usuarioFromDb.DataAdmissao = usuario.DataAdmissao;
+            usuarioFromDb.DataNasc = usuario.DataNasc;
+            usuarioFromDb.EstadoCivil = usuario.EstadoCivil;
+            usuarioFromDb.Ramal = usuario.Ramal;
+            usuarioFromDb.Sexo = usuario.Sexo;
+
+            bool result = _unityOfWork.Commit();
+
+            if (result)
+            {
+                UsuariosHub.updateUsuario(usuarioFromDb);
+                usuarioFromDb.Status.Usuarios = null;
+                usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
+            }
+
+            return usuarioFromDb;
+
+        }
+
+        public Usuario AtualizarParcial(Usuario usuario)
+        {
+            Usuario usuarioFromDb = GetUsuarioById(usuario.Id);
+
+            if (usuarioFromDb.NotExists())
+                return null;
+
+
+            usuarioFromDb.Email_Secundario_Notificacao = usuario.Email_Secundario_Notificacao;
+            _unityOfWork.Commit();
+
+            return usuario;
+
+        }
+
+        public void Delete(int id)
+        {
+            Usuario usuario = _usuarioRepo.Find(id);
+
+            if (usuario.NotExists())
+                return;
+
+            _usuarioRepo.Delete(usuario);
+            bool result = _unityOfWork.Commit();
+
+            if (result)
+                UsuariosHub.deleteUsuario(usuario);
+        }
+
+        public Usuario GetByMatricula(string matricula)
+        {
+
+            Usuario usuario = _usuarioRepo.FindUsuarioByMatricula(matricula);
+
+            ///Validação sem if apenas para gerar notificação se necessário
+            usuario.NotExists();
 
             return usuario;
 
@@ -31,51 +105,36 @@ namespace Core.Application
 
         public Usuario InsertUsuario(Usuario usuario)
         {
-            IList<Usuario> Usuarios = _usuarioRepo.Get();
+            Usuario usuarioFromDb = _usuarioRepo.FindByMatriculaOrEmail(usuario.Matricula, usuario.Email);
 
-            if (Usuarios.Where(u => u.Email == usuario.Email).FirstOrDefault() == null
-                && Usuarios.Where(u => u.Email != usuario.Email && u.Matricula == usuario.Matricula).FirstOrDefault() == null
-                )
-            {
-                ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, spAuthHelper.GetSPAppToken());
-                _sharepointPeopleManagerAppService = new SharepointPeopleManagerAppService(clientContext);
+            if (usuarioFromDb.Exists())
+                return null;
 
-                var peopleManager = new PeopleManager(clientContext);
+            //Funções de Sharepoint comentadas temporariamente
+            //_sharepointPeopleManagerAppService.GetPersonPropertiesByEmail(usuario.Email);
+            //bool result = _sharepointPeopleManagerAppService.ExecuteRequest();
 
-                _sharepointPeopleManagerAppService.GetPersonPropertiesByEmail(Usuario.Email);
-                bool result = _sharepointPeopleManagerAppService.ExecuteRequest();
+            //if (result)
+            //{
 
-                if (SPPeopleManager.execQuery() == true)
-                {
+            _usuarioRepo.Insert(usuario);
+            _unityOfWork.Commit();
 
-                    usuarioRepo.Insert(Usuario);
-                    usuarioRepo.Save();
+            usuarioFromDb = _usuarioRepo.FindUsuarioByEmail(usuario.Email);
 
-                    Usuario usuarioFromDb = usuarioRepo.FindUsuarioByEmail(Usuario.Email);
+            usuarioFromDb.Status.Usuarios = null;
+            usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
 
+            UsuariosHub.newUsuario(usuarioFromDb);
 
+            return usuarioFromDb;
+            //}
 
-                    usuarioFromDb.Status.Usuarios = null;
-                    usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
+        }
 
-
-
-                    UsuariosHub.newUsuario(usuarioFromDb);
-
-
-                    return Request.CreateResponse(System.Net.HttpStatusCode.OK, usuarioFromDb);
-                }
-
-                else
-                {
-
-                    return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new SPUserNotFoundError()));
-
-                }
-
-            }
-
-            return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
+        public IList<Usuario> GetAll()
+        {
+            return _usuarioRepo.Get();
         }
 
         public Usuario GetUsuarioById(int Id) => _usuarioRepo.Find(Id);
@@ -85,13 +144,12 @@ namespace Core.Application
             OwinContext context = (OwinContext)HttpContext.Current.GetOwinContext();
             ClaimsPrincipal user = context.Authentication.User;
 
-            if(user.Identity.IsAuthenticated)
-            return int.Parse(user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value);
+            if (user.Identity.IsAuthenticated)
+                return int.Parse(user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value);
 
 
             return 0;
         }
-
 
     }
 }

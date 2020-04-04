@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class FormAcademica : LogableModelTemplate
+  public class FormAcademica : Entity
     {
 
         public FormAcademica() : base() { }

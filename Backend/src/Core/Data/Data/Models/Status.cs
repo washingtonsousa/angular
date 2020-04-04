@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-    public class Status : LogableModelTemplate
+    public class Status : Entity
     {
 
         public Status() : base () { }

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-    public class Departamento : LogableModelTemplate
+    public class Departamento : Entity
     {
 
         public Departamento() : base() {}

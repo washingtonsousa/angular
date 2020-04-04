@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-    public class NivelAcesso : LogableModelTemplate
+    public class NivelAcesso : Entity
     {
 
         public NivelAcesso() : base() { }

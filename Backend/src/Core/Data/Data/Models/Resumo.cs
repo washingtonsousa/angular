@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class Resumo : LogableModelTemplate
+  public class Resumo : Entity
     {
 
         public Resumo() : base() { }

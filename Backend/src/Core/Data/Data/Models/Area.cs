@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-  public class Area : LogableModelTemplate
+  public class Area : Entity
     {
 
         public Area() : base() {

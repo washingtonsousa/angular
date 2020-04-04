@@ -90,6 +90,13 @@ namespace Core.Data.Repositories
 
         }
 
+
+        public Usuario FindByMatriculaOrEmail(string matricula, string email)
+        {
+            return Context.Usuarios.FirstOrDefault(u => u.Matricula == matricula || u.Email == email);
+        }
+
+
         public async Task<IList<Usuario>> GetAsync() => await Context.Usuarios.BuildFullJoin().ToListAsync();
 
         public Usuario FindUsuarioByMatricula(string matricula)

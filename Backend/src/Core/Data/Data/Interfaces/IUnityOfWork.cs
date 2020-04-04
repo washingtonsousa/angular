@@ -8,7 +8,7 @@ namespace Core.Data.Interfaces
 {
     public interface IUnityOfWork
     {
-        Task CommitAsync();
-         void Commit();
+        Task<bool> CommitAsync();
+        bool Commit();
     }
 }

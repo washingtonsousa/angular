@@ -10,25 +10,33 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using Core.Application.ViewModel;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using System.Net;
 
 namespace HRWeb.Controllers.TemplateControllers
 {
   public class BasicApiAppController : ApiController 
   {
 
- 
-    public BasicApiAppController(){}
+    public IDomainNotificationHandler<DomainNotification> _domainNotification { get; }
 
+    public BasicApiAppController(IDomainNotificationHandler<DomainNotification> domainNotification){
 
-    public IHttpActionResult GetResponseWithNotifications(object data)
-    {
-
-      var response = new ResponseViewModel(data);
-
-      return Ok(response);
+      _domainNotification = domainNotification;
 
     }
+
+    public HttpResponseMessage ResponseWithNotifications(object data = null)
+    {
+
+      if (_domainNotification.HasNotifications())
+        return Request.CreateResponse(HttpStatusCode.BadRequest, _domainNotification.Notify());
+
+      return Request.CreateResponse(HttpStatusCode.OK, data);
+
+    }
+    
 
   }
 }

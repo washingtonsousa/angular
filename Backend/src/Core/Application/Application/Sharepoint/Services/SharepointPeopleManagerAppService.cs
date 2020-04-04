@@ -1,11 +1,12 @@
 using Core.Application.Helpers;
+using Core.Application.Interfaces;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.UserProfiles;
 using System;
 
 namespace Core.Application.Sharepoint.Services
 {
-    public class SharepointPeopleManagerAppService : SharepointAppServiceTemplate
+    public class SharepointPeopleManagerAppService : SharepointAppServiceTemplate, ISharepointPeopleManagerAppService
     {
 
         public PeopleManager PeopleManager { get; private set; }
@@ -13,10 +14,14 @@ namespace Core.Application.Sharepoint.Services
 
         public SharepointPeopleManagerAppService(ClientContext clientContext) : base(clientContext)
         {
-            Init();
         }
 
-        private void Init() => PeopleManager = new PeopleManager(ClientContext);
+        public override void Initialize()
+        {
+            base.Initialize();
+            PeopleManager = new PeopleManager(ClientContext);
+
+        }
 
         
         public PersonProperties GetPersonPropertiesByEmail(string Email)

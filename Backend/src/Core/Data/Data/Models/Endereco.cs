@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-  public class Endereco : LogableModelTemplate
+  public class Endereco : Entity
     {
         public Endereco() : base() { }
         [Key]

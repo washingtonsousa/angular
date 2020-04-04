@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Core.Data.Models
 {
-  public class CategoriaConhecimento : LogableModelTemplate
+  public class CategoriaConhecimento : Entity
   {
 
     [Key]

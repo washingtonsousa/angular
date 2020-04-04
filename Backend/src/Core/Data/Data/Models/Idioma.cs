@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class Idioma : LogableModelTemplate
+  public class Idioma : Entity
     {
 
         public Idioma() : base() { }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class ExpProfissional : LogableModelTemplate
+  public class ExpProfissional : Entity
     {
 
         public ExpProfissional() : base() { }

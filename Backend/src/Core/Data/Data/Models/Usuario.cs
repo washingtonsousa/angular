@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class Usuario : LogableModelTemplate
+  public class Usuario : Entity
     {
 
         public Usuario() : base() { }

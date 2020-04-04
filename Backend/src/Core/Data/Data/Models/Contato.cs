@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-  public class Contato : LogableModelTemplate
+  public class Contato : Entity
     {
 
         public Contato() : base() { }

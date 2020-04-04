@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Data.Models
 {
-    public class Cargo : LogableModelTemplate
+    public class Cargo : Entity
     {
 
         public Cargo() : base() { }

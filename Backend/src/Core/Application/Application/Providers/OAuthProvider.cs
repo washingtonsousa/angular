@@ -1,15 +1,13 @@
 using Microsoft.Owin.Security.OAuth;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Owin.Security;
-using Microsoft.SharePoint.Client;
 using System.Configuration;
-using System.Linq;
 using Core.Data.Models;
-using System.Security;
+using Core.Shared.Kernel.Events;
+using Application;
+using Core.Application.Aggregates;
 
-namespace Core.Application.Providers
+namespace Core.App.Providers
 {
   public class OAuthProvider : OAuthAuthorizationServerProvider
     {
@@ -38,66 +36,20 @@ namespace Core.Application.Providers
 
             return  Task.Factory.StartNew(() =>
             {
+                var _service = (AuthAppService) DomainEvent.Container.GetService(typeof(AuthAppService));
 
                 string userName = context.UserName;
                 string password  = context.Password;
 
-              this.usuario =  new HrDbContext().Usuarios.Include(u => u.Status).Include(u => u.NivelAcesso)
-              .FirstOrDefault(u => u.Email == userName && u.Status.Codigo == 1);
+                UsuarioAuthenticationTicketAggregate aggr = _service.Authenticate(userName, password);
 
-        
-
-              if (this.usuario != null
-              && this.usuario.Status.Codigo == 1
-              && password != null
-              && new BasicAuthHelper().ValidateUserByLdapCredentials(userName, password) == true)
-              {
-                if (usuario.NivelAcesso.Nivel == "Administrador")
+                if (!aggr.Valid)
                 {
-                  this.AccessLevelClaim = new Claim(ClaimTypes.Role, "Administrador");
-                } else
-                {
-                  this.AccessLevelClaim = new Claim(ClaimTypes.Role, "Funcionario");
-                }
-
-                List<Claim> claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name , userName, "Email"),
-                    this.AccessLevelClaim,
-                    new Claim(ClaimTypes.Name , this.usuario.Id.ToString(), "Id")
-
-                };
-
-                ClaimsIdentity OAuthIdentity = new ClaimsIdentity(claims, Startup.OAuthOptions.AuthenticationType);
-                OAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-
-                var ticket = new AuthenticationTicket(OAuthIdentity, new AuthenticationProperties() { });
-
-                context.Validated(ticket);
-
-              } else if (userName == ConfigurationManager.AppSettings["InstallEmailAccount"]
-              && password == ConfigurationManager.AppSettings["InstallPassword"]) {
-
-                this.AccessLevelClaim = new Claim(ClaimTypes.Role, "Instalador");
-
-                List<Claim> claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name , userName, "Email"),
-                    this.AccessLevelClaim,
-                    new Claim(ClaimTypes.Name , 1.ToString(), "Id")
-                };
-
-                ClaimsIdentity OAuthIdentity = new ClaimsIdentity(claims, Startup.OAuthOptions.AuthenticationType);
-                OAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-
-                var ticket = new AuthenticationTicket(OAuthIdentity, new AuthenticationProperties() { });
-            
-                context.Validated(ticket);
-
-              } else {
-
                     context.SetError("Erro", "Não autorizado!");
+                    return;
                 }
+
+                context.Validated(aggr.Ticket);
 
 
             }); // Fim método anônimo da Task
@@ -111,8 +63,8 @@ namespace Core.Application.Providers
       string clientId;
       string clientSecret;
 
-      if (context.TrygetFormCredentials(out clientId, out clientSecret) ||
-               context.TrygetBasicCredentials(out clientId, out clientSecret)) {
+      if (context.TryGetFormCredentials(out clientId, out clientSecret) ||
+               context.TryGetBasicCredentials(out clientId, out clientSecret)) {
 
          string clientIdFromConfig = ConfigurationManager.AppSettings["ClientId"];
          string clientSecretFromConfig = ConfigurationManager.AppSettings["ClientSecret"];

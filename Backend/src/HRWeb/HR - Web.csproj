@@ -582,7 +582,6 @@
     <Compile Include="Controllers\PesquisaController.cs" />
     <Compile Include="Controllers\RelatoriosController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="Controllers\TemplateControllers\BasicApiAppControllerWithHub.cs" />
     <Compile Include="Controllers\TemplateControllers\BasicApiAppController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\CertCursoController.cs" />

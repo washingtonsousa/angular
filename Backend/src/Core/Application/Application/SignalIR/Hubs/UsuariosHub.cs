@@ -6,7 +6,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Core.Data.Models;
 
-namespace HRWeb.Hubs
+namespace Core.Hubs
 {
 
   [HubName("UsuariosHub")]

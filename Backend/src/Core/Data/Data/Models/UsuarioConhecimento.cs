@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-  public class UsuarioConhecimento : LogableModelTemplate
+  public class UsuarioConhecimento : Entity
     {
 
         public UsuarioConhecimento() : base() { }

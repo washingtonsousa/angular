@@ -26,7 +26,7 @@ namespace Core.Shared.Kernel.Events
     {
       notificationsNotNull.ToList().ForEach(validation =>
       {
-        DomainEvent.DomainNotify(validation);
+        DomainEvent.Notify(validation);
       });
     }
 
@@ -69,7 +69,14 @@ namespace Core.Shared.Kernel.Events
           : null;
     }
 
-    public static DomainNotification AssertTrue(bool boolValue, string message, string key = "AssertArgumentTrue", RankNotification rank = RankNotification.Low)
+        public static DomainNotification AssertNull(object object1, string message, string key = "AssertArgumentNull", RankNotification rank = RankNotification.Low)
+        {
+            return (object1 != null)
+                ? new DomainNotification(key, message, rank)
+                : null;
+        }
+
+        public static DomainNotification AssertTrue(bool boolValue, string message, string key = "AssertArgumentTrue", RankNotification rank = RankNotification.Low)
     {
       return (!boolValue)
           ? new DomainNotification(key, message, rank)

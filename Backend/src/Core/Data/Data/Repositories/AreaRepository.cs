@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Core.Data.ORM;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
@@ -23,7 +24,7 @@ namespace Core.Data.Repositories
 
         public Area Find(int Id)
         {
-            return this.Context.Areas.Where(e => e.Id == Id).FirstOrDefault();
+            return this.Context.Areas.Where(e => e.Id == Id).Include(u => u.Departamentos).FirstOrDefault();
 
         }
 

@@ -1,14 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
 using Core.Data.Models;
-using Core.Data.Repositories;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
-using System.Net.Http;
-using System.Net;
 using System.Web.Http.Description;
-using Core.Application.Helpers;
-using Core.Application.Strategy.Errors;
+using Core.Application.Interfaces;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using System.Net.Http;
 
 namespace HRWeb.Controllers
 {
@@ -16,18 +14,13 @@ namespace HRWeb.Controllers
   public class AreaController : BasicApiAppController
   {
 
-    private AreaRepository areaRepo;
-    private UsuarioRepository usuarioRepo;
-    private DepartamentoRepository depRepo;
-        ;
+    public IAreaAppService _areaAppService { get; }
 
-        public AreaController()
+    public AreaController(IAreaAppService areaAppService, IDomainNotificationHandler<DomainNotification> domainNotification) : base(domainNotification)
     {
 
 
-      usuarioRepo = new UsuarioRepository();
-      areaRepo = new AreaRepository();
-      depRepo = new DepartamentoRepository();
+      _areaAppService = areaAppService;
 
 
     }
@@ -39,11 +32,11 @@ namespace HRWeb.Controllers
     [HttpGet]
     [HttpOptions]
     [ResponseType(typeof(IList<Area>))]
-    public IHttpActionResult Get()
+    public HttpResponseMessage Get()
     {
 
-      IList<Area> Areas = areaRepo.Get().OrderBy(a => a.Nome).ToList();
-      return Ok(Areas);
+      IList<Area> Areas = _areaAppService.Get();
+      return ResponseWithNotifications(Areas);
 
     }
 
@@ -56,17 +49,11 @@ namespace HRWeb.Controllers
     [HttpGet]
     [HttpOptions]
     [ResponseType(typeof(Area))]
-    public IHttpActionResult Get(int Id)
+    public HttpResponseMessage Get(int Id)
     {
 
-      Area Area = areaRepo.Get().Where(a => a.Id == Id).FirstOrDefault();
-
-      if (Area == null)
-      {
-        return NotFound();
-      }
-
-      return Ok(Area);
+      Area Area = _areaAppService.Get(Id);
+      return ResponseWithNotifications(Area);
 
     }
 
@@ -81,20 +68,8 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Area))]
     public HttpResponseMessage Post([FromBody]Area Area)
     {
-      Area areafromDb = areaRepo.Get().Where(a => a.Nome == Area.Nome).FirstOrDefault();
-
-      if (areafromDb == null)
-      {
-
-        areaRepo.Insert(Area);
-        areaRepo.Save();
-
-
-        return Request.CreateResponse(HttpStatusCode.OK, Area);
-
-      }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
+      _areaAppService.Insert(Area);
+      return ResponseWithNotifications(Area);
 
     }
 
@@ -108,27 +83,9 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(object))]
     public HttpResponseMessage Delete(int Id)
     {
-      Area Area = areaRepo.Find(Id);
 
-      if (Area != null)
-      {
-
-        if (depRepo.GetDepartamentos().Where(d => d.AreaId == Area.Id).FirstOrDefault() != null)
-
-        {
-          return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-        }
-
-        areaRepo.Delete(Area);
-        areaRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, new { });
-
-      }
-
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
+      _areaAppService.Delete(Id);
+      return ResponseWithNotifications();
     }
 
 
@@ -143,26 +100,9 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Area))]
     public HttpResponseMessage Put([FromBody]Area Area)
     {
-      Area AreaFromDb = areaRepo.Find(Area.Id);
 
-
-      if (areaRepo.Get().Where(a => a.Nome == Area.Nome && a.Id != Area.Id).FirstOrDefault() != null)
-      {
-        Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-      }
-
-      if (AreaFromDb != null)
-      {
-
-        AreaFromDb.Nome = Area.Nome;
-        AreaFromDb.imgStr = Area.imgStr;
-        areaRepo.Update(AreaFromDb);
-        areaRepo.Save();
-        return Request.CreateResponse(HttpStatusCode.OK, AreaFromDb);
-
-      }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+      _areaAppService.Update(Area);
+      return ResponseWithNotifications(Area); ;
 
     }
   }

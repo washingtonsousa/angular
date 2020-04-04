@@ -18,20 +18,20 @@ namespace Infrastructure.DI
 
             kernel.Bind<HrDbContext>().To<HrDbContext>().InRequestScope();
             kernel.Bind<IUnityOfWork>().To<UnityOfWork>().InRequestScope();
-            kernel.Bind<IUsuarioRepository, UsuarioRepository>();
-            kernel.Bind<IAreaRepository, AreaRepository>();
-            kernel.Bind<IIdiomaRepository, IdiomaRepository>();
-            kernel.Bind<IArquivoRepository, ArquivoRepository>();
-            kernel.Bind<ICargoRepository, CargoRepository>();
-            kernel.Bind<IDepartamentoRepository, DepartamentoRepository>();
-            kernel.Bind<IFormAcademicaRepository, FormAcademicaRepository>();
-            kernel.Bind<INivelAcessoRepository, NivelAcessoRepository>();
-            kernel.Bind<IResumoRepository, ResumoRepository>();
-            kernel.Bind<IStatusRepository, StatusRepository>();
-            kernel.Bind<IUsuarioConhecimentoRepository, UsuarioConhecimentoRepository>();
-            kernel.Bind<IConhecimentoRepository, ConhecimentoRepository>();
-            kernel.Bind<ILog_ActionRepository, Log_ActionRepository>();
-            kernel.Bind<IExpProfissionalRepository, ExpProfissionalRepository>();
+            kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
+            kernel.Bind<IAreaRepository>().To<AreaRepository>();
+            kernel.Bind<IIdiomaRepository>().To<IdiomaRepository>();
+            kernel.Bind<IArquivoRepository>().To<ArquivoRepository>();
+            kernel.Bind<ICargoRepository>().To<CargoRepository>();
+            kernel.Bind<IDepartamentoRepository>().To<DepartamentoRepository>();
+            kernel.Bind<IFormAcademicaRepository>().To<FormAcademicaRepository>();
+            kernel.Bind<INivelAcessoRepository>().To<NivelAcessoRepository>();
+            kernel.Bind<IResumoRepository>().To<ResumoRepository>();
+            kernel.Bind<IStatusRepository>().To<StatusRepository>();
+            kernel.Bind<IUsuarioConhecimentoRepository>().To<UsuarioConhecimentoRepository>();
+            kernel.Bind<IConhecimentoRepository>().To<ConhecimentoRepository>();
+            kernel.Bind<ILog_ActionRepository>().To<Log_ActionRepository>();
+            kernel.Bind<IExpProfissionalRepository>().To<ExpProfissionalRepository>();
             kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
 
         }
@@ -39,9 +39,11 @@ namespace Infrastructure.DI
 
         public static void InjectServices(IKernel kernel)
         {
-            kernel.Bind<ITokenAppService, TokenAppService>();
-            kernel.Bind<IAuthAppService, AuthAppService>();
-            kernel.Bind<IUsuarioAppService, UsuarioAppService>();
+
+            kernel.Bind<ITokenAppService>().To<TokenAppService>();
+            kernel.Bind<IAuthAppService>().To<AuthAppService>();
+            kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
+            kernel.Bind<IAreaAppService>().To<AreaAppService>();
         }
 
 

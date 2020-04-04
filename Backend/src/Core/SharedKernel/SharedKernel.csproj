@@ -76,11 +76,19 @@
     <Compile Include="Interfaces\IDomainNotificationHandler.cs" />
     <Compile Include="Interfaces\IHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specification\AreaSpecification.cs" />
+    <Compile Include="Specification\EntitySpecification.cs" />
+    <Compile Include="Specification\UsuarioSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data\Data.csproj">
+      <Project>{4efc8db6-37a2-4249-85e2-9d9a7530eac5}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
