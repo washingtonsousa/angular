@@ -1,12 +1,15 @@
 ﻿using Core.Application.Abstractions;
+using Core.Application.Entities;
 using Core.Application.Helpers;
 using Core.Application.Interfaces;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Core.Hubs;
 using Core.SharedKernel.Specification;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +18,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 
 namespace Core.Application
 {
@@ -147,9 +151,9 @@ namespace Core.Application
 
         public async Task<HttpResponseMessage> PostByUserId()
         {
+            HttpRequestMessage httpRequestMessage = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
 
-            this.SetCurrentLoggedUserHandler();
-            Arquivo Arquivo = new Arquivo();
+     
 
             var provider = new MultipartFormDataStreamProvider(HttpContext.Current.Server.MapPath("~/App_Data"));
 
@@ -157,32 +161,18 @@ namespace Core.Application
 
             try
             {
-                await Request.Content.ReadAsMultipartAsync(provider);
+                await httpRequestMessage.Content.ReadAsMultipartAsync(provider);
             }
             catch (System.Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+                return httpRequestMessage.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
-
+            var arquivoFromRequest = new ArquivoFromRequest(provider.FileData[0], new Arquivo(DateTime.ParseExact(provider.FormData.Get("Data_Referencia"), "yyyy-MM-dd", CultureInfo.InvariantCulture), int.Parse(provider.FormData.Get("Usuario_Id"))));
             Documento = provider.FileData[0];
-            Arquivo.UsuarioId = int.Parse(provider.FormData.Get("Usuario_Id"));
 
-            Arquivo.Data_Referencia = DateTime.ParseExact(provider.FormData.Get("Data_Referencia"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            string fileName = JsonConvert.DeserializeObject<string>(Documento.Headers.ContentDisposition.FileName);
-
-            string UserDirectory = ArquivosHelper.createArquivoDirectoryIfNotExists(HostingEnvironment.MapPath("~/App_data/Uploads"), Arquivo);
-
-            var ext = fileName.Split(".".ToCharArray()).LastOrDefault();
-
-            string newName = fileName.Split(".".ToCharArray()).FirstOrDefault() + "-" + Arquivo.Data_Referencia.Day.ToString("00")
-                    + "-" + Arquivo.Data_Referencia.Month.ToString("00")
-                    + "-" + Arquivo.Data_Referencia.Year + "." + ext;
-
-            string filePath = Path.Combine(UserDirectory, newName);
-
-            if (fileName.Split(".".ToCharArray()).Length == 2 && !System.IO.File.Exists(filePath))
+            if (arquivoFromRequest.FileName.Split(".".ToCharArray()).Length == 2 && !System.IO.File.Exists(arquivoFromRequest.FilePath))
             {
 
                 if (ext == "pdf" || ext == "doc" || ext == "docx")
@@ -198,32 +188,13 @@ namespace Core.Application
 
 
 
-                    using (var transaction = ArquivoRepo.Context.Database.BeginTransaction())
-                    {
-                        try
-                        {
-                            ArquivoRepo.Insert(Arquivo);
-                            ArquivoRepo.Save();
-                            transaction.Commit();
-
-                        }
-                        catch (Exception ex)
-                        {
-                            // Não faça nada, é apenas para burlar exceptions de transações problemáticas;
-                        }
-                    }
+                            _arquivoRepo.Insert(Arquivo);
+                            _unityOfWork.Commit();
 
 
-                    _logActionRepository.InsertLog_Action(Log_ActionFactory.Generate_ArquivoLog_Action(Request.GetOwinContext().Request.RemoteIpAddress
-                           , usuarioRepo.FindUsuario(this.Usuario_Id), Arquivo, Request.GetOwinContext().Request.Host.ToString() + Request.GetOwinContext().Request.Path.Value));
+                    Usuario usuario = _usuarioAppService.GetUsuarioById(Arquivo.UsuarioId);
 
-                    _logActionRepository.Save();
-
-
-                    StatisticsHub.updateLog_Action(_logActionRepository.GetLog_ActionsOrderedByData_Acesso().FirstOrDefault());
-
-                    Usuario usuario = usuarioRepo.FindUsuario(Arquivo.UsuarioId);
-
+                    _logAppService.GenerateArquivoLogAction(Arquivo.Nome);
 
                     if (!string.IsNullOrEmpty(ConfigData.EmailAccount) && !string.IsNullOrEmpty(ConfigData.EmailPort)
                          && !string.IsNullOrEmpty(ConfigData.EmailSmtpServer) && !string.IsNullOrEmpty(ConfigData.EmailPassword))
@@ -254,7 +225,6 @@ namespace Core.Application
         public async Task<HttpResponseMessage> Post()
         {
 
-            this.SetCurrentLoggedUserHandler();
 
             Arquivo Arquivo = new Arquivo();
 
@@ -264,7 +234,7 @@ namespace Core.Application
 
             try
             {
-                await Request.Content.ReadAsMultipartAsync(provider);
+                await HttpContext.Current.Request.Content.ReadAsMultipartAsync(provider);
             }
             catch (System.Exception e)
             {
@@ -276,7 +246,7 @@ namespace Core.Application
             string Descricao = provider.FormData.Get("Descricao");
             Documento = provider.FileData.FirstOrDefault();
 
-            Usuario usuarioFromDb = usuarioRepo.Get().Where(u => u.Matricula == Matricula).FirstOrDefault();
+            Usuario usuarioFromDb = _usuarioAppService.GetByMatricula(Matricula);
 
 
             if (usuarioFromDb != null)
@@ -285,16 +255,13 @@ namespace Core.Application
                 Arquivo.UsuarioId = usuarioFromDb.Id;
                 Arquivo.Data_Referencia = DateTime.ParseExact(provider.FormData.Get("Data_Referencia"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-                string UserDirectory = ArquivosHelper.createArquivoDirectoryIfNotExists(HostingEnvironment.MapPath("~/App_data/Uploads"), Arquivo);
+                string UserDirectory = Arquivo.createArquivoDirectoryIfNotExists();
 
                 string fileName = JsonConvert.DeserializeObject<string>(Documento.Headers.ContentDisposition.FileName);
 
-
-
-
                 string ext = fileName.Split(".".ToCharArray()).LastOrDefault();
 
-                var newName = ArquivosHelper.getArquivoFileName(TipoDoc, Arquivo, ext);
+                var newName = Arquivo.getArquivoFileName(TipoDoc, ext);
 
                 string filePath = Path.Combine(UserDirectory, newName);
 
@@ -311,19 +278,13 @@ namespace Core.Application
                         Arquivo.Nome = newName.Split(".".ToCharArray()).FirstOrDefault();
                         Arquivo.Ext = ext;
                         Arquivo.Descricao = Descricao;
-                        ArquivoRepo.Insert(Arquivo);
+                        _arquivoRepo.Insert(Arquivo);
 
 
                         // Use isso para burlar falhas de SQL resiliente em ações massivas
-                        ArquivoRepo.Save();
+                        _unityOfWork.Commit();
 
-                        _logActionRepository.InsertLog_Action(Log_ActionFactory.Generate_ArquivoLog_Action(Request.GetOwinContext().Request.RemoteIpAddress
-                            , usuarioRepo.FindUsuario(this.Usuario_Id), Arquivo, Request.GetOwinContext().Request.Host.ToString() + Request.GetOwinContext()
-                            .Request.Path.Value));
-
-                        _logActionRepository.Save();
-
-                        StatisticsHub.updateLog_Action(_logActionRepository.GetLog_ActionsOrderedByData_Acesso().FirstOrDefault());
+                        _logAppService.GenerateArquivoLogAction(Arquivo.Nome);
 
                         if (!string.IsNullOrEmpty(ConfigData.EmailAccount)
                                   && !string.IsNullOrEmpty(ConfigData.EmailPort)

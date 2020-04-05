@@ -10,6 +10,12 @@ namespace Core.Data.Models
 
         public Arquivo() : base() {}
 
+        public Arquivo(DateTime data_Referencia, int usuarioId)
+        {
+            Data_Referencia = data_Referencia;
+            UsuarioId = usuarioId;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -24,20 +30,21 @@ namespace Core.Data.Models
         [Required]
         public string Tipo { get; set; }
 
-        [Required]
-        public int UsuarioId { get; set; }
+ 
+    
 
         [Required]
         public Usuario Usuario { get; set; }
 
         [Required]
         public string URL { get; set; }
-
         
         [Required]
         public string NomeCompleto { get; set; }
 
         [Required]
         public DateTime Data_Referencia { get; set; }
+        [Required]
+        public int UsuarioId { get; set; }
     }
 }
