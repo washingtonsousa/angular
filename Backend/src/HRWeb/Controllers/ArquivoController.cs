@@ -14,8 +14,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Globalization;
-
-
+using Core.Application;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
@@ -30,6 +30,9 @@ namespace HRWeb.Controllers
     
     private Log_ActionRepository _logActionRepository;
     private ConfigDataHelper configDataHelper;
+
+    private IArquivoAppService _arquivoAppService;
+
     public ArquivoController()
     {
 

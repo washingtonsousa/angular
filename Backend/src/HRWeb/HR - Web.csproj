@@ -660,7 +660,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Application\Application\Application.csproj">
-      <Project>{f1534436-7abc-4d67-b6b6-e6978e60fe4e}</Project>
+      <Project>{F1534436-7ABC-4D67-B6B6-E6978E60FE4E}</Project>
       <Name>Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Data\Data\Data.csproj">
