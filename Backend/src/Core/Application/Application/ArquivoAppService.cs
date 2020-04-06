@@ -1,11 +1,13 @@
 ﻿using Core.Application.Abstractions;
+using Core.Application.Aggregates;
 using Core.Application.Entities;
+using Core.Application.Facades;
 using Core.Application.Helpers;
 using Core.Application.Interfaces;
+using Core.Application.Specification;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Core.Hubs;
-using Core.SharedKernel.Specification;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,14 +31,16 @@ namespace Core.Application
         private IArquivoRepository _arquivoRepo;
         private ILogAppService _logAppService;
         private IApplicationContextManager _applicationContextManager;
-
+        private IEmailAppService _emailAppService;
 
         public ArquivoAppService(IArquivoRepository arquivoRepository,
             ILogAppService logAppService,
             IUsuarioAppService usuarioAppService,
             IUnityOfWork unityOfWork,
-            IApplicationContextManager applicationContextManager) : base(unityOfWork)
+            IApplicationContextManager applicationContextManager,
+            IEmailAppService emailAppService) : base(unityOfWork)
         {
+            _emailAppService = emailAppService;
             _usuarioAppService = usuarioAppService;
             _arquivoRepo = arquivoRepository;
             _logAppService = logAppService;
@@ -149,170 +153,67 @@ namespace Core.Application
 
 
 
-        public async Task<HttpResponseMessage> PostByUserId()
+        public async Task SaveFileByUserId()
         {
             HttpRequestMessage httpRequestMessage = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
 
-     
+            var provider = await RequestFormDataProviderFacade.BuildFormDataProvider();
 
-            var provider = new MultipartFormDataStreamProvider(HttpContext.Current.Server.MapPath("~/App_Data"));
+            if (provider == null)
+                return;
 
-            MultipartFileData Documento = null;
+            var arquivoFromRequest = provider.BuildArquivoFromRequest();
 
-            try
-            {
-                await httpRequestMessage.Content.ReadAsMultipartAsync(provider);
-            }
-            catch (System.Exception e)
-            {
-                return httpRequestMessage.CreateResponse(HttpStatusCode.InternalServerError);
-            }
+            if (!arquivoFromRequest.IsFileFromRequestValid())
+                return;
 
-            var arquivoFromRequest = new ArquivoFromRequest(provider.FileData[0], new Arquivo(DateTime.ParseExact(provider.FormData.Get("Data_Referencia"), "yyyy-MM-dd", CultureInfo.InvariantCulture), int.Parse(provider.FormData.Get("Usuario_Id"))));
-            Documento = provider.FileData[0];
+            arquivoFromRequest.SaveToDirectory();
 
+            if (!arquivoFromRequest.Valid)
+                return;
 
-            if (arquivoFromRequest.FileName.Split(".".ToCharArray()).Length == 2 && !System.IO.File.Exists(arquivoFromRequest.FilePath))
-            {
+            _arquivoRepo.Insert(arquivoFromRequest.Arquivo);
+            _unityOfWork.Commit();
+            _logAppService.GenerateArquivoLogAction(arquivoFromRequest.Arquivo.Nome);
 
-                if (ext == "pdf" || ext == "doc" || ext == "docx")
-                {
+            var usuario = _usuarioAppService.GetUsuarioLoggedIn();
 
-                    File.Move(Documento.LocalFileName, filePath); // Salva Arquivo na pasta
-
-                    Arquivo.Tipo = fileName.Split(".".ToCharArray()).LastOrDefault();
-                    Arquivo.URL = filePath;
-                    Arquivo.NomeCompleto = newName;
-                    Arquivo.Nome = newName.Split(".".ToCharArray()).FirstOrDefault();
-                    Arquivo.Ext = fileName.Split(".".ToCharArray()).LastOrDefault();
-
-
-
-                            _arquivoRepo.Insert(Arquivo);
-                            _unityOfWork.Commit();
-
-
-                    Usuario usuario = _usuarioAppService.GetUsuarioById(Arquivo.UsuarioId);
-
-                    _logAppService.GenerateArquivoLogAction(Arquivo.Nome);
-
-                    if (!string.IsNullOrEmpty(ConfigData.EmailAccount) && !string.IsNullOrEmpty(ConfigData.EmailPort)
-                         && !string.IsNullOrEmpty(ConfigData.EmailSmtpServer) && !string.IsNullOrEmpty(ConfigData.EmailPassword))
-                    {
-
-                        EmailHandler _emailHandler = new EmailHandler(config, new MailMessageFactory()
-                        .arquivoEnviadoTemplateToMailMessage(usuario, Arquivo, this.contextAppUrl));
-
-                        _emailHandler.addDestinyAddressFromUsuario(usuario);
-
-                        return Request.CreateResponse(HttpStatusCode.OK, _emailHandler.SendMessage());
-
-                    }
-
-                    return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObjEmailNotSent());
-
-                }
-
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new ArquivoInvalidExtError()));
-
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new ArquivoInvalidPathOrNameError()));
+            _emailAppService.SendFileUploadedNotificationEmail(arquivoFromRequest.Arquivo, usuario);
 
         }
 
 
-        public async Task<HttpResponseMessage> Post()
+        public async Task Post()
         {
+            HttpRequestMessage httpRequestMessage = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
+            var provider = await RequestFormDataProviderFacade.BuildFormDataProvider();
 
-
-            Arquivo Arquivo = new Arquivo();
-
-            var provider = new MultipartFormDataStreamProvider(HttpContext.Current.Server.MapPath("~/App_Data"));
-
-            MultipartFileData Documento = null;
-
-            try
-            {
-                await HttpContext.Current.Request.Content.ReadAsMultipartAsync(provider);
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-            }
+            if (provider == null)
+                return;
 
             string Matricula = provider.FormData.Get("Matricula");
-            string TipoDoc = provider.FormData.Get("TipoDoc");
-            string Descricao = provider.FormData.Get("Descricao");
-            Documento = provider.FileData.FirstOrDefault();
-
             Usuario usuarioFromDb = _usuarioAppService.GetByMatricula(Matricula);
 
+            if (usuarioFromDb.NotExists())
+                return;
 
-            if (usuarioFromDb != null)
-            {
+            var arquivoFromRequest = provider.BuildArquivoFromRequest(usuarioFromDb.Id);
 
-                Arquivo.UsuarioId = usuarioFromDb.Id;
-                Arquivo.Data_Referencia = DateTime.ParseExact(provider.FormData.Get("Data_Referencia"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            if (!arquivoFromRequest.IsFileFromRequestValid())
+                return;
 
-                string UserDirectory = Arquivo.createArquivoDirectoryIfNotExists();
+            arquivoFromRequest.SaveToDirectory();
 
-                string fileName = JsonConvert.DeserializeObject<string>(Documento.Headers.ContentDisposition.FileName);
+            if (!arquivoFromRequest.IsFileFromRequestValid())
+                return;
 
-                string ext = fileName.Split(".".ToCharArray()).LastOrDefault();
+            _arquivoRepo.Insert(arquivoFromRequest.Arquivo);
+            // Use isso para burlar falhas de SQL resiliente em ações massivas
+            _unityOfWork.Commit();
 
-                var newName = Arquivo.getArquivoFileName(TipoDoc, ext);
+            _logAppService.GenerateArquivoLogAction(arquivoFromRequest.Arquivo.Nome);
 
-                string filePath = Path.Combine(UserDirectory, newName);
-
-                if (fileName.Split(".".ToCharArray()).Length == 2 && !System.IO.File.Exists(filePath))
-                {
-
-                    if (ext == "pdf" || ext == "doc" || ext == "docx")
-                    {
-
-                        File.Move(Documento.LocalFileName, filePath);
-                        Arquivo.Tipo = ext;
-                        Arquivo.URL = filePath;
-                        Arquivo.NomeCompleto = newName;
-                        Arquivo.Nome = newName.Split(".".ToCharArray()).FirstOrDefault();
-                        Arquivo.Ext = ext;
-                        Arquivo.Descricao = Descricao;
-                        _arquivoRepo.Insert(Arquivo);
-
-
-                        // Use isso para burlar falhas de SQL resiliente em ações massivas
-                        _unityOfWork.Commit();
-
-                        _logAppService.GenerateArquivoLogAction(Arquivo.Nome);
-
-                        if (!string.IsNullOrEmpty(ConfigData.EmailAccount)
-                                  && !string.IsNullOrEmpty(ConfigData.EmailPort)
-                                  && !string.IsNullOrEmpty(ConfigData.EmailSmtpServer)
-                                  && !string.IsNullOrEmpty(ConfigData.EmailPassword))
-                        {
-
-
-                            EmailHandler _emailHandler = new EmailHandler(config, new MailMessageFactory()
-                           .arquivoEnviadoTemplateToMailMessage(usuarioFromDb, Arquivo, this.contextAppUrl));
-
-                            _emailHandler.addDestinyAddressFromUsuario(usuarioFromDb);
-
-                            return Request.CreateResponse(HttpStatusCode.OK, _emailHandler.SendMessage());
-
-                        }
-
-                        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObjEmailNotSent());
-
-                    }
-
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new ArquivoInvalidExtError()));
-                }
-
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new ArquivoInvalidPathOrNameError()));
-
-            }
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new UserNotFoundError()));
+            _emailAppService.SendFileUploadedNotificationEmail(arquivoFromRequest.Arquivo, usuarioFromDb);
 
         }
 

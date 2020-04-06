@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.SharedKernel.Specification
+namespace Core.Application.Specification
 {
     public static class EntitySpecification
     {
