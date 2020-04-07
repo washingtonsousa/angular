@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web.Hosting;
 using System.Xml.Linq;
 
 namespace Core.Application.Handlers
@@ -26,7 +27,7 @@ namespace Core.Application.Handlers
     /// <param name="model">Modelo que irá renderiar a view</param>
     public XMLTplViewHandler(string ViewPath, object model)
     {
-      this.ViewPath = ViewPath;
+      this.ViewPath = HostingEnvironment.MapPath("~/Templates") + ViewPath;
       this.model = model;
 
       initializeComponent();

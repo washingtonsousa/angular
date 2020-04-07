@@ -10,10 +10,11 @@ namespace Core.Data.Models
 
         public Arquivo() : base() {}
 
-        public Arquivo(DateTime data_Referencia, int usuarioId)
+        public Arquivo(DateTime data_Referencia, int usuarioId, string descricao = null)
         {
             Data_Referencia = data_Referencia;
             UsuarioId = usuarioId;
+            Descricao = descricao;
         }
 
         [Key]

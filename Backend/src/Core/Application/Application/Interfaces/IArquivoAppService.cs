@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Application.Interfaces
 {
-    interface IArquivoAppService
+    public interface IArquivoAppService
     {
     }
 }

@@ -67,17 +67,34 @@ namespace Core.Application.Entities
 
         public MultipartFileData FileData { get; set; }
 
-        public Arquivo Arquivo { get; set; }
+        public Arquivo Arquivo { get;  private set; }
   
 
         public bool Valid { get; private set; }
 
 
-        public void Save()
+        public void SaveToDirectory()
         {
-            File.Move(FileData.LocalFileName, FilePath);
+            try
+            {
 
-            Valid = true;
+                File.Move(FileData.LocalFileName, FilePath);
+                
+                Arquivo.Tipo = FileExtension;
+                Arquivo.URL = FilePath;
+                Arquivo.NomeCompleto = NewFileName;
+                Arquivo.Nome = NewFileName.Split(".".ToCharArray()).FirstOrDefault();
+                Arquivo.Ext = FileExtension;
+                
+                Valid = true;
+
+            } catch
+            {
+                Valid = false;
+
+            }
         }
+
+        
     }
 }
