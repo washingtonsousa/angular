@@ -48,6 +48,7 @@ namespace Infrastructure.DI
             kernel.Bind<IDepartamentoAppService>().To<DepartamentoAppService>();
             kernel.Bind<IArquivoAppService>().To<ArquivoAppService>();
             kernel.Bind<ICategoriaConhecimentoAppService>().To<CategoriaConhecimentoAppService>();
+            kernel.Bind<ICertCursoAppService>().To<CertCursoAppService>();
         }
 
         public static void InjectSharepointServices(IKernel kernel)

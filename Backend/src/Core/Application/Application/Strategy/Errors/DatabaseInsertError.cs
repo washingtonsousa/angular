@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class DatabaseDuplicatedEntryError : IError
+  public class DatabaseDuplicatedEntryError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 14;
+            Code = 14;
 
-            error.message = "Esta entidade não pode ter valores duplicados na base";
+            Message = "Esta entidade não pode ter valores duplicados na base";
 
-            return error;
+            return this;
 
         }
 

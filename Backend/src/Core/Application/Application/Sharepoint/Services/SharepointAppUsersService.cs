@@ -3,9 +3,9 @@ using System.Configuration;
 using System.Linq;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.UserProfiles;
-using Core.Data.Models;
 using Core.Application.Interfaces;
 using Core.Data.Interfaces;
+using Core.Application.Entities;
 
 namespace Core.Application.Sharepoint.Services
 {
@@ -37,12 +37,12 @@ namespace Core.Application.Sharepoint.Services
             return siteUsers;
         }
 
-        public IList<UsuarioOffice365> Get()
+        public IList<UserFromAuthEngine> Get()
         {
 
             _sharepointPeopleManagerAppService.Initialize();
 
-            IList<UsuarioOffice365> siteUsersList = new List<UsuarioOffice365>();
+            IList<UserFromAuthEngine> siteUsersList = new List<UserFromAuthEngine>();
             IList<User> SysUsersList = new List<User>();
 
             UserCollection siteUsers = GetSiteUsersCollection();
@@ -58,7 +58,7 @@ namespace Core.Application.Sharepoint.Services
                     if (user.LoginName.Split("|".ToCharArray()).LastOrDefault().Split("@".ToCharArray()).LastOrDefault()
                       == ConfigurationManager.AppSettings["ContextDomain"])
                     {
-                        UsuarioOffice365 usuarioOffice365 = new UsuarioOffice365();
+                        UserFromAuthEngine usuarioOffice365 = new UserFromAuthEngine();
 
                         usuarioOffice365.AccountName = personProperties.AccountName;
                         usuarioOffice365.PictureUrl = personProperties.PictureUrl;
@@ -90,7 +90,7 @@ namespace Core.Application.Sharepoint.Services
 
         }
 
-        public UsuarioOffice365 Find(string Email)
+        public UserFromAuthEngine Find(string Email)
         {
             return this.Get().FirstOrDefault(u => u.Email == Email);
         }

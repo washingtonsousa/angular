@@ -3,18 +3,18 @@
 namespace Core.Application.Strategy.Errors
 
 {
-  public class DatabaseUserCannotBeSelfDeleted : IError
+  public class DatabaseUserCannotBeSelfDeleted : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 16;
+            Code = 16;
 
-            error.message = "Você não pode se auto deletar";
+            Message = "Você não pode se auto deletar";
 
-            return error;
+            return this;
 
         }
 

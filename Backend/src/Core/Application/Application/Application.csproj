@@ -216,9 +216,11 @@
     <Compile Include="Builders\DesligamentoGestorBuilder.cs" />
     <Compile Include="CargoAppService.cs" />
     <Compile Include="CategoriaConhecimentoAppService.cs" />
+    <Compile Include="CertCursoAppService.cs" />
     <Compile Include="DepartamentoAppService.cs" />
     <Compile Include="EmailAppService.cs" />
     <Compile Include="Entities\ArquivoFromRequest.cs" />
+    <Compile Include="Entities\UserFromAuthEngine.cs" />
     <Compile Include="ExpProfissionalAppService.cs" />
     <Compile Include="Facades\RequestFormDataProviderFacade.cs" />
     <Compile Include="Facades\ResponseFacade.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Factories\SPListFactory.cs" />
     <Compile Include="Factories\UsuarioFactory.cs" />
     <Compile Include="Interfaces\ICategoriaConhecimentoAppService.cs" />
+    <Compile Include="Interfaces\ICertCursoAppService.cs" />
     <Compile Include="Interfaces\IEmailAppService.cs" />
     <Compile Include="Specification\CategoriaConhecimentoSpecification.cs" />
     <Compile Include="Specification\DepartamentoSpecification.cs" />
@@ -285,7 +288,7 @@
     <Compile Include="Strategy\Errors\DatabaseInsertError.cs" />
     <Compile Include="Strategy\Errors\DatabaseNullResultError.cs" />
     <Compile Include="Strategy\Errors\DatabaseUserCannotBeSelfDeleted.cs" />
-    <Compile Include="Strategy\Errors\IError.cs" />
+    <Compile Include="Strategy\Errors\Error.cs" />
     <Compile Include="Strategy\Errors\MandatoryEntityError.cs" />
     <Compile Include="Strategy\Errors\ModelStateGenericError.cs" />
     <Compile Include="Strategy\Errors\SPContextError.cs" />

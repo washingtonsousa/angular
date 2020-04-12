@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class ArquivoInvalidExtError : IError
+  public class ArquivoInvalidExtError : Error
     {
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-        error.code = 12;
+        Code = 12;
 
-        error.message = "Extensão ou tipo de arquivo inválidos";
+        Message = "Extensão ou tipo de arquivo inválidos";
 
 
-        return error;
+        return this;
         }
     }
 }

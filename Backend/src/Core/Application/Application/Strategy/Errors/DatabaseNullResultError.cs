@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class DatabaseNullResultError : IError
+  public class DatabaseNullResultError : Error
     {
 
         public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 08;
+            Code = 08;
 
-            error.message = "Não foi encontrado nenhum resultado para esta entidade, a entidade foi deletada e não existe mais";
+            Message = "Não foi encontrado nenhum resultado para esta entidade, a entidade foi deletada e não existe mais";
 
-            return error;
+            return this;
 
         }
 

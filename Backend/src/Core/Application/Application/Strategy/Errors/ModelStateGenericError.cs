@@ -2,19 +2,19 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class ModelStateGenericError : IError
+  public class ModelStateGenericError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 07;
+            Code = 07;
 
-            error.message = "Erro ao realizar esta operação de inserção/atualização." +
+            Message = "Erro ao realizar esta operação de inserção/atualização." +
                 " Verifique os dados preenchidos e tente novamente";
 
-            return error;
+            return this;
 
         }
 

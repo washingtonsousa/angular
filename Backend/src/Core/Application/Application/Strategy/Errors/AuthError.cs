@@ -2,17 +2,17 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class AuthError : IError
+  public class AuthError : Error
     {
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 06;
+            Code = 06;
 
-            error.message = "Falha de autenticação";
+            Message = "Falha de autenticação";
 
-            return error;
+            return this;
         }
     }
 

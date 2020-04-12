@@ -3,11 +3,6 @@ using Core.Application.Interfaces;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application
 {

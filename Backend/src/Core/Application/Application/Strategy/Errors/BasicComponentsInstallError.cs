@@ -2,18 +2,15 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class BasicComponentsInstallError : IError
+  public class BasicComponentsInstallError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
-
-            error.code = 211;
-
-            error.message = "Erro durante instalação dos componentes básicos";
-
-            return error;
+            
+            Code = 211;
+            Message = "Erro durante instalação dos componentes básicos";
+            return this;
 
         }
     }

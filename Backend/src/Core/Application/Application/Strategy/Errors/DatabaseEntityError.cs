@@ -2,20 +2,20 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class DatabaseEntityError : IError
+  public class DatabaseEntityError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 03;
+            Code = 03;
 
-            error.message = "Não foi possível realizar esta operação de dados, pois esta entidade possui outras entidades relacionadas " +
+            Message = "Não foi possível realizar esta operação de dados, pois esta entidade possui outras entidades relacionadas " +
                 "que precisam ser deletadas para haver a exclusão desta entidade ou esta entidade é mandatória para funcionamento do sistema" +
                 " e não pode sofrer operações de CRUD.";
 
-            return error;
+            return this;
 
         }
     }

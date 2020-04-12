@@ -2,17 +2,17 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class AccessDeniedError : IError
+  public class AccessDeniedError : Error
     {
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 02;
+            Code = 02;
 
-            error.message = "Acesso negado, você não tem acesso para este aplicativo ou sessão";
+            Message = "Acesso negado, você não tem acesso para este aplicativo ou sessão";
 
-            return error;
+            return this;
         }
     }
 }

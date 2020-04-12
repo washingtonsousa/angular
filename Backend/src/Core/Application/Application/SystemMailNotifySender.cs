@@ -16,9 +16,9 @@ namespace Core.Application
             initializeComponents();
         }
 
-        public void AddMailMessage(MailMessage message)
+        public void AddMailMessage(MailMessage Message)
         {
-            this.MailMessage = message;
+            this.MailMessage = Message;
             this.MailMessage.From = new MailAddress(ConfigData.EmailAccount);
             this.MailMessage.IsBodyHtml = true;
         }

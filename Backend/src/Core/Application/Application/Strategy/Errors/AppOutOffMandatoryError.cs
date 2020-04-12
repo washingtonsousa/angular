@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class AppOutOffMandatoryError : IError
+  public class AppOutOffMandatoryError : Error
     {
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 04;
+            Code = 04;
 
-            error.message = "Você está tentando acessar um recurso não configurado para o site contexto de origem, você precisa acessar" +
+            Message = "Você está tentando acessar um recurso não configurado para o site contexto de origem, você precisa acessar" +
                 " este recurso através do site mandatório configurado pelo administrador";
 
-            return error;
+            return this;
         }
     }
    

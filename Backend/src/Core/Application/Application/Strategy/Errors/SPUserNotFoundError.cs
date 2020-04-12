@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class SPUserNotFoundError : IError
+  public class SPUserNotFoundError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 05;
+            Code = 05;
 
-            error.message = "Usuário não existe na Base do Office 365, por favor verifique";
+            Message = "Usuário não existe na Base do Office 365, por favor verifique";
 
-            return error;
+            return this;
 
         }
     }

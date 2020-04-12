@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class UserNotFoundError : IError
+  public class UserNotFoundError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 09;
+            Code = 09;
 
-            error.message = "O usuário precisa estar cadastrado na base SQL para acessar esta função";
+            Message = "O usuário precisa estar cadastrado na base SQL para acessar esta função";
 
-            return error;
+            return this;
 
         }
 

@@ -2,18 +2,18 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class MandatoryEntityError : IError
+  public class MandatoryEntityError : Error
     {
 
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 11;
+            Code = 11;
 
-            error.message = "A operação não pode ser realizada, pois a entidade é mandatória, contate o administrador para mais detalhes";
+            Message = "A operação não pode ser realizada, pois a entidade é mandatória, contate o administrador para mais detalhes";
 
-            return error;
+            return this;
 
         }
 

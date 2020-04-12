@@ -415,7 +415,6 @@
     <Compile Include="Models\DesligamentoColaborador.cs" />
     <Compile Include="Models\DesligamentoGestor.cs" />
     <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ExpProfissional.cs" />
     <Compile Include="Models\FormAcademica.cs" />
     <Compile Include="Models\Idioma.cs" />
@@ -428,7 +427,6 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioConhecimento.cs" />
-    <Compile Include="Models\UsuarioOffice365.cs" />
     <Compile Include="ORM\HrDbContext.cs" />
     <Compile Include="Migrations\20171213132058_create_schema.cs" />
     <Compile Include="Migrations\20171213132058_create_schema.Designer.cs">

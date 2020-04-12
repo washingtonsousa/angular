@@ -2,17 +2,17 @@
 
 namespace Core.Application.Strategy.Errors
 {
-  public class ArquivoInvalidPathOrNameError : IError
+  public class ArquivoInvalidPathOrNameError : Error
     {
-        public override Error getError()
+        public override Error GetError()
         {
-            Error error = new Error();
+            
 
-            error.code = 13;
+            Code = 13;
 
-            error.message = "Arquivo já existe ou possue nomenclatura inválida";
+            Message = "Arquivo já existe ou possue nomenclatura inválida";
 
-            return error;
+            return this;
 
         }
     }

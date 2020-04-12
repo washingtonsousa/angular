@@ -7,23 +7,23 @@ namespace Core.Application.Helpers
   public class ErrorHelper
     {
 
-        public Error getError(IError errorContext)
+        public Data.Models.Error getError(Strategy.Errors.Error errorContext)
         {
 
-            return errorContext.getError();
+            return errorContext.GetError();
 
         }
 
 
-        public Error getGenericError(int code, string Message)
+        public Data.Models.Error getGenericError(int Code, string Message)
         {
 
-            Error error = new Error();
+            Data.Models.Error error = new Data.Models.Error();
 
-            error.code = code;
-            error.message = Message;
+            Code = Code;
+            Message = Message;
 
-            return error;
+            return this;
 
         }
 
