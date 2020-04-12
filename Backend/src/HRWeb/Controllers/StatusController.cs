@@ -1,122 +1,74 @@
 using System.Collections.Generic;
 using System.Linq;
-using HRWeb.Filters;
-using HRWeb.Helpers;
 using Core.Data.Models;
 using Core.Data.Repositories;
-using HRWeb.Strategy.Errors;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Net.Http;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
 
-    [Authorize(Roles="Administrador")]
-    public class StatusController : BasicApiAppController
+  [Authorize(Roles = "Administrador")]
+  public class StatusController : BasicApiAppController
+  {
+
+
+    private IStatusAppService _statusAppService;
+
+    public StatusController(IDomainNotificationHandler<DomainNotification> domainNotification, IStatusAppService statusAppService) : base(domainNotification)
+    {
+      _statusAppService = statusAppService;
+    }
+
+    [HttpGet]
+    [HttpOptions]
+    public HttpResponseMessage Get()
+    {
+      IList<Status> Status = _statusAppService.Get();
+      return ResponseWithNotifications(Status);
+    }
+
+    [HttpGet]
+    [HttpOptions]
+    public HttpResponseMessage Get(int Id)
     {
 
-        private StatusRepository StatusRepo;
-        ;
-        private UsuarioRepository usuarioRepo;
+      Status Status = _statusAppService.Get(Id);
+      return ResponseWithNotifications(Status);
 
+    }
+    [HttpPost]
+    [HttpOptions]
+    public HttpResponseMessage Post([FromBody]Status Status)
+    {
+       Status = _statusAppService.Insert(Status);
 
-        public StatusController()
-        {
- 
+      return ResponseWithNotifications(Status);
 
-            
-            StatusRepo = new StatusRepository();
-            usuarioRepo = new UsuarioRepository();
-
-
-        }
-
-        [HttpGet]
-        [HttpOptions]
-        public IHttpActionResult Get()
-        {
-          
-            IList<Status> Status = StatusRepo.GetStatus().ToList();
-
-
-            return Ok(Status);
-        }
-        [HttpGet]
-        [HttpOptions]
-        public IHttpActionResult Get(int Id)
-        {
-
-          Status Status = StatusRepo.GetStatus().FirstOrDefault();
-          return Ok(Status);
-
-        }
-        [HttpPost]
-        [HttpOptions]
-        public HttpResponseMessage Post([FromBody]Status Status)
-        {
-
-                if (StatusRepo.GetStatus().Where(s => s.Nome == Status.Nome).FirstOrDefault() == null)
-                {
-
-                StatusRepo.InsertStatus(Status);
-                StatusRepo.Save();
-
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, "Criado com sucesso");
-
-
-                }
-
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-
-
-         }
+    }
     [HttpDelete]
     [HttpOptions]
     public HttpResponseMessage Delete(int Id)
-        {
-            Status Status = StatusRepo.FindStatus(Id);
+    {
+       _statusAppService.Delete(Id);
 
-
-
-            if (usuarioRepo.Get().Where(u => u.StatusId == Id).FirstOrDefault() == null
-                && Status.Nome != "ativo" && Status.Nome != "desativado" && Status != null)
-            {
-
-                StatusRepo.DeleteStatus(Status);
-                StatusRepo.Save();
-
-        return Request.CreateResponse(System.Net.HttpStatusCode.OK, null);
-            }
-
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-
-        }
+      return ResponseWithNotifications(Id);
+    }
 
     [HttpPut]
     [HttpOptions]
     public HttpResponseMessage Put([FromBody]Status Status)
-        {
-            Status StatusFromDb = StatusRepo.FindStatus(Status.Id);
+    {
+      Status = _statusAppService.Update(Status);
 
-            if (StatusFromDb != null && Status.Nome != "ativo" && Status.Nome != "desativado")
-            {
+      return ResponseWithNotifications(Status);
 
-                StatusFromDb.Nome = Status.Nome;
-                StatusFromDb.Codigo = Status.Codigo;
-                StatusRepo.UpdateStatus(StatusFromDb);
-                StatusRepo.Save();
+    } // Fim do método
 
-
-        return Request.CreateResponse(System.Net.HttpStatusCode.OK, "Atualizado com sucesso");
-               
-
-            }
-
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
-        } // Fim do método
-
-    } //´Classe
+  } //´Classe
 
 } // Namespace

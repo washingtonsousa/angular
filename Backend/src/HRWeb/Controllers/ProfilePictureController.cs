@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Http;
+using Core.Application.Interfaces;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
 
 namespace HRWeb.Controllers
 {
@@ -22,42 +25,20 @@ namespace HRWeb.Controllers
     {
 
 
-    public UsuarioRepository usuarioRepo;
+    public IProfilePictureAppService _profilePictureAppService;
 
-    public ProfilePictureController()
+
+    public ProfilePictureController(IDomainNotificationHandler<DomainNotification> domainNotification, IProfilePictureAppService profilePictureAppService) : base(domainNotification)
     {
-      usuarioRepo = new UsuarioRepository();
+      _profilePictureAppService = profilePictureAppService;
     }
 
     [HttpGet]
     [HttpOptions]
     public async Task<HttpResponseMessage> GetSingle()
     {
-      OwinContext context = (OwinContext)Request.GetOwinContext();
-      ClaimsPrincipal user = context.Authentication.User;
- 
-      string user_id = user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value;
-
-      Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(int.Parse(user_id));
-
-      if (usuarioFromDb != null)
-      {
-
-        if (usuarioFromDb.profileImage64string != null)
-        {
-          return Request.CreateResponse(HttpStatusCode.OK, usuarioFromDb.profileImage64string);
-
-        }
-
-        return Request.CreateResponse(HttpStatusCode.NotFound, "Imagem não existe");
-
-
-      }
-      else
-      {
-
-        return Request.CreateResponse(HttpStatusCode.NotFound, new ErrorHelper().getError(new SPUserNotFoundError()));
-      }
+     
+      return ResponseWithNotifications(await _profilePictureAppService.GetSingle());
 
     }
 
@@ -67,23 +48,7 @@ namespace HRWeb.Controllers
     public async Task<HttpResponseMessage> Get(int id)
     {
 
-
-      Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(id);
-      if (usuarioFromDb != null)
-      {
-
-        if (usuarioFromDb.profileImage64string != null)
-        {
-
-          return Request.CreateResponse(HttpStatusCode.OK,  usuarioFromDb.profileImage64string);
-        }
-        return Request.CreateResponse(HttpStatusCode.NotFound, "Imagem não existe");
-      }
-      else
-      {
-
-        return Request.CreateResponse(HttpStatusCode.NotFound, new ErrorHelper().getError(new SPUserNotFoundError()));
-      }
+      return ResponseWithNotifications(await _profilePictureAppService.Get(id));
 
     }
 
@@ -93,58 +58,7 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public async Task<HttpResponseMessage> Post()
     {
-      OwinContext context = (OwinContext)Request.GetOwinContext();
-      ClaimsPrincipal user = context.Authentication.User;
-
-      string user_id = user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value;
-
-      var provider = new MultipartFormDataStreamProvider(HttpContext.Current.Server.MapPath("~/App_Data"));
-
-      MultipartFileData Documento = null;
-
-
-      if (!Request.Content.IsMimeMultipartContent())
-      {
-        return Request.CreateResponse(HttpStatusCode.BadRequest, "Conteúdo não permitido");
-      }
-
-      try
-      {
-        await Request.Content.ReadAsMultipartAsync(provider);
-      }
-      catch (System.Exception e)
-      {
-        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-      }
-
-      Documento = provider.FileData[0];
-
-      string filetype = Documento.Headers.Where(u => u.Key == "Content-Type").FirstOrDefault().Value.FirstOrDefault();
-
-
-      if (filetype != "image/jpeg" && filetype != "image/png")
-      {
-        return Request.CreateResponse(HttpStatusCode.BadRequest, "Extensão de arquivo não suportada");
-      }
-
-
-      Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(int.Parse(user_id));
-
-      if (usuarioFromDb != null)
-      {
-
-        byte[] b = System.IO.File.ReadAllBytes(provider.FileData[0].LocalFileName);
-
-        usuarioFromDb.profileImage64string = Convert.ToBase64string(b);
-        usuarioRepo.Save();
-        return Request.CreateResponse(HttpStatusCode.OK, "Executado com sucesso");
- 
-        }
-      
-
-      return Request.CreateResponse(HttpStatusCode.NotFound, new ErrorHelper().getError(new SPUserNotFoundError()));
-        
-
+      return ResponseWithNotifications(await _profilePictureAppService.Insert());
     }
 
 
@@ -152,76 +66,19 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public async Task<HttpResponseMessage> Put()
     {
-      OwinContext context = (OwinContext)Request.GetOwinContext();
-      ClaimsPrincipal user = context.Authentication.User;
-
-      string user_id = user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value;
-
-      var provider = new MultipartFormDataStreamProvider(HttpContext.Current.Server.MapPath("~/App_Data"));
-
-      MultipartFileData Documento = null;
-
-
-      if (!Request.Content.IsMimeMultipartContent())
-      {
-        return Request.CreateResponse(HttpStatusCode.BadRequest, "Conteúdo não permitido");
-      }
-
-      try
-      {
-        await Request.Content.ReadAsMultipartAsync(provider);
-      }
-      catch (System.Exception e)
-      {
-        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-      }
-
-
-      Documento = provider.FileData[0];
-
-      string filetype = Documento.Headers.Where(u => u.Key == "Content-Type").FirstOrDefault().Value.FirstOrDefault();
-
-
-      if (filetype != "image/jpeg" && filetype != "image/png")
-      {
-        return Request.CreateResponse(HttpStatusCode.BadRequest, "Extensão de arquivo não suportada");
-      }
-
-      Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(int.Parse(user_id));
-
-      if (usuarioFromDb != null)
-      {
-
-        byte[] b = System.IO.File.ReadAllBytes(provider.FileData[0].LocalFileName);
-
-        usuarioFromDb.profileImage64string = Convert.ToBase64string(b);
-        usuarioRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, "Executado com sucesso");
-
-      }
-
-
-      return Request.CreateResponse(HttpStatusCode.NotFound, new ErrorHelper().getError(new SPUserNotFoundError()));
+      return ResponseWithNotifications(await _profilePictureAppService.Update());
 
     }
+
 
 
     [HttpDelete]
     [HttpOptions]
     public async Task<HttpResponseMessage> Delete()
     {
+      await _profilePictureAppService.Delete();
 
-      OwinContext context = (OwinContext)Request.GetOwinContext();
-      ClaimsPrincipal user = context.Authentication.User;
-
-      string user_id = user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value;
-
-      Usuario usuarioFromDb = await usuarioRepo.FindUsuarioAsync(int.Parse(user_id));
-      usuarioFromDb.profileImage64string = null;
-      usuarioRepo.Save();
-      return Request.CreateResponse(HttpStatusCode.NotFound, "Arquivo não encontrado");
-
+      return ResponseWithNotifications();
 
     }
 

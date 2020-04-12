@@ -87,7 +87,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Put([FromBody]Usuario Usuario)
     {
 
-      Usuario usuarioFromDb = _usuarioAppService.Atualizar(Usuario);
+      Usuario usuarioFromDb = _usuarioAppService.Update(Usuario);
       return ResponseWithNotifications(usuarioFromDb);
 
     }
@@ -104,7 +104,7 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Usuario))]
     public HttpResponseMessage PutSecure([FromBody]Usuario Usuario)
     {
-      Usuario _usuario = _usuarioAppService.AtualizarParcial(Usuario);
+      Usuario _usuario = _usuarioAppService.PartialyUpdate(Usuario);
       return ResponseWithNotifications(_usuario);
     }
 

@@ -23,21 +23,21 @@ namespace Core.Application.Builders
         private DateTime DataPesquisa;
         private DateTime DataDesligamento;
         private SP.FieldUserValue Entrevistador;
-        private Double NotaRh;
-        private Double NotaConsultoria;
-        private Double NotaAdministrativo;
-        private Double NotaOperacao; 
+        private double NotaRh;
+        private double NotaConsultoria;
+        private double NotaAdministrativo;
+        private double NotaOperacao; 
         private string Questao1;
-        private Double Questao2;
-        private Double Questao3;
-        private Double Questao4;
-        private Double Questao5;
-        private Double Questao6;
-        private Double Questao7;
-        private Double Questao8;
-        private Double Questao9;
-        private Double Questao10;
-        private Double Questao11;
+        private double Questao2;
+        private double Questao3;
+        private double Questao4;
+        private double Questao5;
+        private double Questao6;
+        private double Questao7;
+        private double Questao8;
+        private double Questao9;
+        private double Questao10;
+        private double Questao11;
 
         public DesligamentoColaboradorBuilder() 
         {
@@ -55,61 +55,61 @@ namespace Core.Application.Builders
             this.Questao1 = Questao1;
         }
 
-        public void withQuestao2(Double Questao2)
+        public void withQuestao2(double Questao2)
         {
 
             this.Questao2 = Questao2;
         }
 
-        public void withQuestao3(Double Questao3)
+        public void withQuestao3(double Questao3)
         {
 
             this.Questao3 = Questao3;
         }
 
-        public void withQuestao4(Double Questao4)
+        public void withQuestao4(double Questao4)
         {
 
             this.Questao4 = Questao4;
         }
 
-        public void withQuestao5(Double Questao5)
+        public void withQuestao5(double Questao5)
         {
 
             this.Questao5 = Questao5;
         }
 
-        public void withQuestao6(Double Questao6)
+        public void withQuestao6(double Questao6)
         {
 
             this.Questao6 = Questao6;
         }
 
-        public void withQuestao7(Double Questao7)
+        public void withQuestao7(double Questao7)
         {
 
             this.Questao7 = Questao7;
         }
 
-        public void withQuestao8(Double Questao8)
+        public void withQuestao8(double Questao8)
         {
 
             this.Questao8 = Questao8;
         }
 
-        public void withQuestao9(Double Questao9)
+        public void withQuestao9(double Questao9)
         {
 
             this.Questao9 = Questao9;
         }
 
-        public void withQuestao10(Double Questao10)
+        public void withQuestao10(double Questao10)
         {
 
             this.Questao10 = Questao10;
         }
 
-        public void withQuestao11(Double Questao11)
+        public void withQuestao11(double Questao11)
         {
 
             this.Questao11 = Questao11;
@@ -140,24 +140,24 @@ namespace Core.Application.Builders
         }
 
 
-        public void withNotaConsultoria(Double NotaConsultoria)
+        public void withNotaConsultoria(double NotaConsultoria)
         {
 
             this.NotaConsultoria = NotaConsultoria;
 
         }
 
-        public void withNotaRh(Double NotaRh)
+        public void withNotaRh(double NotaRh)
         {
             this.NotaRh = NotaRh;
         }
 
-        public void withNotaAdministrativo(Double NotaAdministrativo)
+        public void withNotaAdministrativo(double NotaAdministrativo)
         {
             this.NotaAdministrativo = NotaAdministrativo;
         }
 
-        public void withNotaOperacao(Double NotaOperacao)
+        public void withNotaOperacao(double NotaOperacao)
         {
             this.NotaOperacao = NotaOperacao;
         }

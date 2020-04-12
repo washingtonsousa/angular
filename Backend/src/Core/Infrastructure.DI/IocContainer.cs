@@ -38,7 +38,6 @@ namespace Infrastructure.DI
 
         public static void InjectServices(IKernel kernel)
         {
-
             kernel.Bind<ITokenAppService>().To<TokenAppService>();
             kernel.Bind<IAuthAppService>().To<AuthAppService>();
             kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
@@ -49,6 +48,12 @@ namespace Infrastructure.DI
             kernel.Bind<IArquivoAppService>().To<ArquivoAppService>();
             kernel.Bind<ICategoriaConhecimentoAppService>().To<CategoriaConhecimentoAppService>();
             kernel.Bind<ICertCursoAppService>().To<CertCursoAppService>();
+            kernel.Bind<IConhecimentoAppService>().To<ConhecimentoAppService>();
+            kernel.Bind<IStatusAppService>().To<StatusAppService>();
+            kernel.Bind<IResumoAppService>().To<ResumoAppService>();
+            kernel.Bind<IStatisticsAppService>().To<StatisticsAppService>();
+            kernel.Bind<IRelatoriosAppService>().To<RelatoriosAppService>();
+            kernel.Bind<IProfilePictureAppService>().To<ProfilePictureAppService>();
         }
 
         public static void InjectSharepointServices(IKernel kernel)

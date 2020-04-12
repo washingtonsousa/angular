@@ -16,10 +16,15 @@ namespace Core.Application
     {
         private IUsuarioRepository _usuarioRepo;
         private ISharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
-        public UsuarioAppService(IUsuarioRepository usuarioRepo, IUnityOfWork unityOfWork, ISharepointPeopleManagerAppService sharepointPeopleManagerAppService) : base(unityOfWork)
+        private IConhecimentoAppService _conhecimentoAppService;
+        private IUsuarioConhecimentoRepository _usrConhecimentoRepo;
+
+        public UsuarioAppService(IUsuarioRepository usuarioRepo, IUnityOfWork unityOfWork, ISharepointPeopleManagerAppService sharepointPeopleManagerAppService, IConhecimentoAppService conhecimentoAppService, IUsuarioConhecimentoRepository usrConhecimentoRepo) : base(unityOfWork)
         {
             _usuarioRepo = usuarioRepo;
             _sharepointPeopleManagerAppService = sharepointPeopleManagerAppService;
+            _conhecimentoAppService = conhecimentoAppService;
+            _usrConhecimentoRepo = usrConhecimentoRepo;
         }
 
         public Usuario GetUsuarioLoggedIn()
@@ -30,7 +35,7 @@ namespace Core.Application
 
         }
 
-        public Usuario Atualizar(Usuario usuario)
+        public Usuario Update(Usuario usuario)
         {
             Usuario usuarioFromDb = _usuarioRepo.FindByMatriculaOrEmail(usuario.Matricula, usuario.Email);
 
@@ -62,7 +67,7 @@ namespace Core.Application
 
         }
 
-        public Usuario AtualizarParcial(Usuario usuario)
+        public Usuario PartialyUpdate(Usuario usuario)
         {
             Usuario usuarioFromDb = GetUsuarioById(usuario.Id);
 
@@ -152,6 +157,89 @@ namespace Core.Application
 
             return 0;
         }
+
+        public void AddConhecimentosForUsuarioLoggedIn(IList<int> ConhecimentoIds) => AddConhecimentosForUsuario(ConhecimentoIds, GetUsuarioLoggedInId());
+
+        public void AddConhecimentosForUsuarioByUsuarioId(IList<int> ConhecimentoIds, int UsuarioId) => AddConhecimentosForUsuario(ConhecimentoIds, UsuarioId);
+
+
+        private void AddConhecimentosForUsuario(IList<int> ConhecimentoIds, int UsuarioId)
+        {
+            IList<Conhecimento> Conhecimentos = _conhecimentoAppService.Get(); // Todos os conhecimentos cadastrados no sistema
+            IList<UsuarioConhecimento> UsuarioConhecimentos = _usrConhecimentoRepo.Get()
+            .Where(uc => uc.UsuarioId == UsuarioId).ToList(); // Entidade Associativa 'Usuario ManyToMany Conhecimento'
+
+            if (GetUsuarioById(UsuarioId).NotExists())
+                return;
+            
+            if (ConhecimentoIds != null)   // Se lista não for nula
+            {
+
+                // Varre todos os conhecimentos cadastrados para comparar com os da lista
+
+                foreach (var conhecimento in Conhecimentos)
+                {
+
+                    // Se não existir na lista recebida (Usuário deixou desmarcado)
+
+                    if (ConhecimentoIds.Contains(conhecimento.Id) == false)
+                    {
+                        UsuarioConhecimento usuarioConhecimento = UsuarioConhecimentos
+                       .Where(uc => uc.ConhecimentoId == conhecimento.Id && uc.UsuarioId == GetUsuarioLoggedInId())
+                       .FirstOrDefault();
+
+                        // Se for encontrado valor para ser deletado
+
+                        if (usuarioConhecimento != null)
+                            _usrConhecimentoRepo.Delete(usuarioConhecimento);
+                        
+
+
+                    } // @Senao - Se encontra valor na lista comparando com todos os conhecimentos disponíveis
+                    else
+                    {
+                        // Se não for encontrado valor para ser inserido
+
+                        if (_usrConhecimentoRepo.Get()
+                       .Where(uc => uc.UsuarioId == UsuarioId && uc.ConhecimentoId == conhecimento.Id)
+                       .FirstOrDefault() == null)
+                        {
+
+                            // Insere e já salva, pois evita falha durante taferas no banco de dados
+
+                            UsuarioConhecimento usuarioConhecimento = new UsuarioConhecimento();
+                            usuarioConhecimento.ConhecimentoId = conhecimento.Id;
+                            usuarioConhecimento.UsuarioId = UsuarioId;
+                            _usrConhecimentoRepo.Insert(usuarioConhecimento);
+
+                        }
+
+                    }
+                }
+
+            } // Se lista retorna nula - Usuário deixou todas as checkboxes desmarcadas na View
+            else
+            {
+
+
+                // Se existe algo para deletar
+
+                if (UsuarioConhecimentos.FirstOrDefault() != null)
+                    foreach (var usuarioConhecimento in UsuarioConhecimentos)
+                    {
+                        //Deleta e salva a deleção
+
+                        _usrConhecimentoRepo.Delete(usuarioConhecimento);
+
+                    }
+
+                
+            }
+
+            _unityOfWork.Commit();
+          
+
+        } // Método @UpdateAction
 
     }
 }

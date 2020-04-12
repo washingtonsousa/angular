@@ -12,11 +12,17 @@ namespace Core.Application.Interfaces
         IList<Usuario> Get();
         void Delete(int id);
         int GetUsuarioLoggedInId();
-         Usuario GetUsuarioLoggedIn();
-         Usuario GetUsuarioById(int Id);
+        Usuario GetUsuarioLoggedIn();
+        Usuario GetUsuarioById(int Id);
         Usuario InsertUsuario(Usuario usuario);
         Usuario GetByMatricula(string matricula);
-        Usuario AtualizarParcial(Usuario usuario);
-        Usuario Atualizar(Usuario usuario);
+        Usuario PartialyUpdate(Usuario usuario);
+        Usuario Update(Usuario usuario);
+
+        void AddConhecimentosForUsuarioLoggedIn(IList<int> ConhecimentoIds);
+
+        void AddConhecimentosForUsuarioByUsuarioId(IList<int> ConhecimentoIds, int UsuarioId);
+
+
     }
 }
