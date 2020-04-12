@@ -1,34 +1,34 @@
 using System.Collections.Generic;
-using System.Linq;
-using HRWeb.Filters;
-using HRWeb.Helpers;
 using Core.Data.Models;
-using Core.Data.Repositories;
-using HRWeb.Strategy.Errors;
 using System.Web.Http;
 using HRWeb.Controllers.TemplateControllers;
 using System.Net.Http;
-using System.Net;
 using System.Web.Http.Description;
+using Core.Application.Interfaces;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
 
 namespace HRWeb.Controllers
 {
   [Authorize(Roles = "Administrador")]
   public class DepartamentoController : BasicApiAppController
   {
-     
-        private DepartamentoRepository departamentoRepo;
-        private UsuarioRepository usuarioRepo;
-        private CargoRepository cargoRepo;
-        ;
 
-        public DepartamentoController()
-        {
-            usuarioRepo = new UsuarioRepository();
-            departamentoRepo = new DepartamentoRepository();
-            
-            cargoRepo = new CargoRepository();
-        }
+
+    private IDepartamentoAppService _departamentoAppService;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="domainNotification"></param>
+    /// <param name="departamentoAppService"></param>
+    public DepartamentoController(IDomainNotificationHandler<DomainNotification> domainNotification,
+      IDepartamentoAppService departamentoAppService) : base(domainNotification)
+    {
+
+      _departamentoAppService = departamentoAppService;
+
+    }
 
     /// <summary>
     /// 
@@ -37,13 +37,16 @@ namespace HRWeb.Controllers
     [HttpOptions]
     [HttpGet]
     [ResponseType(typeof(IList<Departamento>))]
-    public IHttpActionResult Get()
-        {
-    
-            IList<Departamento> Departamentos = departamentoRepo.GetDepartamentos().OrderBy(d => d.Nome).ToList();
-            return Ok(Departamentos);
+    public HttpResponseMessage Get()
+    {
 
-        }
+      IList<Departamento> departamentos = _departamentoAppService.Get();
+
+
+
+      return ResponseWithNotifications(departamentos);
+
+    }
 
     /// <summary>
     /// 
@@ -53,19 +56,13 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Departamento))]
     [HttpOptions]
     [HttpGet]
-    public IHttpActionResult Get(int Id)
-        {
+    public HttpResponseMessage Get(int Id)
+    {
 
-          Departamento Departamento = departamentoRepo.GetDepartamentos().Where(d => d.Id == Id).FirstOrDefault();
+      Departamento Departamento = _departamentoAppService.Get(Id);
+      return ResponseWithNotifications(Departamento);
 
-      if(Departamento == null)
-      {
-        return NotFound();
-      }
-
-          return Ok(Departamento);
-
-        }
+    }
 
     /// <summary>
     /// 
@@ -75,14 +72,11 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Departamento))]
     [HttpOptions]
     [HttpPost]
-        public IHttpActionResult Post([FromBody]Departamento departamento)
-        {
-
-            departamentoRepo.InsertDepartamento(departamento);
-            departamentoRepo.Save();
-            return Ok(departamento);
-    
-        }
+    public HttpResponseMessage Post([FromBody]Departamento departamento)
+    {
+      var Departamento = _departamentoAppService.Insert(departamento);
+      return ResponseWithNotifications(Departamento);
+    }
 
     /// <summary>
     /// 
@@ -92,25 +86,11 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(object))]
     [HttpOptions]
     [HttpDelete]
-        public HttpResponseMessage Delete(int Id)
-        {
-            Departamento departamento = departamentoRepo.FindDepartamento(Id);
-
-
-
-            if (cargoRepo.GetCargos().Where(c => c.DepartamentoId == Id).FirstOrDefault() == null)
-            {
-                departamentoRepo.DeleteDepartamento(departamento);
-                departamentoRepo.Save();
-
-                
-
-                return Request.CreateResponse(HttpStatusCode.OK, null);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-
-        }
+    public HttpResponseMessage Delete(int Id)
+    {
+      _departamentoAppService.Delete(Id);
+      return ResponseWithNotifications(Id);
+    }
 
     /// <summary>
     /// 
@@ -120,23 +100,10 @@ namespace HRWeb.Controllers
     [ResponseType(typeof(Departamento))]
     [HttpOptions]
     [HttpPut]
-        public HttpResponseMessage Put([FromBody]Departamento departamento)
-        {
-            Departamento departamentoFromDb = departamentoRepo.FindDepartamento(departamento.Id);
-
-            if (departamentoFromDb != null)
-            {
-
-                departamentoFromDb.Nome = departamento.Nome;
-                departamentoFromDb.AreaId = departamento.AreaId;
-                departamentoRepo.UpdateDepartamento(departamentoFromDb);
-                departamentoRepo.Save();
-                return Request.CreateResponse(HttpStatusCode.OK , departamentoFromDb);
-
-            }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
-        }
-    } // Fim da classe
+    public HttpResponseMessage Put([FromBody]Departamento departamento)
+    {
+      Departamento departamentoFromDb = _departamentoAppService.Update(departamento);
+      return ResponseWithNotifications(departamentoFromDb);
+    }
+  } // Fim da classe
 } // Fim da namespace

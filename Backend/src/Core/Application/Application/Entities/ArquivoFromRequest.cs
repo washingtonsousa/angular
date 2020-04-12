@@ -70,7 +70,7 @@ namespace Core.Application.Entities
         public Arquivo Arquivo { get;  private set; }
   
 
-        public bool Valid { get; private set; }
+        public bool FinishedAndOk { get; private set; }
 
 
         public void SaveToDirectory()
@@ -86,11 +86,11 @@ namespace Core.Application.Entities
                 Arquivo.Nome = NewFileName.Split(".".ToCharArray()).FirstOrDefault();
                 Arquivo.Ext = FileExtension;
                 
-                Valid = true;
+                FinishedAndOk = true;
 
             } catch
             {
-                Valid = false;
+                FinishedAndOk = false;
 
             }
         }

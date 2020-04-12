@@ -1,109 +1,61 @@
 using System.Collections.Generic;
-using System.Linq;
-
 using Core.Data.Models;
-using Core.Data.Repositories;
 using System.Web.Http;
 using HRWeb.Controllers.TemplateControllers;
 using System.Net.Http;
-using System.Net;
+using Core.Application.Interfaces;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
 
 namespace HRWeb.Controllers
 {
-    [Authorize (Roles="Administrador")]
-    public class CargoController : BasicApiAppController
+  [Authorize(Roles = "Administrador")]
+  public class CargoController : BasicApiAppController
+  {
+
+    private ICargoAppService _cargoAppService;
+
+    public CargoController(IDomainNotificationHandler<DomainNotification> domainNotification, ICargoAppService cargoAppService) : base(domainNotification)
     {
-        private CargoRepository cargoRepo;
-        private DepartamentoRepository depRepo;
-        private UsuarioRepository usuarioRepo;
-        ;
+      _cargoAppService = cargoAppService;
+    }
 
-        public CargoController()
-        {
-           
-            cargoRepo = new CargoRepository();
-            usuarioRepo = new UsuarioRepository();
-            depRepo = new DepartamentoRepository();
-            
-        }
+    public HttpResponseMessage Get()
+    {
 
-        public IHttpActionResult Get()
-        {
-         
-            IList<Cargo> Cargos = cargoRepo.GetCargos().OrderBy(c => c.Nome).ToList();
+      IList<Cargo> Cargos = _cargoAppService.Get();
+      return ResponseWithNotifications(Cargos);
 
-            return Ok(Cargos);
-        }
+    }
 
 
-        public IHttpActionResult Get(int Id)
-        {
+    public HttpResponseMessage Get(int Id)
+    {
 
-          Cargo Cargo = cargoRepo.GetCargos().FirstOrDefault();
+      Cargo Cargo = _cargoAppService.Get(Id);
+      return ResponseWithNotifications(Cargo);
 
-      if (Cargo == null)
-      {
-        return NotFound();
-      }
+    }
 
-          return Ok(Cargo);
-        }
+    [HttpPost]
+    public HttpResponseMessage Post([FromBody]Cargo cargo)
+    {
+      Cargo Cargo = _cargoAppService.Insert(cargo);
+      return ResponseWithNotifications(Cargo);
+    }
 
-
-
-
-
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]Cargo cargo)
-        {
-           
-
-            cargoRepo.InsertCargo(cargo);
-
-            cargoRepo.Save();
-
-            return Ok(cargo);
-
-        }
-
-        [HttpDelete]
-        public HttpResponseMessage Delete(int id)
-        {
-
-            Cargo cargo = cargoRepo.FindCargoById(id);
-
-            if (usuarioRepo.Get().Where(u => u.CargoId == id).FirstOrDefault() == null) { 
-
-                cargoRepo.DeleteCargo(cargo);
-                cargoRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK, null);
-
-
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseEntityError()));
-        }
+    [HttpDelete]
+    public HttpResponseMessage Delete(int id)
+    {
+      _cargoAppService.Delete(id);
+      return ResponseWithNotifications(id);
+    }
 
     [HttpPut]
-        public HttpResponseMessage Put(Cargo cargo)
-        {
-            Cargo cargoFromDb = cargoRepo.FindCargoById(cargo.Id);
-
-            if (cargoFromDb != null)
-            {
-
-                cargoFromDb.DepartamentoId = cargo.DepartamentoId;
-                cargoFromDb.Nome = cargo.Nome;
-                cargoRepo.UpdateCargo(cargoFromDb);
-
-                cargoRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, "Atualizado com sucesso");
-
-            }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-        }
-    } // Fim da classe
+    public HttpResponseMessage Put(Cargo cargo)
+    {
+      Cargo Cargo = _cargoAppService.Update(cargo);
+      return ResponseWithNotifications(Cargo);
+    }
+  } // Fim da classe
 } // Fim da namespace

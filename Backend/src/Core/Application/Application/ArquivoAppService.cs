@@ -1,6 +1,4 @@
 ﻿using Core.Application.Abstractions;
-using Core.Application.Aggregates;
-using Core.Application.Entities;
 using Core.Application.Facades;
 using Core.Application.Helpers;
 using Core.Application.Interfaces;
@@ -8,19 +6,12 @@ using Core.Application.Specification;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Core.Hubs;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Hosting;
 
 namespace Core.Application
 {
@@ -115,13 +106,7 @@ namespace Core.Application
 
             _logAppService.GenerateArquivoLogAction(arqFromDatabase.Nome);
 
-            httpResponseMessage.Content = new StreamContent(new FileStream(filepath, FileMode.Open, FileAccess.Read));
-            httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-            httpResponseMessage.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-            httpResponseMessage.Content.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
-            httpResponseMessage.Content.Headers.ContentDisposition.FileName = arqFromDatabase.Nome + "." + arqFromDatabase.Ext;
-
-            return httpResponseMessage;
+            return ResponseFacade.BuildFileResponseMessage(filepath, $@"{arqFromDatabase.Nome}.{arqFromDatabase.Ext}");
 
         }
 
@@ -143,12 +128,7 @@ namespace Core.Application
 
             _logAppService.GenerateArquivoLogAction(arqFromDatabase.Nome);
 
-            httpResponseMessage.Content = new StreamContent(new FileStream(filepath, FileMode.Open, FileAccess.Read));
-            httpResponseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            httpResponseMessage.Content.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
-            httpResponseMessage.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-            httpResponseMessage.Content.Headers.ContentDisposition.FileName = arqFromDatabase.Nome + "." + arqFromDatabase.Ext;
-            return httpResponseMessage;
+            return ResponseFacade.BuildFileResponseMessage(filepath, $@"{arqFromDatabase.Nome}.{arqFromDatabase.Ext}");
         }
 
 
@@ -169,7 +149,7 @@ namespace Core.Application
 
             arquivoFromRequest.SaveToDirectory();
 
-            if (!arquivoFromRequest.Valid)
+            if (!arquivoFromRequest.FinishedAndOk)
                 return;
 
             _arquivoRepo.Insert(arquivoFromRequest.Arquivo);
@@ -183,7 +163,7 @@ namespace Core.Application
         }
 
 
-        public async Task Post()
+        public async Task SaveFileByMatricula()
         {
             HttpRequestMessage httpRequestMessage = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
             var provider = await RequestFormDataProviderFacade.BuildFormDataProvider();

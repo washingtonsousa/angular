@@ -17,7 +17,7 @@ namespace Infrastructure.DI
         public static void InjectDataDriven(IKernel kernel)
         {
 
-            kernel.Bind<HrDbContext>().To<HrDbContext>().InRequestScope();
+            kernel.Bind<HrDbContext>().ToSelf().InRequestScope();
             kernel.Bind<IUnityOfWork>().To<UnityOfWork>().InRequestScope();
             kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
             kernel.Bind<IAreaRepository>().To<AreaRepository>();
@@ -36,7 +36,6 @@ namespace Infrastructure.DI
 
         }
 
-
         public static void InjectServices(IKernel kernel)
         {
 
@@ -44,11 +43,19 @@ namespace Infrastructure.DI
             kernel.Bind<IAuthAppService>().To<AuthAppService>();
             kernel.Bind<IUsuarioAppService>().To<UsuarioAppService>();
             kernel.Bind<IAreaAppService>().To<AreaAppService>();
-            kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
             kernel.Bind<ICargoAppService>().To<CargoAppService>();
-
+            kernel.Bind<IApplicationContextManager>().To<ApplicationContextManager>();
+            kernel.Bind<IDepartamentoAppService>().To<DepartamentoAppService>();
+            kernel.Bind<IArquivoAppService>().To<ArquivoAppService>();
+            kernel.Bind<ICategoriaConhecimentoAppService>().To<CategoriaConhecimentoAppService>();
         }
 
+        public static void InjectSharepointServices(IKernel kernel)
+        {
+            kernel.Bind<ISharepointAuthAppService>().To<SharepointAuthAppService>();
+            kernel.Bind<ISharepointUsersService>().To<SharepointAppUsersService>();
+            kernel.Bind<ISharepointPeopleManagerAppService>().To<SharepointPeopleManagerAppService>();
+        }
 
     }
 }

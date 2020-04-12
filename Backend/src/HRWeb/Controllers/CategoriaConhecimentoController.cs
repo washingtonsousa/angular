@@ -1,45 +1,34 @@
 using System.Collections.Generic;
-using System.Linq;
-using HRWeb.Helpers;
 using Core.Data.Models;
-using Core.Data.Repositories;
-using HRWeb.Strategy.Errors;
 using System.Web.Http;
 using HRWeb.Controllers.TemplateControllers;
-using System.Net;
 using System.Net.Http;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
 
-  
   public class CategoriaConhecimentoController : BasicApiAppController
   {
 
+    private ICategoriaConhecimentoAppService _categoriaAppService;
 
-
-    private CategoriaConhecimentoRepository categoriaCategoriaConhecimentoRepo;
-    ;
-
-    public CategoriaConhecimentoController()
+    public CategoriaConhecimentoController(IDomainNotificationHandler<DomainNotification> domainNotification, ICategoriaConhecimentoAppService categoriaAppService) : base(domainNotification)
     {
-
-
-      categoriaCategoriaConhecimentoRepo = new CategoriaConhecimentoRepository();
-      
-
+      _categoriaAppService = categoriaAppService;
     }
-
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpGet]
     [HttpOptions]
-    public IHttpActionResult Get()
+    public HttpResponseMessage Get()
     {
 
-      IList<CategoriaConhecimento> CategoriaConhecimentos = categoriaCategoriaConhecimentoRepo.GetCategoriaConhecimentos();
+      IList<CategoriaConhecimento> CategoriaConhecimentos = _categoriaAppService.Get();
 
-      return Ok(CategoriaConhecimentos);
+      return ResponseWithNotifications(CategoriaConhecimentos);
 
     }
 
@@ -48,31 +37,8 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public HttpResponseMessage Delete(int Id)
     {
-      CategoriaConhecimento categoriaCategoriaConhecimento = categoriaCategoriaConhecimentoRepo.FindCategoriaConhecimento(Id);
-  
-
-
-
-      if (categoriaCategoriaConhecimento != null)
-      {
-
-        if (categoriaCategoriaConhecimento.Conhecimentos.FirstOrDefault() == null)
-        {
-          categoriaCategoriaConhecimentoRepo.DeleteCategoriaConhecimento(categoriaCategoriaConhecimento);
-
-        categoriaCategoriaConhecimentoRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, null);
-        }
-        else
-        {
-          return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseEntityError()));
-        }
-      }
-     
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
+      _categoriaAppService.Delete(Id);
+      return ResponseWithNotifications(Id);
     }
 
 
@@ -82,22 +48,8 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Put([FromBody]CategoriaConhecimento categoriaCategoriaConhecimento)
     {
      
-      CategoriaConhecimento categoriaCategoriaConhecimentoFromDb = categoriaCategoriaConhecimentoRepo.FindCategoriaConhecimento(categoriaCategoriaConhecimento.Id);
-
-      if (categoriaCategoriaConhecimentoFromDb != null)
-      {
-
-       
-
-          categoriaCategoriaConhecimentoFromDb.Categoria = categoriaCategoriaConhecimento.Categoria;
-          categoriaCategoriaConhecimentoRepo.UpdateCategoriaConhecimento(categoriaCategoriaConhecimentoFromDb);
-          categoriaCategoriaConhecimentoRepo.Save();
-          return Request.CreateResponse(HttpStatusCode.OK, categoriaCategoriaConhecimentoFromDb);
-
-        
-      }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+      CategoriaConhecimento categoriaCategoriaConhecimentoFromDb = _categoriaAppService.Update(categoriaCategoriaConhecimento);
+      return ResponseWithNotifications(categoriaCategoriaConhecimentoFromDb);
 
     }
 
@@ -107,18 +59,8 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public HttpResponseMessage Post([FromBody]CategoriaConhecimento categoriaCategoriaConhecimento)
     {
-
-      if (categoriaCategoriaConhecimentoRepo.GetCategoriaConhecimentos().Where(c => c.Categoria == categoriaCategoriaConhecimento.Categoria).FirstOrDefault() == null)
-      {
-        categoriaCategoriaConhecimentoRepo.InsertCategoriaConhecimento(categoriaCategoriaConhecimento);
-
-        categoriaCategoriaConhecimentoRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, categoriaCategoriaConhecimento);
-      }
-
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseDuplicatedEntryError()));
+      categoriaCategoriaConhecimento = _categoriaAppService.Update(categoriaCategoriaConhecimento);
+      return ResponseWithNotifications(categoriaCategoriaConhecimento);
     }
 
 

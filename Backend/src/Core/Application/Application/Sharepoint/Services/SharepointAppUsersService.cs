@@ -9,19 +9,19 @@ using Core.Data.Interfaces;
 
 namespace Core.Application.Sharepoint.Services
 {
-  public class SharepointAppUsersService: SharepointAppServiceTemplate, ISharepointUsersService
+    public class SharepointAppUsersService : SharepointAppServiceTemplate, ISharepointUsersService
     {
 
-    private ISharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
+        private ISharepointPeopleManagerAppService _sharepointPeopleManagerAppService;
 
         public IUsuarioRepository _usuarioRepo { get; }
 
         public SharepointAppUsersService(ISharepointPeopleManagerAppService SharepointPeopleManagerAppService, IUsuarioRepository usuarioRepository, ISharepointAuthAppService sharepointAuthAppService) : base(sharepointAuthAppService)
         {
 
-          _sharepointPeopleManagerAppService = SharepointPeopleManagerAppService;
-          _usuarioRepo = usuarioRepository;
-         
+            _sharepointPeopleManagerAppService = SharepointPeopleManagerAppService;
+            _usuarioRepo = usuarioRepository;
+
         }
 
         public UserCollection GetSiteUsersCollection()
@@ -40,53 +40,53 @@ namespace Core.Application.Sharepoint.Services
         public IList<UsuarioOffice365> Get()
         {
 
-       _sharepointPeopleManagerAppService.Initialize();
+            _sharepointPeopleManagerAppService.Initialize();
 
-      IList<UsuarioOffice365> siteUsersList = new List<UsuarioOffice365>();
-      IList<User> SysUsersList = new List<User>();
+            IList<UsuarioOffice365> siteUsersList = new List<UsuarioOffice365>();
+            IList<User> SysUsersList = new List<User>();
 
-      UserCollection siteUsers = GetSiteUsersCollection();
+            UserCollection siteUsers = GetSiteUsersCollection();
 
-      foreach (var user in siteUsers)
-      {
-
-        PersonProperties personProperties = _sharepointPeopleManagerAppService.GetPersonPropertiesByLoginName(user.LoginName);
-
-        if (_sharepointPeopleManagerAppService.ExecuteRequest())
-        {
-
-          if (user.LoginName.Split("|".ToCharArray()).LastOrDefault().Split("@".ToCharArray()).LastOrDefault()
-            == ConfigurationManager.AppSettings["ContextDomain"])
-          {
-            UsuarioOffice365 usuarioOffice365 = new UsuarioOffice365();
-
-            usuarioOffice365.AccountName = personProperties.AccountName;
-            usuarioOffice365.PictureUrl = personProperties.PictureUrl;
-            usuarioOffice365.UserUrl = personProperties.UserUrl;
-            usuarioOffice365.DisplayName = personProperties.DisplayName;
-            usuarioOffice365.Email = user.LoginName.Split("|".ToCharArray()).LastOrDefault();
-            usuarioOffice365.personProperties = personProperties.UserProfileProperties;
-
-            if (_usuarioRepo.FindUsuarioByEmail(usuarioOffice365.Email) != null)
+            foreach (var user in siteUsers)
             {
-              usuarioOffice365.Status = true;
-              usuarioOffice365.UsuarioFromDbId = _usuarioRepo.FindUsuarioByEmail(usuarioOffice365.Email).Id;
+
+                PersonProperties personProperties = _sharepointPeopleManagerAppService.GetPersonPropertiesByLoginName(user.LoginName);
+
+                if (_sharepointPeopleManagerAppService.ExecuteRequest())
+                {
+
+                    if (user.LoginName.Split("|".ToCharArray()).LastOrDefault().Split("@".ToCharArray()).LastOrDefault()
+                      == ConfigurationManager.AppSettings["ContextDomain"])
+                    {
+                        UsuarioOffice365 usuarioOffice365 = new UsuarioOffice365();
+
+                        usuarioOffice365.AccountName = personProperties.AccountName;
+                        usuarioOffice365.PictureUrl = personProperties.PictureUrl;
+                        usuarioOffice365.UserUrl = personProperties.UserUrl;
+                        usuarioOffice365.DisplayName = personProperties.DisplayName;
+                        usuarioOffice365.Email = user.LoginName.Split("|".ToCharArray()).LastOrDefault();
+                        usuarioOffice365.personProperties = personProperties.UserProfileProperties;
+
+                        if (_usuarioRepo.FindUsuarioByEmail(usuarioOffice365.Email) != null)
+                        {
+                            usuarioOffice365.Status = true;
+                            usuarioOffice365.UsuarioFromDbId = _usuarioRepo.FindUsuarioByEmail(usuarioOffice365.Email).Id;
+
+                        }
+                        else
+                        {
+                            usuarioOffice365.Status = false;
+                        }
+
+                        siteUsersList.Add(usuarioOffice365);
+
+                    }
+
+                }
 
             }
-            else
-            {
-              usuarioOffice365.Status = false;
-            }
 
-            siteUsersList.Add(usuarioOffice365);
-
-          }
-
-        }
-
-        }
-
-        return siteUsersList;
+            return siteUsersList;
 
         }
 
@@ -94,7 +94,7 @@ namespace Core.Application.Sharepoint.Services
         {
             return this.Get().FirstOrDefault(u => u.Email == Email);
         }
-        
-        }
-    
+
     }
+
+}

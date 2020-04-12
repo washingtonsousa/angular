@@ -8,6 +8,10 @@ using HRWeb.Helpers;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Linq;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
+using Core.Application.Sharepoint.Services;
 
 namespace HRWeb.Controllers
 {
@@ -18,24 +22,22 @@ namespace HRWeb.Controllers
 
   [Authorize(Roles = "Administrador")]
   public class SPUsersController : BasicApiAppController
+  {
+
+    private ISharepointUsersService _sharepointUsersAppService;
+
+
+    public SPUsersController(IDomainNotificationHandler<DomainNotification> domainNotification, ISharepointUsersService sharepointUsersAppService) : base(domainNotification)
     {
-
-        private UsuarioRepository usuarioRepo;
-        public SPUsersController()
-        { 
-      usuarioRepo = new UsuarioRepository();
- 
-      this.spAuthHelper = new BasicAuthHelper();
-         }
-
-        [HttpOptions]
-        [HttpGet]
-        public IHttpActionResult Get()
-        {
-      ClientContext clientContext = TokenHelper.GetClientContextWithAccessToken(this.contextAppUrl, this.spAuthHelper.GetSPAppToken());
-      SharepointUsersService spUserRepository = new SharepointUsersService(clientContext);
-      return Ok(spUserRepository.GetSPUsers());
-
-        } 
+      _sharepointUsersAppService = sharepointUsersAppService;
     }
+
+    [HttpOptions]
+    [HttpGet]
+    public IHttpActionResult Get()
+    {
+      return Ok(_sharepointUsersAppService.Get());
+
+    }
+  }
 }

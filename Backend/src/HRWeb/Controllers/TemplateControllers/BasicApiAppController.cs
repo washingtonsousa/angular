@@ -36,7 +36,17 @@ namespace HRWeb.Controllers.TemplateControllers
       return Request.CreateResponse(HttpStatusCode.OK, data);
 
     }
-    
+
+
+    public HttpResponseMessage ResponseWithNotifications(HttpResponseMessage response)
+    {
+
+      if (_domainNotification.HasNotifications())
+        return Request.CreateResponse(HttpStatusCode.BadRequest, _domainNotification.Notify());
+
+      return response;
+
+    }
 
   }
 }

@@ -1,9 +1,6 @@
 using System;
 using Core.Data.Repositories;
 using Core.Data.Models;
-using HRWeb.Filters;
-using HRWeb.Helpers;
-using HRWeb.Strategy.Errors;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Net;

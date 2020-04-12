@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Data.Repositories
 {
-  public class DepartamentoRepository :  IDepartamentoRepository
+    public class DepartamentoRepository : IDepartamentoRepository
     {
 
         private HrDbContext Context;
@@ -20,72 +20,70 @@ namespace Core.Data.Repositories
 
 
         public Departamento Find(int Id)
-    {
-      return this.Context.Departamentos.Where(u => u.Id == Id).FirstOrDefault();
+        {
+            return Context.Departamentos.Include(d => d.Cargos).Where(u => u.Id == Id).FirstOrDefault();
+
+        }
+
+        public void Delete(Departamento departamento)
+        {
+
+            Context.Departamentos.Remove(departamento);
+
+        }
 
 
+        public Departamento FindByNome(string Nome)
+        {
+            Departamento departamento = this.Context.Departamentos.Where(u => u.Nome == Nome).FirstOrDefault();
 
-    }
+            return departamento;
 
-    public void Delete(Departamento departamento)
-    {
-
-      this.Context.Departamentos.Remove(departamento);
-
-    }
-
-
-    public Departamento FindByNome(string Nome)
-    {
-      Departamento departamento = this.Context.Departamentos.Where(u => u.Nome == Nome).FirstOrDefault();
-
-      return departamento;
-
-    }
+        }
 
 
 
 
-    public void Update(Departamento departamentoData)
-    {
+        public void Update(Departamento departamentoData)
+        {
 
 
 
-      departamentoData.Atualizado_em = System.DateTime.Now;
+            departamentoData.Atualizado_em = System.DateTime.Now;
 
-      this.Context.Departamentos.Update(departamentoData);
+            this.Context.Departamentos.Update(departamentoData);
 
-    }
-
-
-
-    public void Insert(Departamento departamento)
-    {
+        }
 
 
-      this.Context.Departamentos.Add(departamento);
 
-    }
-
-    public IList<Departamento> Get()
-    {
+        public void Insert(Departamento departamento)
+        {
 
 
-      IList<Departamento> Departamentos = this.Context.Departamentos.Include(d => d.Cargos).Include(d => d.Area).ToList();
-      /*
-    *
-    * Burlar problema com as strings de imagens ao fazer joins com a tabela de áreas
-    */
-      foreach (var departamento in Departamentos)
-      {
-        Departamentos.FirstOrDefault(u => u.Id == departamento.Id).Area.imgStr = null; // string de imagem das áreas
+            Context.Departamentos.Add(departamento);
 
-      }
+        }
 
-      return Departamentos.OrderBy(d => d.Nome).ToList();
+        public IList<Departamento> Get()
+        {
 
 
-    }
+            IList<Departamento> Departamentos = this.Context.Departamentos.Include(d => d.Cargos).Include(d => d.Area).ToList();
+            /*
+          *
+          * Burlar problema com as strings de imagens ao fazer joins com a tabela de áreas
+          */
+            foreach (var departamento in Departamentos)
+            {
+                Departamentos.FirstOrDefault(u => u.Id == departamento.Id).Area.imgStr = null; // string de imagem das áreas
+
+            }
+
+            return Departamentos.OrderBy(d => d.Nome).ToList();
+
+
+        }
 
         public Task<Departamento> FindAsync(int Id)
         {

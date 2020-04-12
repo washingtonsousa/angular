@@ -1,9 +1,9 @@
 ﻿using Core.Application.Abstractions;
 using Core.Application.Interfaces;
+using Core.Application.Specification;
 using Core.Data.Interfaces;
 using Core.Data.Models;
 using Core.Hubs;
-using Core.SharedKernel.Specification;
 using Microsoft.Owin;
 using System.Collections.Generic;
 using System.Linq;

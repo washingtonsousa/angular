@@ -62,13 +62,28 @@ namespace Core.Shared.Kernel.Events
           : null;
     }
 
-    public static DomainNotification AssertNotNull(object object1, string message, string key = "AssertArgumentNotNull", RankNotification rank = RankNotification.Low)
+        /// <summary>
+        /// Must be not null
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="message"></param>
+        /// <param name="key"></param>
+        /// <param name="rank"></param>
+        /// <returns></returns>
+        public static DomainNotification AssertNotNull(object object1, string message, string key = "AssertArgumentNotNull", RankNotification rank = RankNotification.Low)
     {
       return (object1 == null)
           ? new DomainNotification(key, message, rank)
           : null;
     }
-
+        /// <summary>
+        /// Must be null
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="message"></param>
+        /// <param name="key"></param>
+        /// <param name="rank"></param>
+        /// <returns></returns>
         public static DomainNotification AssertNull(object object1, string message, string key = "AssertArgumentNull", RankNotification rank = RankNotification.Low)
         {
             return (object1 != null)
