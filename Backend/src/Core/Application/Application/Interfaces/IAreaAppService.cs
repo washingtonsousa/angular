@@ -23,7 +23,7 @@ namespace Core.Application.Interfaces
 
 
          Area Update(Area Area);
-        }
+        
 
     }
 }

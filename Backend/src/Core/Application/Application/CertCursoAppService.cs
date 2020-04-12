@@ -32,7 +32,7 @@ namespace Core.Application
         public IList<CertCurso> GetSingle()
         {
 
-            IList<CertCurso> certCurso = _certCurRepo.GetCertCursoByUsuarioId(_usuarioAppService.GetUsuarioLoggedInId());
+            IList<CertCurso> certCurso = _certCurRepo.GetCertCursosByUsuarioId(_usuarioAppService.GetUsuarioLoggedInId());
             return certCurso;
 
         }

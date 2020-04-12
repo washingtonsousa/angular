@@ -416,12 +416,12 @@ namespace HRWeb.Areas.HelpPage
 
         private IEnumerable<KeyValuePair<HelpPageSampleKey, object>> GetAllActionSamples(string controllerName, string actionName, IEnumerable<string> parameterNames, SampleDirection sampleDirection)
         {
-            HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, stringComparer.OrdinalIgnoreCase);
+            HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
             foreach (var sample in ActionSamples)
             {
                 HelpPageSampleKey sampleKey = sample.Key;
-                if (string.Equals(controllerName, sampleKey.ControllerName, stringComparison.OrdinalIgnoreCase) &&
-                    string.Equals(actionName, sampleKey.ActionName, stringComparison.OrdinalIgnoreCase) &&
+                if (string.Equals(controllerName, sampleKey.ControllerName, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(actionName, sampleKey.ActionName, StringComparison.OrdinalIgnoreCase) &&
                     (sampleKey.ParameterNames.SetEquals(new[] { "*" }) || parameterNamesSet.SetEquals(sampleKey.ParameterNames)) &&
                     sampleDirection == sampleKey.SampleDirection)
                 {

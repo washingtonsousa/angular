@@ -12,7 +12,7 @@ namespace Core.Application.Strategy.Errors
             Message = "Houve problemas para acessar o contexto do site Sharepoint de origem, " +
                 "por gentileza acesse o aplicativo novamente através do site Sharepoint de Origem";
 
-            return error;
+            return this;
 
         }
 

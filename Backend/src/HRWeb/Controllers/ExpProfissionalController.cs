@@ -7,191 +7,134 @@ using HRWeb.Controllers.TemplateControllers;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Application.Interfaces;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
 
 namespace HRWeb.Controllers
 {
- 
-    public class ExpProfissionalController : BasicApiAppController
+
+  public class ExpProfissionalController : BasicApiAppController
+  { 
+    
+
+    private IExpProfissionalAppService _expAppService;
+
+
+
+    public ExpProfissionalController(IDomainNotificationHandler<DomainNotification> domainNotification, IExpProfissionalAppService expAppService) : base(domainNotification)
     {
-
-        private ExpProfissionalRepository expRepo;
-        ;
-
-        public ExpProfissionalController()
-        {
-        
-            expRepo = new ExpProfissionalRepository();
-                   }
-
+      _expAppService = expAppService;
+    }
 
     [Authorize(Roles = "Administrador")]
     [HttpGet]
     [HttpPost]
-    public IHttpActionResult Get()
+    public HttpResponseMessage Get()
     {
 
-      IList<ExpProfissional> ExpProfissionais = expRepo.GetExpProfissionais();
+      IList<ExpProfissional> ExpProfissionais = _expAppService.Get();
 
 
-      return Ok(ExpProfissionais);
+      return ResponseWithNotifications(ExpProfissionais);
     }
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpGet]
     [HttpOptions]
-    public IHttpActionResult GetSingle()
+    public HttpResponseMessage GetSingle()
     {
-      this.SetCurrentLoggedUserHandler();
-      IList<ExpProfissional> ExpProfissionais = expRepo.GetExpProfissionais().Where(c => c.UsuarioId == Usuario_Id).ToList();
+      IList<ExpProfissional> ExpProfissionais = _expAppService.GetSingle();
 
-      if (ExpProfissionais.FirstOrDefault() == null)
-      {
-        return NotFound();
-      }
 
-      return Ok(ExpProfissionais);
+      return ResponseWithNotifications(ExpProfissionais);
 
     }
 
 
 
     [Authorize(Roles = "Administrador, Funcionario")]
-        [HttpOptions]
-        [HttpPost]
-        public IHttpActionResult PostSingle([FromBody]ExpProfissional ExpProfissional)
-        {
-
-      this.SetCurrentLoggedUserHandler();
-            int UsuarioId =  Usuario_Id;
-            ExpProfissional.UsuarioId = UsuarioId;
-
-                expRepo.InsertExpProfissional(ExpProfissional);
-                expRepo.Save();
-
-                return Ok(JsonResultObjHelper.getArquivoJsonResultSuccessObj());
-
-          
-        }
-
-        [Authorize(Roles = "Administrador, Funcionario")]
-        [HttpOptions] 
-        [HttpPut]
-        public HttpResponseMessage PutSingle([FromBody]ExpProfissional ExpProfissional)
-        {
-            this.SetCurrentLoggedUserHandler();
-         
-
-            ExpProfissional ExpProfissionalFromDb = expRepo.FindExpProfissionalByBothIds(ExpProfissional.Id, Usuario_Id);
-
-            if (ExpProfissionalFromDb != null)
-            {
-                ExpProfissional.UsuarioId = Usuario_Id;
-                ExpProfissionalFromDb.Cargo = ExpProfissional.Cargo;
-                ExpProfissionalFromDb.Descricao = ExpProfissional.Descricao;
-                ExpProfissionalFromDb.Empresa = ExpProfissional.Empresa;
-                ExpProfissionalFromDb.Fim = ExpProfissional.Fim;
-                ExpProfissionalFromDb.UltimoSalario = ExpProfissional.UltimoSalario;
-                ExpProfissionalFromDb.Inicio = ExpProfissional.Inicio;
-                ExpProfissionalFromDb.Atualizado_em = DateTime.Now;
-                expRepo.UpdateExpProfissional(ExpProfissionalFromDb);
-                expRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK,JsonResultObjHelper.getArquivoJsonResultSuccessObj());;
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));;
-
-            
-        }
-
-
-        [Authorize(Roles = "Administrador, Funcionario")]
-        [HttpOptions]
-        [HttpDelete]
-        public HttpResponseMessage DeleteSingle(int Id)
-        {
-      this.SetCurrentLoggedUserHandler();
-            ExpProfissional ExpProfissionalFromDb = expRepo.FindExpProfissionalByBothIds(Id,  Usuario_Id);
-
-            if (ExpProfissionalFromDb != null)
-            {
-
-
-                expRepo.DeleteExpProfissional(ExpProfissionalFromDb);
-                expRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK,JsonResultObjHelper.getArquivoJsonResultSuccessObj());;
-
-            }
-
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));;
-
-        }
-
-
-        [Authorize(Roles = "Administrador")]
-        [HttpOptions]
-        [HttpPut]
-        public HttpResponseMessage Put([FromBody]ExpProfissional ExpProfissional)
-        {
-    
-            ExpProfissional ExpProfissionalFromDb = expRepo.FindExpProfissionalByBothIds(ExpProfissional.Id, ExpProfissional.UsuarioId);
-
-            if (ExpProfissionalFromDb != null)
-            {
-        ExpProfissional.UsuarioId = Usuario_Id;
-        ExpProfissionalFromDb.Cargo = ExpProfissional.Cargo;
-        ExpProfissionalFromDb.Descricao = ExpProfissional.Descricao;
-        ExpProfissionalFromDb.Empresa = ExpProfissional.Empresa;
-        ExpProfissionalFromDb.Fim = ExpProfissional.Fim;
-        ExpProfissionalFromDb.UltimoSalario = ExpProfissional.UltimoSalario;
-        ExpProfissionalFromDb.Inicio = ExpProfissional.Inicio;
-        ExpProfissionalFromDb.Atualizado_em = DateTime.Now;
-        expRepo.UpdateExpProfissional(ExpProfissionalFromDb);
-        expRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK, ExpProfissional);;
-
-            }
-                return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));;
-           
-        }
-
-        [Authorize(Roles = "Administrador")]
-        [HttpOptions]
-        [HttpPost]
-        public HttpResponseMessage Post([FromBody]ExpProfissional ExpProfissional)
-        {
-
-            expRepo.InsertExpProfissional(ExpProfissional);
-            expRepo.Save();
-
-            return Request.CreateResponse(HttpStatusCode.OK, ExpProfissional);
-        }
-
-    [Authorize(Roles = "Administrador")]
     [HttpOptions]
-        [HttpDelete]
-        public HttpResponseMessage Delete(int Id)
-        {
+    [HttpPost]
+    public HttpResponseMessage PostSingle([FromBody]ExpProfissional ExpProfissional)
+    {
 
-            ExpProfissional ExpProfissionalFromDb = expRepo.Find(Id);
-
-            if (ExpProfissionalFromDb != null)
-            {
-                expRepo.DeleteExpProfissional(ExpProfissionalFromDb);
-                expRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK,JsonResultObjHelper.getArquivoJsonResultSuccessObj());;
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));;
+      ExpProfissional = _expAppService.InsertSingle(ExpProfissional);
 
 
-        }
-
+      return ResponseWithNotifications(ExpProfissional);
 
 
     }
+
+    [Authorize(Roles = "Administrador, Funcionario")]
+    [HttpOptions]
+    [HttpPut]
+    public HttpResponseMessage PutSingle([FromBody]ExpProfissional ExpProfissional)
+    {
+
+      ExpProfissional = _expAppService.UpdateSingle(ExpProfissional);
+
+
+      return ResponseWithNotifications(ExpProfissional);
+
+    }
+
+
+    [Authorize(Roles = "Administrador, Funcionario")]
+    [HttpOptions]
+    [HttpDelete]
+    public HttpResponseMessage DeleteSingle(int Id)
+    {
+      _expAppService.DeleteSingle(Id);
+
+
+      return ResponseWithNotifications(Id);
+
+
+    }
+
+
+    [Authorize(Roles = "Administrador")]
+    [HttpOptions]
+    [HttpPut]
+    public HttpResponseMessage Put([FromBody]ExpProfissional ExpProfissional)
+    {
+
+      ExpProfissional = _expAppService.Update(ExpProfissional);
+
+
+      return ResponseWithNotifications(ExpProfissional);
+
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpOptions]
+    [HttpPost]
+    public HttpResponseMessage Post([FromBody]ExpProfissional ExpProfissional)
+    {
+
+      ExpProfissional = _expAppService.Insert(ExpProfissional);
+
+
+      return ResponseWithNotifications(ExpProfissional);
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpOptions]
+    [HttpDelete]
+    public HttpResponseMessage Delete(int Id)
+    {
+
+      _expAppService.Delete(Id);
+
+
+      return ResponseWithNotifications(Id);
+
+
+    }
+
+
+
+  }
 }

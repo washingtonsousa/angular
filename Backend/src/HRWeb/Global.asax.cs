@@ -23,7 +23,7 @@ namespace HRWeb
       GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings
       .Add(new System.Net.Http.Formatting.RequestHeaderMapping("Accept",
                         "text/html",
-                        stringComparison.InvariantCultureIgnoreCase,
+                        StringComparison.InvariantCultureIgnoreCase,
                         true,
                         "application/json"));
 

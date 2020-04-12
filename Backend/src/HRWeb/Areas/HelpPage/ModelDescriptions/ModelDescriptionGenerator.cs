@@ -40,9 +40,9 @@ namespace HRWeb.Areas.HelpPage.ModelDescriptions
                     return string.Format(CultureInfo.CurrentCulture, "Min length: {0}", minLength.Length);
                 }
             },
-            { typeof(stringLengthAttribute), a =>
+            { typeof(StringLengthAttribute), a =>
                 {
-                    stringLengthAttribute strLength = (stringLengthAttribute)a;
+                    StringLengthAttribute strLength = (StringLengthAttribute)a;
                     return string.Format(CultureInfo.CurrentCulture, "string length: inclusive between {0} and {1}", strLength.MinimumLength, strLength.MaximumLength);
                 }
             },
@@ -94,7 +94,7 @@ namespace HRWeb.Areas.HelpPage.ModelDescriptions
             }
 
             _documentationProvider = new Lazy<IModelDocumentationProvider>(() => config.Services.GetDocumentationProvider() as IModelDocumentationProvider);
-            GeneratedModels = new Dictionary<string, ModelDescription>(stringComparer.OrdinalIgnoreCase);
+            GeneratedModels = new Dictionary<string, ModelDescription>(StringComparer.OrdinalIgnoreCase);
         }
 
         public Dictionary<string, ModelDescription> GeneratedModels { get; private set; }
@@ -297,7 +297,7 @@ namespace HRWeb.Areas.HelpPage.ModelDescriptions
                 }
 
                 // Sort the rest based on alphabetic order of the documentation
-                return string.Compare(x.Documentation, y.Documentation, stringComparison.OrdinalIgnoreCase);
+                return string.Compare(x.Documentation, y.Documentation, StringComparison.OrdinalIgnoreCase);
             });
 
             foreach (ParameterAnnotation annotation in annotations)

@@ -12,8 +12,8 @@ namespace Core.Shared.Kernel.Abstractions
         {
             Invalid = true;
 
-            foreach(var notification in notifications)
-            DomainEvent.DomainNotify(notification);
+            foreach (var notification in notifications)
+                DomainEvent.Notify(notification);
         }
 
     }

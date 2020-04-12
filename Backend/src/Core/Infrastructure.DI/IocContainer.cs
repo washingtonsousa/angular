@@ -6,6 +6,9 @@ using Core.Application.Sharepoint.Services;
 using Core.Data.Interfaces;
 using Core.Data.ORM;
 using Core.Data.Repositories;
+using Core.Shared.Kernel.Events;
+using Core.Shared.Kernel.Handles;
+using Core.Shared.Kernel.Interfaces;
 using Ninject;
 using Ninject.Web.Common;
 
@@ -54,6 +57,14 @@ namespace Infrastructure.DI
             kernel.Bind<IStatisticsAppService>().To<StatisticsAppService>();
             kernel.Bind<IRelatoriosAppService>().To<RelatoriosAppService>();
             kernel.Bind<IProfilePictureAppService>().To<ProfilePictureAppService>();
+            kernel.Bind<INivelAcessoAppService>().To<NivelAcessoAppService>();
+            kernel.Bind<IIdiomaAppService>().To<IdiomaAppService>();
+            kernel.Bind<IContatoAppService>().To<ContatoAppService>();
+            kernel.Bind<IExpProfissionalAppService>().To<ExpProfissionalAppService>();
+            kernel.Bind<IFormAcademicaAppService>().To<FormAcademicaAppService>();
+            kernel.Bind<IEnderecoAppService>().To<EnderecoAppService>();
+            kernel.Bind<IDomainNotificationHandler<DomainNotification>>().To<DomainNotificationHandler>().InRequestScope();
+            kernel.Bind<IInstallAppService>().To<InstallAppService>();
         }
 
         public static void InjectSharepointServices(IKernel kernel)

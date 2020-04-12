@@ -8,186 +8,142 @@ using System.Net.Http;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
 
-    public class ContatoController : BasicApiAppController
+  public class ContatoController : BasicApiAppController
+  {
+    private IContatoAppService _contatoAppService;
+
+
+
+
+    public ContatoController(IDomainNotificationHandler<DomainNotification> domainNotification, IContatoAppService contatoAppService) : base(domainNotification)
     {
-        private ContatoRepository contatoRepo;   
-        ;
-
-        public ContatoController()
-        {
-           
-            contatoRepo = new ContatoRepository();
-            
-
-        } // Fim método
-
+      _contatoAppService = contatoAppService;
+    }
 
     [Authorize(Roles = "Administrador")]
     [HttpGet]
     [HttpPost]
-    public IHttpActionResult Get()
+    public HttpResponseMessage Get()
     {
 
-      IList<Contato> contatos = contatoRepo.GetContatos();
+      IList<Contato> contatos = _contatoAppService.Get();
 
 
-      return Ok(contatos);
+      return ResponseWithNotifications(contatos);
     }
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpGet]
     [HttpOptions]
-    public IHttpActionResult GetSingle()
+    public HttpResponseMessage GetSingle()
     {
-      this.SetCurrentLoggedUserHandler();
-      IList<Contato> contatos = contatoRepo.GetContatos().Where(c => c.UsuarioId == Usuario_Id).ToList();
 
-      if (contatos.FirstOrDefault() == null)
-      {
-        return NotFound();
-      }
+      IList<Contato> contatos = _contatoAppService.GetSingle();
 
-      return Ok(contatos);
+
+
+      return ResponseWithNotifications(contatos);
 
     }
 
-    [Authorize(Roles ="Funcionario, Administrador")]
-        [HttpOptions]
-        [HttpDelete]
-        public HttpResponseMessage DeleteSingle(int Id)
-        {
+    [Authorize(Roles = "Funcionario, Administrador")]
+    [HttpOptions]
+    [HttpDelete]
+    public HttpResponseMessage DeleteSingle(int Id)
+    {
 
-            this.SetCurrentLoggedUserHandler();
 
-            Contato Contato = contatoRepo.FindContato(Id);
+      _contatoAppService.DeleteSingle(Id);
 
-            if (Contato != null && Contato.UsuarioId == Usuario_Id)
-            {
-                contatoRepo.DeleteContato(Contato);
-                contatoRepo.Save();
-                return Request.CreateResponse(HttpStatusCode.OK,null);
-            }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
 
-        } // Fim método
+      return ResponseWithNotifications(Id);
+
+    } // Fim método
 
     [Authorize(Roles = "Funcionario, Administrador")]
     [HttpOptions]
     [HttpPut]
-        public HttpResponseMessage PutSingle([FromBody]Contato Contato)
-        {
+    public HttpResponseMessage PutSingle([FromBody]Contato Contato)
+    {
 
-      this.SetCurrentLoggedUserHandler();
-      Contato contatoFromDb = contatoRepo.FindContato(Contato.Id);
-            
-          
-            if (contatoFromDb != null && contatoFromDb.UsuarioId == Usuario_Id)
-            {
-                contatoFromDb.Fixo = Contato.Fixo;
-                contatoFromDb.Celular = Contato.Celular;
-                contatoFromDb.EmailContato = Contato.EmailContato;
-                contatoFromDb.Descricao = Contato.Descricao;
-                contatoFromDb.Atualizado_em = DateTime.Now;
-                contatoRepo.UpdateContato(contatoFromDb);
-                contatoRepo.Save();
-
-               
+      Contato = _contatoAppService.UpdateSingle(Contato);
 
 
-                return Request.CreateResponse(HttpStatusCode.OK,null);
 
-            }
+      return ResponseWithNotifications(Contato);
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
-        } //Fim método
+    } //Fim método
 
     [Authorize(Roles = "Funcionario, Administrador")]
     [HttpOptions]
-        [HttpPost]
-        public IHttpActionResult PostSingle([FromBody]Contato Contato)
-        {
+    [HttpPost]
+    public HttpResponseMessage PostSingle([FromBody]Contato Contato)
+    {
 
-            this.SetCurrentLoggedUserHandler();
-
-            Contato.UsuarioId = Usuario_Id;
-
-            contatoRepo.InsertContato(Contato);
-
-            contatoRepo.Save();
-
-            return Ok(Contato);
-
-        }
+      Contato = _contatoAppService.InsertSingle(Contato);
 
 
-        [Authorize(Roles = "Administrador")]
-        [HttpPost]
-        [HttpOptions]
-        public IHttpActionResult Post([FromBody]Contato Contato)
-        {
 
-         contatoRepo.InsertContato(Contato);
-         contatoRepo.Save();
-         return Ok(Contato);
+      return ResponseWithNotifications(Contato);
 
-        }
+    }
 
 
-        [Authorize(Roles = "Administrador")]
-        [HttpOptions]
-        [HttpDelete]
-        public HttpResponseMessage Delete(int id)
-        {
+    [Authorize(Roles = "Administrador")]
+    [HttpPost]
+    [HttpOptions]
+    public HttpResponseMessage Post([FromBody]Contato Contato)
+    {
 
-            Contato Contato = contatoRepo.FindContato(id);
-            if(Contato != null)
-            {
-                contatoRepo.DeleteContato(Contato);
-                contatoRepo.Save();
 
-                return Request.CreateResponse(HttpStatusCode.OK,null);
+      Contato = _contatoAppService.Insert(Contato);
 
-            }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
 
-        }
+      return ResponseWithNotifications(Contato);
+
+    }
+
+
     [Authorize(Roles = "Administrador")]
     [HttpOptions]
-        [HttpPut]
-        public HttpResponseMessage Put([FromBody]Contato Contato)
-        {
-            Contato contatoFromDb = contatoRepo.FindContato(Contato.Id);
-
-            if (contatoFromDb != null)
-            {
-                contatoFromDb.Fixo = Contato.Fixo;
-                contatoFromDb.Celular = Contato.Celular;
-                contatoFromDb.EmailContato = Contato.EmailContato;
-                contatoFromDb.Descricao = Contato.Descricao;
-                contatoFromDb.Atualizado_em = DateTime.Now;
-                contatoRepo.UpdateContato(contatoFromDb);
-                contatoRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, Contato);
-
-            } 
+    [HttpDelete]
+    public HttpResponseMessage Delete(int id)
+    {
 
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+      _contatoAppService.Delete(id);
 
 
 
+      return ResponseWithNotifications(id);
 
-        } // Fim método
+    }
+    [Authorize(Roles = "Administrador")]
+    [HttpOptions]
+    [HttpPut]
+    public HttpResponseMessage Put([FromBody]Contato Contato)
+    {
+      Contato = _contatoAppService.Update(Contato);
 
 
-    } // Classe
 
-    } // Namespace
+      return ResponseWithNotifications(Contato);
+
+
+
+
+    } // Fim método
+
+
+  } // Classe
+
+} // Namespace

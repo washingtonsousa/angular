@@ -6,6 +6,6 @@ namespace Core.Data.Interfaces
     public interface ICertCursoRepository : IRepository<CertCurso>
     {
         CertCurso FindCertCursoByUsuarioId(int UsuarioId);
-        IList<CertCurso> GetCertCursoByUsuarioId(int UsuarioId);
+        IList<CertCurso> GetCertCursosByUsuarioId(int UsuarioId);
     }
 }

@@ -1,11 +1,19 @@
 using Core.Application.Providers;
+using HRWeb.App_Start;
 using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System.Web.Http;
+
+[assembly: OwinStartupAttribute(typeof(HRWeb.Startup))]
 
 namespace HRWeb
 {
+
+
+ 
   public partial class Startup
   {
 
@@ -28,6 +36,17 @@ namespace HRWeb
         var hubConfiguration = new HubConfiguration { };
         map.RunSignalR(hubConfiguration);
       });
+
+
+      var config = new HttpConfiguration();
+      // Configure Unity
+      var resolver = GlobalConfiguration.Configuration.DependencyResolver;
+      GlobalConfiguration.Configuration.DependencyResolver = resolver;
+      config.DependencyResolver = resolver;
+
+      // Do Web API configuration
+      WebApiConfig.Register(config);
+
 
     }
 

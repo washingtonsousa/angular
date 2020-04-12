@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Core.App.Providers;
+using Microsoft.Owin.Security.OAuth;
 using System;
 
 namespace Core.Application.Providers

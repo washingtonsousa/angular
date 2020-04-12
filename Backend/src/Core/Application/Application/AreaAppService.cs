@@ -1,8 +1,8 @@
 ﻿using Core.Application.Abstractions;
 using Core.Application.Interfaces;
+using Core.Application.Specification;
 using Core.Data.Interfaces;
 using Core.Data.Models;
-using Core.SharedKernel.Specification;
 using System.Collections.Generic;
 using System.Linq;
 

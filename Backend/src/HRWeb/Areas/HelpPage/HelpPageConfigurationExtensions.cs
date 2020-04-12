@@ -223,7 +223,7 @@ namespace HRWeb.Areas.HelpPage
             if (!config.Properties.TryGetValue(modelId, out model))
             {
                 Collection<ApiDescription> apiDescriptions = config.Services.GetApiExplorer().ApiDescriptions;
-                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, stringComparison.OrdinalIgnoreCase));
+                ApiDescription apiDescription = apiDescriptions.FirstOrDefault(api => string.Equals(api.GetFriendlyId(), apiDescriptionId, StringComparison.OrdinalIgnoreCase));
                 if (apiDescription != null)
                 {
                     model = GenerateApiModel(apiDescription, config);

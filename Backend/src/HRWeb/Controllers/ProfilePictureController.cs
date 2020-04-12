@@ -1,17 +1,6 @@
-using Microsoft.Owin;
 using HRWeb.Controllers.TemplateControllers;
-using Core.Data.Models;
-using Core.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Hosting;
 using System.Web.Http;
 using Core.Application.Interfaces;
 using Core.Shared.Kernel.Interfaces;
@@ -24,9 +13,7 @@ namespace HRWeb.Controllers
     public class ProfilePictureController : BasicApiAppController
     {
 
-
     public IProfilePictureAppService _profilePictureAppService;
-
 
     public ProfilePictureController(IDomainNotificationHandler<DomainNotification> domainNotification, IProfilePictureAppService profilePictureAppService) : base(domainNotification)
     {
@@ -52,15 +39,12 @@ namespace HRWeb.Controllers
 
     }
 
-
-
     [HttpPost]
     [HttpOptions]
     public async Task<HttpResponseMessage> Post()
     {
       return ResponseWithNotifications(await _profilePictureAppService.Insert());
     }
-
 
     [HttpPut]
     [HttpOptions]
@@ -69,8 +53,6 @@ namespace HRWeb.Controllers
       return ResponseWithNotifications(await _profilePictureAppService.Update());
 
     }
-
-
 
     [HttpDelete]
     [HttpOptions]

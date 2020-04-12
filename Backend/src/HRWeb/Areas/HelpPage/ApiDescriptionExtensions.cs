@@ -21,11 +21,11 @@ namespace HRWeb.Areas.HelpPage
             if (urlParts.Length > 1)
             {
                 string query = urlParts[1];
-                string[] queryKeys = HttpUtility.ParseQuerystring(query).AllKeys;
+                string[] queryKeys = HttpUtility.ParseQueryString(query).AllKeys;
                 queryKeystring = string.Join("_", queryKeys);
             }
 
-            stringBuilder friendlyPath = new stringBuilder();
+            StringBuilder friendlyPath = new StringBuilder();
             friendlyPath.AppendFormat("{0}-{1}",
                 description.HttpMethod.Method,
                 localPath.Replace("/", "-").Replace("{", string.Empty).Replace("}", string.Empty));

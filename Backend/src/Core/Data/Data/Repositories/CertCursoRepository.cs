@@ -31,7 +31,7 @@ namespace Core.Data.Repositories
             return this.Context.CertCursos.Where(c => c.Id == Id).FirstOrDefault();
         }
 
-        internal CertCurso FindCertCursoByUsuarioId(int UsuarioId)
+        public CertCurso FindCertCursoByUsuarioId(int UsuarioId)
         {
             return this.Context.CertCursos.Where(c => c.UsuarioId == UsuarioId).FirstOrDefault();
         }

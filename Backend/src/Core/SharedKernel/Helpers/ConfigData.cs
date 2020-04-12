@@ -7,6 +7,11 @@ namespace Core.Data.Models
 {
     public class ConfigData
     {
+
+
+        public static string ClienteId = ConfigurationManager.AppSettings["ClientId"];
+        public static string ClientSecret = ConfigurationManager.AppSettings["ClientSecret"];
+
         public static string ContextAppUrl { get { return ConfigurationManager.AppSettings["UrlContext"]; } }
 
         public static string EmailAccount             { get { return ConfigurationManager.AppSettings["EmailAccount"]; } }

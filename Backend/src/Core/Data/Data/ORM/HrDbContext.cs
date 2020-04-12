@@ -7,26 +7,26 @@ using System;
 namespace Core.Data.ORM
 {
 
-  /// <summary>
-  /// HR Sharepoint Add-in
-  /// 
-  /// Classe usada para instanciar o contexto do Entity Framework e realizar a consulta
-  /// das entidades no banco de dados
-  /// 
-  /// A prática recomendada é somente chamar esta classe ao instaciar os repósitórios
-  /// 
-  /// Respeite o Repository Pattern!
-  /// 
-  /// 2018 Risc Services Ltda
-  /// </summary>
+    /// <summary>
+    /// HR Sharepoint Add-in
+    /// 
+    /// Classe usada para instanciar o contexto do Entity Framework e realizar a consulta
+    /// das entidades no banco de dados
+    /// 
+    /// A prática recomendada é somente chamar esta classe ao instaciar os repósitórios
+    /// 
+    /// Respeite o Repository Pattern!
+    /// 
+    /// 2018 Risc Services Ltda
+    /// </summary>
 
 
-  public class HrDbContext : DbContext
+    public class HrDbContext : DbContext
     {
 
         public HrDbContext()
         {
-      
+
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
@@ -48,32 +48,32 @@ namespace Core.Data.ORM
         public DbSet<Log_Action> Log_Actions { get; set; }
         public DbSet<CategoriaConhecimento> CategoriaConhecimentos { get; set; }
 
-    ////////////////// Chamados Módulo //////////////////////////////
+        ////////////////// Chamados Módulo //////////////////////////////
 
-    // public DbSet<Chamado> Chamados { get; set; }
-    // public DbSet<ChamadoCategoria> ChamadoCategorias { get; set; }
-    // public DbSet<ChamadoMensagem> ChamadoMensagens { get; set; }
-    // public DbSet<ChamadoAnexo> ChamadoAnexos { get; set; }
+        // public DbSet<Chamado> Chamados { get; set; }
+        // public DbSet<ChamadoCategoria> ChamadoCategorias { get; set; }
+        // public DbSet<ChamadoMensagem> ChamadoMensagens { get; set; }
+        // public DbSet<ChamadoAnexo> ChamadoAnexos { get; set; }
 
-    /// <summary>
-    /// Método para configurar o EF no acesso à banco de dados
-    /// </summary>
-    /// <param name="optionsBuilder">Injeção de depedência do EF Core, Favor consultar documentação
-    /// oficial para maiores informações</param>
-    ///
+        /// <summary>
+        /// Método para configurar o EF no acesso à banco de dados
+        /// </summary>
+        /// <param name="optionsBuilder">Injeção de depedência do EF Core, Favor consultar documentação
+        /// oficial para maiores informações</param>
+        ///
 
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
             //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MiriaSQL"].ConnectionString;
 
-            optionsBuilder.UseMySql(ConfigurationManager.ConnectionStrings["MiriaMySQL"].ConnectionString,
+            optionsBuilder.UseMySql(ConfigurationManager.ConnectionStrings["MiriaSQL"].ConnectionString,
             options => options.EnableRetryOnFailure());// Chama connection string  e habilita nova tentativa quando ocorra falha ao salvar alterações
             base.OnConfiguring(optionsBuilder); // Executa método da classe Pai
 
-    }
+        }
 
-   
+
         /// <summary>
         ///   Método para manipular as entidades e a base de dados durante a construção do Model
         ///   Cosulte da documentação do EF Core para maiores informações
@@ -83,27 +83,27 @@ namespace Core.Data.ORM
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-      modelBuilder.Entity<Usuario>().Property(e => e.profileImage64string)
-            .HasColumnType("text");
-    
+            modelBuilder.Entity<Usuario>().Property(e => e.profileImage64string)
+                  .HasColumnType("text");
 
-      modelBuilder.Entity<Status>().ToTable("Status");
+
+            modelBuilder.Entity<Status>().ToTable("Status");
             modelBuilder.Entity<ExpProfissional>().ToTable("ExpProfissionais");
             modelBuilder.Entity<UsuarioConhecimento>().ToTable("UsuarioConhecimento");
-     
+
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-      modelBuilder.Entity<Usuario>().HasMany(s => s.UsuarioConhecimentos).WithOne(s => s.Usuario);
-      modelBuilder.Entity<Conhecimento>().HasMany(s => s.UsuarioConhecimentos).WithOne(s => s.Conhecimento);
-      modelBuilder.Entity<CategoriaConhecimento>().HasMany(s => s.Conhecimentos).WithOne(s => s.CategoriaConhecimento);
-      modelBuilder.Entity<Usuario>().HasOne(s => s.Status).WithMany(s => s.Usuarios);
+            modelBuilder.Entity<Usuario>().HasMany(s => s.UsuarioConhecimentos).WithOne(s => s.Usuario);
+            modelBuilder.Entity<Conhecimento>().HasMany(s => s.UsuarioConhecimentos).WithOne(s => s.Conhecimento);
+            modelBuilder.Entity<CategoriaConhecimento>().HasMany(s => s.Conhecimentos).WithOne(s => s.CategoriaConhecimento);
+            modelBuilder.Entity<Usuario>().HasOne(s => s.Status).WithMany(s => s.Usuarios);
 
-      modelBuilder.Entity<Arquivo>().HasIndex(u => u.URL)
-            .IsUnique();
+            modelBuilder.Entity<Arquivo>().HasIndex(u => u.URL)
+                  .IsUnique();
 
             modelBuilder.Entity<Usuario>().HasIndex(u => u.Matricula)
             .IsUnique();
@@ -123,13 +123,13 @@ namespace Core.Data.ORM
             .Property(e => e.Descricao)
             .HasColumnType("text");
 
-             modelBuilder.Entity<Area>()
-            .Property(e => e.imgStr)
-            .HasColumnType("text");
+            modelBuilder.Entity<Area>()
+           .Property(e => e.imgStr)
+           .HasColumnType("text");
 
-      modelBuilder.Entity<Arquivo>()
-            .Property(e => e.Descricao)
-            .HasColumnType("text");
+            modelBuilder.Entity<Arquivo>()
+                  .Property(e => e.Descricao)
+                  .HasColumnType("text");
 
 
             modelBuilder.Entity<Usuario>().HasOne(u => u.Status);

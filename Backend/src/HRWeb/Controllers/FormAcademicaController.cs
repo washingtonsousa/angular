@@ -2,59 +2,51 @@ using System;
 using Core.Data.Repositories;
 using Core.Data.Models;
 using HRWeb.Filters;
-using HRWeb.Helpers;
-using HRWeb.Strategy.Errors;
 using HRWeb.Controllers.TemplateControllers;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Linq;
 using System.Net.Http;
 using System.Net;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
 
-    public class FormAcademicaController : BasicApiAppController
+  public class FormAcademicaController : BasicApiAppController
+  {
+
+    private IFormAcademicaAppService _formAcademicaAppService;
+
+
+
+
+    public FormAcademicaController(IDomainNotificationHandler<DomainNotification> domainNotification, IFormAcademicaAppService formAcademicaAppService) : base(domainNotification)
     {
-
-        private FormAcademicaRepository formAcademicaRepo;
-        ;
-
-        public FormAcademicaController()
-        {
-        
-            formAcademicaRepo = new FormAcademicaRepository();
-            
-        } // Fim método
-
-
+      _formAcademicaAppService = formAcademicaAppService;
+    }
 
     [Authorize(Roles = "Administrador")]
     [HttpGet]
     [HttpPost]
-    public IHttpActionResult Get()
+    public HttpResponseMessage Get()
     {
 
-      IList<FormAcademica> FormAcademicas = formAcademicaRepo.GetFormAcademicas();
+      IList<FormAcademica> FormAcademicas = _formAcademicaAppService.Get();
 
 
-      return Ok(FormAcademicas);
+      return ResponseWithNotifications(FormAcademicas);
     }
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpGet]
     [HttpOptions]
-    public IHttpActionResult GetSingle()
+    public HttpResponseMessage GetSingle()
     {
-      this.SetCurrentLoggedUserHandler();
-      IList<FormAcademica> FormAcademicas = formAcademicaRepo.GetFormAcademicas().Where(c => c.UsuarioId == Usuario_Id).ToList();
-
-      if (FormAcademicas.FirstOrDefault() == null)
-      {
-        return NotFound();
-      }
-
-      return Ok(FormAcademicas);
+      IList<FormAcademica> FormAcademicas = _formAcademicaAppService.GetSingle();
+      return ResponseWithNotifications(FormAcademicas);
 
     }
 
@@ -62,131 +54,79 @@ namespace HRWeb.Controllers
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpOptions]
-        [HttpPost]
-        public HttpResponseMessage PostSingle(FormAcademica FormAcademica)
-        {
-      SetCurrentLoggedUserHandler();
-            FormAcademica.UsuarioId =   Usuario_Id;
-            formAcademicaRepo.InsertFormAcademica(FormAcademica);
-            formAcademicaRepo.Save();
+    [HttpPost]
+    public HttpResponseMessage PostSingle(FormAcademica FormAcademica)
+    {
+      FormAcademica = _formAcademicaAppService.InsertSingle(FormAcademica);
 
-            return Request.CreateResponse(HttpStatusCode.OK , FormAcademica);
-        }
+      return ResponseWithNotifications(FormAcademica);
+    }
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpOptions]
-        [HttpPut]
-        public HttpResponseMessage PutSingle(FormAcademica FormAcademica)
-        {
-      SetCurrentLoggedUserHandler();
-            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindFormAcademicaByBothIds(FormAcademica.Id, Usuario_Id);
-            if (FormAcademicaFromDb != null)
-            {
-                FormAcademicaFromDb.UsuarioId = Usuario_Id;
-                FormAcademicaFromDb.Instituicao = FormAcademica.Instituicao;
-                FormAcademicaFromDb.Situacao = FormAcademica.Situacao;
-                FormAcademicaFromDb.TipoCurso = FormAcademica.TipoCurso;
-                FormAcademicaFromDb.Curso = FormAcademica.Curso;
-                FormAcademica.Atualizado_em = DateTime.Now;
-                formAcademicaRepo.UpdateFormAcademica(FormAcademicaFromDb);
-                formAcademicaRepo.Save();
+    [HttpPut]
+    public HttpResponseMessage PutSingle(FormAcademica FormAcademica)
+    {
+      FormAcademica = _formAcademicaAppService.UpdateSingle(FormAcademica);
 
-                return Request.CreateResponse(HttpStatusCode.OK , FormAcademica);
+      return ResponseWithNotifications(FormAcademica);
 
-            }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));
-
-          
-        }
+    }
 
 
     [Authorize(Roles = "Administrador, Funcionario")]
     [HttpOptions]
-        [HttpDelete]
-        public HttpResponseMessage DeleteSingle(int Id)
-        {
+    [HttpDelete]
+    public HttpResponseMessage DeleteSingle(int Id)
+    {
 
-      this.SetCurrentLoggedUserHandler();
-            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindFormAcademicaByBothIds(Id,   Usuario_Id);
+       _formAcademicaAppService.DeleteSingle(Id);
 
-            if (FormAcademicaFromDb != null)
-            {
-                formAcademicaRepo.DeleteFormAcademica(FormAcademicaFromDb);
-                formAcademicaRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK , null);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));
+      return ResponseWithNotifications(Id);
 
 
-        }
+    }
 
     [Authorize(Roles = "Administrador")]
     [HttpOptions]
-        [HttpPost]
-        public HttpResponseMessage Post(FormAcademica FormAcademica)
-        {
+    [HttpPost]
+    public HttpResponseMessage Post(FormAcademica FormAcademica)
+    {
 
 
-            formAcademicaRepo.InsertFormAcademica(FormAcademica);
-            formAcademicaRepo.Save();
+      FormAcademica = _formAcademicaAppService.Insert(FormAcademica);
 
-            return Request.CreateResponse(HttpStatusCode.OK , FormAcademica);
-        }
+      return ResponseWithNotifications(FormAcademica);
+    }
 
 
     [Authorize(Roles = "Administrador")]
     [HttpOptions]
-        [HttpPut]
-        public HttpResponseMessage Put(FormAcademica FormAcademica)
-        {
+    [HttpPut]
+    public HttpResponseMessage Put(FormAcademica FormAcademica)
+    {
 
-            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindByBothIds(FormAcademica.Id, FormAcademica.UsuarioId);
+      FormAcademica = _formAcademicaAppService.Update(FormAcademica);
 
-            if (FormAcademicaFromDb != null)
-            {
-        FormAcademicaFromDb.Curso = FormAcademica.Curso;
-        FormAcademicaFromDb.Instituicao = FormAcademica.Instituicao;
-        FormAcademicaFromDb.Situacao = FormAcademica.Situacao;
-        FormAcademicaFromDb.TipoCurso = FormAcademica.TipoCurso;
-
-                formAcademicaRepo.UpdateFormAcademica(FormAcademicaFromDb);
-                formAcademicaRepo.Save();
-
-                return Request.CreateResponse(HttpStatusCode.OK, FormAcademica);
-               
-
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));
-        }
+      return ResponseWithNotifications(FormAcademica);
+    }
 
 
     [Authorize(Roles = "Administrador")]
     [HttpDelete]
-        [HttpOptions]
-        public HttpResponseMessage Delete(int Id)
-        {
+    [HttpOptions]
+    public HttpResponseMessage Delete(int Id)
+    {
 
-            FormAcademica FormAcademicaFromDb = formAcademicaRepo.FindFormAcademica(Id);
 
-            if (FormAcademicaFromDb != null)
-            {
-                formAcademicaRepo.DeleteFormAcademica(FormAcademicaFromDb);
-                formAcademicaRepo.Save();
+       _formAcademicaAppService.Delete(Id);
 
-                return Request.CreateResponse(HttpStatusCode.OK , null);
-                
+      return ResponseWithNotifications(Id);
 
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest , new ErrorHelper().getError(new DatabaseNullResultError()));
-
-        } // Fim método
+    } // Fim método
 
 
 
-    } // Classe
+  } // Classe
 } // Namespace

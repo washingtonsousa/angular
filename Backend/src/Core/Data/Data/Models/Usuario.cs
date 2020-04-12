@@ -17,6 +17,9 @@ namespace Core.Data.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Email { get; set; }
+
+
+        [Required]
         public string Password { get; set; }
     
         public string Email_Secundario_Notificacao { get; set; }

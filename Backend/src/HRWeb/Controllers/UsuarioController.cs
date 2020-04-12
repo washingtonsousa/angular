@@ -120,7 +120,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Delete(int id)
     {
        _usuarioAppService.Delete(id);
-      return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, new ErrorHelper().getError(new UserNotFoundError()).message);
+      return ResponseWithNotifications(id);
 
     }
 

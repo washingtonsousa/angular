@@ -154,7 +154,7 @@ namespace Core.Application.Factories
 
      
             questoesStr.Add("Qual a sua opinião sobre o conhecimento técnico do colaborador?");
-            questoesStr.Add("Qual a sua opinião sobre a postura profissional do colaborador?");
+            questoesStr.Add("Qual a sua opinião sobre a Insertura profissional do colaborador?");
             questoesStr.Add("Qual sua opinião referente ao relacionamento do colaborador com sua gestão ?");
             questoesStr.Add("Qual sua opinião quanto ao relacionamento do colaborador e seus demais colegas de trabalho?");
             questoesStr.Add("Qual a sua opinião referente ao colaborador, quanto a qualidade e pontualidade de entregáveis?");

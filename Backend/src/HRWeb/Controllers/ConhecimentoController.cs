@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using HRWeb.Helpers;
 using Core.Data.Models;
-using Core.Data.Repositories;
 using System.Web.Http;
 using HRWeb.Controllers.TemplateControllers;
-using System.Net;
 using System.Net.Http;
 using Core.Shared.Kernel.Interfaces;
 using Core.Shared.Kernel.Events;

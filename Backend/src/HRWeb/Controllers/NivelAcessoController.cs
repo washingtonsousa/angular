@@ -1,68 +1,62 @@
-using System;
-using HRWeb.Filters;
 using Core.Data.Models;
-using Core.Data.Repositories;
 using HRWeb.Controllers.TemplateControllers;
 using System.Web.Http;
 using System.Net.Http;
-using System.Net;
 using System.Collections.Generic;
-using System.Linq;
+using Core.Shared.Kernel.Interfaces;
+using Core.Shared.Kernel.Events;
+using Core.Application.Interfaces;
 
 namespace HRWeb.Controllers
 {
 
   public class NivelAcessoController : BasicApiAppController
   {
-    private NivelAcessoRepository NivelAcessoRepo;
-    ;
+    private INivelAcessoAppService _nivelAcessoAppService;
 
-    public NivelAcessoController()
+    public NivelAcessoController(IDomainNotificationHandler<DomainNotification> domainNotification, INivelAcessoAppService nivelAcessoAppService) : base(domainNotification)
     {
-
-      NivelAcessoRepo = new NivelAcessoRepository();
-      
-
-    } // Fim método
-
-
-    [Authorize(Roles = "Administrador")]
-    [HttpGet]
-    [HttpPost]
-    public IHttpActionResult Get()
-    {
-
-      IList<NivelAcesso> NivelAcessos = NivelAcessoRepo.GetNivelAcessos();
-
-
-      return Ok(NivelAcessos);
+      _nivelAcessoAppService = nivelAcessoAppService;
     }
 
     [Authorize(Roles = "Administrador")]
     [HttpGet]
     [HttpPost]
-    public IHttpActionResult Get(int id)
+    public HttpResponseMessage Get()
     {
 
-      NivelAcesso NivelAcesso = NivelAcessoRepo.GetNivelAcessos().ToList().FirstOrDefault(n => n.Id == id);
+      IList<NivelAcesso> NivelAcessos = _nivelAcessoAppService.Get();
 
 
-      return Ok(NivelAcesso);
+      return ResponseWithNotifications(NivelAcessos);
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpGet]
+    [HttpPost]
+    public HttpResponseMessage Get(int id)
+    {
+
+      NivelAcesso NivelAcesso = _nivelAcessoAppService.Get(id);
+
+
+      return ResponseWithNotifications(NivelAcesso);
 
     }
 
-    
+
 
 
     [Authorize(Roles = "Administrador")]
     [HttpPost]
     [HttpOptions]
-    public IHttpActionResult Post([FromBody]NivelAcesso NivelAcesso)
+    public HttpResponseMessage Post([FromBody]NivelAcesso NivelAcesso)
     {
 
-      NivelAcessoRepo.InsertNivelAcesso(NivelAcesso);
+      NivelAcesso = _nivelAcessoAppService.Insert(NivelAcesso);
 
-      return Ok(jsonResultObjHelper.getArquivoJsonResultSuccessObj());
+      return ResponseWithNotifications(NivelAcesso);
+
 
     }
 
@@ -73,17 +67,9 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Delete(int id)
     {
 
-      NivelAcesso NivelAcesso = NivelAcessoRepo.Find(id);
-      if (NivelAcesso != null)
-      {
-        NivelAcessoRepo.DeleteNivelAcesso(NivelAcesso);
-        NivelAcessoRepo.Save();
+      _nivelAcessoAppService.Delete(id);
 
-        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
-
-      }
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
+      return ResponseWithNotifications(id);
 
     }
 
@@ -93,25 +79,8 @@ namespace HRWeb.Controllers
     [HttpPost]
     public HttpResponseMessage Put([FromBody]NivelAcesso NivelAcesso)
     {
-      NivelAcesso NivelAcessoFromDb = NivelAcessoRepo.Find(NivelAcesso.Id);
-
-      if (NivelAcessoFromDb != null)
-      {
-       
-        NivelAcessoFromDb.Nivel = NivelAcesso.Nivel;
-        NivelAcessoFromDb.Atualizado_em = DateTime.Now;
-        NivelAcessoRepo.UpdateNivelAcesso(NivelAcessoFromDb);
-        NivelAcessoRepo.Save();
-
-        return Request.CreateResponse(HttpStatusCode.OK, jsonResultObjHelper.getArquivoJsonResultSuccessObj());
-
-      }
-
-
-      return Request.CreateResponse(HttpStatusCode.BadRequest, new ErrorHelper().getError(new DatabaseNullResultError()));
-
-
-
+      NivelAcesso = _nivelAcessoAppService.Update(NivelAcesso);
+      return ResponseWithNotifications(NivelAcesso);
 
     } // Fim método
 

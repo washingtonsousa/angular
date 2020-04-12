@@ -38,7 +38,7 @@ namespace Core.Data.Repositories
 
         }
 
-        internal ExpProfissional FindByUsuarioId(int UsuarioId)
+        public ExpProfissional FindByUsuarioId(int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(e => e.UsuarioId == UsuarioId).FirstOrDefault();
         }
@@ -67,12 +67,12 @@ namespace Core.Data.Repositories
             return this.Context.ExpProfissionais.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        internal ExpProfissional FindByBothIds(int Id, int UsuarioId)
+        public ExpProfissional FindByBothIds(int Id, int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(c => c.UsuarioId == UsuarioId && c.Id == Id).FirstOrDefault();
         }
 
-        internal IList<ExpProfissional> GetByUsuarioId(int UsuarioId)
+        public IList<ExpProfissional> GetByUsuarioId(int UsuarioId)
         {
             return this.Context.ExpProfissionais.Where(e => e.UsuarioId == UsuarioId).ToList();
         }
