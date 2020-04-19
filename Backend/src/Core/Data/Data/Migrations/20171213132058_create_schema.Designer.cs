@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 using Core.Data.ORM;
-using Core.Data.ORM;
 
 namespace RiscServicesHRSharepointAddIn.Migrations
 {
