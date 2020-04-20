@@ -6,6 +6,7 @@ using System.Linq;
 using Core.Data.Models;
 using SP = Microsoft.SharePoint.Client;
 using Core.Application.Sharepoint.Services;
+using Core.Application.Interfaces;
 
 namespace Core.Application.Helpers
 {
@@ -26,8 +27,9 @@ namespace Core.Application.Helpers
 
         public List NewList { get; set; }
 
-        public SharepointListAppServices(ClientContext clientContext) : base(clientContext)
+        public SharepointListAppServices(ISharepointAuthAppService sharepointAuthAppService) : base(sharepointAuthAppService)
         {
+
         }
 
         public string getXMLTextField(string Name, string staticName, string displayName) {

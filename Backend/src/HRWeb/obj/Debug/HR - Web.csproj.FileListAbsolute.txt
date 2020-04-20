@@ -174,8 +174,6 @@ C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\System.Web.WebPages.Ra
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\WebActivatorEx.dll
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Bcl.HashCode.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Data.SqlClient.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Identity.Client.dll
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Application.pdb
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Application.dll.config
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Data.pdb
@@ -267,18 +265,6 @@ C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\System.Web.WebPages.De
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\System.Web.WebPages.Razor.xml
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Bcl.HashCode.xml
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Data.SqlClient.pdb
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\Microsoft.Identity.Client.xml
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\de\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\es\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\fr\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\it\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\ja\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\ko\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\ru\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\obj\Debug\HR - Web.csproj.CopyComplete
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\obj\Debug\HR - Web.dll
 C:\Users\Washington\Desktop\angular\Backend\src\HRWeb\obj\Debug\HR - Web.pdb

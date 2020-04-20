@@ -61,6 +61,7 @@ namespace Core.Application
                         Nivel = "Administrador"
 
                     },
+                    Password = "Admin123",
                     Cargo = cargoDefault,
                     Status = new Status()
                     {

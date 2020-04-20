@@ -25,7 +25,18 @@ namespace Core.Application.Sharepoint.Services
         /// 
         /// </summary>
         /// <returns></returns>
-        public ClientContext GetAppOnlyClientContextByToken() => TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, GetApplicationToken());
+        public ClientContext GetAppOnlyClientContextByToken() {
+
+            try
+            {
+                return TokenHelper.GetClientContextWithAccessToken(ConfigData.ContextAppUrl, GetApplicationToken());
+            }
+            catch (Exception)
+            {
+            }
+
+            return null;
+         } 
         
 
         public bool ValidateUserBySPCredentials(string userName, string Password)

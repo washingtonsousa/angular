@@ -37,6 +37,12 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\..\..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -118,6 +124,9 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.3\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Logging.Console.1.1.1\lib\net451\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.Extensions.Options.3.1.3\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
@@ -186,6 +195,15 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.EntityFrameworkCore, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MySql.Data.EntityFrameworkCore.8.0.19\lib\net461\MySql.Data.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.EntityFrameworkCore.Design, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MySql.Data.EntityFrameworkCore.Design.8.0.19\lib\net452\MySql.Data.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
     <Reference Include="MySqlConnector, Version=0.61.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\MySqlConnector.0.61.0\lib\net471\MySqlConnector.dll</HintPath>
     </Reference>
@@ -195,8 +213,14 @@
     <Reference Include="Pomelo.EntityFrameworkCore.MySql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=2cc498582444921b, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Pomelo.EntityFrameworkCore.MySql.3.1.1\lib\netstandard2.0\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
     </Reference>
+    <Reference Include="Pomelo.EntityFrameworkCore.MySql.Design, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Pomelo.EntityFrameworkCore.MySql.Design.1.1.2\lib\net451\Pomelo.EntityFrameworkCore.MySql.Design.dll</HintPath>
+    </Reference>
     <Reference Include="Pomelo.JsonObject, Version=2.2.1.0, Culture=neutral, PublicKeyToken=2cc498582444921b, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Pomelo.JsonObject.2.2.1\lib\netstandard2.0\Pomelo.JsonObject.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -210,12 +234,14 @@
     <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\System.Collections.Immutable.1.7.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
       <Private>True</Private>
@@ -236,6 +262,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
       <Private>True</Private>
@@ -377,6 +404,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MySql.Data.8.0.19\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAreaRepository.cs" />
@@ -399,6 +429,11 @@
     <Compile Include="Interfaces\ICargoRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUsuarioRepository.cs" />
+    <Compile Include="MigrationsSQLOld\HrDbContextModelSnapshot.cs" />
+    <Compile Include="Migrations\20200420023543_migrationMySQL.cs" />
+    <Compile Include="Migrations\20200420023543_migrationMySQL.designer.cs">
+      <DependentUpon>20200420023543_migrationMySQL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Arquivo.cs" />
     <Compile Include="Models\Cargo.cs" />
@@ -428,79 +463,6 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioConhecimento.cs" />
     <Compile Include="ORM\HrDbContext.cs" />
-    <Compile Include="Migrations\20171213132058_create_schema.cs" />
-    <Compile Include="Migrations\20171213132058_create_schema.Designer.cs">
-      <DependentUpon>20171213132058_create_schema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180103140514_change_cep_type_longoTodouble.cs" />
-    <Compile Include="Migrations\20180103140514_change_cep_type_longoTodouble.Designer.cs">
-      <DependentUpon>20180103140514_change_cep_type_longoTodouble.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180104135519_change_matricula_longToString.cs" />
-    <Compile Include="Migrations\20180104135519_change_matricula_longToString.Designer.cs">
-      <DependentUpon>20180104135519_change_matricula_longToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180104141328_changeRamal_nonMandatory.cs" />
-    <Compile Include="Migrations\20180104141328_changeRamal_nonMandatory.Designer.cs">
-      <DependentUpon>20180104141328_changeRamal_nonMandatory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180109101709_change_emailToUnique.cs" />
-    <Compile Include="Migrations\20180109101709_change_emailToUnique.Designer.cs">
-      <DependentUpon>20180109101709_change_emailToUnique.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180126155136_create_config_table.cs" />
-    <Compile Include="Migrations\20180126155136_create_config_table.Designer.cs">
-      <DependentUpon>20180126155136_create_config_table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180629123210_Action_Log_Table_Data_Demissao_Field.cs" />
-    <Compile Include="Migrations\20180629123210_Action_Log_Table_Data_Demissao_Field.Designer.cs">
-      <DependentUpon>20180629123210_Action_Log_Table_Data_Demissao_Field.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180629124446_Action_Log_Details_Field.cs" />
-    <Compile Include="Migrations\20180629124446_Action_Log_Details_Field.Designer.cs">
-      <DependentUpon>20180629124446_Action_Log_Details_Field.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180629125125_Action_Log_Corrections.cs" />
-    <Compile Include="Migrations\20180629125125_Action_Log_Corrections.Designer.cs">
-      <DependentUpon>20180629125125_Action_Log_Corrections.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180629143620_Update-Database.cs" />
-    <Compile Include="Migrations\20180629143620_Update-Database.Designer.cs">
-      <DependentUpon>20180629143620_Update-Database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180629144005_Added_NotificationEmail.cs" />
-    <Compile Include="Migrations\20180629144005_Added_NotificationEmail.Designer.cs">
-      <DependentUpon>20180629144005_Added_NotificationEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180920180325_version 2.0 changes.cs" />
-    <Compile Include="Migrations\20180920180325_version 2.0 changes.Designer.cs">
-      <DependentUpon>20180920180325_version 2.0 changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20180926141447_DateTimeNull.cs" />
-    <Compile Include="Migrations\20180926141447_DateTimeNull.Designer.cs">
-      <DependentUpon>20180926141447_DateTimeNull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181002151124_CEPToString.cs" />
-    <Compile Include="Migrations\20181002151124_CEPToString.Designer.cs">
-      <DependentUpon>20181002151124_CEPToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181025155245_createCategoriaConhecimentoTable.cs" />
-    <Compile Include="Migrations\20181025155245_createCategoriaConhecimentoTable.Designer.cs">
-      <DependentUpon>20181025155245_createCategoriaConhecimentoTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181116183716_areaimgStrFieldCreation.cs" />
-    <Compile Include="Migrations\20181116183716_areaimgStrFieldCreation.Designer.cs">
-      <DependentUpon>20181116183716_areaimgStrFieldCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181121131905_loggableModelToConhecimentoCategoria.cs" />
-    <Compile Include="Migrations\20181121131905_loggableModelToConhecimentoCategoria.Designer.cs">
-      <DependentUpon>20181121131905_loggableModelToConhecimentoCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181203165042_transfer64bitImageToUsuarioOProfileImage64StringColumn.cs" />
-    <Compile Include="Migrations\20181203165042_transfer64bitImageToUsuarioOProfileImage64StringColumn.Designer.cs">
-      <DependentUpon>20181203165042_transfer64bitImageToUsuarioOProfileImage64StringColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\HrDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\Joins\UsuarioJoins.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />

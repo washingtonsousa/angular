@@ -20,8 +20,7 @@ namespace Core.Application.Operations
         {
 
             var saved = false;
-            while (!saved)
-            {
+     
                 try
                 {
                     // Attempt to save changes to the database
@@ -64,7 +63,7 @@ namespace Core.Application.Operations
                 }
 
 
-            }
+            
             DomainEvent.Notify(new DomainNotification("Operação não pode ser realizada por um erro desconhecido"));
 
             return false;
@@ -78,8 +77,7 @@ namespace Core.Application.Operations
         {
 
             var saved = false;
-            while (!saved)
-            {
+         
                 try
                 {
                     // Attempt to save changes to the database
@@ -115,7 +113,7 @@ namespace Core.Application.Operations
                 }
 
                 
-            }
+            
             DomainEvent.Notify(new DomainNotification("Operação não pode ser realizada por um erro desconhecido"));
 
             return false;

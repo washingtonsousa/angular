@@ -82,7 +82,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage Execute()
     {
       _installAppService.Execute();
-      return ResponseWithNotifications();
+      return ResponseWithNotifications("Instalado com sucesso! ;)");
         
     }
 

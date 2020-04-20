@@ -242,6 +242,7 @@
     <Compile Include="Factories\MailMessageFactory.cs" />
     <Compile Include="Factories\SPListFactory.cs" />
     <Compile Include="FormAcademicaAppService.cs" />
+    <Compile Include="Helpers\UsuarioHelper.cs" />
     <Compile Include="InstallAppService.cs" />
     <Compile Include="Interfaces\ICategoriaConhecimentoAppService.cs" />
     <Compile Include="Interfaces\ICertCursoAppService.cs" />

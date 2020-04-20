@@ -13,7 +13,8 @@ namespace Core.Data.Queries.Joins
             
             return usuarioQueryable.Include(u => u.FormAcademicas).Include(u => u.NivelAcesso)
                  .Include(u => u.Status).Include(u => u.CertCursos).Include(u => u.Contatos).Include(u => u.Resumo)
-                 .Include(u => u.CertCursos).Include(u => u.Cargo).ThenInclude(u => u.Departamento).Include(u => u.Endereco)
+                 .Include(u => u.CertCursos).Include(u => u.Cargo).ThenInclude(u => u.Departamento).ThenInclude(u => u.Area)
+                 .Include(u => u.Endereco)
                  .Include(u => u.ExpProfissionais).Include(u => u.Idiomas).Include(u => u.UsuarioConhecimentos)
                  .ThenInclude(u => u.Conhecimento).ThenInclude(c => c.CategoriaConhecimento);
         }        

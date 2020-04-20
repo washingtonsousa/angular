@@ -12,13 +12,15 @@ namespace Core.Application.Sharepoint.Services
         public PeopleManager PeopleManager { get; private set; }
         public PersonProperties PersonProperties { get; private set; }
 
-        public SharepointPeopleManagerAppService(ClientContext clientContext) : base(clientContext)
+        public SharepointPeopleManagerAppService(ISharepointAuthAppService sharepointAuthAppService) : base(sharepointAuthAppService)
         {
         }
 
         public override void Initialize()
         {
             base.Initialize();
+
+            if(ClientContext != null)
             PeopleManager = new PeopleManager(ClientContext);
 
         }

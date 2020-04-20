@@ -17,11 +17,6 @@ namespace Core.Application.Sharepoint.Services
             Initialize();
         }
 
-        public SharepointAppServiceTemplate(ClientContext clientContext)
-        {
-            ClientContext = clientContext;
-        }
-
         public virtual void Initialize()
         {
             ClientContext = _sharepointAuthAppService.GetAppOnlyClientContextByToken();
@@ -30,7 +25,7 @@ namespace Core.Application.Sharepoint.Services
         {
             if (!this.Disposed)
             {
-                if (disposing)
+                if (disposing && ClientContext != null)
                 {
                     ClientContext.Dispose();
                 }
