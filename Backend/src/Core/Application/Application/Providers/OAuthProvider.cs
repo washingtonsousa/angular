@@ -22,7 +22,7 @@ namespace Core.App.Providers
         {
             context.AdditionalResponseParameters.Add("access_level", AccessLevelClaim?.Value);
 
-            if (this.Usuario != null)
+            if (Usuario != null)
             {
                 context.AdditionalResponseParameters.Add("user_id", Usuario.Id);
                 context.AdditionalResponseParameters.Add("username", Usuario.Nome);
@@ -50,11 +50,12 @@ namespace Core.App.Providers
                if (!aggr.Valid)
                {
                    context.SetError("Erro", "Não autorizado!");
-                   return;
                }
+               else
+               {
 
-               context.Validated(aggr.Ticket);
-
+                   context.Validated(aggr.Ticket);
+               }
 
            }); // Fim método anônimo da Task
         }

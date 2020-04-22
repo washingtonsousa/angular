@@ -20,9 +20,9 @@ namespace HRWeb.App_Start
     public static void Register(HttpConfiguration config)
     {
       // EnableCrossSiteRequests(config);
-
+      
       AddRoutes(config);
-
+     
       var serializerSettings = new JsonSerializerSettings()
       {
         ReferenceLoopHandling = ReferenceLoopHandling.Ignore

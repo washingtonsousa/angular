@@ -21,7 +21,7 @@ namespace Application
                 {
                     new Claim(ClaimTypes.Name , email),
                      new Claim(ClaimTypes.Role, role),
-                    new Claim(ClaimTypes.Name , id)
+                    new Claim(ClaimTypes.NameIdentifier , id)
 
                 };
             ClaimsIdentity OAuthIdentity = new ClaimsIdentity(claims, OAuthConfigProvider.OAuthOptions.AuthenticationType);

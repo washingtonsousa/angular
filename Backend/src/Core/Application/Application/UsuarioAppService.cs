@@ -152,9 +152,12 @@ namespace Core.Application
             ClaimsPrincipal user = context.Authentication.User;
 
             if (user.Identity.IsAuthenticated)
-                return int.Parse(user.Claims.Where(u => u.ValueType == "Id").FirstOrDefault().Value);
+            {
 
-
+             string claimIdStr = user.Claims.Where(u => u.Type == ClaimTypes.NameIdentifier).FirstOrDefault()?.Value;
+             int.TryParse(claimIdStr, out int result);
+             return result;
+            }
             return 0;
         }
 
