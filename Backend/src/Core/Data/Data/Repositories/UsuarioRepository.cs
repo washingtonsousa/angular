@@ -74,7 +74,12 @@ namespace Core.Data.Repositories
         public IList<Usuario> Get()
         {
 
-            IList<Usuario> usuarios = Context.Usuarios.BuildFullJoin().ToList();
+            IList<Usuario> usuarios = Context.Usuarios.AsNoTracking().BuildFullJoin().Select(u => new Usuario() { 
+            
+                Id = u.Id,
+
+
+            }).ToList();
 
             /*
              *

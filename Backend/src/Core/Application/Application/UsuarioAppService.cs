@@ -125,7 +125,6 @@ namespace Core.Application
             _usuarioRepo.Insert(usuario);
             bool result  = _unityOfWork.Commit();
 
-
             if (result)
             {
                 usuarioFromDb = _usuarioRepo.FindUsuarioByEmail(usuario.Email);
