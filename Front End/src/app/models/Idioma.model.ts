@@ -1,6 +1,6 @@
-import { LoggableModel } from "./LoggableModel.model";
+import { Loggable } from "./loggable.model";
 
-export class IdiomaModel extends LoggableModel {
+export class Idioma extends Loggable {
     public  Id: number; 
     public  Nome : string;
     public  Fluencia :string;

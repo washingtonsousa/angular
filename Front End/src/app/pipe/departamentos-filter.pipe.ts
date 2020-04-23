@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { DepartamentoModel } from '../models/Departamento.model';
+import { Departamento } from '../models/departamento.model';
 
 
 @Pipe({name: 'departamentoPipe', pure: false})
@@ -7,7 +7,7 @@ export class  DepartamentosFilterPipe implements PipeTransform {
 
 
 
-transform(Departamentos : DepartamentoModel[], filterQueryHandler: any) {
+transform(Departamentos : Departamento[], filterQueryHandler: any) {
 
 if(filterQueryHandler) {
 

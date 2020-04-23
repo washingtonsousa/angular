@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { CategoriaConhecimentoModel } from "../../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../../models/categoria-conhecimento.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriaConhecimentoService } from "../../../services/http/categoriaConhecimento.service";
 import { ModalMessageComponent } from "../../../custommodals/modalMessage.component";
@@ -11,7 +11,7 @@ templateUrl: 'categoria-subscribe.html'
 })
 export class CategoriaConhecimentoSubscribeComponent  {
 
-   @Input() public categoriaConhecimentoModel: CategoriaConhecimentoModel = new CategoriaConhecimentoModel();
+   @Input() public categoriaConhecimentoModel: CategoriaConhecimento = new CategoriaConhecimento();
    @Input() public buttonText: string;
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
@@ -72,7 +72,7 @@ export class CategoriaConhecimentoSubscribeComponent  {
 
         }, err => {
 
-                this.categoriaConhecimentoService.put(this.CategoriaConhecimentoForm.value).subscribe((res: CategoriaConhecimentoModel) => {
+                this.categoriaConhecimentoService.put(this.CategoriaConhecimentoForm.value).subscribe((res: CategoriaConhecimento) => {
 
                     this.modalMessage.Message = "Atualizado com sucesso";
                     this.modalMessage.openModal();

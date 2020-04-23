@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { NivelAcessoModel } from "../../models/NivelAcesso.model";
+import { NivelAcesso } from "../../models/nivel-acesso.model";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 
@@ -18,23 +18,23 @@ export class NivelAcessoService {
             })
     }
 
-    getSingle(id : number) : Observable<NivelAcessoModel> {
-            return this.http.get<NivelAcessoModel>(globals.apiUrl + "NivelAcesso/Get/" + id, {headers: this.httpHeaders});
+    getSingle(id : number) : Observable<NivelAcesso> {
+            return this.http.get<NivelAcesso>(globals.apiUrl + "NivelAcesso/Get/" + id, {headers: this.httpHeaders});
     }
 
     get() : Observable<any> {
         return this.http.get<any>(globals.apiUrl + "NivelAcesso/Get", {headers: this.httpHeaders});
     }
 
-    put(Usuario: NivelAcessoModel) : Observable<NivelAcessoModel>{
-       return  this.http.put<NivelAcessoModel>(globals.apiUrl + "NivelAcesso/Put", Usuario, {headers: this.httpHeaders});
+    put(Usuario: NivelAcesso) : Observable<NivelAcesso>{
+       return  this.http.put<NivelAcesso>(globals.apiUrl + "NivelAcesso/Put", Usuario, {headers: this.httpHeaders});
     }
 
-    post(Usuario: NivelAcessoModel) {
-       return  this.http.put<NivelAcessoModel>(globals.apiUrl + "NivelAcesso/Post", Usuario, {headers: this.httpHeaders});
+    post(Usuario: NivelAcesso) {
+       return  this.http.put<NivelAcesso>(globals.apiUrl + "NivelAcesso/Post", Usuario, {headers: this.httpHeaders});
     }
     
     delete(id: number) {
-       return  this.http.put<NivelAcessoModel>(globals.apiUrl + "NivelAcesso/Delete/"+ id, {headers: this.httpHeaders});
+       return  this.http.put<NivelAcesso>(globals.apiUrl + "NivelAcesso/Delete/"+ id, {headers: this.httpHeaders});
     }
 }

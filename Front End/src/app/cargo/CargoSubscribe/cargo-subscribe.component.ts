@@ -1,9 +1,9 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { CargoModel } from "../../models/Cargo.model";
+import { Cargo } from "../../models/cargo.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CargoService } from "../../services/http/cargo.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
-import {AreaModel} from "../../models/Area.model";
+import {Area} from "../../models/Area.model";
 import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
 
 @Component({
@@ -12,8 +12,8 @@ templateUrl: 'cargo-subscribe.html'
 })
 export class CargoSubscribeComponent  {
 
-   @Input() public CargoModel: CargoModel = new CargoModel();
-   @Input() public DepartamentosList: AreaModel[];
+   @Input() public Cargo: Cargo = new Cargo();
+   @Input() public DepartamentosList: Area[];
    @Input() public buttonText: string;
    public selectizeConfig: any;
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -44,9 +44,9 @@ export class CargoSubscribeComponent  {
 
    ngOnInit() {
    this.CargoForm = this.fb.group({
-        Id: [this.CargoModel.Id],
-        Nome : [this.CargoModel.Nome, [Validators.required]],
-        DepartamentoId :  [this.CargoModel.DepartamentoId, [Validators.required]],
+        Id: [this.Cargo.Id],
+        Nome : [this.Cargo.Nome, [Validators.required]],
+        DepartamentoId :  [this.Cargo.DepartamentoId, [Validators.required]],
         
        });
    }
@@ -69,7 +69,7 @@ export class CargoSubscribeComponent  {
 
         }, err => {
 
-                this.cargoService.put(this.CargoForm.value).subscribe((res: CargoModel) => {
+                this.cargoService.put(this.CargoForm.value).subscribe((res: Cargo) => {
 
                     this.modalMessage.Message = "Atualizado com sucesso";
                     this.modalMessage.openModal();

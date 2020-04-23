@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren } from "@angular/core";
-import { ArquivoModel } from "../../models/Arquivo.model";
+import { Arquivo } from "../../models/arquivo.model";
 import { DateTimeAdapterService } from "../../adapters/dateTime.adapter";
 import { ArquivoService } from "../../services/http/arquivos.service";
 import { HttpResponse } from "@angular/common/http";
@@ -17,7 +17,7 @@ import { ArquivosFilterPipe } from "../../pipe/arquivos-filter.pipe";
 })
 export class ArquivosIndexComponent extends Filterable {
 
-    public Arquivos: ArquivoModel[];
+    public Arquivos: Arquivo[];
 
     @ViewChild("loadingIcon") public loadingIcon: any;
     public arquivoHandler: ArquivoHandler = new ArquivoHandler();
@@ -160,7 +160,7 @@ export class ArquivosIndexComponent extends Filterable {
          
         ngOnInit() {
         
-        this.arquivoService.get().subscribe((res: ArquivoModel[]) => {
+        this.arquivoService.get().subscribe((res: Arquivo[]) => {
 
             this.Arquivos = res;  
         

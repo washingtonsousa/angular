@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { EnderecoModel } from "../../models/Endereco.model";
+import { Endereco } from "../../models/endereco.model";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 
@@ -17,23 +17,23 @@ export class EnderecoService {
             })
     }
 
-    getSingle(id : number) : Observable<EnderecoModel> {
-            return this.http.get<EnderecoModel>(globals.apiUrl + "Endereco/GetSingle/" + id, {headers: this.httpHeaders});
+    getSingle(id : number) : Observable<Endereco> {
+            return this.http.get<Endereco>(globals.apiUrl + "Endereco/GetSingle/" + id, {headers: this.httpHeaders});
     }
 
     get() : Observable<any> {
         return this.http.get<any>(globals.apiUrl + "Endereco/Get", {headers: this.httpHeaders});
     }
 
-    put(Usuario: EnderecoModel) : Observable<EnderecoModel>{
-       return  this.http.put<EnderecoModel>(globals.apiUrl + "Endereco/PutSingle", Usuario, {headers: this.httpHeaders});
+    put(Usuario: Endereco) : Observable<Endereco>{
+       return  this.http.put<Endereco>(globals.apiUrl + "Endereco/PutSingle", Usuario, {headers: this.httpHeaders});
     }
 
-    post(Usuario: EnderecoModel) {
-       return  this.http.post<EnderecoModel>(globals.apiUrl + "Endereco/PostSingle", Usuario, {headers: this.httpHeaders});
+    post(Usuario: Endereco) {
+       return  this.http.post<Endereco>(globals.apiUrl + "Endereco/PostSingle", Usuario, {headers: this.httpHeaders});
     }
     
     delete(id: number) {
-       return  this.http.delete<EnderecoModel>(globals.apiUrl + "Endereco/DeleteSingle/"+ id, {headers: this.httpHeaders});
+       return  this.http.delete<Endereco>(globals.apiUrl + "Endereco/DeleteSingle/"+ id, {headers: this.httpHeaders});
     }
 }

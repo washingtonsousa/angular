@@ -1,5 +1,5 @@
 import { Component, Input, Output , EventEmitter, OnInit, ChangeDetectionStrategy} from "@angular/core";
-import { UsuarioModel } from "../../models/Usuario.model";
+import { Usuario } from "../../models/usuario.model";
 import { ProfilePictureService } from "../../profilePicture/profile-picture.service";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -19,7 +19,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class CardUsuarioComponent implements OnInit{
 
-     @Input() Usuario: UsuarioModel = new UsuarioModel();
+     @Input() Usuario: Usuario = new Usuario();
      @Output() public editEventEmitter = new EventEmitter<any>(); 
      @Output() public deleteEventEmitter = new EventEmitter<any>(); 
      @Output() public viewEventEmitter = new EventEmitter<any>(); 

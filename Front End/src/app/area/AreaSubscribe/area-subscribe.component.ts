@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { AreaModel } from "../../models/area.model";
+import { Area } from "../../models/area.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AreaService } from "../../services/http/area.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
@@ -11,7 +11,7 @@ templateUrl: 'area-subscribe.html'
 })
 export class AreaSubscribeComponent  {
 
-   @Input() public areaModel: AreaModel = new AreaModel();
+   @Input() public areaModel: Area = new Area();
    @Input() public buttonText: string;
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
@@ -69,7 +69,7 @@ export class AreaSubscribeComponent  {
 
         }, err => {
 
-                this.areaService.put(this.AreaForm.value).subscribe((res: AreaModel) => {
+                this.areaService.put(this.AreaForm.value).subscribe((res: Area) => {
 
                     this.modalMessage.Message = "Atualizado com sucesso";
                     this.modalMessage.openModal();

@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, Output, EventEmitter } from "@angular/core";
 import { CategoriaConhecimentoService } from "../../../services/http/categoriaConhecimento.service";
-import { CategoriaConhecimentoModel } from "../../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../../models/categoria-conhecimento.model";
 import { DepartamentoService } from "../../../services/http/departamento.service";
 
 
@@ -11,9 +11,9 @@ import { DepartamentoService } from "../../../services/http/departamento.service
 export class CategoriaConhecimentoIndexComponent implements OnInit {
 
    @Output("onUpdateCategoriasList") public onUpdateCategoriasListEmitter:  EventEmitter<any> =
-   new EventEmitter<CategoriaConhecimentoModel>();
+   new EventEmitter<CategoriaConhecimento>();
 
-   public CategoriaConhecimentos: CategoriaConhecimentoModel[];
+   public CategoriaConhecimentos: CategoriaConhecimento[];
    public filterQueryHandler = {
        Categoria: ""
    }
@@ -41,7 +41,7 @@ this.departamentoService.get().subscribe(res => {});
        
        }
 
-       updateListOnCreate(event: CategoriaConhecimentoModel) {
+       updateListOnCreate(event: CategoriaConhecimento) {
            this.CategoriaConhecimentos.push(event);
            this.CategoriaConhecimentos.sort( (a,b) => { if(a.Categoria.toUpperCase() < b.Categoria.toUpperCase()) { return -1; }
            
@@ -70,7 +70,7 @@ this.departamentoService.get().subscribe(res => {});
     } 
 
 
-    updateListOnUpdateEvent(event: CategoriaConhecimentoModel) {
+    updateListOnUpdateEvent(event: CategoriaConhecimento) {
 
         for(let i = 0; i < this.CategoriaConhecimentos.length; i++) {
             

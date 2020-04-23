@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Output, EventEmitter, OnInit, OnChanges } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {CertCursoModel} from '../../../../models/CertCurso.model';
+import {CertCurso} from '../../../../models/cert-curso.model';
 import { CertCursoService } from "../../../../services/http/CertCurso.service";
 import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
 import { ModalConfirmMessageComponent } from "src/app/custommodals/modalConfirmMessage.component";
@@ -11,7 +11,7 @@ templateUrl: 'certcurso_form.html'
 })
 export class CertCursoFormComponent implements OnInit {
 
-    @Input('certcursoObject') public CertCursoObject: CertCursoModel = new CertCursoModel() || new CertCursoModel();
+    @Input('certcursoObject') public CertCursoObject: CertCurso = new CertCurso() || new CertCurso();
     @Input() public buttonText: string;
     @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -26,7 +26,7 @@ export class CertCursoFormComponent implements OnInit {
 
             
 
-            this.CertCursoService.post(this.CertCursoForm.value).subscribe((res: CertCursoModel) => {
+            this.CertCursoService.post(this.CertCursoForm.value).subscribe((res: CertCurso) => {
 
                         this.emitter.emit(res);
                         this.CertCursoForm.reset();

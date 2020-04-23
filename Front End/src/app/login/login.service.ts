@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
-import {AuthenticationModel} from '../models/authentication.model';
+import {Authentication} from '../models/authentication.model';
 import {Observable, BehaviorSubject} from 'rxjs';
 import * as globals from '../globals/variables';
-import { UserModel } from '../models/userModel.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class LoginService {
@@ -28,9 +28,9 @@ this.httpHeaders = new HttpHeaders({
 }
 
 
-public Authenticate(User : string, Password: string) : Observable<UserModel> {
+public Authenticate(User : string, Password: string) : Observable<User> {
 
-let login_model = new AuthenticationModel();
+let login_model = new Authentication();
 login_model.username = User;
 login_model.password = Password;
 
@@ -43,7 +43,7 @@ let params = new URLSearchParams();
   params.set("password",  login_model.password);
 
 
-return this.http.post<UserModel>(globals.apiUrl + 'token', params.toString() , {headers : this.httpHeaders});
+return this.http.post<User>(globals.apiUrl + 'token', params.toString() , {headers : this.httpHeaders});
 
 }
 

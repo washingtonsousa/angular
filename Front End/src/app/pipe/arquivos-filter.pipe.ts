@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { ArquivoModel } from '../models/Arquivo.model';
+import { Arquivo } from '../models/arquivo.model';
 import { DateTimeAdapterService } from '../adapters/dateTime.adapter';
 
 
@@ -10,7 +10,7 @@ export class  ArquivosFilterPipe implements PipeTransform {
 constructor() {}
 
 
-transform(arquivos : ArquivoModel[], filterQueryHandler: any) {
+transform(arquivos : Arquivo[], filterQueryHandler: any) {
 
     if(filterQueryHandler) {
 

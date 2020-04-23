@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { CargoModel } from '../models/Cargo.model';
+import { Cargo } from '../models/cargo.model';
 
 
 @Pipe({name: 'cargoPipe', pure: false})
@@ -7,7 +7,7 @@ export class  CargosFilterPipe implements PipeTransform {
 
 
 
-transform(Cargos : CargoModel[], filterQueryHandler: any) {
+transform(Cargos : Cargo[], filterQueryHandler: any) {
 
 if(filterQueryHandler) {
 

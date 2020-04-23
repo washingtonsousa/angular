@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Output, EventEmitter, OnInit, OnChanges } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {FormAcademicaModel} from '../../../../models/FormAcademica.model';
+import {FormAcademica} from '../../../../models/form-academica.model';
 import { FormAcademicaService } from "../../../../services/http/FormAcademica.service";
 import { ModalConfirmMessageComponent } from "../../../../custommodals/modalConfirmMessage.component";
 
@@ -10,7 +10,7 @@ templateUrl: 'formacademica_form.html'
 })
 export class FormAcademicaFormComponent implements OnInit {
 
-    @Input('FormAcademicaObject') public FormAcademicaObject: FormAcademicaModel = new FormAcademicaModel() || new FormAcademicaModel();
+    @Input('FormAcademicaObject') public FormAcademicaObject: FormAcademica = new FormAcademica() || new FormAcademica();
     @Input() public buttonText: string;
     @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -46,7 +46,7 @@ export class FormAcademicaFormComponent implements OnInit {
 
     OnSubmit($event) {
             $event.preventDefault();
-            this.FormAcademicaService.post(this.FormAcademicaForm.value).subscribe((res: FormAcademicaModel) => {
+            this.FormAcademicaService.post(this.FormAcademicaForm.value).subscribe((res: FormAcademica) => {
                 
                 this.modalMessage.Message= "Criado com sucesso";
                 this.modalMessage.openModal();

@@ -1,6 +1,6 @@
 import { Component , ViewChild} from "@angular/core";
 import {LoginService} from './login.service';
-import {UserModel} from '../models/userModel.model';
+import {User} from '../models/user.model';
 import { Router } from "@angular/router";
 import { MaskedSKFoldingCubeComponent } from "../loaders/masked-sk-folding-cube.component";
 
@@ -22,7 +22,7 @@ login(event:Event) {
 
 this.loaderMask.show();
 
-this.loginService.Authenticate(this.username, this.password).subscribe((res: UserModel) => { 
+this.loginService.Authenticate(this.username, this.password).subscribe((res: User) => { 
     
  localStorage.setItem('access_token', res.access_token);
  localStorage.setItem('email', res.email);

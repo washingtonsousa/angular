@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { ConhecimentoService } from "../../services/http/conhecimento.service";
-import { ConhecimentoModel } from "../../models/Conhecimento.model";
-import { CategoriaConhecimentoModel } from "../../models/CategoriaConhecimento.model";
+import { Conhecimento } from "../../models/conhecimento.model";
+import { CategoriaConhecimento } from "../../models/categoria-conhecimento.model";
 import { CategoriaConhecimentoService } from "../../services/http/categoriaConhecimento.service";
 import { NgSelectizeHelper } from "../../adapters/ngSelectizeHelper";
 import { Filterable } from "../../classTemplates/filterable-template";
@@ -13,8 +13,8 @@ import { Filterable } from "../../classTemplates/filterable-template";
 })
 export class ConhecimentoIndexComponent extends  Filterable implements OnInit {
 
-   public Conhecimentos: ConhecimentoModel[];
-   public CategoriaConhecimentos: CategoriaConhecimentoModel[];
+   public Conhecimentos: Conhecimento[];
+   public CategoriaConhecimentos: CategoriaConhecimento[];
 
     constructor(private conhecimentoService: ConhecimentoService, 
         private categoriaConhecimentoService: CategoriaConhecimentoService) {
@@ -27,7 +27,7 @@ export class ConhecimentoIndexComponent extends  Filterable implements OnInit {
 
     
 
-    updateListOnCreate(event: ConhecimentoModel) {
+    updateListOnCreate(event: Conhecimento) {
         this.Conhecimentos.push(event);
         this.Conhecimentos.sort( (a,b) => { if(a.Nome.toUpperCase() < b.Nome.toUpperCase()) { return -1; }
         if(a.Nome.toUpperCase() > b.Nome.toUpperCase()) { return 1; }
@@ -49,7 +49,7 @@ export class ConhecimentoIndexComponent extends  Filterable implements OnInit {
     } 
 
 
-    updateListOnUpdateEvent(event: ConhecimentoModel) {
+    updateListOnUpdateEvent(event: Conhecimento) {
 
         for(let i = 0; i < this.Conhecimentos.length; i++) {
             

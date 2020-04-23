@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ResumoModel } from "../../../../models/resumo.model";
+import { Resumo } from "../../../../models/resumo.model";
 
 
 @Component({
@@ -30,7 +30,7 @@ import { ResumoModel } from "../../../../models/resumo.model";
 })
 export class ResumoBlockComponent implements OnInit {
 
-      @Input() public resumo: ResumoModel;
+      @Input() public resumo: Resumo;
 
 
       constructor() {

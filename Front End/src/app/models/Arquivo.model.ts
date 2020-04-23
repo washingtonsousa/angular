@@ -1,8 +1,8 @@
-import { LoggableModel } from "./LoggableModel.model";
-import {UsuarioModel} from './Usuario.model';
+import { Loggable } from "./loggable.model";
+import {Usuario} from './usuario.model';
 
 
-export class ArquivoModel extends LoggableModel {
+export class Arquivo extends Loggable {
     Id: number;
     Nome: string;
     Descricao: string;
@@ -12,5 +12,5 @@ export class ArquivoModel extends LoggableModel {
     URL:string;
     NomeCompleto: string;
     Data_Referencia: string;
-    Usuario: UsuarioModel;
+    Usuario: Usuario;
 }

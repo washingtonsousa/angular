@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from "@angular/core";
-import { ArquivoModel } from "../../models/Arquivo.model";
+import { Arquivo } from "../../models/arquivo.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 
 @Component({
@@ -34,7 +34,7 @@ import {trigger, state, style, transition, animate} from "@angular/animations";
   ])]
 })
 export class ArquivoCardComponent {
-     @Input() public Arquivo: ArquivoModel;
+     @Input() public Arquivo: Arquivo;
      @Output("onDownloadClick") public downloadEventEmitter: EventEmitter<any> = new EventEmitter<any>();
      @Output("onDeleteClick") public deleteEventEmitter: EventEmitter<any> = new EventEmitter<any>();
      @Output("onViewClick") public viewEventEmitter: EventEmitter<any> = new EventEmitter<any>();

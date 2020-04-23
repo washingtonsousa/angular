@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, ViewChild, Output, OnInit, OnChanges} from "@angular/core";
-import { ResumoModel } from "../../../../models/resumo.model";
+import { Resumo } from "../../../../models/resumo.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ResumoService } from "../../../../services/http/resumo.service";
 
@@ -9,7 +9,7 @@ templateUrl: 'resumo_form.html'
 })
 export class ResumoFormComponent  implements OnInit {
 
-   @Input() public resumo: ResumoModel;
+   @Input() public resumo: Resumo;
    @Input() public buttonText: string = "Salvar";
    @ViewChild('loadingIcon') loadingIcon: any
    @Output('OnSubmit') public emitter: EventEmitter<any> =  new EventEmitter<any>();

@@ -1,8 +1,8 @@
-import {AreaModel} from "./Area.model";
+import {Area} from "./Area.model";
 
-export class DepartamentoModel {
+export class Departamento {
     Id: number;
     Nome: string;
     AreaId: number;
-    Area: AreaModel;
+    Area: Area;
 }

@@ -1,9 +1,9 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { ConhecimentoModel } from "../../models/conhecimento.model";
+import { Conhecimento } from "../../models/conhecimento.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConhecimentoService } from "../../services/http/conhecimento.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
-import { CategoriaConhecimentoModel } from "../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../models/categoria-conhecimento.model";
 
 @Component({
 selector: '[conhecimento-subscribe]',
@@ -11,8 +11,8 @@ templateUrl: 'conhecimento-subscribe.html'
 })
 export class ConhecimentoSubscribeComponent  {
 
-   @Input() public conhecimentoModel: ConhecimentoModel = new ConhecimentoModel();
-   @Input() public categoriaConhecimentos: CategoriaConhecimentoModel[];
+   @Input() public conhecimentoModel: Conhecimento = new Conhecimento();
+   @Input() public categoriaConhecimentos: CategoriaConhecimento[];
    @Input() public buttonText: string;
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
@@ -63,7 +63,7 @@ export class ConhecimentoSubscribeComponent  {
 
         }, err => {
 
-                this.conhecimentoService.put(this.ConhecimentoForm.value).subscribe((res: ConhecimentoModel) => {
+                this.conhecimentoService.put(this.ConhecimentoForm.value).subscribe((res: Conhecimento) => {
 
                     this.modalMessage.Message = "Atualizado com sucesso";
                     this.modalMessage.openModal();

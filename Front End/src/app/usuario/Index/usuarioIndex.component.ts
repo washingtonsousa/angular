@@ -1,19 +1,19 @@
 import { Component, OnInit, NgZone, ViewChild, AfterViewInit } from "@angular/core";
 import { UsuarioService } from "../../services/http/usuario.service";
 import { UsuarioHubService } from "../../services/http/usuarioHub.service";
-import { UsuarioModel } from "../../models/Usuario.model";
+import { Usuario } from "../../models/usuario.model";
 import { CargoService } from "../../services/http/cargo.service";
 import { DepartamentoService } from "../../services/http/departamento.service";
 import { AreaService } from "../../services/http/area.service";
 import { Filterable } from "../../classTemplates/filterable-template";
 import { CategoriaConhecimentoService} from "../../services/http/categoriaconhecimento.service";
-import { CategoriaConhecimentoModel } from "../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../models/categoria-conhecimento.model";
 import { SPUsersService } from "../../services/http/spusuario.service";
-import { SPUserModel } from "../../models/SPUser.model";
+import { SPUser } from "../../models/spuser.model";
 import { NivelAcessoService } from "../../services/http/nivel-acesso.service";
-import { StatusModel } from "../../models/Status.model";
-import { NivelAcessoModel } from "../../models/NivelAcesso.model";
-import { CargoModel } from "../../models/Cargo.model";
+import { Status } from "../../models/status.model";
+import { NivelAcesso } from "../../models/nivel-acesso.model";
+import { Cargo } from "../../models/cargo.model";
 import { StatusService } from "../../services/http/status.service";
 import { MaskedSKFoldingCubeComponent } from "../../loaders/masked-sk-folding-cube.component";
 
@@ -23,16 +23,16 @@ selector: 'usuarioIndex'
 })
 export class UsuarioIndexComponent extends Filterable implements AfterViewInit{
 
-public Usuarios: UsuarioModel[];
+public Usuarios: Usuario[];
 @ViewChild('loadingIcon') public loadingIcon: MaskedSKFoldingCubeComponent;
 
-public cargos: CargoModel[] = [];
-public nivelacessos: NivelAcessoModel[] = [];
-public status: StatusModel[] = [];
+public cargos: Cargo[] = [];
+public nivelacessos: NivelAcesso[] = [];
+public status: Status[] = [];
 public departamentos: any;
 public areas: any;
-public categoriaConhecimentos: CategoriaConhecimentoModel[] = [];
-public spUsers: SPUserModel[] = [];
+public categoriaConhecimentos: CategoriaConhecimento[] = [];
+public spUsers: SPUser[] = [];
 
 
 constructor(private usuarioService: UsuarioService, 
@@ -172,12 +172,12 @@ ngAfterViewInit() {
   this.status = res; 
 
 
-  this.usuarioService.get().subscribe((res: UsuarioModel[]) => {
+  this.usuarioService.get().subscribe((res: Usuario[]) => {
 
 
 
       
-  this.spUserService.get().subscribe((spUsers: SPUserModel[]) => {
+  this.spUserService.get().subscribe((spUsers: SPUser[]) => {
     
     this.spUsers = spUsers; 
     

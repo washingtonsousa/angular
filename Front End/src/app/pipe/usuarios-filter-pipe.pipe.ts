@@ -1,11 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { UsuarioModel } from '../models/Usuario.model';
-import { UsuarioConhecimentoModel } from '../models/UsuarioConhecimento.model';
+import { Usuario } from '../models/usuario.model';
+import { UsuarioConhecimento } from '../models/usuario-conhecimento.model';
 
 
 @Pipe({name: 'usuarioPipe', pure: false})
 export class  UsuariosFilterPipe implements PipeTransform {
-   transform(Usuarios : UsuarioModel[], filterQueryHandler: any) {
+   transform(Usuarios : Usuario[], filterQueryHandler: any) {
 
         if(filterQueryHandler) {
                

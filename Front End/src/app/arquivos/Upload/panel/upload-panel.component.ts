@@ -1,6 +1,6 @@
 import { Component, ViewChildren } from "@angular/core";
 import {UsuarioService} from '../../../services/http/usuario.service';
-import { UsuarioModel } from "../../../models/Usuario.model";
+import { Usuario } from "../../../models/usuario.model";
 
 @Component({
     selector: 'upload-panel',
@@ -10,7 +10,7 @@ export class UploadPanelComponent {
 
       @ViewChildren('uploadItem') public uploadItems: any;
      public arquivoItemsObject: any[] = [];
-     public usuarios: UsuarioModel[] = [];
+     public usuarios: Usuario[] = [];
 
      constructor() {}
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { CargoService } from "../../services/http/cargo.service";
-import { CargoModel } from "../../models/Cargo.model";
-import { DepartamentoModel } from "../../models/Departamento.model";
+import { Cargo } from "../../models/cargo.model";
+import { Departamento } from "../../models/departamento.model";
 import { DepartamentoService } from "../../services/http/departamento.service";
-import { AreaModel } from "../../models/Area.model";
+import { Area } from "../../models/Area.model";
 import { AreaService } from "../../services/http/area.service";
 import { Filterable } from "../../classTemplates/filterable-template";
 
@@ -13,9 +13,9 @@ import { Filterable } from "../../classTemplates/filterable-template";
 })
 export class CargoIndexComponent extends Filterable implements OnInit{
 
-public Cargos: CargoModel[];
-public AreasList: AreaModel[];
-public DepartamentosList: DepartamentoModel[];
+public Cargos: Cargo[];
+public AreasList: Area[];
+public DepartamentosList: Departamento[];
 
 
         constructor(private cargoService: CargoService, 
@@ -40,7 +40,7 @@ public DepartamentosList: DepartamentoModel[];
 
 
 
-       updateListOnCreate(event: CargoModel) {
+       updateListOnCreate(event: Cargo) {
            this.Cargos.push(event);
            this.Cargos.sort( (a,b) => { if(a.Nome.toUpperCase() < b.Nome.toUpperCase()) { return -1; }
            if(a.Nome.toUpperCase() > b.Nome.toUpperCase()) { return 1; }
@@ -62,7 +62,7 @@ public DepartamentosList: DepartamentoModel[];
     } 
 
 
-    updateListOnUpdateEvent(event: CargoModel) {
+    updateListOnUpdateEvent(event: Cargo) {
 
         for(let i = 0; i < this.Cargos.length; i++) {
            if( this.Cargos[i].Id == event.Id) {

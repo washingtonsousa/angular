@@ -1,6 +1,6 @@
-import { LoggableModel } from "./LoggableModel.model";
+import { Loggable } from "./loggable.model";
 
-export class StatusModel extends LoggableModel {
+export class Status extends Loggable {
 
 
    

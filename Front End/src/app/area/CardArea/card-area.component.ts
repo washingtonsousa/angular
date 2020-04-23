@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { AreaModel } from "../../models/Area.model";
+import { Area } from "../../models/Area.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 
 
@@ -26,7 +26,7 @@ import {trigger, state, style, transition, animate} from "@angular/animations";
 })
 export class CardAreaComponent {
 
-    @Input() public Area: AreaModel;
+    @Input() public Area: Area;
     @Output() public editEventEmitter = new EventEmitter<any>(); 
     @Output() public deleteEventEmitter = new EventEmitter<any>(); 
 

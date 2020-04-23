@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CategoriaConhecimentoModel } from "../../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../../models/categoria-conhecimento.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 
 
@@ -24,7 +24,7 @@ import {trigger, state, style, transition, animate} from "@angular/animations";
 })
 export class CardCategoriaConhecimentoComponent {
 
-    @Input() public CategoriaConhecimento: CategoriaConhecimentoModel;
+    @Input() public CategoriaConhecimento: CategoriaConhecimento;
     @Output() public editEventEmitter = new EventEmitter<any>(); 
     @Output() public deleteEventEmitter = new EventEmitter<any>(); 
 

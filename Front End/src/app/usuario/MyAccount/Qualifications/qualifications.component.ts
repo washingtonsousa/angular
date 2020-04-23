@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DateTimeAdapterService } from "../../../adapters/dateTime.adapter";
 import { UsuarioService } from "../../../services/http/usuario.service";
-import { UsuarioModel } from "../../../models/Usuario.model";
+import { Usuario } from "../../../models/usuario.model";
 
 
 @Component({
@@ -11,7 +11,7 @@ templateUrl: 'qualifications.html'
 })
 export class QualificationsComponent{
 
-    public usuarioModel: UsuarioModel = new UsuarioModel();
+    public usuarioModel: Usuario = new Usuario();
     public title: string = "Qualificações";
 
 
@@ -25,7 +25,7 @@ export class QualificationsComponent{
         ngOnInit() {
           
         
-                this.usuarioService.getSingle(parseInt(localStorage.getItem("user_id"))).subscribe((res: UsuarioModel) => {
+                this.usuarioService.getSingle(parseInt(localStorage.getItem("user_id"))).subscribe((res: Usuario) => {
         
                     this.usuarioModel = res;
                 

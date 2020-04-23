@@ -1,11 +1,11 @@
 import { Component , Input, OnInit, ViewChild, NgZone} from "@angular/core";
-import { UsuarioModel } from "../../models/Usuario.model";
-import { CargoModel } from "../../models/Cargo.model";
-import { NivelAcessoModel } from "../../models/NivelAcesso.model";
-import { StatusModel } from "../../models/Status.model";
+import { Usuario } from "../../models/usuario.model";
+import { Cargo } from "../../models/cargo.model";
+import { NivelAcesso } from "../../models/nivel-acesso.model";
+import { Status } from "../../models/status.model";
 import { UsuarioService } from '../../services/http/usuario.service';
 import { DateTimeAdapterService } from "../../adapters/dateTime.adapter";
-import { SPUserModel } from "../../models/SPUser.model";
+import { SPUser } from "../../models/spuser.model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
 import { ModalConfirmMessageComponent } from "../../custommodals/modalConfirmMessage.component";
@@ -17,12 +17,12 @@ import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
 })
 export class UsuarioSubscribeComponent implements OnInit {
 
-@Input() public usuarioModel: UsuarioModel = new UsuarioModel();
+@Input() public usuarioModel: Usuario = new Usuario();
 @Input() public submitButtonText: string  = "Enviar";
-@Input() public spUsers: SPUserModel[] = [];
-@Input() public status: StatusModel[] = [];
-@Input() public cargos: CargoModel[] = [];
-@Input() public nivelAcessos: NivelAcessoModel[] = [];
+@Input() public spUsers: SPUser[] = [];
+@Input() public status: Status[] = [];
+@Input() public cargos: Cargo[] = [];
+@Input() public nivelAcessos: NivelAcesso[] = [];
 @Input() public isUpdate: boolean = false;
 
 

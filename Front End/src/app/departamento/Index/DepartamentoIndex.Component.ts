@@ -1,8 +1,8 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { DepartamentoService } from "../../services/http/departamento.service";
-import { DepartamentoModel } from "../../models/Departamento.model";
+import { Departamento } from "../../models/departamento.model";
 import { AreaService } from "../../services/http/area.service";
-import { AreaModel } from "../../models/Area.model";
+import { Area } from "../../models/Area.model";
 import { Filterable } from "../../classTemplates/filterable-template";
 
 @Component({
@@ -11,8 +11,8 @@ import { Filterable } from "../../classTemplates/filterable-template";
 })
 export class DepartamentoIndexComponent extends Filterable implements OnInit{
 
-public Departamentos: DepartamentoModel[];
-public AreasList: AreaModel[];
+public Departamentos: Departamento[];
+public AreasList: Area[];
 
 
     constructor(private departamentoService: DepartamentoService, private areaService: AreaService) {
@@ -28,7 +28,7 @@ public AreasList: AreaModel[];
 
 
 
-       updateListOnCreate(event: DepartamentoModel) {
+       updateListOnCreate(event: Departamento) {
            this.Departamentos.push(event);
            this.Departamentos.sort( (a,b) => { if(a.Nome.toUpperCase() < b.Nome.toUpperCase()) { return -1; }
            if(a.Nome.toUpperCase() > b.Nome.toUpperCase()) { return 1; }
@@ -50,7 +50,7 @@ public AreasList: AreaModel[];
     } 
 
 
-    updateListOnUpdateEvent(event: DepartamentoModel) {
+    updateListOnUpdateEvent(event: Departamento) {
 
         for(let i = 0; i < this.Departamentos.length; i++) {
            if( this.Departamentos[i].Id == event.Id) {

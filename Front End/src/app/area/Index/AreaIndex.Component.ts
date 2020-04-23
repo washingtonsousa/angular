@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import { AreaService } from "../../services/http/area.service";
-import { AreaModel } from "../../models/Area.model";
+import { Area } from "../../models/Area.model";
 import { DepartamentoService } from "../../services/http/departamento.service";
 import { Filterable } from "../../classTemplates/filterable-template";
 
@@ -11,7 +11,7 @@ import { Filterable } from "../../classTemplates/filterable-template";
 })
 export class AreaIndexComponent extends Filterable implements OnInit{
 
-   public Areas: AreaModel[];
+   public Areas: Area[];
  
     constructor(private areaService: AreaService, private departamentoService: DepartamentoService, public zone: NgZone) {
         super({
@@ -21,7 +21,7 @@ export class AreaIndexComponent extends Filterable implements OnInit{
 
 
 
-    updateListOnCreate(event: AreaModel) {
+    updateListOnCreate(event: Area) {
            this.Areas.push(event);
            this.Areas.sort( (a,b) => { if(a.Nome.toUpperCase() < b.Nome.toUpperCase()) { return -1; }
            if(a.Nome.toUpperCase() > b.Nome.toUpperCase()) { return 1; }
@@ -43,7 +43,7 @@ export class AreaIndexComponent extends Filterable implements OnInit{
     } 
 
 
-    updateListOnUpdateEvent(event: AreaModel) {
+    updateListOnUpdateEvent(event: Area) {
 
         for(let i = 0; i < this.Areas.length; i++) {
             

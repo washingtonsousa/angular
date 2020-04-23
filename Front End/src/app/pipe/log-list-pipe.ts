@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { UsuarioModel } from '../models/Usuario.model';
-import { AreaModel } from '../models/Area.model';
+import { Usuario } from '../models/usuario.model';
+import { Area } from '../models/Area.model';
 
 
 @Pipe({name: 'logListPipe', pure: false})

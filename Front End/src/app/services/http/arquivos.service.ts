@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders,HttpResponse, HttpClient, HttpParams, HttpRequest } from "@angular/common/http";
-import { ArquivoModel } from "../../models/Arquivo.model";
+import { Arquivo } from "../../models/arquivo.model";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 
@@ -28,14 +28,14 @@ export class ArquivoService {
             })
     }
 
-    getSingle() : Observable<ArquivoModel[]> {
+    getSingle() : Observable<Arquivo[]> {
       
-            return this.http.get<ArquivoModel[]>(globals.apiUrl + "Arquivo/GetSingle", {headers: this.httpHeaders});
+            return this.http.get<Arquivo[]>(globals.apiUrl + "Arquivo/GetSingle", {headers: this.httpHeaders});
     }
 
-    get() : Observable<ArquivoModel[]> {
+    get() : Observable<Arquivo[]> {
 
-        return this.http.get<ArquivoModel[]>(globals.apiUrl + "Arquivo/Get", {headers: this.httpHeaders});
+        return this.http.get<Arquivo[]>(globals.apiUrl + "Arquivo/Get", {headers: this.httpHeaders});
     }
 
 
@@ -66,6 +66,6 @@ export class ArquivoService {
     
     delete(Id: number) {
 
-       return  this.http.delete<ArquivoModel>(globals.apiUrl + "Arquivo/Delete/"+ Id, {headers: this.httpHeaders});
+       return  this.http.delete<Arquivo>(globals.apiUrl + "Arquivo/Delete/"+ Id, {headers: this.httpHeaders});
     }
 }

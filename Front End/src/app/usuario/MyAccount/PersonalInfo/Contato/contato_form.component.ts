@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { ContatoModel } from "../../../../models/Contato.model";
+import { Contato } from "../../../../models/Contato.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContatoService } from "../../../../services/http/contato.service";
 import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
@@ -10,7 +10,7 @@ templateUrl: 'contato_form.html'
 })
 export class ContatoContainerComponent  {
 
-   @Input() public contato: ContatoModel = new ContatoModel();
+   @Input() public contato: Contato = new Contato();
    @Input() public buttonText: string;
    @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
@@ -65,7 +65,7 @@ export class ContatoContainerComponent  {
                
 
 
-                    this.contatoService.put(this.ContatoForm.value).subscribe((res: ContatoModel) => {
+                    this.contatoService.put(this.ContatoForm.value).subscribe((res: Contato) => {
 
                         this.modalMessage.Message = "Atualizado com sucesso";
                         this.modalMessage.openModal();

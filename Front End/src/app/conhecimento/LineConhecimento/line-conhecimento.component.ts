@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { ConhecimentoModel } from "../../models/Conhecimento.model";
+import { Conhecimento } from "../../models/conhecimento.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 import * as $ from 'jquery';
 
@@ -31,7 +31,7 @@ import * as $ from 'jquery';
 })
 export class LineConhecimentoComponent {
 
-    @Input() public Conhecimento: ConhecimentoModel;
+    @Input() public Conhecimento: Conhecimento;
     @Output() public editEventEmitter = new EventEmitter<any>(); 
     @Output() public deleteEventEmitter = new EventEmitter<any>(); 
 

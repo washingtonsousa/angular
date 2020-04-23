@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild, OnChanges } from "@angular/core";
-import {UsuarioConhecimentoModel} from '../../../../models/UsuarioConhecimento.model';
+import {UsuarioConhecimento} from '../../../../models/usuario-conhecimento.model';
 import { UsuarioConhecimentoService } from "../../../../services/http/usuarioconhecimento.service";
 import { trigger, state , transition, animate, style} from '@angular/animations';
 import { CategoriaConhecimentoService } from "../../../../services/http/categoriaConhecimento.service";
-import { CategoriaConhecimentoModel } from "../../../../models/CategoriaConhecimento.model";
+import { CategoriaConhecimento } from "../../../../models/categoria-conhecimento.model";
 
 @Component({
 selector: '[usuarioconhecimento-form]',
@@ -25,8 +25,8 @@ animations:[
 })
 export class UsuarioConhecimentoFormComponent implements OnChanges {
 
-    @Input() public UsuarioConhecimentoList: UsuarioConhecimentoModel[] = [] || [];
-    public categoriaConhecimentos: CategoriaConhecimentoModel[] = [];
+    @Input() public UsuarioConhecimentoList: UsuarioConhecimento[] = [] || [];
+    public categoriaConhecimentos: CategoriaConhecimento[] = [];
 
     public state: string = "inactive";
     private JsonObjectIdsObject = {

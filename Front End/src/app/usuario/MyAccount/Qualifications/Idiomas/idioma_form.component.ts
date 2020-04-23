@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Output, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {IdiomaModel} from '../../../../models/Idioma.model';
+import {Idioma} from '../../../../models/idioma.model';
 import { IdiomaService } from "../../../../services/http/Idioma.service";
 import { ModalConfirmMessageComponent } from "../../../../custommodals/modalConfirmMessage.component";
 
@@ -10,7 +10,7 @@ templateUrl: 'idioma_form.html'
 })
 export class IdiomaFormComponent implements OnInit {
 
-    @Input('IdiomaObject') public IdiomaObject: IdiomaModel = new IdiomaModel() || new IdiomaModel();
+    @Input('IdiomaObject') public IdiomaObject: Idioma = new Idioma() || new Idioma();
     @Input() public buttonText: string;
     @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public Emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -43,7 +43,7 @@ export class IdiomaFormComponent implements OnInit {
 
             event.preventDefault();
 
-            this.IdiomaService.post(this.IdiomaForm.value).subscribe((res: IdiomaModel) => {
+            this.IdiomaService.post(this.IdiomaForm.value).subscribe((res: Idioma) => {
 
                         this.Emitter.emit(res);
                         this.IdiomaForm.reset();

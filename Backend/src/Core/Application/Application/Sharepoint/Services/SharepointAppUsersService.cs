@@ -28,10 +28,10 @@ namespace Core.Application.Sharepoint.Services
         {
             Initialize();
 
-            UserCollection siteUsers = ClientContext.Web.SiteUsers;
-            ClientContext.Load(siteUsers);
-            ClientContext.ExecuteQuery();
-            ClientContext.Load(siteUsers);
+            UserCollection siteUsers = ClientContext?.Web?.SiteUsers;
+            ClientContext?.Load(siteUsers);
+            ClientContext?.ExecuteQuery();
+            ClientContext?.Load(siteUsers);
             ExecuteRequest();
 
             return siteUsers;
@@ -47,6 +47,7 @@ namespace Core.Application.Sharepoint.Services
 
             UserCollection siteUsers = GetSiteUsersCollection();
 
+            if(siteUsers != null)
             foreach (var user in siteUsers)
             {
 

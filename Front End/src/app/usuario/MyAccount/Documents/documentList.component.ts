@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DateTimeAdapterService } from "../../../adapters/dateTime.adapter";
 import { ArquivoService } from "../../../services/http/arquivos.service";
-import { ArquivoModel } from "../../../models/Arquivo.model";
+import { Arquivo } from "../../../models/arquivo.model";
 import { HttpResponse } from "@angular/common/http";
 import { ArquivoHandler } from "../../../arquivos/handler/arquivo.handler";
 import { ModalPdfViewerComponent } from "../../../Viewers/modal-pdf-viewer.component";
@@ -13,7 +13,7 @@ import { ModalPdfViewerComponent } from "../../../Viewers/modal-pdf-viewer.compo
 export class DocumentListComponent implements OnInit{
 
 
-    public Arquivos: ArquivoModel[];
+    public Arquivos: Arquivo[];
     public arquivoHandler: ArquivoHandler = new ArquivoHandler();
     public filterQueryHandler = {
         Nome: "",
@@ -74,7 +74,7 @@ export class DocumentListComponent implements OnInit{
     
     ngOnInit() {
     
-    this.arquivoService.getSingle().subscribe((res: ArquivoModel[]) => {
+    this.arquivoService.getSingle().subscribe((res: Arquivo[]) => {
 
         this.Arquivos = res;  
     

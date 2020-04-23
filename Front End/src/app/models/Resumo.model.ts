@@ -1,7 +1,7 @@
-import { UsuarioModel } from "./Usuario.model";
-import { LoggableModel } from "./LoggableModel.model";
+import { Usuario } from "./usuario.model";
+import { Loggable } from "./loggable.model";
 
-export class ResumoModel extends LoggableModel {
+export class Resumo extends Loggable {
 
     public  Id : number;
     public  Conteudo : string;

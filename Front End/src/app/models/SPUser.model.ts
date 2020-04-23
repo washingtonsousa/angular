@@ -1,4 +1,4 @@
-export class   SPUserModel {
+export class   SPUser {
 
     public UsuarioFromDbId: number;
     public  AccountName : string;

@@ -1,6 +1,6 @@
-import { LoggableModel } from "./LoggableModel.model";
+import { Loggable } from "./loggable.model";
 
-export class AreaModel extends LoggableModel{
+export class Area extends Loggable {
     Id: number;
     Nome: string;
     imgStr:string;

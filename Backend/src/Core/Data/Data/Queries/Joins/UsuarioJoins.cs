@@ -17,8 +17,13 @@ namespace Core.Data.Queries.Joins
                  .Include(u => u.Endereco)
                  .Include(u => u.ExpProfissionais).Include(u => u.Idiomas).Include(u => u.UsuarioConhecimentos)
                  .ThenInclude(u => u.Conhecimento).ThenInclude(c => c.CategoriaConhecimento);
-        }        
+        }
 
+        public static IIncludableQueryable<Usuario, Area> BuildPartialJoin(this IQueryable<Usuario> usuarioQueryable)
+        {
 
+            return usuarioQueryable.Include(u => u.Status).Include(u => u.NivelAcesso)
+                .Include(u => u.Cargo).ThenInclude(u => u.Departamento).ThenInclude(u => u.Area);
+        }
     }
 }

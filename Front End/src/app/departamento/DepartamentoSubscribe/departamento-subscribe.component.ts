@@ -1,9 +1,9 @@
 import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core";
-import { DepartamentoModel } from "../../models/Departamento.model";
+import { Departamento } from "../../models/departamento.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DepartamentoService } from "../../services/http/departamento.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
-import {AreaModel} from "../../models/Area.model";
+import {Area} from "../../models/Area.model";
 import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
 
 @Component({
@@ -12,8 +12,8 @@ templateUrl: 'departamento-subscribe.html'
 })
 export class DepartamentoSubscribeComponent  {
 
-   @Input() public DepartamentoModel: DepartamentoModel = new DepartamentoModel();
-   @Input() public AreasList: AreaModel[];
+   @Input() public DepartamentoModel: Departamento = new Departamento();
+   @Input() public AreasList: Area[];
    @Input() public buttonText: string;
    public selectizeConfig: any;
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -69,7 +69,7 @@ export class DepartamentoSubscribeComponent  {
 
         }, err => {
 
-                this.departamentoService.put(this.DepartamentoForm.value).subscribe((res: DepartamentoModel) => {
+                this.departamentoService.put(this.DepartamentoForm.value).subscribe((res: Departamento) => {
 
                     this.modalMessage.Message = "Atualizado com sucesso";
                     this.modalMessage.openModal();

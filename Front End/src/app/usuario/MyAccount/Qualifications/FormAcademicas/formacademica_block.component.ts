@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { FormAcademicaModel } from "../../../../models/FormAcademica.model";
+import { FormAcademica } from "../../../../models/form-academica.model";
 
 @Component({
     
@@ -29,14 +29,14 @@ import { FormAcademicaModel } from "../../../../models/FormAcademica.model";
 })
 export class FormAcademicaBlockComponent {
 
-    @Input() public formAcademicas: FormAcademicaModel[] = [];
+    @Input() public formAcademicas: FormAcademica[] = [];
 
 
     Push(value) {
         this.formAcademicas.push(value);
   }
 
-  Update(value: FormAcademicaModel) {
+  Update(value: FormAcademica) {
       for(let $i = 0; $i < this.formAcademicas.length; $i++) {
 
           if(this.formAcademicas[$i].Id == value.Id) {

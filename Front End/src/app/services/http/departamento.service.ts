@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { DepartamentoModel } from "../../models/Departamento.model";
+import { Departamento } from "../../models/departamento.model";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 
@@ -17,23 +17,23 @@ export class DepartamentoService {
             })
     }
 
-    getSingle(id : number) : Observable<DepartamentoModel> {
-            return this.http.get<DepartamentoModel>(globals.apiUrl + "Departamento/Get/" + id, {headers: this.httpHeaders});
+    getSingle(id : number) : Observable<Departamento> {
+            return this.http.get<Departamento>(globals.apiUrl + "Departamento/Get/" + id, {headers: this.httpHeaders});
     }
 
     get() : Observable<any> {
         return this.http.get<any>(globals.apiUrl + "Departamento/Get", {headers: this.httpHeaders});
     }
 
-    put(Usuario: DepartamentoModel) : Observable<DepartamentoModel>{
-       return  this.http.put<DepartamentoModel>(globals.apiUrl + "Departamento/Put", Usuario, {headers: this.httpHeaders});
+    put(Usuario: Departamento) : Observable<Departamento>{
+       return  this.http.put<Departamento>(globals.apiUrl + "Departamento/Put", Usuario, {headers: this.httpHeaders});
     }
 
-    post(Usuario: DepartamentoModel) {
-       return  this.http.post<DepartamentoModel>(globals.apiUrl + "Departamento/Post", Usuario, {headers: this.httpHeaders});
+    post(Usuario: Departamento) {
+       return  this.http.post<Departamento>(globals.apiUrl + "Departamento/Post", Usuario, {headers: this.httpHeaders});
     }
     
     delete(id: number) {
-       return  this.http.delete<DepartamentoModel>(globals.apiUrl + "Departamento/Delete/"+ id, {headers: this.httpHeaders});
+       return  this.http.delete<Departamento>(globals.apiUrl + "Departamento/Delete/"+ id, {headers: this.httpHeaders});
     }
 }

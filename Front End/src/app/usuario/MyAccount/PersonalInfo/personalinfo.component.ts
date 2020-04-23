@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { UsuarioModel } from "../../../models/Usuario.model";
-import { CargoModel } from "../../../models/Cargo.model";
-import { NivelAcessoModel } from "../../../models/NivelAcesso.model";
-import { StatusModel } from "../../../models/Status.model";
+import { Usuario } from "../../../models/usuario.model";
+import { Cargo } from "../../../models/cargo.model";
+import { NivelAcesso } from "../../../models/nivel-acesso.model";
+import { Status } from "../../../models/status.model";
 import { ActivatedRoute } from "@angular/router";
 import { UsuarioService } from "../../../services/http/usuario.service";
 import { DateTimeAdapterService } from "../../../adapters/dateTime.adapter";
@@ -17,11 +17,11 @@ export class PersonalInfoComponent implements OnInit {
     
 @ViewChild('loadingIcon') public loadingIcon: any;
 
-public usuarioModel: UsuarioModel = new UsuarioModel();
-public cargos: CargoModel[] = [];
-public nivelAcessos: NivelAcessoModel[] = [];
+public usuarioModel: Usuario = new Usuario();
+public cargos: Cargo[] = [];
+public nivelAcessos: NivelAcesso[] = [];
 public estadosCivis = [{'Nome': 'Solteiro'}, {'Nome':'Casado'}, {'Nome' : 'Viúvo'} , {'Nome': 'Divorciado'}];
-public Status: StatusModel[] = [];
+public Status: Status[] = [];
 public selectizeIdNomeConfig:any;
 public selectizeIdNivelConfig:any;
 public selectizeNomeNomeConfig:any;
@@ -42,7 +42,7 @@ private dateAdapter: DateTimeAdapterService
 this.loadingIcon.show();
      
 
-          this.usuarioService.getSingle(parseInt(localStorage.getItem("user_id"))).subscribe((res: UsuarioModel) => {
+          this.usuarioService.getSingle(parseInt(localStorage.getItem("user_id"))).subscribe((res: Usuario) => {
 
               this.usuarioModel = res;
 

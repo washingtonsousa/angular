@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 import { Injectable } from "@angular/core";
-import { SPUserModel } from "../../models/SPUser.model";
+import { SPUser } from "../../models/spuser.model";
 
 @Injectable()
 export class SPUsersService {
@@ -18,20 +18,20 @@ export class SPUsersService {
             })
     }
 
-    getSingle(id : number) : Observable<SPUserModel> {
-            return this.http.get<SPUserModel>(globals.apiUrl + "SPUsers/Get/" + id, {headers: this.httpHeaders});
+    getSingle(id : number) : Observable<SPUser> {
+            return this.http.get<SPUser>(globals.apiUrl + "SPUsers/Get/" + id, {headers: this.httpHeaders});
     }
 
-    get() : Observable<SPUserModel[]> {
-        return this.http.get<SPUserModel[]>(globals.apiUrl + "SPUsers/Get", {headers: this.httpHeaders});
+    get() : Observable<SPUser[]> {
+        return this.http.get<SPUser[]>(globals.apiUrl + "SPUsers/Get", {headers: this.httpHeaders});
     }
 
-    put(SPUsers: SPUserModel) : Observable<SPUserModel>{
-       return  this.http.put<SPUserModel>(globals.apiUrl + "SPUsers/Put", SPUsers, {headers: this.httpHeaders});
+    put(SPUsers: SPUser) : Observable<SPUser>{
+       return  this.http.put<SPUser>(globals.apiUrl + "SPUsers/Put", SPUsers, {headers: this.httpHeaders});
     }
 
-    post(SPUsers: SPUserModel) {
-       return  this.http.post<SPUserModel>(globals.apiUrl + "SPUsers/Post", SPUsers, {headers: this.httpHeaders});
+    post(SPUsers: SPUser) {
+       return  this.http.post<SPUser>(globals.apiUrl + "SPUsers/Post", SPUsers, {headers: this.httpHeaders});
     }
     
     delete(id: number) {

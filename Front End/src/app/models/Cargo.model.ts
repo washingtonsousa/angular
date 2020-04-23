@@ -1,11 +1,11 @@
-import { LoggableModel } from "./LoggableModel.model";
-import {DepartamentoModel} from "./Departamento.model";
+import { Loggable } from "./loggable.model";
+import {Departamento} from "./departamento.model";
 
-export class CargoModel extends LoggableModel{
+export class Cargo extends Loggable {
 
     Id: number;
     Nome: string;
     DepartamentoId: number;
-    Departamento: DepartamentoModel;
+    Departamento: Departamento;
 
 }

@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UsuarioService } from "../../../services/http/usuario.service";
-import { UsuarioModel } from "../../../models/Usuario.model";
+import { Usuario } from "../../../models/usuario.model";
 
 @Component({
 selector: '[upload-form]',
@@ -37,7 +37,7 @@ export class UploadFormComponent implements OnInit{
 
              this.indexRaw = 0;
 
-             this.usuariosService.get().subscribe((usuarios:UsuarioModel[]) => {
+             this.usuariosService.get().subscribe((usuarios:Usuario[]) => {
 
                 for(let i = 0; i < this.arquivoFormGroup.value.Arquivos.length; i++) {
     

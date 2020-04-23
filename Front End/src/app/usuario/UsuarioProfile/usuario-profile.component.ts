@@ -1,5 +1,5 @@
 import {Component, Input, AfterViewInit} from '@angular/core';
-import { UsuarioModel } from '../../models/Usuario.model';
+import { Usuario } from '../../models/usuario.model';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { UsuarioModel } from '../../models/Usuario.model';
 })
 export class UsuarioProfileComponent implements AfterViewInit {
 
- @Input('Usuario') public usuarioModel: UsuarioModel;
+ @Input('Usuario') public usuarioModel: Usuario;
  public profileSrc: string = "assets/images/default-user-image.png";
 
  constructor(){

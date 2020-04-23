@@ -1,15 +1,15 @@
-import {CargoModel} from './Cargo.model';
-import { EnderecoModel } from './Endereco.model';
-import { NivelAcessoModel } from './NivelAcesso.model';
-import { ContatoModel } from './Contato.model';
-import { ResumoModel } from './resumo.model';
-import { IdiomaModel } from './Idioma.model';
-import {  CertCursoModel } from './CertCurso.model';
-import { FormAcademicaModel } from './FormAcademica.model';
-import { UsuarioConhecimentoModel } from './UsuarioConhecimento.model';
-import { ExpProfissionalModel } from './ExpProfissional.model';
+import {Cargo} from './cargo.model';
+import { Endereco } from './endereco.model';
+import { NivelAcesso } from './nivel-acesso.model';
+import { Contato } from './Contato.model';
+import { Resumo } from './resumo.model';
+import { Idioma } from './idioma.model';
+import {  CertCurso } from './cert-curso.model';
+import { FormAcademica } from './form-academica.model';
+import { UsuarioConhecimento } from './usuario-conhecimento.model';
+import { ExpProfissional } from './exp-profissional.model';
 
-export class UsuarioModel {
+export class Usuario {
     Id: number;
     Nome: string;
     Email: string;
@@ -25,15 +25,15 @@ export class UsuarioModel {
     DataNasc: string;
     Data_Demissao: string;
     EstadoCivil: string;
-    Cargo: CargoModel = new CargoModel();
-    Endereco: EnderecoModel = new EnderecoModel();
-    NivelAcesso: NivelAcessoModel = new NivelAcessoModel();
-    Contatos: ContatoModel[] = [];
-    Idiomas: IdiomaModel[] = [];
-    CertCursos: CertCursoModel[] = [];
-    Resumo: ResumoModel = new ResumoModel();
-    FormAcademicas: FormAcademicaModel[]  = [];
-    ExpProfissionais: ExpProfissionalModel[] = [];
-    UsuarioConhecimentos:UsuarioConhecimentoModel[] = [];
+    Cargo: Cargo = new Cargo();
+    Endereco: Endereco = new Endereco();
+    NivelAcesso: NivelAcesso = new NivelAcesso();
+    Contatos: Contato[] = [];
+    Idiomas: Idioma[] = [];
+    CertCursos: CertCurso[] = [];
+    Resumo: Resumo = new Resumo();
+    FormAcademicas: FormAcademica[]  = [];
+    ExpProfissionais: ExpProfissional[] = [];
+    UsuarioConhecimentos:UsuarioConhecimento[] = [];
 }
 

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { CertCursoModel } from "../../../../models/CertCurso.model";
+import { CertCurso } from "../../../../models/cert-curso.model";
 
 @Component({
     
@@ -30,7 +30,7 @@ import { CertCursoModel } from "../../../../models/CertCurso.model";
 })
 export class CertCursoBlockComponent {
 
-    @Input() public certCursos: CertCursoModel[] = [];
+    @Input() public certCursos: CertCurso[] = [];
     @ViewChild('certCursoPanel') public certCursoPanel: any;
     @ViewChild('atualizarCertCursoPanel') public atualizarCertCursoPanel: any;
 
@@ -39,7 +39,7 @@ export class CertCursoBlockComponent {
           this.certCursoPanel.hide();
     }
 
-    Update(value: CertCursoModel) {
+    Update(value: CertCurso) {
         for(let $i = 0; $i < this.certCursos.length; $i++) {
 
             if(this.certCursos[$i].Id == value.Id) {

@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import { CategoriaConhecimentoModel } from '../models/CategoriaConhecimento.model';
+import { CategoriaConhecimento } from '../models/categoria-conhecimento.model';
 
 
 @Pipe({name: 'categoriaConhecimentoPipe', pure: false})
@@ -7,7 +7,7 @@ export class  CategoriaConhecimentosFilterPipe implements PipeTransform {
 
 
 
-transform(CategoriaConhecimentos : CategoriaConhecimentoModel[], filterQueryHandler: any) {
+transform(CategoriaConhecimentos : CategoriaConhecimento[], filterQueryHandler: any) {
 
 if(filterQueryHandler) {
 

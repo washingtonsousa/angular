@@ -1,4 +1,4 @@
-export class EnderecoModel {
+export class Endereco {
     public  Id :number;
     public  Rua : string;
     public  Numero  :number;

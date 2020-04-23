@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { FormAcademicaModel } from "../../models/FormAcademica.model";
+import { FormAcademica } from "../../models/form-academica.model";
 import { Observable } from "rxjs";
 import * as globals from '../../globals/variables';
 
@@ -18,23 +18,23 @@ export class FormAcademicaService {
             })
     }
 
-    getSingle(id : number) : Observable<FormAcademicaModel> {
-            return this.http.get<FormAcademicaModel>(globals.apiUrl + "FormAcademica/GetSingle/" + id, {headers: this.httpHeaders});
+    getSingle(id : number) : Observable<FormAcademica> {
+            return this.http.get<FormAcademica>(globals.apiUrl + "FormAcademica/GetSingle/" + id, {headers: this.httpHeaders});
     }
 
-    get() : Observable<FormAcademicaModel[]> {
-        return this.http.get<FormAcademicaModel[]>(globals.apiUrl + "FormAcademica/GetSingle", {headers: this.httpHeaders});
+    get() : Observable<FormAcademica[]> {
+        return this.http.get<FormAcademica[]>(globals.apiUrl + "FormAcademica/GetSingle", {headers: this.httpHeaders});
     }
 
-    put(FormAcademica: FormAcademicaModel) : Observable<FormAcademicaModel>{
-       return  this.http.put<FormAcademicaModel>(globals.apiUrl + "FormAcademica/PutSingle", FormAcademica, {headers: this.httpHeaders});
+    put(FormAcademica: FormAcademica) : Observable<FormAcademica>{
+       return  this.http.put<FormAcademica>(globals.apiUrl + "FormAcademica/PutSingle", FormAcademica, {headers: this.httpHeaders});
     }
 
-    post(FormAcademica: FormAcademicaModel) {
-       return  this.http.post<FormAcademicaModel>(globals.apiUrl + "FormAcademica/PostSingle", FormAcademica, {headers: this.httpHeaders});
+    post(FormAcademica: FormAcademica) {
+       return  this.http.post<FormAcademica>(globals.apiUrl + "FormAcademica/PostSingle", FormAcademica, {headers: this.httpHeaders});
     }
     
     delete(id: number) {
-       return  this.http.delete<FormAcademicaModel>(globals.apiUrl + "FormAcademica/DeleteSingle/"+ id, {headers: this.httpHeaders});
+       return  this.http.delete<FormAcademica>(globals.apiUrl + "FormAcademica/DeleteSingle/"+ id, {headers: this.httpHeaders});
     }
 }

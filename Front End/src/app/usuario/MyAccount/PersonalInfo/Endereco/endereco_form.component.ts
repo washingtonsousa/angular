@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, Output, EventEmitter, OnInit, OnChanges } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {EnderecoModel} from '../../../../models/Endereco.model';
+import {Endereco} from '../../../../models/endereco.model';
 import { EnderecoService } from "../../../../services/http/endereco.service";
 import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
 
@@ -10,7 +10,7 @@ templateUrl: 'endereco_form.html'
 })
 export class EnderecoFormComponent implements OnInit, OnChanges {
 
-    @Input('enderecoObject') public enderecoObject: EnderecoModel = new EnderecoModel();
+    @Input('enderecoObject') public enderecoObject: Endereco = new Endereco();
     @Input() public buttonText: string;
     @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
@@ -21,7 +21,7 @@ export class EnderecoFormComponent implements OnInit, OnChanges {
 
     OnSubmit($event) {
             $event.preventDefault();
-            this.enderecoService.post(this.EnderecoForm.value).subscribe((res: EnderecoModel) => {
+            this.enderecoService.post(this.EnderecoForm.value).subscribe((res: Endereco) => {
 
                         this.emitter.emit(res);
                         this.modalMessage.Message = "Atualizado com sucesso";

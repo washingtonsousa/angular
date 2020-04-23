@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CargoModel } from "../../models/Cargo.model";
+import { Cargo } from "../../models/cargo.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 
 
@@ -24,7 +24,7 @@ import {trigger, state, style, transition, animate} from "@angular/animations";
 })
 export class CardCargoComponent {
 
-    @Input() public Cargo: CargoModel;
+    @Input() public Cargo: Cargo;
     @Output() public editEventEmitter = new EventEmitter<any>(); 
     @Output() public deleteEventEmitter = new EventEmitter<any>(); 
 

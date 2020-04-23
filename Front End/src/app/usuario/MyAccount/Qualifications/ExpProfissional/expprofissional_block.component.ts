@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ExpProfissionalModel } from "../../../../models/ExpProfissional.model";
+import { ExpProfissional } from "../../../../models/exp-profissional.model";
 import { DateTimeAdapterService } from "../../../../adapters/dateTime.adapter";
 
 @Component({
@@ -35,7 +35,7 @@ import { DateTimeAdapterService } from "../../../../adapters/dateTime.adapter";
 })
 export class ExpProfissionalBlockComponent {
 
-    @Input() public ExpProfissionais: ExpProfissionalModel[] = [];
+    @Input() public ExpProfissionais: ExpProfissional[] = [];
 
   constructor( private dateAdapter: DateTimeAdapterService) {}
 
@@ -43,7 +43,7 @@ export class ExpProfissionalBlockComponent {
         this.ExpProfissionais.push(value);
     }
 
-    Update(value: ExpProfissionalModel) {
+    Update(value: ExpProfissional) {
         for(let $i = 0; $i < this.ExpProfissionais.length; $i++) {
 
             if(this.ExpProfissionais[$i].Id == value.Id) {

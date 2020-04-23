@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { ContatoModel } from "../../../../models/Contato.model";
+import { Contato } from "../../../../models/Contato.model";
 
 
 @Component({
@@ -30,7 +30,7 @@ import { ContatoModel } from "../../../../models/Contato.model";
 })
 export class ContatoBlockComponent {
 
-@Input() public contatos: ContatoModel[];
+@Input() public contatos: Contato[];
 @ViewChild('novoContatoPainel') public novoContatoPainel: any;
 @ViewChild('atualizarContatoPainel') public atualizarContatoPainel: any;
 
@@ -40,7 +40,7 @@ Push(value) {
     this.novoContatoPainel.hide();
 }
 
-Update(value: ContatoModel) {
+Update(value: Contato) {
     
 
     for(let $i = 0; $i <= this.contatos.length; $i++) {

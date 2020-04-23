@@ -74,10 +74,13 @@ namespace Core.Data.Repositories
         public IList<Usuario> Get()
         {
 
-            IList<Usuario> usuarios = Context.Usuarios.AsNoTracking().BuildFullJoin().Select(u => new Usuario() { 
+            IList<Usuario> usuarios = Context.Usuarios.AsNoTracking().BuildPartialJoin().Select(u => new Usuario() { 
             
                 Id = u.Id,
-
+                Nome = u.Nome,
+                Cargo = u.Cargo,
+                Status = u.Status,
+                NivelAcesso = u.NivelAcesso
 
             }).ToList();
 

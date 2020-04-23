@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { IdiomaModel } from "../../../../models/Idioma.model";
+import { Idioma } from "../../../../models/idioma.model";
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
@@ -47,19 +47,19 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class IdiomaBlockComponent {
 
-    @Input() public Idiomas: IdiomaModel[] = [];
+    @Input() public Idiomas: Idioma[] = [];
     @ViewChild('atualizarIdiomaPanel') _atualizarPanel: any;
     @ViewChild('IdiomaPanel') _idiomaPanel: any;
     
 
-    Push(value: IdiomaModel) {
+    Push(value: Idioma) {
 
         this.Idiomas.push(value);
         this._idiomaPanel.hide();
 
     }
 
-    Update(value: IdiomaModel) {
+    Update(value: Idioma) {
         for(let $i = 0; $i <= this.Idiomas.length; $i++) {
 
             if(this.Idiomas[$i].Id == value.Id) {

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { DepartamentoModel } from "../../models/Departamento.model";
+import { Departamento } from "../../models/departamento.model";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 
 
@@ -24,7 +24,7 @@ import {trigger, state, style, transition, animate} from "@angular/animations";
 })
 export class CardDepartamentoComponent {
 
-    @Input() public Departamento: DepartamentoModel;
+    @Input() public Departamento: Departamento;
     @Output() public editEventEmitter = new EventEmitter<any>(); 
     @Output() public deleteEventEmitter = new EventEmitter<any>(); 
 
