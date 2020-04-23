@@ -15,7 +15,7 @@ namespace Core.Application
 
         public ApplicationContext Context { get; private set; }
 
-        private ApplicationContextManager() { }
+        public ApplicationContextManager() { }
 
         public ApplicationContext GetContext()
         {

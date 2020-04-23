@@ -14,10 +14,11 @@
 
             
     <label class="required"> Email: </label>
-    <ng-selectize name="email" [enabled]="!isUpdate" (ngModelChange)="onEmailChange($event)" 
+    <!-- <ng-selectize name="email" [enabled]="!isUpdate" (ngModelChange)="onEmailChange($event)" 
     [formControl]="usuarioFormGroup.get('Email')" [config]="selectizeEmailConfig" [options]="spUsers"  placeholder="Email" >
-    </ng-selectize>
+    </ng-selectize> -->
 
+    <input name="email" type="email" [disabled]="!isUpdate" formControlName="Email" class="form-control" placeholder="Email" />
 
     <div *ngIf="usuarioFormGroup.get('Email').touched && usuarioFormGroup.get('Email').hasError('required')" 
       class="alert alert-danger">

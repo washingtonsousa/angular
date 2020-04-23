@@ -1,4 +1,4 @@
-import { Component , Input, OnInit, ViewChild, NgZone} from "@angular/core";
+import { Component , Input, OnInit, ViewChild, NgZone, OnChanges, SimpleChanges} from "@angular/core";
 import { Usuario } from "../../models/usuario.model";
 import { Cargo } from "../../models/cargo.model";
 import { NivelAcesso } from "../../models/nivel-acesso.model";
@@ -15,9 +15,14 @@ import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
     selector: '[usuario-subscribe]',
     templateUrl: 'usuario-subscribe.html'
 })
-export class UsuarioSubscribeComponent implements OnInit {
+export class UsuarioSubscribeComponent implements OnInit, OnChanges {
 
-@Input() public usuarioModel: Usuario = new Usuario();
+@Input() public set SetUsuario(usuario) {
+  
+  this.usuarioModel = (usuario == null || usuario == undefined) ? new Usuario() : usuario;
+
+}
+@Input() public  usuarioModel = new Usuario();
 @Input() public submitButtonText: string  = "Enviar";
 @Input() public spUsers: SPUser[] = [];
 @Input() public status: Status[] = [];
@@ -25,13 +30,9 @@ export class UsuarioSubscribeComponent implements OnInit {
 @Input() public nivelAcessos: NivelAcesso[] = [];
 @Input() public isUpdate: boolean = false;
 
-
 @ViewChild('loadingIcon') public loadingIcon: any;
 @ViewChild('modalMessage') public modalMessage: ModalMessageComponent;
 @ViewChild('modalConfirmMessage') public modalConfirmMessage: ModalConfirmMessageComponent;
-
-
-
 
 
 public cargosAdapted : any[] = [];
@@ -87,9 +88,9 @@ initializeFormBuilder() {
     Id: [this.usuarioModel.Id],
     Nome: [this.usuarioModel.Nome, Validators.required],
     Email: [this.usuarioModel.Email, [Validators.required, 
-      Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")]],
+      Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]{2,64}")]],
     Email_Secundario_Notificacao: [this.usuarioModel.Email_Secundario_Notificacao, [
-      Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}") ] ],
+      Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]{2,64}") ] ],
     Sexo: [this.usuarioModel.Sexo, Validators.required],
     Ramal: [this.usuarioModel.Ramal, Validators.required],
     Matricula: [this.usuarioModel.Matricula, Validators.required],
@@ -173,6 +174,13 @@ this.modalMessage.openModal();
 
 })
 
+}
+
+
+ngOnChanges(changes: SimpleChanges) {
+
+  this.usuarioModel = (changes.usuarioModel != undefined && changes.usuarioModel != null) ? changes.usuarioModel.currentValue : this.usuarioModel;
+  this.ngOnInit();
 }
 
 ngOnInit() {

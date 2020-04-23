@@ -15,16 +15,16 @@ namespace Core.Shared.Kernel.Events
 
     public static bool IsSatisfiedBy(params DomainNotification[] validations)
     {
-      var notificationsNotNull = validations.Where(validation => validation != null);
+      var notificationsNotNull = validations.Where(validation => validation != null).ToList();
 
       NotifyAll(notificationsNotNull);
 
       return notificationsNotNull.Count().Equals(0);
     }
 
-    private  static void NotifyAll(IEnumerable<DomainNotification> notificationsNotNull)
+    private  static void NotifyAll(List<DomainNotification> notificationsNotNull)
     {
-      notificationsNotNull.ToList().ForEach(validation =>
+      notificationsNotNull.ForEach(validation =>
       {
         DomainEvent.Notify(validation);
       });
@@ -39,7 +39,7 @@ namespace Core.Shared.Kernel.Events
           : null;
     }
 
-    public static DomainNotification AssertListLength<T>(IEnumerable<T> list, int minimum, string message, string key = "AssertArgumentLength", RankNotification rank = RankNotification.Low)
+    public static DomainNotification AssertListLength<T>(List<T> list, int minimum, string message, string key = "AssertArgumentLength", RankNotification rank = RankNotification.Low)
     {
       return (list == null || list.Count() <= minimum)
           ? new DomainNotification(key, message, rank)

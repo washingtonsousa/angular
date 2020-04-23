@@ -61,7 +61,7 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public HttpResponseMessage Post([FromBody]Conhecimento conhecimento)
     {
-       conhecimento = _conhecimentoAppService.Update(conhecimento);
+       conhecimento = _conhecimentoAppService.Insert(conhecimento);
       return ResponseWithNotifications(conhecimento);
     }
 

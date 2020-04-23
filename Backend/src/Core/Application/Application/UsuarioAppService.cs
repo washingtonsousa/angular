@@ -59,8 +59,8 @@ namespace Core.Application
             if (result)
             {
                 UsuariosHub.updateUsuario(usuarioFromDb);
-                usuarioFromDb.Status.Usuarios = null;
-                usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
+                //usuarioFromDb.Status.Usuarios = null;
+                //usuarioFromDb.Cargo.Departamento.Area.Departamentos = null;
             }
 
             return usuarioFromDb;

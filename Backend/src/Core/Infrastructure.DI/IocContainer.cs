@@ -37,6 +37,7 @@ namespace Infrastructure.DI
             kernel.Bind<ILog_ActionRepository>().To<Log_ActionRepository>();
             kernel.Bind<IExpProfissionalRepository>().To<ExpProfissionalRepository>();
             kernel.Bind<ICategoriaConhecimentoRepository>().To<CategoriaConhecimentoRepository>();
+            kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
 
         }
 
@@ -67,6 +68,7 @@ namespace Infrastructure.DI
             kernel.Bind<IDomainNotificationHandler<DomainNotification>>().To<DomainNotificationHandler>().InRequestScope();
             kernel.Bind<IInstallAppService>().To<InstallAppService>();
             kernel.Bind<ILogAppService>().To<LogAppService>();
+            kernel.Bind<IEmailAppService>().To<EmailAppService>();
         }
 
         public static void InjectSharepointServices(IKernel kernel)

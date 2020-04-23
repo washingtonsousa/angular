@@ -51,7 +51,7 @@ buttonText="Salvar">
             <div side-panel #atualizarCargoPainel panelTitle="Editar cargo">
             <div cargo-subscribe [DepartamentosList]="DepartamentosList" (IdEmitter)="updateListOnDelete($event)"
              (emitter)="updateListOnUpdateEvent($event)" 
-            #CargoSubscribe [CargoModel]="Cargo" buttonText="Atualizar">   
+            #CargoSubscribe [Cargo]="Cargo" buttonText="Atualizar">   
                                                    
         </div>
     </div>

@@ -64,8 +64,8 @@ namespace HRWeb.App_Start
     /// <param name="kernel">The kernel.</param>
     private static void RegisterServices(IKernel kernel)
     {
-      //var resolver = kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>();
-      var resolver = new NinjectResolver(kernel);
+      var resolver = kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>();
+      //var resolver = new NinjectResolver(kernel);
       IocContainer.InjectDataDriven(kernel);
       IocContainer.InjectServices(kernel);
       IocContainer.InjectSharepointServices(kernel);

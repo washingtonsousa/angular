@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import { CargoIndexComponent } from "./Index/CargoIndex.Component";
+import { CargoIndexComponent } from "./Index/cargo-index.component";
 import { CardCargoComponent } from "./CardCargo/card-Cargo.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { CustomModalsModule } from "../custommodals/custommodals.module";

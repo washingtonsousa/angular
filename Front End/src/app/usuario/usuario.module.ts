@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { UsuarioHubService } from "../services/http/usuarioHub.service";
 import { UsuarioService } from "../services/http/usuario.service";
-import { UsuarioIndexComponent } from "./Index/usuarioIndex.component";
+import { UsuarioIndexComponent } from "./Index/usuario-index.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { MainContainerModule } from "../main_container/main_container.module";

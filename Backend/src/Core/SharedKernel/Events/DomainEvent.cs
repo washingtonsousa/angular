@@ -16,8 +16,8 @@ namespace Core.Shared.Kernel.Events
     public static void Notify<T>(T args) where T : IDomainEvent
     {
 
-        foreach (var handler in Container.GetServices<IDomainNotificationHandler<T>>())
-          handler.Handle(args);
+        foreach (var handler in Container.GetServices(typeof(IDomainNotificationHandler<T>)))
+         ((IDomainNotificationHandler<T>)handler).Handle(args);
       
     }
 

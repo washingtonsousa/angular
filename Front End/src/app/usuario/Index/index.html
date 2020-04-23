@@ -87,22 +87,26 @@
 
   <div  *ngFor="let Usuario of Usuarios | usuarioPipe: filterQueryHandler | paginate:  { itemsPerPage: limit, currentPage: currentPage }; trackBy: trackUsuarios"
    class="col-xl-2 col-lg-4 col-md-6 col-12 usuario-card-container">
-                
-     <div  card-usuario [Usuario]="Usuario" (deleteEventEmitter)="usuarioSubscribe.openDeleteConfirmMessage()"
-                (editEventEmitter)="atualizarUsuarioPainel.show()" (viewEventEmitter)="userProfileModal.openModal()"></div>
-
-        <div #userProfileModal modal-content Title="Perfil"> <usuario-profile [Usuario]="Usuario" >  </usuario-profile> </div>  
+               
+   <div  card-usuario [Usuario]="Usuario" (deleteEventEmitter)="usuarioSubscribe.openDeleteConfirmMessage()"
+(editEventEmitter)="Edit(Usuario.Id)" (viewEventEmitter)="GetForOpenModal(Usuario.Id)"></div>
 
 
-           <div side-panel #atualizarUsuarioPainel panelTitle="Editar Usuário">
-                        <div usuario-subscribe [cargos]="cargos" [nivelAcessos]="nivelacessos" [status]="status"
-                         [spUsers]="spUsers" [isUpdate]="true" #usuarioSubscribe
-                                [usuarioModel]="Usuario" submitButtonText="Atualizar">   
-                                
-                        </div>
-                </div>
         </div>
 </div> 
+
+
+
+<div #userProfileModal modal-content Title="Perfil"> <usuario-profile [Usuario]="currentSelectedUsuario" >  </usuario-profile> </div>  
+
+
+<div side-panel #atualizarUsuarioPainel panelTitle="Editar Usuário">
+        <div usuario-subscribe [cargos]="cargos" [nivelAcessos]="nivelacessos" [status]="status"
+         [spUsers]="spUsers" [isUpdate]="true" #usuarioSubscribe
+                [SetUsuario]="currentSelectedUsuario" submitButtonText="Atualizar">   
+                
+        </div>
+</div>
 
 
 <div *ngIf="!(Usuarios | usuarioPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger"> 

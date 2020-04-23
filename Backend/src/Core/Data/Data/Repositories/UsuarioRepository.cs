@@ -29,11 +29,11 @@ namespace Core.Data.Repositories
 
             return usuario;
         }
-        public Usuario Find(int Id) => Context.Usuarios.Where(u => u.Id == Id).BuildFullJoin().FirstOrDefault();
+        public Usuario Find(int Id) => Context.Usuarios.BuildFullJoin().Where(u => u.Id == Id).FirstOrDefault();
 
 
 
-        public async Task<Usuario> FindAsync(int Id) => await Context.Usuarios.Where(u => u.Id == Id).BuildFullJoin().FirstOrDefaultAsync();
+        public async Task<Usuario> FindAsync(int Id) => await Context.Usuarios.BuildFullJoin().Where(u => u.Id == Id).FirstOrDefaultAsync();
 
 
 
@@ -54,17 +54,9 @@ namespace Core.Data.Repositories
 
         public void Update(Usuario Usuario)
         {
-            //usuarioFromDb.CargoId = Usuario.CargoId;
-            //usuarioFromDb.NivelAcessoId = Usuario.NivelAcessoId;
-            //usuarioFromDb.Nome = Usuario.Nome;
-            //usuarioFromDb.StatusId = Usuario.StatusId;
-            //usuarioFromDb.Email = Usuario.Email;
-            //usuarioFromDb.Matricula = Usuario.Matricula;
-            //usuarioFromDb.DataAdmissao = Usuario.DataAdmissao;
-            //usuarioFromDb.DataNasc = Usuario.DataNasc;
-            //usuarioFromDb.EstadoCivil = Usuario.EstadoCivil;
-            //usuarioFromDb.Ramal = Usuario.Ramal;
-            //usuarioFromDb.Sexo = Usuario.Sexo;
+
+            Context.Usuarios.Update(Usuario);
+
         }
 
 
@@ -101,7 +93,7 @@ namespace Core.Data.Repositories
 
         public Usuario FindByMatriculaOrEmail(string matricula, string email)
         {
-            return Context.Usuarios.FirstOrDefault(u => u.Matricula == matricula || u.Email == email);
+            return Context.Usuarios.BuildPartialJoin().FirstOrDefault(u => u.Matricula == matricula || u.Email == email);
         }
 
 

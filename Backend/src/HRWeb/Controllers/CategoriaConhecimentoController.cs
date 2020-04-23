@@ -59,7 +59,7 @@ namespace HRWeb.Controllers
     [HttpOptions]
     public HttpResponseMessage Post([FromBody]CategoriaConhecimento categoriaCategoriaConhecimento)
     {
-      categoriaCategoriaConhecimento = _categoriaAppService.Update(categoriaCategoriaConhecimento);
+      categoriaCategoriaConhecimento = _categoriaAppService.Insert(categoriaCategoriaConhecimento);
       return ResponseWithNotifications(categoriaCategoriaConhecimento);
     }
 

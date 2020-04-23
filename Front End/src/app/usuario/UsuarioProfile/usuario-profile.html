@@ -8,14 +8,14 @@
     </div>
 
     <div class="col-xl-3">
-            <h3> {{ usuarioModel.Nome }}  </h3> 
-            <p> <small class="text-muted"> Área: </small>  {{ usuarioModel.Cargo.Departamento.Nome }}  </p> 
-            <p> <small class="text-muted"> Departamento: </small>  {{ usuarioModel.Cargo.Departamento.Area.Nome }}  </p> 
-            <p> <small class="text-muted"> Cargo: </small>  {{ usuarioModel.Cargo.Nome }}  </p> 
-            <p> <small class="text-muted"> Email: </small>  {{ usuarioModel.Email }}  </p>
-            <p> <small class="text-muted"> Ramal: </small>  {{ usuarioModel.Ramal }}  </p>
-            <p> <small class="text-muted"> Email p/ notificações: </small>   {{ usuarioModel.EmailSecundario }}  </p>
-            <p> <small class="text-muted"> Matricula:  </small>   {{ usuarioModel.Matricula  }}    </p>
+            <h3> {{ usuarioModel?.Nome }}  </h3> 
+            <p> <small class="text-muted"> Área: </small>  {{ usuarioModel?.Cargo?.Departamento?.Nome }}  </p> 
+            <p> <small class="text-muted"> Departamento: </small>  {{ usuarioModel?.Cargo?.Departamento?.Area?.Nome }}  </p> 
+            <p> <small class="text-muted"> Cargo: </small>  {{ usuarioModel?.Cargo?.Nome }}  </p> 
+            <p> <small class="text-muted"> Email: </small>  {{ usuarioModel?.Email }}  </p>
+            <p> <small class="text-muted"> Ramal: </small>  {{ usuarioModel?.Ramal }}  </p>
+            <p> <small class="text-muted"> Email p/ notificações: </small>   {{ usuarioModel?.EmailSecundario }}  </p>
+            <p> <small class="text-muted"> Matricula:  </small>   {{ usuarioModel?.Matricula  }}    </p>
             
 
     </div>
@@ -24,25 +24,25 @@
 
             <h4> Dados pessoais </h4>
 
-            <p> <small class="text-muted"> Estado Civil:  </small>  {{  usuarioModel.EstadoCivil  }}     </p>
-            <p> <small class="text-muted"> Sexo:  </small>   {{  usuarioModel.Sexo  }}  </p>
-            <p> <small class="text-muted"> Nivel Acesso:  </small>  {{  usuarioModel.NivelAcesso.Nivel  }}    </p>
-            <p> <small class="text-muted"> Email p/ notificações:  </small>  {{  usuarioModel.EmailSecundario  }}   </p>
-            <p> <small class="text-muted"> Ramal:  </small>  {{  usuarioModel.Ramal  }}    </p>
-            <p> <small class="text-muted"> Data de admissão:  </small>   {{   usuarioModel.DataAdmissao.split("T")[0]  }}  </p>
-            <p> <small class="text-muted"> Data de nascimento : </small>  {{  usuarioModel.DataNasc.split("T")[0]  }}     </p>
+            <p> <small class="text-muted"> Estado Civil:  </small>  {{  usuarioModel?.EstadoCivil  }}     </p>
+            <p> <small class="text-muted"> Sexo:  </small>   {{  usuarioModel?.Sexo  }}  </p>
+            <p> <small class="text-muted"> Nivel Acesso:  </small>  {{  usuarioModel?.NivelAcesso.Nivel  }}    </p>
+            <p> <small class="text-muted"> Email p/ notificações:  </small>  {{  usuarioModel?.EmailSecundario  }}   </p>
+            <p> <small class="text-muted"> Ramal:  </small>  {{  usuarioModel?.Ramal  }}    </p>
+            <p> <small class="text-muted"> Data de admissão:  </small>   {{   usuarioModel?.DataAdmissao?.split("T")[0]  }}  </p>
+            <p> <small class="text-muted"> Data de nascimento : </small>  {{  usuarioModel?.DataNasc?.split("T")[0]  }}     </p>
             <p> <small class="text-muted"> Data de demissão : </small> 
-                <span *ngIf="usuarioModel.Data_Demissao?.split('T')[0] == '0001-01-01'"> </span> 
-                {{  usuarioModel.Data_Demissao?.split("T")[0]  }}    </p>
+                <span *ngIf="usuarioModel?.Data_Demissao?.split('T')[0] == '0001-01-01'"> </span> 
+                {{  usuarioModel?.Data_Demissao?.split("T")[0]  }}    </p>
         </div>
             <div class="col-xl-3">
     <h4> Endereço </h4>
-     <p><small class="text-muted"> Rua: </small> {{usuarioModel.Endereco?.Rua}} </p>
-             <p><small class="text-muted"> Complemento: </small> {{usuarioModel.Endereco?.Complemento}} </p>
-             <p><small class="text-muted"> Bairro: </small> {{usuarioModel.Endereco?.Bairro}} </p>
-             <p><small class="text-muted"> CEP: </small> {{usuarioModel.Endereco?.CEP}} </p>
-             <p><small class="text-muted"> Referência: </small> {{usuarioModel.Endereco?.Referencia}} </p>
-             <p><small class="text-muted"> Cidade: </small> {{usuarioModel.Endereco?.Cidade}} </p>
+     <p><small class="text-muted"> Rua: </small> {{usuarioModel?.Endereco?.Rua}} </p>
+             <p><small class="text-muted"> Complemento: </small> {{usuarioModel?.Endereco?.Complemento}} </p>
+             <p><small class="text-muted"> Bairro: </small> {{usuarioModel?.Endereco?.Bairro}} </p>
+             <p><small class="text-muted"> CEP: </small> {{usuarioModel?.Endereco?.CEP}} </p>
+             <p><small class="text-muted"> Referência: </small> {{usuarioModel?.Endereco?.Referencia}} </p>
+             <p><small class="text-muted"> Cidade: </small> {{usuarioModel?.Endereco?.Cidade}} </p>
         </div>
 
 </div>
@@ -50,7 +50,7 @@
 <div text-box boxTitle="Contatos pessoais">
 <div class="row">
 
-            <div class="col-xl-4" *ngFor="let contato of usuarioModel.Contatos"> 
+            <div class="col-xl-4" *ngFor="let contato of usuarioModel?.Contatos"> 
 
                        <p> <small class="text-muted">Fixo: </small> {{contato.Fixo}} </p>
                         <p> <small class="text-muted">Celular: </small> {{contato.Celular}} </p>
@@ -68,7 +68,7 @@
 
         <div class="col-xl-12">
             
-            <p [innerHTML]="usuarioModel.Resumo?.Conteudo"></p>
+            <p [innerHTML]="usuarioModel?.Resumo?.Conteudo"></p>
     
         </div>
 
@@ -80,7 +80,7 @@
 <div text-box boxTitle="Certificações e cursos">
 
     <div class="row">
-        <div class="col-xl-4" *ngFor="let certcurso of usuarioModel.CertCursos"> 
+        <div class="col-xl-4" *ngFor="let certcurso of usuarioModel?.CertCursos"> 
 
                 <p> <small class="text-muted">Nome: </small> {{certcurso?.Nome}} </p>
                  <p> <small class="text-muted">Instituição: </small> {{certcurso?.Instituicao}} </p>
@@ -96,7 +96,7 @@
 <div text-box boxTitle="Idiomas">
 <div class="row">
 
-        <div class="col-xl-4" *ngFor="let idioma of usuarioModel.Idiomas"> 
+        <div class="col-xl-4" *ngFor="let idioma of usuarioModel?.Idiomas"> 
 
                 <p> <small class="text-muted">Nome: </small> {{idioma?.Nome}} </p>
                  <p> <small class="text-muted">Fluência: </small> {{idioma?.Fluencia}} </p>
@@ -109,7 +109,7 @@
 <div text-box boxTitle="Formação Acadêmica">
 <div class="row">
 
-        <div class="col-xl-4" *ngFor="let formAcademica of usuarioModel.FormAcademicas"> 
+        <div class="col-xl-4" *ngFor="let formAcademica of usuarioModel?.FormAcademicas"> 
 
                 <p> <small class="text-muted">Instituição: </small> {{formAcademica?.Instituicao}} </p>
                  <p> <small class="text-muted">Curso: </small> {{formAcademica?.Curso}} </p>
@@ -124,7 +124,7 @@
 <div text-box boxTitle="Experiências profissionais">
 <div class="row">
 
-        <div class="col-xl-4" *ngFor="let expprofissional of usuarioModel.ExpProfissionais"> 
+        <div class="col-xl-4" *ngFor="let expprofissional of usuarioModel?.ExpProfissionais"> 
 
                  <p> <small class="text-muted">Empresa </small> {{expprofissional?.Empresa}} </p>
                  <p> <small class="text-muted">Início</small>  {{ expprofissional?.Inicio.split("T")[0] }} </p>
@@ -142,7 +142,7 @@
 <div text-box boxTitle="Conhecimentos">
 <div class="row">
 
-        <div class="col-xl-4" *ngFor="let usuarioConhecimento of usuarioModel.UsuarioConhecimentos"> 
+        <div class="col-xl-4" *ngFor="let usuarioConhecimento of usuarioModel?.UsuarioConhecimentos"> 
                 <p> <small class="text-muted">Categoria: </small> {{usuarioConhecimento.Conhecimento.CategoriaConhecimento?.Categoria}} 
                 <small class="text-muted">Conhecimento: </small> {{usuarioConhecimento.Conhecimento.Nome}} </p>
      </div>
