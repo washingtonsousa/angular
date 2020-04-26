@@ -24,7 +24,9 @@ namespace Core.Data.Repositories
 
         public Area Find(int Id)
         {
-            return this.Context.Areas.Where(e => e.Id == Id).Include(u => u.Departamentos).FirstOrDefault();
+            return this.Context.Areas
+                .Include(u => u.Departamentos)
+                .FirstOrDefault(e => e.Id == Id);
 
         }
 

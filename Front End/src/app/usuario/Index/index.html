@@ -112,13 +112,8 @@
 <div *ngIf="!(Usuarios | usuarioPipe:filterQueryHandler)?.length" class="alert col-12 alert-danger"> 
         Não foram retornados resultados para sua pesquisa </div> 
         
-        
         <pagination-controls class="d-flex justify-content-center" (pageChange)="currentPage = $event" previousLabel="Anterior"
         nextLabel="Próximo"></pagination-controls>
-
-
-<div #loadingIcon mskfolding [visible]="false" loadingText="Aguarde..." ></div>
-
 
 </main-container>
 

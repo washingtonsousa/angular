@@ -35,5 +35,6 @@ export class Usuario {
     FormAcademicas: FormAcademica[]  = [];
     ExpProfissionais: ExpProfissional[] = [];
     UsuarioConhecimentos:UsuarioConhecimento[] = [];
+    Password: String = null;
 }
 

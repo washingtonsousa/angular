@@ -5,6 +5,7 @@ import { CargoService } from "../../services/http/cargo.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
 import {Area} from "../../models/Area.model";
 import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: '[cargo-subscribe]',
@@ -19,7 +20,6 @@ export class CargoSubscribeComponent  {
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
    public  CargoForm:FormGroup;
-   @ViewChild('modalMessage') modalMessage: ModalMessageComponent;
    @ViewChild('modalConfirmMessage') modalConfirmMessage: ModalMessageComponent;
    constructor(private fb: FormBuilder, private cargoService: CargoService) {
 
@@ -31,14 +31,13 @@ export class CargoSubscribeComponent  {
           this.cargoService.delete(Id).subscribe(res => {
 
             this.IdEmitter.emit(Id);
-            this.modalMessage.Message = "Deletado com sucesso";
-            this.modalMessage.openModal();
+
+            ModalMessageService.open("Deletado com sucesso");
 
           }, err => {
-            
-            this.modalMessage.Message = "Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message;
-            this.modalMessage.openModal();
+  
 
+            ModalMessageService.open("Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message);
           });
    }
 
@@ -63,21 +62,18 @@ export class CargoSubscribeComponent  {
         this.cargoService.post(this.CargoForm.value).subscribe(res => { 
             
             this.emitter.emit(res);
-            this.modalMessage.Message = "Criado com sucesso";
-            this.modalMessage.openModal();
             this.CargoForm.reset();
-
+            ModalMessageService.open("Criado com sucesso");
         }, err => {
 
                 this.cargoService.put(this.CargoForm.value).subscribe((res: Cargo) => {
 
-                    this.modalMessage.Message = "Atualizado com sucesso";
-                    this.modalMessage.openModal();
+                    ModalMessageService.open("Atualizado com sucesso");
                     this.emitter.emit(res);
 
-                }, res => {  this.modalMessage.Message = "Falha ao executar a operação, consulte o erro para maiores detalhes: " 
-                + err.message;
-                    this.modalMessage.openModal(); 
+                }, res => { ModalMessageService.open("Falha ao executar a operação, consulte o erro para maiores detalhes: " 
+                + err.message);
+           
                 
                 })
 

@@ -4,6 +4,8 @@ import { UsuarioConhecimentoService } from "../../../../services/http/usuariocon
 import { trigger, state , transition, animate, style} from '@angular/animations';
 import { CategoriaConhecimentoService } from "../../../../services/http/categoriaConhecimento.service";
 import { CategoriaConhecimento } from "../../../../models/categoria-conhecimento.model";
+import { LoadingIconService } from "src/app/services/emitters/loading-icon.service";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: '[usuarioconhecimento-form]',
@@ -36,7 +38,6 @@ export class UsuarioConhecimentoFormComponent implements OnChanges {
 
     };
     @Input() public buttonText: string;
-    @ViewChild('loadingIcon') loadingIcon: any
  
     constructor(
     private UsuarioConhecimentoService: UsuarioConhecimentoService,
@@ -49,15 +50,18 @@ export class UsuarioConhecimentoFormComponent implements OnChanges {
 
     OnSubmit() {
 
-           this.loadingIcon.show();
+           LoadingIconService.show();
            this.UsuarioConhecimentoService.post(this.JsonObjectIdsObject).subscribe(res => {
 
-                this.loadingIcon.hide();
+                LoadingIconService.hide();
+                ModalMessageService.open("Atualizado com sucesso");
 
-           }, err => {this.loadingIcon.hide();})
+           }, err => {LoadingIconService.hide();})
     }
 
     OnCheck(value) {
+
+        value = parseInt(value);
 
         if(!this.JsonObjectIdsObject.ConhecimentoIds.includes(value)) {
             this.JsonObjectIdsObject.ConhecimentoIds.push(value);
@@ -73,6 +77,8 @@ export class UsuarioConhecimentoFormComponent implements OnChanges {
             }
             
           }
+
+          console.log(this.JsonObjectIdsObject);
     }
 
 

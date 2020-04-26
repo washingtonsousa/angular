@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {FormAcademica} from '../../../../models/form-academica.model';
 import { FormAcademicaService } from "../../../../services/http/FormAcademica.service";
 import { ModalConfirmMessageComponent } from "../../../../custommodals/modalConfirmMessage.component";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: 'formacademica-form',
@@ -12,10 +13,8 @@ export class FormAcademicaFormComponent implements OnInit {
 
     @Input('FormAcademicaObject') public FormAcademicaObject: FormAcademica = new FormAcademica() || new FormAcademica();
     @Input() public buttonText: string;
-    @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
     @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<any>();
-    @ViewChild('modalMessage') modalMessage: ModalConfirmMessageComponent;
     public selectizeConfig: any;
     public TipoCursos: any = [];
     public SituacoesCursos: any = [];
@@ -47,9 +46,7 @@ export class FormAcademicaFormComponent implements OnInit {
     OnSubmit($event) {
             $event.preventDefault();
             this.FormAcademicaService.post(this.FormAcademicaForm.value).subscribe((res: FormAcademica) => {
-                
-                this.modalMessage.Message= "Criado com sucesso";
-                this.modalMessage.openModal();
+                ModalMessageService.open("Criado com sucesso");
 
                         this.emitter.emit(res);
             }, (err) => {
@@ -57,8 +54,7 @@ export class FormAcademicaFormComponent implements OnInit {
                         this.FormAcademicaService.put(this.FormAcademicaForm.value).subscribe((res) => {
 
                                 this.emitter.emit(res);
-                                this.modalMessage.Message= "Atualizado com sucesso";
-                                this.modalMessage.openModal();
+                                ModalMessageService.open("Atualizado com sucesso");
 
                         }, err => {console.log(err)})
 

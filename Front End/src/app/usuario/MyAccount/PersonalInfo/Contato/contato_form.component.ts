@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter, ViewChild, Output} from "@angular/core"
 import { Contato } from "../../../../models/Contato.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContatoService } from "../../../../services/http/contato.service";
-import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: '[contato-form]',
@@ -15,7 +15,6 @@ export class ContatoContainerComponent  {
    @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
    public  ContatoForm:FormGroup;
-   @ViewChild('modalMessage') modalMessage: ModalMessageComponent;
 
    constructor(private fb: FormBuilder, private contatoService: ContatoService) {}
 
@@ -55,20 +54,14 @@ export class ContatoContainerComponent  {
             this.contatoService.post(this.ContatoForm.value).subscribe(res => { 
                 
                 this.emitter.emit(res);
-                this.modalMessage.Message = "Criado com sucesso";
-                this.modalMessage.openModal();
+                ModalMessageService.open("Criado com sucesso");
                 this.ContatoForm.reset();
                 this.ContatoForm.controls['UsuarioId'].setValue(parseInt(localStorage.getItem('user_id')));
 
             }, err => {
-
-               
-
-
                     this.contatoService.put(this.ContatoForm.value).subscribe((res: Contato) => {
 
-                        this.modalMessage.Message = "Atualizado com sucesso";
-                        this.modalMessage.openModal();
+                        ModalMessageService.open("Atualizado com sucesso");
                         this.emitter.emit(res);
 
                     })

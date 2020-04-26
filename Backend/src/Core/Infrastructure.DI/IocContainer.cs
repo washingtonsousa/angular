@@ -38,6 +38,8 @@ namespace Infrastructure.DI
             kernel.Bind<IExpProfissionalRepository>().To<ExpProfissionalRepository>();
             kernel.Bind<ICategoriaConhecimentoRepository>().To<CategoriaConhecimentoRepository>();
             kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
+            kernel.Bind<ICertCursoRepository>().To<CertCursoRepository>();
+            kernel.Bind<IContatoRepository>().To<ContatoRepository>();
 
         }
 

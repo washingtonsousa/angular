@@ -19,7 +19,7 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap";
     <ng-content></ng-content>
     </div>
     <div class="modal-footer">
-    <button class="btn btn-primary" (click)="modalRef.hide()"> OK </button>
+    <button *ngIf="EnableFooterActions" class="btn btn-primary" (click)="modalRef.hide()"> OK </button>
     </div>
 </ng-template>
     
@@ -31,7 +31,8 @@ export class ModalContentComponent {
     modalRef: BsModalRef;
     @Input() public Title: string = "Aviso";
     @ViewChild('template') template:  TemplateRef<any>;
-    
+    @Input() public EnableFooterActions: boolean = true;
+
     constructor(private modalService: BsModalService) {}
 
 

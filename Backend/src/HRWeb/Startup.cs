@@ -40,9 +40,7 @@ namespace HRWeb
 
       var config = new HttpConfiguration();
       // Configure Unity
-      var resolver = GlobalConfiguration.Configuration.DependencyResolver;
-      GlobalConfiguration.Configuration.DependencyResolver = resolver;
-      config.DependencyResolver = resolver;
+   
       // Do Web API configuration
       WebApiConfig.Register(config);
 

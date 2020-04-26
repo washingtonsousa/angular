@@ -2,6 +2,7 @@ import { Component, Input, EventEmitter, ViewChild, Output, OnInit, OnChanges} f
 import { Resumo } from "../../../../models/resumo.model";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ResumoService } from "../../../../services/http/resumo.service";
+import { LoadingIconService } from "src/app/services/emitters/loading-icon.service";
 
 @Component({
 selector: '[resumo-form]',
@@ -11,7 +12,6 @@ export class ResumoFormComponent  implements OnInit {
 
    @Input() public resumo: Resumo;
    @Input() public buttonText: string = "Salvar";
-   @ViewChild('loadingIcon') loadingIcon: any
    @Output('OnSubmit') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    public  ResumoForm:FormGroup;
    Message: string;
@@ -36,24 +36,24 @@ export class ResumoFormComponent  implements OnInit {
 
    if(this.ResumoForm.valid) {
 
-        this.loadingIcon.show();
+        LoadingIconService.show();
 
             this.resumoService.post(this.ResumoForm.value).subscribe(res => { 
                 this.emitter.emit(res);
-                this.loadingIcon.hide();
-                this.Message= "Sucesso";
+                LoadingIconService.hide();
+                this.Message= "Executado com sucesso";
 
             }, err => {
                 this.resumoService.put(this.ResumoForm.value).subscribe((res) => {
 
-                    this.loadingIcon.hide();
+                    LoadingIconService.hide();
                     this.emitter.emit(res);
-                    this.Message= "Sucesso";
+                    this.Message= "Executado com sucesso";
 
             }, err => {
                 
                 
-                this.Message= "Ocorreu um erro"; this.loadingIcon.hide();})
+                this.Message= "Ocorreu um erro"; LoadingIconService.hide();})
 
                 
 

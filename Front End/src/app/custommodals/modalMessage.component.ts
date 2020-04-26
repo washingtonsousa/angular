@@ -44,6 +44,7 @@ export class ModalMessageComponent implements OnInit {
 
         ModalMessageService.listen().subscribe((params:ModalMessageSettings) => {
                     this.settings = params;
+                    this.openModal();
         });
 
     }

@@ -11,7 +11,7 @@ export class ProfilePictureComponent implements OnInit {
     @Input() public src: any = "assets/images/default-user-image.png";
     @Input() public cssClass: string;
     public safeUrl: string;
-
+    private defaultImageUrl:String = "assets/images/default-user-image.png";
     constructor(private profilePictureService: ProfilePictureService,
         private sanitizer:DomSanitizer) {
 
@@ -21,16 +21,20 @@ export class ProfilePictureComponent implements OnInit {
          this.profilePictureService.getSingle().subscribe(
              
             
-            res => {this.src =  this.sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64, "+ res)}, 
+            res => {
+                
+                
+                this.src = (res != null)  ? this.sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64, "+ res) : this.defaultImageUrl;
+            
+            
+            }, 
             
             
             err => {this.errorHandler(err)});
     }
 
     private errorHandler(err: any) {
-        if(err.status == 404) {
-               this.src = "assets/images/default-user-image.png";
-           }
+      
     }
 
 }

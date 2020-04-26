@@ -28,7 +28,7 @@ export class QualificationsComponent{
                 this.usuarioService.getSingle(parseInt(localStorage.getItem("user_id"))).subscribe((res: Usuario) => {
         
                     this.usuarioModel = res;
-                
+                console.log(res);
 
                     });
         

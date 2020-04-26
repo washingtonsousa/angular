@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from "@angular/core";
 import { Resumo } from "../../../../models/resumo.model";
 
 
@@ -18,9 +18,9 @@ import { Resumo } from "../../../../models/resumo.model";
   </div>
 </div>
 
-<div #resumoModal modal-content Title="Preencher resumo"> 
+<div #resumoModal modal-content Title="Preencher resumo" [EnableFooterActions]="false"> 
 
-<div *ngIf="(resumo | json) != '{}'" resumo-form #resumoForm buttonText="Salvar" (OnSubmit)="onSave($event)" [resumo]="resumo">
+<div resumo-form #resumoForm buttonText="Salvar" (OnSubmit)="onSave($event)" [resumo]="resumo">
       
     </div>    
 
@@ -28,13 +28,18 @@ import { Resumo } from "../../../../models/resumo.model";
 
 `
 })
-export class ResumoBlockComponent implements OnInit {
+export class ResumoBlockComponent implements OnInit, OnChanges {
 
       @Input() public resumo: Resumo;
 
 
       constructor() {
    
+      }
+
+      ngOnChanges(changes: SimpleChanges) {
+        if(changes.resumo)
+        this.resumo = this.resumo == null ? new Resumo() : this.resumo;
       }
 
       ngOnInit() {

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AreaService } from "../../services/http/area.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
 import { ImageConverter } from "../../adapters/imageConverter";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: '[area-subscribe]',
@@ -24,14 +25,11 @@ export class AreaSubscribeComponent  {
           this.areaService.delete(Id).subscribe(res => {
 
             this.IdEmitter.emit(Id);
-            this.modalMessage.Message = "Deletado com sucesso";
-            this.modalMessage.openModal();
+            ModalMessageService.open("Deletado com sucesso");
 
           }, err => {
             
-            this.modalMessage.Message = "Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message;
-            this.modalMessage.openModal();
-
+            ModalMessageService.open("Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message);
           });
    }
 
@@ -51,9 +49,6 @@ export class AreaSubscribeComponent  {
        });
    }
 
-
-
-
    OnSubmit(event) {
 
    event.preventDefault();
@@ -63,16 +58,15 @@ export class AreaSubscribeComponent  {
         this.areaService.post(this.AreaForm.value).subscribe(res => { 
             
             this.emitter.emit(res);
-            this.modalMessage.Message = "Criado com sucesso";
-            this.modalMessage.openModal();
+            ModalMessageService.open("Criado com sucesso");
             this.AreaForm.reset();
 
         }, err => {
 
                 this.areaService.put(this.AreaForm.value).subscribe((res: Area) => {
 
-                    this.modalMessage.Message = "Atualizado com sucesso";
-                    this.modalMessage.openModal();
+           
+                    ModalMessageService.open("Atualizado com sucesso");
                     this.emitter.emit(res);
 
                 }, res => {  this.modalMessage.Message = "Falha ao executar a operação, consulte o erro para maiores detalhes: " 

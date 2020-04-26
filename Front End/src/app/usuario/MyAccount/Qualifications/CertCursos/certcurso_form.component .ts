@@ -4,6 +4,7 @@ import {CertCurso} from '../../../../models/cert-curso.model';
 import { CertCursoService } from "../../../../services/http/CertCurso.service";
 import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
 import { ModalConfirmMessageComponent } from "src/app/custommodals/modalConfirmMessage.component";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: 'certcurso-form',
@@ -13,11 +14,9 @@ export class CertCursoFormComponent implements OnInit {
 
     @Input('certcursoObject') public CertCursoObject: CertCurso = new CertCurso() || new CertCurso();
     @Input() public buttonText: string;
-    @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
     @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<any>();
     public  CertCursoForm:FormGroup;
-    @ViewChild('modalMessage') modalMessage: ModalMessageComponent;
 
     constructor(private fb: FormBuilder, private CertCursoService: CertCursoService) {}
 
@@ -31,24 +30,21 @@ export class CertCursoFormComponent implements OnInit {
                         this.emitter.emit(res);
                         this.CertCursoForm.reset();
                         this.CertCursoForm.controls['UsuarioId'].setValue(parseInt(localStorage.getItem('user_id')));
-                        this.modalMessage.Message = "Criado com sucesso";
-                        this.modalMessage.openModal();
+
+
+                        ModalMessageService.open("Criado com sucesso");
 
 
             }, (err) => {
 
                         this.CertCursoService.put(this.CertCursoForm.value).subscribe((res) => {
-                            this.modalMessage.Message = "Atualizado com sucesso";
-                            this.modalMessage.openModal();
+
+                            ModalMessageService.open("Atualizado com sucesso");
                                 this.emitter.emit(res);
 
                         }, err => {
-                            
-
-                            this.modalMessage.Message = "Ocorreu falha ao tentar inserir ou atualizar dado";
-                            this.modalMessage.openModal();
-                        
-                        
+                    
+                            ModalMessageService.open("Ocorreu falha ao tentar inserir ou atualizar dado");
                         })
 
             });

@@ -31,7 +31,7 @@ export class CargoService {
     }
 
     post(Usuario: Cargo) {
-       return  this.http.put<Cargo>(globals.apiUrl + "Cargo/Post", Usuario, {headers: this.httpHeaders});
+       return  this.http.post<Cargo>(globals.apiUrl + "Cargo/Post", Usuario, {headers: this.httpHeaders});
     }
     
     delete(id: number) {

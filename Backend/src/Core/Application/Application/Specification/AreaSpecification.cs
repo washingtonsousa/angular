@@ -16,7 +16,7 @@ namespace Core.Application.Specification
         {
             return AssertionConcern.IsSatisfiedBy(
 
-                AssertionConcern.AssertNull(area?.Departamentos, "Existem departamentos para esta area e que impedem que esta seja deletada")
+                AssertionConcern.AssertFalse((area.Departamentos?.Count > 0), "Existem departamentos para esta area e que impedem que esta seja deletada")
                 
 
             );

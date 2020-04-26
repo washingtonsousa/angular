@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Endereco} from '../../../../models/endereco.model';
 import { EnderecoService } from "../../../../services/http/endereco.service";
 import { ModalMessageComponent } from "../../../../custommodals/modalMessage.component";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
 
 @Component({
 selector: 'endereco-form',
@@ -12,10 +13,8 @@ export class EnderecoFormComponent implements OnInit, OnChanges {
 
     @Input('enderecoObject') public enderecoObject: Endereco = new Endereco();
     @Input() public buttonText: string;
-    @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
     public  EnderecoForm:FormGroup;
-    @ViewChild('modalMessage') modalMessage: ModalMessageComponent;
 
     constructor(private fb: FormBuilder, private enderecoService: EnderecoService) {}
 
@@ -24,16 +23,17 @@ export class EnderecoFormComponent implements OnInit, OnChanges {
             this.enderecoService.post(this.EnderecoForm.value).subscribe((res: Endereco) => {
 
                         this.emitter.emit(res);
-                        this.modalMessage.Message = "Atualizado com sucesso";
-                        this.modalMessage.openModal();
+                        ModalMessageService.open("Atualizado com sucesso");
                         
             }, (err) => {
 
                         this.enderecoService.put(this.EnderecoForm.value).subscribe((res) => {
 
-                                this.modalMessage.Message = "Atualizado com sucesso";
+
                                 this.emitter.emit(res);
-                                this.modalMessage.openModal();
+
+
+                                ModalMessageService.open("Atualizado com sucesso");
 
                         }, err => {console.log(err)})
 

@@ -18,6 +18,7 @@ import { StatusService } from "../../services/http/status.service";
 import { MaskedSKFoldingCubeComponent } from "../../loaders/masked-sk-folding-cube.component";
 import { SidePanelComponent } from "src/app/panels/side-panel.component";
 import { ModalContentComponent } from "src/app/custommodals/modalContent.component";
+import { LoadingIconService } from "src/app/services/emitters/loading-icon.service";
 
 @Component({
   templateUrl: 'index.html',
@@ -26,7 +27,6 @@ import { ModalContentComponent } from "src/app/custommodals/modalContent.compone
 export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
 
   public Usuarios: Usuario[];
-  @ViewChild('loadingIcon') public loadingIcon: MaskedSKFoldingCubeComponent;
   @ViewChild('atualizarUsuarioPainel') public atualizarUsuarioPainel: SidePanelComponent;
   @ViewChild('userProfileModal') public userProfileModal: ModalContentComponent;
   public cargos: Cargo[] = [];
@@ -68,13 +68,13 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
 
   Edit(usuarioId: number) {
 
-    this.loadingIcon.show();
+    LoadingIconService.show();
     this.usuarioService.getSingle(usuarioId).subscribe((usuario: Usuario) => {
 
       this.currentSelectedUsuario = usuario;
       this.atualizarUsuarioPainel.show();
       this.changeDetection.detectChanges();
-      this.loadingIcon.hide();
+      LoadingIconService.hide();
 
     });
   }
@@ -83,13 +83,13 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
   
   GetForOpenModal(usuarioId: number) {
 
-    this.loadingIcon.show();
+    LoadingIconService.show();
     this.usuarioService.getSingle(usuarioId).subscribe((usuario: Usuario) => {
 
       this.currentSelectedUsuario = usuario;
       this.userProfileModal.openModal();
       this.changeDetection.detectChanges();
-      this.loadingIcon.hide();
+      LoadingIconService.hide();
 
     });
   }
@@ -177,7 +177,7 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.loadingIcon.show();
+    LoadingIconService.show();
 
     this.cargoService.get().subscribe((res) => {
 
@@ -216,7 +216,7 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
                   });
                   this.Usuarios = res;
 
-                  this.loadingIcon.hide();
+                  LoadingIconService.hide();
 
                   this.Usuarios = this.Usuarios.sort((a, b) => {
                     if (a.Nome < b.Nome) return -1;

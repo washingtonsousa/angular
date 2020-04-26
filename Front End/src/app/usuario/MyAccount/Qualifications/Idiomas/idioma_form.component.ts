@@ -12,7 +12,6 @@ export class IdiomaFormComponent implements OnInit {
 
     @Input('IdiomaObject') public IdiomaObject: Idioma = new Idioma() || new Idioma();
     @Input() public buttonText: string;
-    @ViewChild('loadingIcon') loadingIcon: any
     @Output('Emitter') public Emitter: EventEmitter<any> =  new EventEmitter<any>();
     @Output('IdEmitter') public IdEmitter: EventEmitter<any> =  new EventEmitter<any>();
     @ViewChild('modalConfirmMessage') public modalConfirmMessage: ModalConfirmMessageComponent;

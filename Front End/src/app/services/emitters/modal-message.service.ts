@@ -1,9 +1,15 @@
 import { GlobalEmitter } from "./global-emitter";
+import { ModalMessageComponent } from "src/app/custommodals/modalMessage.component";
 
 export class ModalMessageService {
 
-    public static open(params = null) {
-        GlobalEmitter.emit("modal-message", params);
+    public static open(Message, Title ="Aviso") {
+
+        GlobalEmitter.emit("modal-message", {
+                Title: Title,
+                Message: Message
+        });
+
     }
 
     public static listen() {

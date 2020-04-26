@@ -107,6 +107,8 @@ namespace Core.Data.ORM
             modelBuilder.Entity<Usuario>().HasIndex(u => u.Matricula)
             .IsUnique();
 
+            modelBuilder.Entity<Usuario>().Property(u => u.profileImage64string).HasColumnType("text");
+
             modelBuilder.Entity<Usuario>().HasIndex(u => u.Email)
            .IsUnique();
 

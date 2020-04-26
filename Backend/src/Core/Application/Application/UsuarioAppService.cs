@@ -112,7 +112,7 @@ namespace Core.Application
         {
             Usuario usuarioFromDb = _usuarioRepo.FindByMatriculaOrEmail(usuario.Matricula, usuario.Email);
 
-            if (usuarioFromDb.NotExists())
+            if (usuarioFromDb.Exists())
                 return null;
 
             //Funções de Sharepoint comentadas temporariamente

@@ -55,9 +55,7 @@ namespace HRWeb.Controllers
     public HttpResponseMessage DeleteSingle(int Id)
     {
       _enderecoAppService.DeleteSingle(Id);
-
       return ResponseWithNotifications(Id);
-
     }
 
     [Authorize(Roles = "Administrador, Funcionario")]
