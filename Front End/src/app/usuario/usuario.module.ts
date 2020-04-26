@@ -59,7 +59,7 @@ import { DepartamentoModule } from "../departamento/departamento.module";
 import { CustomPipesModule } from "../pipe/custom-pipes.module";
 import { DocumentListComponent } from "./MyAccount/Documents/documentList.component";
 import { ArquivoService } from "../services/http/arquivos.service";
-import { ViewersModule } from "../Viewers/viewers.module";
+import { ViewersModule } from "../viewers/viewers.module";
 import { ArquivosModule } from "../arquivos/arquivos.module";
 import { UsuarioProfileComponent } from "./UsuarioProfile/usuario-profile.component";
 import { CategoriaConhecimentoService } from "../services/http/categoriaconhecimento.service";

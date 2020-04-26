@@ -17,7 +17,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { LoadersModule } from "../loaders/loaders.module";
 import { UploadItemComponent } from "./Upload/panel/item/upload-item.component";
 import { RouterModule } from "@angular/router";
-import { ViewersModule } from "../Viewers/viewers.module";
+import { ViewersModule } from "../viewers/viewers.module";
 import { DateTimeAdapterService } from "../adapters/dateTime.adapter";
 
 

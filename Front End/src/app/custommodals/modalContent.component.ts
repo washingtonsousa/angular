@@ -31,7 +31,7 @@ export class ModalContentComponent {
     modalRef: BsModalRef;
     @Input() public Title: string = "Aviso";
     @ViewChild('template') template:  TemplateRef<any>;
-
+    
     constructor(private modalService: BsModalService) {}
 
 

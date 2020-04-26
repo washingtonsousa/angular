@@ -5,7 +5,7 @@ import { ArquivoService } from "../../services/http/arquivos.service";
 import { HttpResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { ArquivoHandler } from "../handler/arquivo.handler";
-import { ModalPdfViewerComponent } from "../../Viewers/modal-pdf-viewer.component";
+import { ModalPdfViewerComponent } from "../../viewers/modal-pdf-viewer.component";
 import { Filterable } from "../../classTemplates/filterable-template";
 import * as $ from 'jquery';
 import { ArquivosFilterPipe } from "../../pipe/arquivos-filter.pipe";

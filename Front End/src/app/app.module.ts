@@ -20,11 +20,13 @@ import { ArquivosModule } from './arquivos/arquivos.module';
 import { AdministratorGuard } from './login/administrator_guard';
 import { ChartsModule } from 'ng2-charts';
 import {LogsModule} from './logs/logs.module';
+import { LoadersModule } from './loaders/loaders.module';
+import { CustomModalsModule } from './custommodals/custommodals.module';
 
 @NgModule({
   providers: [LoggedInGuard, AdministratorGuard],
   declarations: [AppComponent],
-  imports: [BrowserModule, ArquivosModule, ChartsModule, LogsModule,
+  imports: [BrowserModule, LoadersModule, CustomModalsModule, ArquivosModule, ChartsModule, LogsModule,
      MainContainerModule, CargoModule, NgbModule.forRoot(), HomeModule, AreaModule, DepartamentoModule,
      RouterModule, LoginModule,  Routing, BrowserModule, ConhecimentoModule ,
      UsuarioModule, ModalModule.forRoot(), BsDropdownModule.forRoot(),

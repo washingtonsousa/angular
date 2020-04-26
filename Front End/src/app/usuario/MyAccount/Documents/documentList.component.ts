@@ -4,7 +4,7 @@ import { ArquivoService } from "../../../services/http/arquivos.service";
 import { Arquivo } from "../../../models/arquivo.model";
 import { HttpResponse } from "@angular/common/http";
 import { ArquivoHandler } from "../../../arquivos/handler/arquivo.handler";
-import { ModalPdfViewerComponent } from "../../../Viewers/modal-pdf-viewer.component";
+import { ModalPdfViewerComponent } from "../../../viewers/modal-pdf-viewer.component";
 
 @Component({
     selector: 'document-list',
