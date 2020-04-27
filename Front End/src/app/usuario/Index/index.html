@@ -88,9 +88,8 @@
   <div  *ngFor="let Usuario of Usuarios | usuarioPipe: filterQueryHandler | paginate:  { itemsPerPage: limit, currentPage: currentPage }; trackBy: trackUsuarios"
    class="col-xl-2 col-lg-4 col-md-6 col-12 usuario-card-container">
                
-   <div  card-usuario [Usuario]="Usuario" (deleteEventEmitter)="usuarioSubscribe.openDeleteConfirmMessage()"
+   <div  card-usuario [Usuario]="Usuario" (deleteEventEmitter)="currentSelectedUsuario = Usuario; usuarioSubscribe.openDeleteConfirmMessage();"
 (editEventEmitter)="Edit(Usuario.Id)" (viewEventEmitter)="GetForOpenModal(Usuario.Id)"></div>
-
 
         </div>
 </div> 
@@ -103,7 +102,7 @@
 <div side-panel #atualizarUsuarioPainel panelTitle="Editar Usuário">
         <div usuario-subscribe [cargos]="cargos" [nivelAcessos]="nivelacessos" [status]="status"
          [spUsers]="spUsers" [isUpdate]="true" #usuarioSubscribe
-                [SetUsuario]="currentSelectedUsuario" submitButtonText="Atualizar">   
+                [usuarioModel]="currentSelectedUsuario" submitButtonText="Atualizar">   
                 
         </div>
 </div>

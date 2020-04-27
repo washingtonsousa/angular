@@ -66,7 +66,7 @@ namespace Core.Application
             if (cargo.NotExists())
                 return;
 
-            if (cargo.ValidForDeletion())
+            if (!cargo.ValidForDeletion())
                 return;
 
                 _cargoRepo.Delete(cargo);

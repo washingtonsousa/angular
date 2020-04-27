@@ -85,6 +85,10 @@ namespace Core.Data.ORM
             modelBuilder.Entity<Usuario>().Property(e => e.profileImage64string)
                   .HasColumnType("text");
 
+            modelBuilder.Entity<Endereco>().HasOne(e => e.Usuario).WithOne(e => e.Endereco).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Resumo>().HasOne(e => e.Usuario).WithOne(e => e.Resumo).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<UsuarioConhecimento>().HasOne(e => e.Usuario).WithMany(e => e.UsuarioConhecimentos).OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<Status>().ToTable("Status");
             modelBuilder.Entity<ExpProfissional>().ToTable("ExpProfissionais");

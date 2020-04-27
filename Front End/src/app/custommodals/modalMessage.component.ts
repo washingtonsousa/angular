@@ -13,8 +13,7 @@ import { ModalMessageService } from "../services/emitters/modal-message.service"
     <span aria-hidden="true">&times;</span>
     </button>
     </div>
-    <div class="modal-body">
-    {{settings.Message}}
+    <div class="modal-body" [innerHTML]="settings.Message">
     </div>
     <div class="modal-footer">
     <button class="btn btn-primary" (click)="modalRef.hide()"> OK </button>

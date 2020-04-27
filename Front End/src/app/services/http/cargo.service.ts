@@ -35,6 +35,6 @@ export class CargoService {
     }
     
     delete(id: number) {
-       return  this.http.put<Cargo>(globals.apiUrl + "Cargo/Delete/"+ id, {headers: this.httpHeaders});
+       return  this.http.delete<Cargo>(globals.apiUrl + "Cargo/Delete/"+ id, {headers: this.httpHeaders});
     }
 }

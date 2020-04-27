@@ -19,12 +19,14 @@ namespace Core.Application
         private IConhecimentoAppService _conhecimentoAppService;
         private IUsuarioConhecimentoRepository _usrConhecimentoRepo;
 
+
         public UsuarioAppService(IUsuarioRepository usuarioRepo, IUnityOfWork unityOfWork, ISharepointPeopleManagerAppService sharepointPeopleManagerAppService, IConhecimentoAppService conhecimentoAppService, IUsuarioConhecimentoRepository usrConhecimentoRepo) : base(unityOfWork)
         {
             _usuarioRepo = usuarioRepo;
             _sharepointPeopleManagerAppService = sharepointPeopleManagerAppService;
             _conhecimentoAppService = conhecimentoAppService;
             _usrConhecimentoRepo = usrConhecimentoRepo;
+
         }
 
         public Usuario GetUsuarioLoggedIn()
@@ -89,7 +91,11 @@ namespace Core.Application
             if (usuario.NotExists())
                 return;
 
+            if (!usuario.ValidForDeletion())
+                return;
+
             _usuarioRepo.Delete(usuario);
+
             bool result = _unityOfWork.Commit();
 
             if (result)
@@ -121,6 +127,8 @@ namespace Core.Application
 
             //if (result)
             //{
+
+          
 
             _usuarioRepo.Insert(usuario);
             bool result  = _unityOfWork.Commit();

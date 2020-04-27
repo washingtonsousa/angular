@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConhecimentoService } from "../../services/http/conhecimento.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
 import { CategoriaConhecimento } from "../../models/categoria-conhecimento.model";
+import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
+import { DomainNotification } from "src/app/models/notification.model";
 
 @Component({
 selector: '[conhecimento-subscribe]',
@@ -17,7 +19,6 @@ export class ConhecimentoSubscribeComponent  {
    @Output('emitter') public emitter: EventEmitter<any> =  new EventEmitter<any>();
    @Output('IdEmitter') public IdEmitter: EventEmitter<number> =  new EventEmitter<number>();
    public  ConhecimentoForm:FormGroup;
-   @ViewChild('modalMessage') modalMessage: ModalMessageComponent;
    @ViewChild('modalConfirmMessage') modalConfirmMessage: ModalMessageComponent;
    constructor(private fb: FormBuilder, private conhecimentoService: ConhecimentoService) {}
 
@@ -26,13 +27,9 @@ export class ConhecimentoSubscribeComponent  {
           this.conhecimentoService.delete(Id).subscribe(res => {
 
             this.IdEmitter.emit(Id);
-            this.modalMessage.Message = "Deletado com sucesso";
-            this.modalMessage.openModal();
-
+            ModalMessageService.open("Deletado com sucesso");
           }, err => {
-            
-            this.modalMessage.Message = "Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message;
-            this.modalMessage.openModal();
+            ModalMessageService.handleHttpResponse(err);
 
           });
    }
@@ -57,22 +54,25 @@ export class ConhecimentoSubscribeComponent  {
         this.conhecimentoService.post(this.ConhecimentoForm.value).subscribe(res => { 
             
             this.emitter.emit(res);
-            this.modalMessage.Message = "Criado com sucesso";
-            this.modalMessage.openModal();
+
+            ModalMessageService.open("Criado com sucesso");
             this.ConhecimentoForm.reset();
 
         }, err => {
 
-                this.conhecimentoService.put(this.ConhecimentoForm.value).subscribe((res: Conhecimento) => {
+            if (err.status == 400) {
 
-                    this.modalMessage.Message = "Atualizado com sucesso";
-                    this.modalMessage.openModal();
+                let notifications = <DomainNotification[]>err.error;
+                ModalMessageService.notify(notifications);
+                return;
+            }
+
+                this.conhecimentoService.put(this.ConhecimentoForm.value).subscribe((res: Conhecimento) => {         
+                    ModalMessageService.open("Atualizado com sucesso");
                     this.emitter.emit(res);
 
-                }, res => {  this.modalMessage.Message = "Falha ao executar a operação, consulte o erro para maiores detalhes: " 
-                + err.message;
-                    this.modalMessage.openModal(); 
-                
+                }, res => { 
+                    ModalMessageService.handleHttpResponse(err);
                 })
 
             });

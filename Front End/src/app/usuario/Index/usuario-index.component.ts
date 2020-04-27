@@ -79,7 +79,6 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
     });
   }
 
-
   
   GetForOpenModal(usuarioId: number) {
 
@@ -214,8 +213,11 @@ export class UsuarioIndexComponent extends Filterable implements AfterViewInit {
                     this.spUsers = spUsers;
 
                   });
-                  this.Usuarios = res;
 
+
+
+                  this.Usuarios = res;
+                  console.log(res);
                   LoadingIconService.hide();
 
                   this.Usuarios = this.Usuarios.sort((a, b) => {

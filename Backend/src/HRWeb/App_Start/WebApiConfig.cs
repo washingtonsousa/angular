@@ -20,8 +20,7 @@ namespace HRWeb.App_Start
     public static void Register(HttpConfiguration config)
     {
       // EnableCrossSiteRequests(config);
-      var resolver = GlobalConfiguration.Configuration.DependencyResolver;
-      config.DependencyResolver = resolver;
+    
       AddRoutes(config);
      
       var serializerSettings = new JsonSerializerSettings()

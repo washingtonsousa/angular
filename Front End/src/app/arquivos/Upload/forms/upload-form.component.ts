@@ -14,11 +14,13 @@ export class UploadFormComponent implements OnInit{
     public arquivoFormGroup: FormGroup;
     private indexRaw: number;
     public arquivosUploadListArray: any[] = [];
- 
+    public fileList = [];
     constructor(public fb: FormBuilder, private usuariosService: UsuarioService) {}
 
     readFiles(event) {
-        this.arquivoFormGroup.controls["Arquivos"].setValue(event.target.files); 
+
+        this.fileList = event.target.files;
+        console.log(this.fileList);
     }
 
     onData_ReferenciaSelect(event) {
@@ -36,15 +38,15 @@ export class UploadFormComponent implements OnInit{
              event.preventDefault();
 
              this.indexRaw = 0;
-
+             console.log(this.fileList);
              this.usuariosService.get().subscribe((usuarios:Usuario[]) => {
 
-                for(let i = 0; i < this.arquivoFormGroup.value.Arquivos.length; i++) {
+                for(let i = 0; i < this.fileList[i].length; i++) {
     
                      
                       for(let uI = 0; uI < usuarios.length; uI++) {
     
-                      if(usuarios[uI].Matricula ==  this.arquivoFormGroup.value.Arquivos[i].name.split("-")[4]) {
+                      if(usuarios[uI].Matricula ==  this.fileList[i].name.split("-")[4]) {
     
                                   this.arquivosUploadListArray.push({
                                               index : this.indexRaw,
@@ -66,7 +68,6 @@ export class UploadFormComponent implements OnInit{
                             }
                      }  
                 }
-                
                 this.itemsEmitter.emit(this.arquivosUploadListArray);
                 this.arquivosUploadListArray = [];
                 this.arquivoFormGroup.reset();
@@ -77,8 +78,7 @@ export class UploadFormComponent implements OnInit{
 
     ngOnInit() {
         this.arquivoFormGroup = this.fb.group({
-    
-            Arquivos: [[], [Validators.required]],
+
             Data_Referencia: ["", [Validators.required]],
             TipoDoc: ["", [Validators.required]],
             Descricao: ["", [Validators.maxLength(400)]]

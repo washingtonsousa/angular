@@ -5,6 +5,9 @@ import { AreaService } from "../../services/http/area.service";
 import { ModalMessageComponent } from "../../custommodals/modalMessage.component";
 import { ImageConverter } from "../../adapters/imageConverter";
 import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
+import { DomainNotification } from "src/app/models/notification.model";
+import { map, catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
 selector: '[area-subscribe]',
@@ -27,10 +30,9 @@ export class AreaSubscribeComponent  {
             this.IdEmitter.emit(Id);
             ModalMessageService.open("Deletado com sucesso");
 
-          }, err => {
-            
-            ModalMessageService.open("Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message);
-          });
+          }, (err:HttpErrorResponse) => {
+            ModalMessageService.handleHttpResponse(err);
+        });
    }
 
    readLocalImageUrl(event) {
@@ -69,10 +71,8 @@ export class AreaSubscribeComponent  {
                     ModalMessageService.open("Atualizado com sucesso");
                     this.emitter.emit(res);
 
-                }, res => {  this.modalMessage.Message = "Falha ao executar a operação, consulte o erro para maiores detalhes: " 
-                + err.message;
-                    this.modalMessage.openModal(); 
-                
+                },  (err:HttpErrorResponse) => {
+                    ModalMessageService.handleHttpResponse(err);
                 })
 
             });

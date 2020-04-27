@@ -39,7 +39,7 @@ namespace Core.Data.Models
         public int? StatusId { get; set; }
 
 
-
+        [Required]
         public int CargoId { get; set; }
 
      
@@ -65,7 +65,7 @@ namespace Core.Data.Models
 
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-    public Nullable<DateTime> Data_Demissao { get; set; }
+    public DateTime? Data_Demissao { get; set; }
 
         /// <summary>
         /// Relacionamentos entre as entidades e os Usuários

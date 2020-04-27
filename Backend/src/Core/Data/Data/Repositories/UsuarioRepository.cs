@@ -22,7 +22,7 @@ namespace Core.Data.Repositories
         public Usuario AuthVerify(string userName, bool checkPassword, string password)
         {
             var usuario = Context.Usuarios.Include(u => u.Status).Include(u => u.NivelAcesso)
-              .FirstOrDefault(u => u.Email == userName && u.Status.Codigo == 1);
+              .FirstOrDefault(u => (u.Email == userName || u.Matricula == userName) && u.Status.Codigo == 1);
 
             if (checkPassword)
                 usuario = usuario?.Password == password ? usuario : null;

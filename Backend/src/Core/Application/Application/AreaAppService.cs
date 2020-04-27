@@ -57,7 +57,7 @@ namespace Core.Application
 
             if (Area.NotExists())
                 return;
-            if (Area.ValidaParaDeletar())
+            if (!Area.ValidaParaDeletar())
                 return;
 
                 areaRepo.Delete(Area);

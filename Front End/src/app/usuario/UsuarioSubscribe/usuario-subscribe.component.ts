@@ -12,6 +12,8 @@ import { ModalConfirmMessageComponent } from "../../custommodals/modalConfirmMes
 import { NgSelectizeHelper } from "../../adapters/ngSelectizeHelper";
 import { LoadingIconService } from "src/app/services/emitters/loading-icon.service";
 import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { DomainNotification } from "src/app/models/notification.model";
 
 @Component({
   selector: '[usuario-subscribe]',
@@ -19,11 +21,7 @@ import { ModalMessageService } from "src/app/services/emitters/modal-message.ser
 })
 export class UsuarioSubscribeComponent implements OnInit, OnChanges {
 
-  @Input() public set SetUsuario(usuario) {
 
-    this.usuarioModel = (usuario == null || usuario == undefined) ? new Usuario() : usuario;
-
-  }
   @Input() public usuarioModel = new Usuario();
   @Input() public submitButtonText: string = "Enviar";
   @Input() public spUsers: SPUser[] = [];
@@ -102,7 +100,7 @@ export class UsuarioSubscribeComponent implements OnInit, OnChanges {
       Validators.required],
       Data_Demissao: [this.dateAdapter.dateTimeStringToStringDate(this.usuarioModel.Data_Demissao, "yyyy-mm-dd", "-", "-")],
       EstadoCivil: [this.usuarioModel.EstadoCivil, Validators.required],
-      Password: [this.usuarioModel.Password, Validators.required, Validators.minLength(8)]
+      Password: [this.usuarioModel.Password, [Validators.required, Validators.minLength(8)]]
 
 
     });
@@ -148,8 +146,7 @@ export class UsuarioSubscribeComponent implements OnInit, OnChanges {
 
         LoadingIconService.hide();
 
-        ModalMessageService.open("Ocorreu falha ao inserir ou atualizar Usuário erro: " + err.statusText);
-
+        ModalMessageService.handleHttpResponse(err);
 
 
       })
@@ -163,16 +160,15 @@ export class UsuarioSubscribeComponent implements OnInit, OnChanges {
   }
 
   Delete(Id: number) {
-
     LoadingIconService.show();
 
-    this.usuarioService.delete(Id).subscribe((res) => {
+    this.usuarioService.delete(Id).pipe().subscribe((res) => {
       LoadingIconService.hide();
       ModalMessageService.open("Deletado com sucesso");
 
-    }, (err) => {
+    }, (err: HttpErrorResponse) => {
+     ModalMessageService.handleHttpResponse(err);
       LoadingIconService.hide();
-      ModalMessageService.open("Ocorreu um erro ao tentar deletar, detalhes do erro: código: " + err.error.code + " mensagem: " + err.error.message);
 
     })
 

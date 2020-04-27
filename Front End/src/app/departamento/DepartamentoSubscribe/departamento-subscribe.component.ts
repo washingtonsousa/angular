@@ -6,6 +6,7 @@ import { ModalMessageComponent } from "../../custommodals/modalMessage.component
 import {Area} from "../../models/Area.model";
 import {NgSelectizeHelper} from "../../adapters/ngSelectizeHelper";
 import { ModalMessageService } from "src/app/services/emitters/modal-message.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
 selector: '[departamento-subscribe]',
@@ -33,11 +34,9 @@ export class DepartamentoSubscribeComponent  {
             this.IdEmitter.emit(Id);
             ModalMessageService.open("Deletado com sucesso");
 
-          }, err => {
-            
-            ModalMessageService.open("Não foi posssível deletar, verifique abaixo a mensagem de erro: " + err.message);
-
-          });
+          }, (err:HttpErrorResponse) => {
+            ModalMessageService.handleHttpResponse(err);
+        });
    }
 
    ngOnInit() {
@@ -71,11 +70,8 @@ export class DepartamentoSubscribeComponent  {
                     ModalMessageService.open("Atualizado com sucesso");
                     this.emitter.emit(res);
 
-                }, res => { 
-
-                ModalMessageService.open("Falha ao executar a operação, consulte o erro para maiores detalhes: " 
-                + err.message);
-                
+                },  (err:HttpErrorResponse) => {
+                    ModalMessageService.handleHttpResponse(err);
                 })
 
             });
